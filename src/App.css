@@ -1,42 +1,90 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+html {
+  overflow-x: hidden;
+  background-color: rgb(46, 46, 46);
+  color: wheat;
+  font-family: fontPage;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: fontPage;
+  src: url('/Fonts/Bebas-Regular.ttf');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.navbar {
+  position: fixed;
+  width: 100vw;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background-image: linear-gradient(rgb(46, 46, 46), rgba(0, 0, 0, 0));
+  z-index: 5;
+}
+.navbar h3{
+  cursor: pointer;
+}
+.title{
+  color: rgb(202, 0, 0);
 }
 
-.card {
-  padding: 2em;
+.home {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  top: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 50px;
 }
 
-.read-the-docs {
-  color: #888;
+.select-gender {
+  width: 88vw;
+  height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+.gender h3{
+  cursor: pointer;
+}
+.select-gender select{
+  width: 150px;
+
+}
+
+.container-cards {
+  top: 100px;
+  left: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cardsMovies {
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+img {
+  width: 250px;
+  height: 250px;
 }
