@@ -1,71 +1,75 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Navigate, NavLink } from "react-router-dom";
+import { useRef } from 'react';
+import Pageinfo from './PageInfo'
+
 
 
 const Search = ({ selectValue }) => {
-
-
+  
     const { info } = selectValue
     const navigate = useNavigate()
-    const [genderValue, setGenderValue] = useState("movie")
-    const [infoMovie, setInfoMovie] = useState() 
-
+    const [genreValue, setgenreValue] = useState("movie")
+    const [stateSelect, setStateSelect] = useState(false)
+  
     useEffect(() => {
 
         if (selectValue.value !== undefined) {
-            setGenderValue(selectValue.value)
-            setGenders(!genders)
+            setStateSelect(false)
+            setgenreValue(selectValue.value)
+            setGenres(!genres)
         } else {
-            setGenderValue("tv")
+            setgenreValue("movie")
+         
         }
+    }, [genreValue])
 
-    }, [genderValue])
-
-    const [respApiGender, setrespApiGender] = useState([])
+    const [respApiGender, setrespApiGenre] = useState([])
     const [respApi, setRespApi] = useState([])
-    const [genders, setGenders] = useState(14)
+    const [genres, setGenres] = useState(14)
 
     useEffect(() => {
-        if (genderValue) {
-            fetch(`https://api.themoviedb.org/3/genre/${genderValue}/list?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
+        if (genreValue) {
+            fetch(`https://api.themoviedb.org/3/genre/${genreValue}/list?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
                 .then(resp => resp.json())
-                .then(resp => setrespApiGender(resp.genres))
+                .then(resp => setrespApiGenre(resp.genres))
         }
-    }, [genderValue])
+    }, [genreValue])
 
     const handleClick = ((target) => {
-        setGenders(target.target.value)
+        setGenres(target.target.value)
     })
 
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/discover/${genderValue}/?api_key=55b2cf9d90cb74c55683e395bb1ad12b&with_genres=${genders}`)
+        fetch(`https://api.themoviedb.org/3/discover/${genreValue}/?api_key=55b2cf9d90cb74c55683e395bb1ad12b&with_genres=${genres}`)
             .then(resp => resp.json())
             .then(resp => setRespApi(resp.results))
-    }, [genders])
-
+    }, [genres])
     useEffect(() => {
         if (selectValue !== undefined) {
-            setGenderValue(selectValue.value)
+            setgenreValue(selectValue.value)
         }
     }, [selectValue])
-    console.log(info)
-
+const [val, setVal] = useState()
     return (
         <>
             <main className='select-gender'>
                 {
                     respApiGender && (
                         <form action="">
-                            <h2>Genders</h2>
-                            <select onChange={handleClick}>
-                                {
-                                    respApiGender.map((e, i) => {
-                                        return (
-                                            <option id={e.id} key={e.id} value={e.id}>{e.name}</option>
-                                        )
-                                    })
-                                }
-                            </select>
+                            <h2 onClick={() => setStateSelect(!stateSelect)} >Genders</h2>
+                            {
+                                stateSelect && (
+                                    <select onChange={handleClick}>
+                                        {
+                                            respApiGender.map((e, i) => {
+                                                return (
+                                                    <option id={e.id} key={e.id} value={e.id}>{e.name}</option>)
+                                            })
+                                        }
+                                    </select>
+                                )
+                            }
                         </form>
                     )
                 }
@@ -76,15 +80,16 @@ const Search = ({ selectValue }) => {
                         return (
                             <div onClick={() => {
                                 info(e)
+                                setVal(e)
                                 navigate("/info")
-                            }}                            
+                            }}
                                 className='cardsMovies' key={e.id}>
                                 <img src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`} alt="" >
-                                </img>
+                                </img>                                
                             </div>
                         )
-                    })
-                }
+                    })                  
+                }                
             </section>
         </>
     );

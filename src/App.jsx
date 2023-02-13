@@ -17,7 +17,6 @@ function App() {
     const info=((info)=>{
       setValuesMovie(info)
     })
-    console.log(valuesMovie)
 
   return (
     <>

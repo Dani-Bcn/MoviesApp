@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 
 const Navbar = (props) => {
     const { handleValues } = props
-    const state = ["movie"]
+    const state = ["0"]
     const sections = ["Movies", "Series"]
+
     const handleClick = ((target) => {
+   
         state.map((e, i) => {
             state[i] = false
-        })
-
-        switch (target.target.id) {
+        
+        })      
+     
+        switch (target.target.id) {     
             case "0":
                 state[0] = "movie"
                 break
