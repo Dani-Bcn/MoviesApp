@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, Navigate, NavLink } from "react-router-dom";
+
 
 const Search = ({ selectValue }) => {
 
+
+    const { info } = selectValue
+    const navigate = useNavigate()
     const [genderValue, setGenderValue] = useState("movie")
-    genderValue !== undefined ? console.log(genderValue) : null
+    const [infoMovie, setInfoMovie] = useState() 
 
     useEffect(() => {
 
         if (selectValue.value !== undefined) {
             setGenderValue(selectValue.value)
             setGenders(!genders)
-            console.log(selectValue)
         } else {
             setGenderValue("tv")
         }
@@ -20,7 +24,6 @@ const Search = ({ selectValue }) => {
     const [respApiGender, setrespApiGender] = useState([])
     const [respApi, setRespApi] = useState([])
     const [genders, setGenders] = useState(14)
-    const [selectedGender, setSelectedGender] = useState("movie")
 
     useEffect(() => {
         if (genderValue) {
@@ -45,10 +48,7 @@ const Search = ({ selectValue }) => {
             setGenderValue(selectValue.value)
         }
     }, [selectValue])
-
-    const handleInfo=((e)=>{
-        console.log(e)
-    })
+    console.log(info)
 
     return (
         <>
@@ -57,13 +57,11 @@ const Search = ({ selectValue }) => {
                     respApiGender && (
                         <form action="">
                             <h2>Genders</h2>
-                            <select onChange={handleClick} name="" id="">
+                            <select onChange={handleClick}>
                                 {
-
                                     respApiGender.map((e, i) => {
                                         return (
                                             <option id={e.id} key={e.id} value={e.id}>{e.name}</option>
-                                            
                                         )
                                     })
                                 }
@@ -76,9 +74,12 @@ const Search = ({ selectValue }) => {
                 {
                     respApi.map((e, i) => {
                         return (
-                          
-                            <div className='cardsMovies' key={e.id}>
-                                <img  onClick={()=>handleInfo(e)} src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`} alt="" >
+                            <div onClick={() => {
+                                info(e)
+                                navigate("/info")
+                            }}                            
+                                className='cardsMovies' key={e.id}>
+                                <img src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`} alt="" >
                                 </img>
                             </div>
                         )
