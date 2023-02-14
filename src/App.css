@@ -16,6 +16,10 @@ html {
   font-family: fontPage;
   src: url('/Fonts/Bebas-Regular.ttf');
 }
+p{
+  font-family: 'Montserrat', sans-serif;
+
+}
 
 .navbar {
   position: fixed;

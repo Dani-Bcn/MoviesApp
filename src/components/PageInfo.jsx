@@ -1,72 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Cast from './Cast';
 
-const Information = (value) => {
-    const navigate = useNavigate()
-    const [values, setValues] = useState(null)
-    const [failTitle, setFailTitle] = useState("title")
-    const [idMovie, setIdMovie] = useState(value.valuesMovie.id)
-    const [isMovie, setIsMovie] = useState("tv")
-    const [cast, setCast] = useState([])
-    const [allInfoMovie, setAllInfoMovie] = useState([])
-   
+const PageInfo = () => {
 
-  
-      useEffect(()=>{ 
-        console.log(value)
-         setIdMovie(value.valuesMovie.id)
-         setFailTitle("title")
-         setIsMovie("movie")       
-          setValues(value.valuesMovie)
-          value.valuesMovie.title ? setFailTitle(value.valuesMovie.title) : setFailTitle(value.valuesMovie.name)
-      },[])
-      
+    const [localeValue, setLocaleValue] = useState(false)
+    const [valuesMovieOrTv, setValuesMovieOrTv] = useState(false)
+    const [valueId, setValueId] = useState(false)
+
     useEffect(() => {
-        value.valuesMovie.title ?
-            setIsMovie("movie") : setIsMovie("tv")
+        setLocaleValue(window.localStorage.getItem("value"))
+        console.log(localeValue[0])
     },)
 
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/${isMovie}/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
-            .then(resp => resp.json())
-            .then(resp => resp.cast.map((e, i) => {
-                i < 9 ? setCast(prev => [...prev, e]) : null
-            }))            
-    }, [isMovie])
-
+        if (localeValue) {
+            if (localeValue[0] === "m") {
+                setValuesMovieOrTv(localeValue.split("").splice(0, 5).join(""))
+                setValueId(localeValue.split("").splice(5,).join(""))
+            } else {
+                setValuesMovieOrTv(localeValue.split("").splice(0, 2).join(""))
+                setValueId(localeValue.split("").splice(2,).join(""))
+            }
+        }
+    },)
 
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/${isMovie}/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
-            .then(resp => resp.json())
-            .then(resp => console.log(resp))            
-    }, [isMovie])
-    
+        if (valueId) {
+            console.log(valueId, valuesMovieOrTv)
+            fetch(`https://api.themoviedb.org/3/${valuesMovieOrTv}/${valueId}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
+                .then(resp => resp.json())
+                .then(resp => console.log(resp))
+        }
+    },)
+
     return (
-        <div className='info'>
+        <div>
+            <h1>Info</h1>
             {
-                values && (
-                    <main>
-                        <button onClick={()=>navigate(-1)}>Back</button>
-                        <section className='card-info'>
-                            <img src={`https://image.tmdb.org/t/p/w500/${values.poster_path}`} alt="" />
-                            <article>
-                                <h1>{failTitle}</h1>
-                                <h3>Release date{values.release_date}</h3>
-                            </article>
-                        </section>
-                        <section>
-                            {
-                                idMovie && (
-                                    <Cast idMovie={cast} ></Cast>
-                                )
-                            }
-                        </section>
-                    </main>
+                valueId && (
+                    <h2>{valueId}</h2>
                 )
             }
         </div>
     );
 }
 
-export default Information;
+export default PageInfo;

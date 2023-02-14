@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Navigate, NavLink } from "react-router-dom";
-import { useRef } from 'react';
-import Pageinfo from './PageInfo'
+
 
 
 
 const Search = ({ selectValue }) => {
   
-    const { info } = selectValue
+   
+  
     const navigate = useNavigate()
     const [genreValue, setgenreValue] = useState("movie")
     const [stateSelect, setStateSelect] = useState(false)
+    const [idIsTv,setIdIsTv] =useState()
+    const valuesForPageInfo =[genreValue]
+   
   
     useEffect(() => {
 
@@ -19,9 +22,10 @@ const Search = ({ selectValue }) => {
             setgenreValue(selectValue.value)
             setGenres(!genres)
         } else {
-            setgenreValue("movie")
-         
+            setgenreValue("movie")         
         }
+        valuesForPageInfo.push(genreValue)
+         
     }, [genreValue])
 
     const [respApiGender, setrespApiGenre] = useState([])
@@ -47,13 +51,15 @@ const Search = ({ selectValue }) => {
     }, [genres])
     useEffect(() => {
         if (selectValue !== undefined) {
-            setgenreValue(selectValue.value)
+            setgenreValue(selectValue.value)            
         }
     }, [selectValue])
-const [val, setVal] = useState()
     return (
         <>
             <main className='select-gender'>
+                {
+              
+                }
                 {
                     respApiGender && (
                         <form action="">
@@ -63,6 +69,7 @@ const [val, setVal] = useState()
                                     <select onChange={handleClick}>
                                         {
                                             respApiGender.map((e, i) => {
+                                              
                                                 return (
                                                     <option id={e.id} key={e.id} value={e.id}>{e.name}</option>)
                                             })
@@ -77,20 +84,21 @@ const [val, setVal] = useState()
             <section className='container-cards'>
                 {
                     respApi.map((e, i) => {
+               
                         return (
                             <div onClick={() => {
-                                info(e)
-                                setVal(e)
-                                navigate("/info")
-                            }}
+                              window.localStorage.setItem("value", valuesForPageInfo + e.id)
+                              navigate("/info")
+                            }}                        
                                 className='cardsMovies' key={e.id}>
                                 <img src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`} alt="" >
                                 </img>                                
-                            </div>
+                            </div> 
                         )
                     })                  
                 }                
             </section>
+     
         </>
     );
 }
