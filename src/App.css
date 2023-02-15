@@ -3,6 +3,11 @@
   padding: 0;
   list-style: none;
   text-decoration: none;
+  background-color: rgb(36, 36, 36);
+  
+}
+a{
+  color: wheat;
 }
 
 html {
@@ -19,7 +24,15 @@ html {
 
 p {
   font-family: 'Montserrat', sans-serif;
+ 
 }
+span,
+span a{
+  color:rgb(219, 170, 137);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size:1.2rem;
+}
+
 
 .navbar {
   position: fixed;
@@ -75,6 +88,7 @@ form {
 
 .select-gender select {
   width: 150px;
+  color: wheat;
 }
 
 .select-gender h2 {
@@ -100,6 +114,7 @@ form {
 .container-cards img {
   width: 200px;
   height: 250px;
+  cursor: pointer;
 }
 
 .cardsMovies {
@@ -120,29 +135,44 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(165, 152, 152);
   z-index: 5;
 }
+.container-card img{
+  margin: 20px 50px;
+  width: 500px;
+  height: 600px;
+}
 
-.info-card {
+.container-card {
   width: 90vw;
   height: 100vh;
   display: flex;
-  margin-top: 25px;
+  margin: 25px;
   justify-content: space-between;
   align-items: flex-start;
 }
 
 .card-info {
   width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: flex-start;
-  margin: 0 50px;
+  margin: 10px 50px;
+  gap: 20px;
 }
 
-.card-info h1 {
+.card-info section{
+  display: flex;
+  gap:20px;
+}
+
+.card-info h3{
+  font-size:1.4rem;
+}
+
+.card-info h2 {
   font-size: 3rem;
 }
 
@@ -156,7 +186,7 @@ form {
   font-size: 1.5rem;
   font-weight: 600;
   color: rgb(112, 112, 112);
-  background-image: linear-gradient(rgb(131, 58, 58), rgb(17, 17, 17));
+  background-image: linear-gradient(rgb(141, 76, 76), rgb(17, 17, 17));
   border-radius: 5px;
   border: none;
   transition: all .5s;
@@ -174,7 +204,7 @@ form {
 }
 
 .cast {
-  margin: 250px auto;
+  margin: 60px auto;
   width: 90vw;
   height: 100vh;
   display: flex;
@@ -197,4 +227,5 @@ form {
 .cast h2 {
   font-size: 1rem;
   color: wheat;
+  
 }

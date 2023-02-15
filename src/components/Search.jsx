@@ -11,7 +11,6 @@ const Search = ({ selectValue }) => {
     const [genres, setGenres] = useState(14)
     const [changeMovieTv, setChangeMovieTv] = useState(false)
 
-
     useEffect(() => {
         if (selectValue.value !== undefined) {
             setActiveGenres(false)
