@@ -1,30 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Cast = (props) => {
-    const [cast, setCast] = useState([])
+    const [infoCast, setInfoCast] = useState()
 
     useEffect(() => {
-        if (props.idMovie.length > 0) {
-            setCast(props.idMovie)
-        
+        if (props.valuesCast) {
+            fetch(`https://api.themoviedb.org/3/movie/${props.valuesCast.id}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
+                .then(resp => resp.json())
+                .then(resp => setInfoCast(resp))
         }
-    })
+    }, [props])
 
     return (
-        <div className='cast'>
+        <main className='cast'>
             {
-                cast.map((e, i) => {
-                    return (
-                        e.profile_path && (
-                            <section key={e.id} className='card-cast'>
-                                <h3 >{e.name}</h3>
-                                <img  src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`} alt={e.name} />
-                            </section>
-                        )
-                    )
-                })
+
+                infoCast !== undefined && (
+                    console.log(infoCast),
+                    infoCast.cast.map((e, i) => {
+                        if (i < 7) {
+                            return (
+                                <section key={e.id} className="card-cast">
+
+                                    <h2 >{e.name}</h2>
+                                    <img src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`} />
+                                </section>
+                            )
+
+
+                        }
+
+
+                    })
+
+                )
             }
-        </div>
+
+        </main>
     );
 }
 

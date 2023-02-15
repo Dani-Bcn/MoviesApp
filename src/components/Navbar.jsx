@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
 const Navbar = (props) => {
+    
     const { handleValues } = props
+  
     const state = ["0"]
     const sections = ["Movies", "Series"]
 
