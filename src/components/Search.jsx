@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Navigate, NavLink } from "react-router-dom";
 
-
-
-
 const Search = ({ selectValue }) => {
-
-
-
     const navigate = useNavigate()
     const [choseMoviTV, setChoseMoviTV] = useState("movie")
     const [activeGenres, setActiveGenres] = useState(false)
@@ -19,7 +13,6 @@ const Search = ({ selectValue }) => {
 
 
     useEffect(() => {
-
         if (selectValue.value !== undefined) {
             setActiveGenres(false)
             setChoseMoviTV(selectValue.value)
@@ -31,8 +24,6 @@ const Search = ({ selectValue }) => {
         valuesForPageInfo.push(choseMoviTV)
 
     }, [choseMoviTV])
-
-
 
     useEffect(() => {
         if (choseMoviTV) {
@@ -46,7 +37,6 @@ const Search = ({ selectValue }) => {
     const handleClick = ((target) => {
         setGenres(target.target.value)
     })
-
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/discover/${choseMoviTV}/?api_key=55b2cf9d90cb74c55683e395bb1ad12b&with_genres=${genres}`)
             .then(resp => resp.json())
@@ -84,7 +74,6 @@ const Search = ({ selectValue }) => {
             <section className='container-cards'>
                 {
                     respApi.map((e, i) => {
-
                         return (
                             <div onClick={() => {
                                 window.localStorage.setItem("value", valuesForPageInfo + e.id)
@@ -98,7 +87,6 @@ const Search = ({ selectValue }) => {
                     })
                 }
             </section>
-
         </>
     );
 }

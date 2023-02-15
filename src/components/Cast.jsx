@@ -14,7 +14,6 @@ const Cast = (props) => {
     return (
         <main className='cast'>
             {
-
                 infoCast !== undefined && (
                     console.log(infoCast),
                     infoCast.cast.map((e, i) => {
@@ -26,16 +25,10 @@ const Cast = (props) => {
                                     <img src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`} />
                                 </section>
                             )
-
-
                         }
-
-
                     })
-
                 )
             }
-
         </main>
     );
 }

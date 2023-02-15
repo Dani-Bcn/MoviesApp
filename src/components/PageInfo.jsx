@@ -81,10 +81,8 @@ const PageInfo = () => {
                                         <h5 key={index}>{element.name},</h5>)
                                 })}
                                ]</div>
-
                             <button onClick={() => navigate(-1)}>Back</button>
                         </article>
-
                     </section>
                 )
             }
