@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { easeOut, motion as m } from 'framer-motion'
 
 const Cast = (props) => {
+    const navigate = useNavigate()
     const [infoCast, setInfoCast] = useState()
     const [movieOrTv, setMovieOrTv] = useState()
-    const {funcCast} = props
-  
+    const [localeInfoActor, setLocaleInfoActor] = useState()
+    const { funcCast } = props
+
     useEffect(() => {
         if (props.valuesCast) {
             if (props.valuesCast.title) {
@@ -12,11 +16,8 @@ const Cast = (props) => {
             } else {
                 setMovieOrTv("tv")
             }
-       
         }
-
     },)
-
 
     useEffect(() => {
         if (props.valuesCast) {
@@ -26,38 +27,56 @@ const Cast = (props) => {
         }
 
     }, [movieOrTv])
-    useEffect(()=>{
-            if(infoCast){
+    useEffect(() => {
+        if (infoCast) {    
+            localStorage.setItem("infoActor", JSON.stringify(infoCast))
+            funcCast(infoCast)
+        }
+    })
+    const goToActorInfoPage =((value)=>{
     
-        funcCast(infoCast)
-}
-
+            localStorage.setItem("indexActor",value) 
+            navigate("/infoActor")
     })
 
- 
     return (
         <main className='cast'>
             {
                 infoCast !== undefined && (
-                  
                     infoCast.cast.map((e, i) => {
-                        if (i < 7) {
+                        if (i < 6) {
                             return (
                                 <section key={e.id} className="card-cast">
-
-                                    <h2 >{e.name}</h2>
                                     {
                                         e.profile_path && (
-                                            < img src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`} />
+                                             <h2 >{e.name}</h2>
                                         )
-                                    }
+                                    }                                   
+                                    {
+                                        e.profile_path && (
+                                            <m.div style={{
+                                                overflow: "hidden",
+                                                cursor: "pointer",
+                                            }}>                                               
+                                                < m.img onClick={()=>goToActorInfoPage(i)}
+                                                  whileHover={{
+                                                    scale: [1, 1.5],
+                                                    transition: {
+                                                        duration: 1.5,
+                                                        ease: "easeOut",
+                                                    }
+                                                }}                                               
+                                                    src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`} />
+                                            </m.div>
+                                        )
+                                    }                                    
                                 </section>
                             )
                         }
                     })
                 )
             }
-            
+
         </main>
     );
 }

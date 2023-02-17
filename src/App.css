@@ -3,11 +3,17 @@
   padding: 0;
   list-style: none;
   text-decoration: none;
-  background-color: rgb(36, 36, 36);
-  
+
 }
-a{
+
+a {
   color: wheat;
+  cursor: pointer;
+}
+
+h3 {
+  color: wheat;
+  font-family: fontPage;
 }
 
 html {
@@ -24,15 +30,15 @@ html {
 
 p {
   font-family: 'Montserrat', sans-serif;
- 
-}
-span,
-span a{
-  color:rgb(219, 170, 137);
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size:1.2rem;
+
 }
 
+span,
+span a {
+  color: rgb(219, 170, 137);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1.2rem;
+}
 
 .navbar {
   position: fixed;
@@ -43,7 +49,7 @@ span a{
   gap: 20px;
   padding: 20px;
   background-image: linear-gradient(rgb(46, 46, 46), rgba(0, 0, 0, 0));
-  z-index: 3;
+  z-index: 5;
 }
 
 .navbar h3 {
@@ -64,6 +70,7 @@ span a{
   justify-content: center;
   flex-direction: row;
   gap: 50px;
+
 }
 
 form {
@@ -83,12 +90,14 @@ form {
 }
 
 .gender h3 {
+  font-size: 2rem;
   cursor: pointer;
 }
 
 .select-gender select {
   width: 150px;
   color: wheat;
+  background-color: rgb(46, 46, 46);
 }
 
 .select-gender h2 {
@@ -136,8 +145,10 @@ form {
   flex-direction: column;
   justify-content: center;
   z-index: 5;
+  background-color: rgb(46, 46, 46);
 }
-.container-card img{
+
+.container-card img {
   margin: 20px 50px;
   width: 500px;
   height: 600px;
@@ -163,19 +174,20 @@ form {
   gap: 20px;
 }
 
-.card-info section{
+.card-info section {
   display: flex;
-  gap:20px;
+  gap: 20px;
 }
 
-.card-info h3{
-  font-size:1.4rem;
+.card-info h3 {
+  font-size: 1rem;
 }
 
 .card-info h2 {
   font-size: 3rem;
 }
 
+.container-infoActor button,
 .card-info button {
   width: 150px;
   height: 10px;
@@ -193,6 +205,7 @@ form {
   cursor: pointer;
 }
 
+.container-infoActor button:hover,
 .card-info button:hover {
   color: rgb(204, 204, 204);
   background-image: linear-gradient(rgb(17, 17, 17), rgb(117, 32, 32));
@@ -204,19 +217,22 @@ form {
 }
 
 .cast {
-  margin: 60px auto;
-  width: 90vw;
-  height: 100vh;
+  margin: 25px 50px;
+  width:100vw;
+  height: 60vh;
   display: flex;
   align-items: flex-start;
-  justify-content: start;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 20px;
 }
 
 .card-cast {
   width: 150px;
   height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 20px
 }
 
 .card-cast img {
@@ -227,5 +243,52 @@ form {
 .cast h2 {
   font-size: 1rem;
   color: wheat;
-  
+
+}
+
+.info-actor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(46, 46, 46);
+  z-index: 5;
+}
+
+.info-actor img {
+  margin: 50px;
+  width: 400px;
+}
+
+.container-infoActor {
+  display: flex;
+}
+
+.container-infoActor article {
+  width: 100vw;
+  height: 100vh;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  background-color: rgb(209, 185, 185);
+  margin: 0 20px;
+  background-color: rgb(46, 46, 46);
+}
+
+.container-infoActor h2 {
+  font-size: 3rem;
+  font-family: "fontPage";
+  color: wheat;
+}
+
+.card-biography {
+  padding: 20px;
+  margin: 50px;
+}
+
+.card-biography h3 {
+  font-size: 1.5rem;
 }

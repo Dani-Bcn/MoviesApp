@@ -4,7 +4,8 @@ import Search from './Search';
 
 const Home = (selectValue) => {
     return (
-        <main className='home'>           
+        <main className='home'> 
+                  
                     <Search selectValue={selectValue} ></Search>        
         </main>
     );
