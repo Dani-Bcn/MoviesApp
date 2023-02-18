@@ -55,7 +55,12 @@ const PageInfoMovie = () => {
                             <m.img src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`} ></m.img>
                         </article>
                         <article className='card-info'>
-                            <h2>{`${valueTitleOrname}`}</h2>
+                            {
+                                infoMovie && (
+                            <h2>{`${valueTitleOrname}`}</h2>  
+                                )
+                            }
+                      
                             {
                                 infoMovie.release_date && (
                                     <h3>Release date <br /> <span> {infoMovie.release_date}</span></h3>
@@ -87,7 +92,7 @@ const PageInfoMovie = () => {
                                 )
                             }
                             {
-                                infoMovie.runtime && (
+                                infoMovie.production_companies[0] && (
                                     <h3>Productor company &nbsp; &nbsp;<span>{infoMovie.production_companies[0].name}</span></h3>
                                 )
                             }
@@ -96,16 +101,24 @@ const PageInfoMovie = () => {
                                     <h3>Vote average &nbsp; &nbsp;<span>{infoMovie.vote_average}</span></h3>
                                 )
                             }
-                            <div
-                            >Genres  &nbsp; &nbsp;[
-                                {infoMovie.genres.map((element, index) => {
-                                    return (
-                                        <span
-                                            key={index}> &nbsp; {element.name}, &nbsp;</span>
-                                    )
-                                })}
-                                ]</div>
-                            <button onClick={() => navigate("/")}>Back</button>
+
+                            {
+                                  infoMovie && (
+                                    <div
+                                    >Genres  &nbsp; &nbsp;[
+                                        {
+                                            
+                                        infoMovie.genres.map((element, index) => {
+                                            return (
+                                                <span
+                                                    key={index}> &nbsp; {element.name}, &nbsp;</span>
+                                            )
+                                        })}
+                                        ]</div>
+                                  )
+                            }
+                          
+                            <button onClick={() => navigate(-1)}>Back</button>
                         </article>
                     </section>
                 )

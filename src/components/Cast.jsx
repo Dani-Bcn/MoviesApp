@@ -33,8 +33,7 @@ const Cast = (props) => {
             funcCast(infoCast)
         }
     })
-    const goToActorInfoPage =((value)=>{
-    
+    const goToActorInfoPage =((value)=>{    
             localStorage.setItem("indexActor",value) 
             navigate("/infoActor")
     })

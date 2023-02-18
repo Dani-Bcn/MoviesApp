@@ -15,16 +15,20 @@ const Navbar = (props) => {
         switch (target.target.id) {     
             case "0":
                 state[0] = "movie"
+                navigate("/")
+                localStorage.setItem("movie-tv","movie")
                 break
             case "1":
                 state[0] = "tv"
+                navigate("/")
+                localStorage.setItem("movie-tv","tv")
                 break
             case "2":
                navigate("/popular")
         }
         handleValues(state)
     })
-    
+
     return (
         <main className='navbar'>
             <h2 className='title'>MoviesApp</h2>

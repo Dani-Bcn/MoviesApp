@@ -8,13 +8,13 @@ const Search = ({ selectValue }) => {
     const [choseMovieTV, setchoseMovieTV] = useState("movie")
     const [activeGenres, setActiveGenres] = useState(false)
     const valuesForPageInfo = [choseMovieTV]
-    const [respApiGender, setrespApiGenre] = useState([])
-    const [respApi, setRespApi] = useState([])
+    const [infoMovieGender, setInfoMovieGenre] = useState([])
+    const [infoMovie, setInfoMovie] = useState([])
     const [genres, setGenres] = useState(14)
 
     useEffect(() => {
 
-        if (selectValue.value !== undefined) {            
+        if (selectValue.value !== undefined) {
             setActiveGenres(false)
             setchoseMovieTV(selectValue.value)
             setGenres(!genres)
@@ -26,10 +26,10 @@ const Search = ({ selectValue }) => {
 
     useEffect(() => {
         if (choseMovieTV) {
-            //buscar todos los generos de pelis y series respactivamente
+            //Devuelve todos los generos de pelis y series respactivamente
             fetch(`https://api.themoviedb.org/3/genre/${choseMovieTV}/list?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
                 .then(resp => resp.json())
-                .then(resp => setrespApiGenre(resp.genres))
+                .then(resp => setInfoMovieGenre(resp.genres))
         }
     }, [choseMovieTV])
 
@@ -40,7 +40,7 @@ const Search = ({ selectValue }) => {
         //Busca por géneros
         fetch(`https://api.themoviedb.org/3/discover/${choseMovieTV}/?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_adult=&with_genres=${genres}`)
             .then(resp => resp.json())
-            .then(resp => setRespApi(resp.results))
+            .then(resp => setInfoMovie(resp.results))
     }, [genres])
     useEffect(() => {
         if (selectValue !== undefined) {
@@ -51,14 +51,14 @@ const Search = ({ selectValue }) => {
         <>
             <main className='select-gender'>
                 {
-                    respApiGender && (
+                    infoMovieGender && (
                         <form action="">
                             <h2 onClick={() => setActiveGenres(!activeGenres)} >Genders</h2>
                             {
                                 activeGenres && (
                                     <select onChange={handleClick}>
                                         {
-                                            respApiGender.map((e, i) => {
+                                            infoMovieGender.map((e, i) => {
 
                                                 return (
                                                     <option id={e.id} key={e.id} value={e.id}>{e.name}</option>)
@@ -71,7 +71,11 @@ const Search = ({ selectValue }) => {
                     )
                 }
             </main>
-            <ListMovies  respApi={respApi} valuesForPageInfo={valuesForPageInfo}/>           
+            <ListMovies
+                infoMovie={infoMovie}
+                valuesForPageInfo={valuesForPageInfo}
+                movieOrTv={choseMovieTV}
+            />
         </>
     );
 }

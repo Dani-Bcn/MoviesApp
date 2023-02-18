@@ -1,19 +1,24 @@
 import React,{useState,useEffect}from 'react';
 import { useNavigate } from 'react-router-dom';
 import {motion as m} from 'framer-motion'
-const Infomovie = (respApi) => {
+const Infomovie = (infoMovie) => {
 
-console.log(respApi.respApi)
 const navigate = useNavigate()
+const [valuesMovie,setValuesMovie] = useState()
+useEffect(()=>{
+infoMovie.infoMovie.length >0 ? setValuesMovie(infoMovie.infoMovie):null
+
+},)
 
     return (
       
         <section className='container-cards'>
-             {
-                    respApi.respApi.map((e, i) => {
+              {
+                valuesMovie &&(
+                  valuesMovie.map((e, i) => {
                         return (
                             <div onClick={() => {
-                                window.localStorage.setItem("value", respApi.valuesForPageInfo + e.id)
+                                window.localStorage.setItem("value", infoMovie.valuesForPageInfo + e.id)
                                 navigate("/info")
                             }}
                                 className='cardsMovies' key={e.id}>
@@ -48,8 +53,9 @@ const navigate = useNavigate()
                                 </m.div>
                             </div>
                         )
-                    })
-                } 
+                    }) 
+                )
+                }  
             </section>
     )
 }

@@ -237,7 +237,6 @@ form {
 .cast h2 {
   font-size: 1rem;
   color: wheat;
-
 }
 
 .info-actor {
@@ -288,12 +287,36 @@ form {
 }
 
 .popular {
-  position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: 275vh;
   background-color: rgb(49, 49, 49);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
   z-index: 3;
+}
+
+.popular section {
+  margin-top: 150px;
+}
+.popular nav {
+  position: absolute;
+  margin:  130px 50px;
+  width: 300px;
+  display: flex;
+  gap:50px
+}
+
+
+.popular article {
+  margin: 125px 50px;
+  display: flex;
+  gap: 50px;
+}
+
+.popular button {
+  width: 100px;
+  height: 50px;
+  margin: 50px 60px;
 }
