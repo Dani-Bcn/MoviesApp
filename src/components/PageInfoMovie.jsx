@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Cast from './Cast';
 import { motion as m } from 'framer-motion'
 
-const PageInfo = () => {
+const PageInfoMovie = () => {
     const [localeValue, setLocaleValue] = useState(false)
     const [valuesMovieOrTv, setValuesMovieOrTv] = useState(false)
     const [valueTitleOrname, setTitleOrName] = useState()
@@ -11,13 +11,15 @@ const PageInfo = () => {
     const [count, setcount] = useState(false)
     const [infoMovie, setInfoMovie] = useState()
     const [namesfromCast, setNamesFromCast] = useState()
+
     const navigate = useNavigate()
     setTimeout(() => {
         setcount(true)
     }, 2)
 
+
     useEffect(() => {
-        setLocaleValue(window.localStorage.getItem("value"))
+        setLocaleValue(localStorage.getItem("value"))
     },)
 
     useEffect(() => {
@@ -33,11 +35,9 @@ const PageInfo = () => {
             }
         }
     },)
-
     const funcCast = ((infoCast) => {
         setNamesFromCast(infoCast)
     })
-
     useEffect(() => {
         if (count && valueId && valuesMovieOrTv) {
             fetch(`https://api.themoviedb.org/3/${valuesMovieOrTv}/${valueId}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
@@ -50,23 +50,20 @@ const PageInfo = () => {
         <main className='info'>
             {
                 infoMovie && (
-                    console.log(infoMovie),
                     <section className='container-card'>
                         <article>
                             <m.img src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`} ></m.img>
                         </article>
                         <article className='card-info'>
                             <h2>{`${valueTitleOrname}`}</h2>
-                        
                             {
                                 infoMovie.release_date && (
                                     <h3>Release date <br /> <span> {infoMovie.release_date}</span></h3>
                                 )
                             }
                             <section>
-                                <h3>Cast</h3>
+                                <h3>Cast</h3><br />
                                 {
-                                    
                                     namesfromCast && (
                                         namesfromCast.cast.map((e, i) => (
                                             i < 4 ? <span key={e.id}> {e.name}</span> : null
@@ -81,7 +78,6 @@ const PageInfo = () => {
                                         style={{
                                             fontSize: "1rem"
                                         }}
-
                                         href={infoMovie.homepage} target="_blank" rel="noopener noreferrer">{infoMovie.homepage}</a></span></h3>
                                 )
                             }
@@ -90,24 +86,26 @@ const PageInfo = () => {
                                     <h3>Run time <br /> <span> {infoMovie.runtime}'</span></h3>
                                 )
                             }
-                            <h3>Productor company &nbsp; &nbsp;<span>{infoMovie.production_companies[0].name}</span></h3>
-                            <h3>Vote average &nbsp; &nbsp;<span>{infoMovie.vote_average}</span></h3>
+                            {
+                                infoMovie.runtime && (
+                                    <h3>Productor company &nbsp; &nbsp;<span>{infoMovie.production_companies[0].name}</span></h3>
+                                )
+                            }
+                            {
+                                infoMovie.runtime && (
+                                    <h3>Vote average &nbsp; &nbsp;<span>{infoMovie.vote_average}</span></h3>
+                                )
+                            }
                             <div
-                                style={{
-                                    display: "flex",
-                                    width: 500,
-                                    height: 30,
-                                    gap: 20,
-                                    alignItems: "flex-start"
-                                }}
-                            >Genres <br/> [
+                            >Genres  &nbsp; &nbsp;[
                                 {infoMovie.genres.map((element, index) => {
                                     return (
-                                        <span key={index}> <h3 >{element.name},</h3></span>
+                                        <span
+                                            key={index}> &nbsp; {element.name}, &nbsp;</span>
                                     )
                                 })}
                                 ]</div>
-                            <button onClick={() => navigate(-1)}>Back</button>
+                            <button onClick={() => navigate("/")}>Back</button>
                         </article>
                     </section>
                 )
@@ -124,9 +122,8 @@ const PageInfo = () => {
             <>
                 <Cast valuesCast={infoMovie} funcCast={funcCast}></Cast>
             </>
-
         </main>
     );
 }
 
-export default PageInfo;
+export default PageInfoMovie;

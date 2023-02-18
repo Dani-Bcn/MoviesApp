@@ -3,7 +3,6 @@
   padding: 0;
   list-style: none;
   text-decoration: none;
-
 }
 
 a {
@@ -37,7 +36,7 @@ span,
 span a {
   color: rgb(219, 170, 137);
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .navbar {
@@ -49,7 +48,7 @@ span a {
   gap: 20px;
   padding: 20px;
   background-image: linear-gradient(rgb(46, 46, 46), rgba(0, 0, 0, 0));
-  z-index: 5;
+  z-index: 2;
 }
 
 .navbar h3 {
@@ -70,7 +69,6 @@ span a {
   justify-content: center;
   flex-direction: row;
   gap: 50px;
-
 }
 
 form {
@@ -168,7 +166,7 @@ form {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: start;
   align-items: flex-start;
   margin: 10px 50px;
   gap: 20px;
@@ -177,10 +175,6 @@ form {
 .card-info section {
   display: flex;
   gap: 20px;
-}
-
-.card-info h3 {
-  font-size: 1rem;
 }
 
 .card-info h2 {
@@ -218,7 +212,7 @@ form {
 
 .cast {
   margin: 25px 50px;
-  width:100vw;
+  width: 100vw;
   height: 60vh;
   display: flex;
   align-items: flex-start;
@@ -232,7 +226,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 0 20px
+  margin: 20px
 }
 
 .card-cast img {
@@ -291,4 +285,15 @@ form {
 
 .card-biography h3 {
   font-size: 1.5rem;
+}
+
+.popular {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(49, 49, 49);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
 }

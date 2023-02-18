@@ -17,10 +17,6 @@ const PageInfoActor = () => {
         }
     }, [])
 
-    useEffect(() => {
-        console.log(infoActor)
-    })
-
     return (
         <main className='info-actor'>
             <section className='container-infoActor'>
@@ -58,7 +54,6 @@ const PageInfoActor = () => {
                                         <h3>Popularity  &nbsp;  &nbsp;<span>{infoActor.popularity}</span></h3>
                                     )
                                 }
-
                                 <button className='card-info-button' onClick={() => navigate(-1)}>Back</button>
                             </article>
                         </span>
@@ -69,7 +64,13 @@ const PageInfoActor = () => {
             <article className='card-biography'>
                 {
                     infoActor && (
-                        <h3>Biography  <br /><br /> <span>{infoActor.biography}</span></h3>
+                        <article>
+                            <h3>Biography
+                            </h3>
+                            <br />
+                            <br />
+                            <p>{infoActor.biography}</p>
+                        </article>
                     )
                 }
             </article>

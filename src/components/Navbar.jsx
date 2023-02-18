@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = (props) => {
-    
+    const navigate = useNavigate()
     const { handleValues } = props  
     const state = ["0"]
     const sections = ["Movies", "Series","Most popular"]
@@ -17,9 +18,13 @@ const Navbar = (props) => {
                 break
             case "1":
                 state[0] = "tv"
+                break
+            case "2":
+               navigate("/popular")
         }
         handleValues(state)
     })
+    
     return (
         <main className='navbar'>
             <h2 className='title'>MoviesApp</h2>
