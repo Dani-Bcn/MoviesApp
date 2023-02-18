@@ -1,322 +1,108 @@
 * {
   margin: 0;
   padding: 0;
-  list-style: none;
-  text-decoration: none;
-}
-
-a {
-  color: wheat;
-  cursor: pointer;
-}
-
-h3 {
-  color: wheat;
-  font-family: fontPage;
-}
-
-html {
-  overflow-x: hidden;
-  background-color: rgb(46, 46, 46);
-  color: wheat;
-  font-family: fontPage;
-}
-
-@font-face {
-  font-family: fontPage;
-  src: url('/Fonts/Bebas-Regular.ttf');
-}
-
-p {
-  font-family: 'Montserrat', sans-serif;
-
-}
-
-span,
-span a {
-  color: rgb(219, 170, 137);
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 1rem;
 }
 
 .navbar {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
-  height: 75px;
+  height: 100px;
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 20px;
   background-image: linear-gradient(rgb(46, 46, 46), rgba(0, 0, 0, 0));
   z-index: 2;
 }
 
-.navbar h3 {
-  cursor: pointer;
-  z-index: 3;
-}
-
-.title {
-  color: rgb(202, 0, 0);
-}
-
-.home {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  top: 100px;
+.container-navbar {
   display: flex;
-  justify-content: center;
-  flex-direction: row;
-  gap: 50px;
-}
-
-form {
-  width: 50px;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-}
-
-.select-gender {
-  width: 88vw;
-  height: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px;
-}
-
-.gender h3 {
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-.select-gender select {
-  width: 150px;
+  justify-content: center;
+  margin-left: 80px;
+  gap: 100px;
   color: wheat;
+}
+
+.container-navbar h2 {
+  color: rgb(185, 0, 31);
+  font-size: 3rem;
+}
+
+.container-navbar h3 {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
   background-color: rgb(46, 46, 46);
 }
 
-.select-gender h2 {
-  width: 150px;
-  height: 20px;
+.header-page-search {
+  width: 100vw;
+  height: 70px;
+  margin: 61px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.container-page {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin: 0px 30px;
+  flex-wrap: wrap;
+}
+
+.card-movie {
+  width: 200px;
+  height: 250px;
   margin: 20px;
   cursor: pointer;
 }
 
-.container-cards {
-  top: 100px;
-  left: 0;
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 0 auto;
-}
-
-.container-cards img {
+.img {
   width: 200px;
   height: 250px;
-  cursor: pointer;
 }
 
-.cardsMovies {
-  width: 200px;
-  height: 250px;
-  margin: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.info {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  z-index: 5;
-  background-color: rgb(46, 46, 46);
-}
-
-.container-card img {
-  margin: 20px 50px;
-  width: 500px;
-  height: 600px;
-}
-
-.container-card {
-  width: 90vw;
-  height: 100vh;
-  display: flex;
-  margin: 25px;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.card-info {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: flex-start;
-  margin: 10px 50px;
-  gap: 20px;
-}
-
-.card-info section {
-  display: flex;
-  gap: 20px;
-}
-
-.card-info h2 {
-  font-size: 3rem;
-}
-
-.container-infoActor button,
-.card-info button {
-  width: 150px;
-  height: 10px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: rgb(112, 112, 112);
-  background-image: linear-gradient(rgb(141, 76, 76), rgb(17, 17, 17));
-  border-radius: 5px;
-  border: none;
-  transition: all .5s;
-  cursor: pointer;
-}
-
-.container-infoActor button:hover,
-.card-info button:hover {
-  color: rgb(204, 204, 204);
-  background-image: linear-gradient(rgb(17, 17, 17), rgb(117, 32, 32));
-  transition: all .5s;
-}
-
-.card-info div {
-  font-size: 1.5rem;
-}
-
-.cast {
-  margin: 25px 50px;
-  width: 100vw;
-  height: 60vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.card-cast {
-  width: 150px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 20px
-}
-
-.card-cast img {
-  width: 150px;
-  height: 200px;
-}
-
-.cast h2 {
-  font-size: 1rem;
-  color: wheat;
-}
-
-.info-actor {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(46, 46, 46);
-  z-index: 5;
-}
-
-.info-actor img {
-  margin: 50px;
-  width: 400px;
-}
-
-.container-infoActor {
-  display: flex;
-}
-
-.container-infoActor article {
-  width: 100vw;
-  height: 100vh;
-  margin: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  background-color: rgb(209, 185, 185);
-  margin: 0 20px;
-  background-color: rgb(46, 46, 46);
-}
-
-.container-infoActor h2 {
-  font-size: 3rem;
-  font-family: "fontPage";
-  color: wheat;
-}
-
-.card-biography {
-  padding: 20px;
-  margin: 50px;
-}
-
-.card-biography h3 {
-  font-size: 1.5rem;
-}
-
-.popular {
-  width: 100vw;
-  height: 275vh;
-  background-color: rgb(49, 49, 49);
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 3;
-}
-
-.popular section {
-  margin-top: 150px;
-}
-.popular nav {
-  position: absolute;
-  margin:  130px 50px;
-  width: 300px;
-  display: flex;
-  gap:50px
-}
-
-
-.popular article {
-  margin: 125px 50px;
-  display: flex;
-  gap: 50px;
-}
-
-.popular button {
+.form-page-search {
   width: 100px;
-  height: 50px;
-  margin: 50px 60px;
+  height: 100px;
+  margin: 50px 0;
+  display: flex;
+  align-items: center;
+  color: wheat;
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.form-page-search select {
+  background-color: rgb(46, 46, 46);
+  color: wheat;
+  cursor: pointer;
+}
+.container-button{
+  margin-left: 45px;
+}
+
+button {
+  width: 100px;
+  height: 40px;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: rgb(136, 136, 136);
+  border: none;
+  border-radius: 5px;
 }

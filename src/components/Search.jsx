@@ -13,7 +13,6 @@ const Search = ({ selectValue }) => {
     const [genres, setGenres] = useState(14)
 
     useEffect(() => {
-
         if (selectValue.value !== undefined) {
             setActiveGenres(false)
             setchoseMovieTV(selectValue.value)
@@ -32,13 +31,12 @@ const Search = ({ selectValue }) => {
                 .then(resp => setInfoMovieGenre(resp.genres))
         }
     }, [choseMovieTV])
-
     const handleClick = ((target) => {
         setGenres(target.target.value)
     })
     useEffect(() => {
-        //Busca por géneros
-        fetch(`https://api.themoviedb.org/3/discover/${choseMovieTV}/?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_adult=&with_genres=${genres}`)
+        //Buscar por géneros
+        fetch(`https://api.themoviedb.org/3/discover/${choseMovieTV}/?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_adult=&with_genres=${genres}&page=1`)
             .then(resp => resp.json())
             .then(resp => setInfoMovie(resp.results))
     }, [genres])
@@ -48,18 +46,18 @@ const Search = ({ selectValue }) => {
         }
     }, [selectValue])
     return (
-        <>
-            <main className='select-gender'>
+        <main className='container-page'>
+            <header className='header-page-search'>
+
                 {
                     infoMovieGender && (
-                        <form action="">
+                        <form className='form-page-search' action="">
                             <h2 onClick={() => setActiveGenres(!activeGenres)} >Genders</h2>
                             {
                                 activeGenres && (
                                     <select onChange={handleClick}>
                                         {
                                             infoMovieGender.map((e, i) => {
-
                                                 return (
                                                     <option id={e.id} key={e.id} value={e.id}>{e.name}</option>)
                                             })
@@ -70,13 +68,24 @@ const Search = ({ selectValue }) => {
                         </form>
                     )
                 }
-            </main>
+
+            </header>
+            <article className='container-button'>
+                <button onClick={() => nextPage()}>Next</button>
+                <button onClick={() => previousPage()}>Previus</button>
+                <button onClick={() => firtsPage()}>First</button>
+            </article>
             <ListMovies
                 infoMovie={infoMovie}
                 valuesForPageInfo={valuesForPageInfo}
                 movieOrTv={choseMovieTV}
             />
-        </>
+            <article className='container-button'>
+                <button onClick={() => nextPage()}>Next</button>
+                <button onClick={() => previousPage()}>Previus</button>
+                <button onClick={() => firtsPage()}>First</button>
+            </article>
+        </main>
     );
 }
 

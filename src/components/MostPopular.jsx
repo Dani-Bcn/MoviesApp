@@ -51,40 +51,44 @@ const MostPopular = () => {
 
 
     return (
-        <div className='popular'>
-            <section>
-            
-                <button onClick={() => nextPage()}>Next page</button>
-                <button onClick={() => previousPage()}>Previus page</button>
-                <button onClick={() => firtsPage()}>First</button>
+        <main className='popular'>
+            <section className="container-popular">
+                <span>
+                    <h1>Most popular</h1>                  
+                    <nav>
+                        {
+                            movieOrTv.map((e, i) => (
+                                <h2
+                                    style={{
+                                        cursor: "pointer"
+                                    }}
+                                    key={i} id={i} onClick={() => selected(e)}>{e}</h2>
+                            ))
+                        }
+                    </nav>
+                    <article>
+                        <button onClick={() => nextPage()}>Next page</button>
+                        <button onClick={() => previousPage()}>Previus page</button>
+                        <button onClick={() => firtsPage()}>First</button>
+                    </article>
+                </span>
+                <section>
+                    {
+                        infoMovie && (
+                            <ListMovie
+                                infoMovie={infoMovie}
+                                valuesForPageInfo={valuesForPageInfo}
+                            />
+                        )
+                    }
+                </section>
+                <nav>
+                    <button onClick={() => nextPage()}>Next page</button>
+                    <button onClick={() => previousPage()}>Previus page</button>
+                    <button onClick={() => firtsPage()}>First</button>
+                </nav>
             </section>
-            <nav>
-                {
-                    movieOrTv.map((e, i) => (
-                        <h2
-                            style={{
-                                cursor: "pointer"
-                            }}
-                            key={i} id={i} onClick={() => selected(e)}>{e}</h2>
-                    ))
-                }
-            </nav>
-            <section>
-                {
-                    infoMovie && (
-                        <ListMovie
-                            infoMovie={infoMovie}
-                            valuesForPageInfo={valuesForPageInfo}
-                        />
-                    )
-                }
-            </section>
-            <section>
-                <button onClick={() => nextPage()}>Next page</button>
-                <button onClick={() => previousPage()}>Previus page</button>
-                <button onClick={() => firtsPage()}>First</button>
-            </section>
-        </div>
+        </main>
     );
 }
 
