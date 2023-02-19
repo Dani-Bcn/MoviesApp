@@ -11,7 +11,6 @@ const Navbar = (props) => {
         state.map((e, i) => {
             state[i] = false
         })
-
         switch (target.target.id) {
             case "0":
                 state[0] = "movie"
@@ -28,14 +27,13 @@ const Navbar = (props) => {
         }
         handleValues(state)
     })
-
     return (
         <main className='navbar'>
             <section className='container-navbar'>
-                <h2>MoviesApp</h2>
+                <h1>MoviesApp</h1>
                 {
                     sections.map((e, i) => (
-                        <h3 id={i} onClick={handleClick} key={i}>{e}</h3>
+                        <h2 id={i} onClick={handleClick} key={i}>{e}</h2>
                     ))
                 }
             </section>

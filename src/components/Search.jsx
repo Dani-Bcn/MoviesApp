@@ -46,12 +46,12 @@ const Search = ({ selectValue }) => {
         }
     }, [selectValue])
     return (
-        <main className='container-page'>
-            <header className='header-page-search'>
-
+        <main className='page'>
+            <section className='container-page'>
+               
                 {
                     infoMovieGender && (
-                        <form className='form-page-search' action="">
+                        <form className='form' action="">
                             <h2 onClick={() => setActiveGenres(!activeGenres)} >Genders</h2>
                             {
                                 activeGenres && (
@@ -68,23 +68,25 @@ const Search = ({ selectValue }) => {
                         </form>
                     )
                 }
+               
 
-            </header>
-            <article className='container-button'>
-                <button onClick={() => nextPage()}>Next</button>
-                <button onClick={() => previousPage()}>Previus</button>
-                <button onClick={() => firtsPage()}>First</button>
-            </article>
-            <ListMovies
-                infoMovie={infoMovie}
-                valuesForPageInfo={valuesForPageInfo}
-                movieOrTv={choseMovieTV}
-            />
-            <article className='container-button'>
-                <button onClick={() => nextPage()}>Next</button>
-                <button onClick={() => previousPage()}>Previus</button>
-                <button onClick={() => firtsPage()}>First</button>
-            </article>
+
+                <article className='container-button'>
+                    <button onClick={() => nextPage()}>Next</button>
+                    <button onClick={() => previousPage()}>Previus</button>
+                    <button onClick={() => firtsPage()}>First</button>
+                </article>
+                <ListMovies
+                    infoMovie={infoMovie}
+                    valuesForPageInfo={valuesForPageInfo}
+                    movieOrTv={choseMovieTV}
+                />
+                <article className='container-button'>
+                    <button onClick={() => nextPage()}>Next</button>
+                    <button onClick={() => previousPage()}>Previus</button>
+                    <button onClick={() => firtsPage()}>First</button>
+                </article>
+            </section>
         </main>
     );
 }

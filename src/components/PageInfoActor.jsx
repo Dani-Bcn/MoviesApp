@@ -19,7 +19,7 @@ const PageInfoActor = () => {
 
     return (
         <main className='info-actor'>
-            <section className='container-infoActor'>
+            <section className='container-actor'>
                 {
                     infoActor !== undefined && (
                         <img src={`https://image.tmdb.org/t/p/w500/${infoActor.profile_path}`} alt="" />
@@ -27,11 +27,11 @@ const PageInfoActor = () => {
                 }
                 {
                     infoActor && (
-                        <span>
-                            <article>
+                        <article className='card-info'>
+                         
                                 {
                                     infoActor.name && (
-                                        <h2>{infoActor.name}</h2>
+                                        <h1>{infoActor.name}</h1>
                                     )
                                 }
                                 {
@@ -54,9 +54,9 @@ const PageInfoActor = () => {
                                         <h3>Popularity  &nbsp;  &nbsp;<span>{infoActor.popularity}</span></h3>
                                     )
                                 }
-                                <button className='card-info-button' onClick={() => navigate(-1)}>Back</button>
+                                <button onClick={() => navigate(-1)}>Back</button>
                             </article>
-                        </span>
+                       
                     )
                 }
 

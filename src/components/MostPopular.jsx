@@ -10,15 +10,19 @@ const MostPopular = () => {
     const [localeMovieOrTv, setLocaleMovieOrTv] = useState(localStorage.getItem("movie-tv"))
     const [changeCall, setChangeCall] = useState(false)
     const [count, setCount] = useState(1)
+    
     let stringNum = toString()
     const valuesForPageInfo = [isSelected]
-    stringNum = count.toString()
+    localStorage.setItem("indexPage", count.toString())
+    stringNum = localStorage.getItem("indexPage")
 
+   
     const selected = ((target) => {
         if (target === "Movie") {
             setCount(1)
             setIsSelected("movie")
             setChangeCall(!changeCall)
+            
         } else {
             setCount(1)
             setChangeCall(!changeCall)
@@ -28,16 +32,20 @@ const MostPopular = () => {
 
     const nextPage = (() => {
         setCount(count + 1)
+    
+        
         console.log(count)
         setChangeCall(!changeCall)
     })
     const firtsPage = (() => {
         setCount(1)
+     
         console.log(count)
         setChangeCall(!changeCall)
     })
     const previousPage = (() => {
         count < 2 ? null : setCount(count - 1)
+    
         console.log(count)
         setChangeCall(!changeCall)
     })
@@ -52,26 +60,21 @@ const MostPopular = () => {
 
     return (
         <main className='popular'>
-            <section className="container-popular">
-                <span>
-                    <h1>Most popular</h1>                  
-                    <nav>
-                        {
-                            movieOrTv.map((e, i) => (
-                                <h2
-                                    style={{
-                                        cursor: "pointer"
-                                    }}
-                                    key={i} id={i} onClick={() => selected(e)}>{e}</h2>
-                            ))
-                        }
-                    </nav>
-                    <article>
-                        <button onClick={() => nextPage()}>Next page</button>
-                        <button onClick={() => previousPage()}>Previus page</button>
-                        <button onClick={() => firtsPage()}>First</button>
-                    </article>
-                </span>
+            <section className='container-popular'>
+                <h1>Most popular</h1>
+                <article className='container-button'>
+                    {
+                        movieOrTv.map((e, i) => (
+                            <h2 key={i} id={i} onClick={() => selected(e)}>{e}</h2>
+                        ))
+                    }
+                </article>
+
+                <nav className='container-button-popular'>
+                    <button onClick={() => firtsPage()}>First</button>
+                    <button onClick={() => previousPage()}>Previus</button>
+                    <button onClick={() => nextPage()}>Next</button>
+                </nav>
                 <section>
                     {
                         infoMovie && (
@@ -82,10 +85,10 @@ const MostPopular = () => {
                         )
                     }
                 </section>
-                <nav>
-                    <button onClick={() => nextPage()}>Next page</button>
-                    <button onClick={() => previousPage()}>Previus page</button>
+                <nav className='container-button'>
                     <button onClick={() => firtsPage()}>First</button>
+                    <button onClick={() => previousPage()}>Previus</button>
+                    <button onClick={() => nextPage()}>Next</button>
                 </nav>
             </section>
         </main>

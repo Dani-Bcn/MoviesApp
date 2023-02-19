@@ -53,20 +53,10 @@ const Cast = (props) => {
                                     }                                   
                                     {
                                         e.profile_path && (
-                                            <m.div style={{
-                                                overflow: "hidden",
-                                                cursor: "pointer",
-                                            }}>                                               
-                                                < m.img onClick={()=>goToActorInfoPage(i)}
-                                                  whileHover={{
-                                                    scale: [1, 1.5],
-                                                    transition: {
-                                                        duration: 1.5,
-                                                        ease: "easeOut",
-                                                    }
-                                                }}                                               
+                                                                                 
+                                                < m.img onClick={()=>goToActorInfoPage(i)}                                                                                     
                                                     src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`} />
-                                            </m.div>
+                                          
                                         )
                                     }                                    
                                 </section>
