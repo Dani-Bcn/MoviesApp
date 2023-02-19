@@ -61,9 +61,8 @@ span{
 }
 
 .container-button {
-  width: 500px;
-  height: 100px;
-  margin: 20px 0;
+  width: 100vw;
+  height: 50px;
   display: flex;
   justify-content: start;
   gap: 20px;
