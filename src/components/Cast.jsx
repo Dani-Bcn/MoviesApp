@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { easeOut, motion as m } from 'framer-motion'
 
 const Cast = (props) => {
     const navigate = useNavigate()
     const [infoCast, setInfoCast] = useState()
     const [movieOrTv, setMovieOrTv] = useState()
-    const [localeInfoActor, setLocaleInfoActor] = useState()
     const { funcCast } = props
 
     useEffect(() => {
@@ -33,6 +31,7 @@ const Cast = (props) => {
             funcCast(infoCast)
         }
     })
+    
     const goToActorInfoPage =((value)=>{    
             localStorage.setItem("indexActor",value) 
             navigate("/infoActor")
@@ -54,7 +53,7 @@ const Cast = (props) => {
                                     {
                                         e.profile_path && (
                                                                                  
-                                                < m.img onClick={()=>goToActorInfoPage(i)}                                                                                     
+                                                < img onClick={()=>goToActorInfoPage(i)}                                                                                     
                                                     src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`} />
                                           
                                         )

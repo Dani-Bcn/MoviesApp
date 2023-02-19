@@ -28,38 +28,35 @@ const PageInfoActor = () => {
                 {
                     infoActor && (
                         <article className='card-info'>
-                         
-                                {
-                                    infoActor.name && (
-                                        <h1>{infoActor.name}</h1>
-                                    )
-                                }
-                                {
-                                    infoActor.birthday && (
-                                        <h3>Birhtday  &nbsp;  &nbsp; <span>{infoActor.birthday}</span></h3>
-                                    )
-                                }
-                                {
-                                    infoActor.place_of_birth && (
-                                        <h3>Place of birth  &nbsp;  &nbsp; <span>{infoActor.place_of_birth}</span></h3>
-                                    )
-                                }
-                                {
-                                    infoActor.homepage && (
-                                        <h3>Homepage  &nbsp;  &nbsp; <a href={infoActor.homepage} target="_blank">{infoActor.homepage}</a></h3>
-                                    )
-                                }
-                                {
-                                    infoActor.popularity && (
-                                        <h3>Popularity  &nbsp;  &nbsp;<span>{infoActor.popularity}</span></h3>
-                                    )
-                                }
-                                <button onClick={() => navigate(-1)}>Back</button>
-                            </article>
-                       
+                            {
+                                infoActor.name && (
+                                    <h1>{infoActor.name}</h1>
+                                )
+                            }
+                            {
+                                infoActor.birthday && (
+                                    <h3>Birhtday  &nbsp;  &nbsp; <span>{infoActor.birthday}</span></h3>
+                                )
+                            }
+                            {
+                                infoActor.place_of_birth && (
+                                    <h3>Place of birth  &nbsp;  &nbsp; <span>{infoActor.place_of_birth}</span></h3>
+                                )
+                            }
+                            {
+                                infoActor.homepage && (
+                                    <h3>Homepage  &nbsp;  &nbsp; <a href={infoActor.homepage} target="_blank">{infoActor.homepage}</a></h3>
+                                )
+                            }
+                            {
+                                infoActor.popularity && (
+                                    <h3>Popularity  &nbsp;  &nbsp;<span>{infoActor.popularity}</span></h3>
+                                )
+                            }
+                            <button onClick={() => navigate(-1)}>Back</button>
+                        </article>
                     )
                 }
-
             </section>
             <article className='card-biography'>
                 {

@@ -17,12 +17,12 @@ const PageInfoMovie = () => {
         setcount(true)
     }, 2)
 
-
     useEffect(() => {
         setLocaleValue(localStorage.getItem("value"))
     },)
 
     useEffect(() => {
+        setValuesMovieOrTv(valueTitleOrname)
         if (localeValue) {
             if (localeValue[0] === "m") {
                 infoMovie ? setTitleOrName(infoMovie.title) : null
@@ -35,9 +35,11 @@ const PageInfoMovie = () => {
             }
         }
     },)
+
     const funcCast = ((infoCast) => {
         setNamesFromCast(infoCast)
     })
+
     useEffect(() => {
         if (count && valueId && valuesMovieOrTv) {
             fetch(`https://api.themoviedb.org/3/${valuesMovieOrTv}/${valueId}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
@@ -57,29 +59,28 @@ const PageInfoMovie = () => {
                         <article className='card-info'>
                             {
                                 infoMovie && (
-                                    <h1>{`${valueTitleOrname}`}</h1>
+                                    <h2>{`${valueTitleOrname}`}</h2>
                                 )
                             }
                             {
                                 infoMovie.release_date && (
-                                    <h3>Release date&nbsp; &nbsp; <span> {infoMovie.release_date}</span></h3>
+                                    <h3>Release date <br /> <span> {infoMovie.release_date}</span></h3>
                                 )
                             }
                             <section>
-                                <h3>Cast [ &nbsp; &nbsp;
-                                    {
-                                        namesfromCast && (
-                                            namesfromCast.cast.map((e, i) => (
-                                                i < 4 ? <span key={e.id}> {e.name}, &nbsp;</span> : null
-                                            ))
-                                        )
-                                    }
-                                    ]</h3>
+                                <h3>Cast</h3><br />
+                                {
+                                    namesfromCast && (
+                                        namesfromCast.cast.map((e, i) => (
+                                            i < 4 ? <span key={e.id}> {e.name}</span> : null
+                                        ))
+                                    )
+                                }
                             </section>
-                            <h3>Language&nbsp; &nbsp;<span> {infoMovie.original_language}</span></h3>
+                            <h3>Language <br /> <span> {infoMovie.original_language}</span></h3>
                             {
                                 infoMovie.homepage && (
-                                    <h3>Home page  &nbsp; &nbsp;<span> <a
+                                    <h3>Home page  <br /> <span> <a
                                         style={{
                                             fontSize: "1rem"
                                         }}
@@ -88,7 +89,7 @@ const PageInfoMovie = () => {
                             }
                             {
                                 infoMovie.runtime && (
-                                    <h3>Run time &nbsp; &nbsp;<span> {infoMovie.runtime/60}'</span></h3>
+                                    <h3>Run time <br /> <span> {infoMovie.runtime}'</span></h3>
                                 )
                             }
                             {
@@ -97,14 +98,14 @@ const PageInfoMovie = () => {
                                 )
                             }
                             {
-                                infoMovie.vote_average && (
+                                infoMovie.runtime && (
                                     <h3>Vote average &nbsp; &nbsp;<span>{infoMovie.vote_average}</span></h3>
                                 )
                             }
                             {
                                 infoMovie && (
-
-                                    <h3>Genres  &nbsp; &nbsp;[
+                                    <div
+                                    >Genres  &nbsp; &nbsp;[
                                         {
                                             infoMovie.genres.map((element, index) => {
                                                 return (
@@ -112,28 +113,26 @@ const PageInfoMovie = () => {
                                                         key={index}> &nbsp; {element.name}, &nbsp;</span>
                                                 )
                                             })}
-                                        ]</h3>
+                                        ]</div>
                                 )
                             }
-                           
+                            <button onClick={() => navigate(-1)}>Back</button>
                         </article>
                     </section>
                 )
             }
-            <article className='card-overiew'>
+            <article className='card-biography'>
                 {
                     infoMovie && (
-                        <article>
-                            <h2>Overview </h2><br />
+                        <h3>overview  <br />  <br />
                             <span> {infoMovie.overview}</span>
-                        </article>
+                        </h3>
                     )
                 }
             </article>
             <>
                 <Cast valuesCast={infoMovie} funcCast={funcCast}></Cast>
             </>
-            <button onClick={() => navigate(-1)}>Back</button>
         </main>
     );
 }

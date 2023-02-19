@@ -6,8 +6,8 @@ const Infomovie = (infoMovie) => {
     const navigate = useNavigate()
     const [valuesMovie, setValuesMovie] = useState()
     useEffect(() => {
-        infoMovie.infoMovie.length > 0 ? setValuesMovie(infoMovie.infoMovie) : null
-    },)
+        infoMovie.infoMovie ? setValuesMovie(infoMovie.infoMovie) : null
+    },[infoMovie])
 
     return (
         <section className='container-list-movies'>

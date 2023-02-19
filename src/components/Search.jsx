@@ -1,91 +1,88 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Navigate, NavLink } from "react-router-dom";
-import ListMovies from './ListMovies'
+import React, { useEffect, useState } from 'react';
+import Infomovie from './ListMovies';
+import ListMovie from './ListMovies'
 
 
-const Search = ({ selectValue }) => {
-    const navigate = useNavigate()
-    const [choseMovieTV, setchoseMovieTV] = useState("movie")
-    const [activeGenres, setActiveGenres] = useState(false)
-    const valuesForPageInfo = [choseMovieTV]
-    const [infoMovieGender, setInfoMovieGenre] = useState([])
-    const [infoMovie, setInfoMovie] = useState([])
-    const [genres, setGenres] = useState(14)
-
-    useEffect(() => {
-        if (selectValue.value !== undefined) {
-            setActiveGenres(false)
-            setchoseMovieTV(selectValue.value)
-            setGenres(!genres)
+const Search = () => {
+    const [infoMovie, setInfoMovie] = useState()
+    const [movieOrTv, setMovieOrTv] = useState(["Movie", "Tv"])
+    const [isSelected, setIsSelected] = useState("movie")
+    const [localeMovieOrTv, setLocaleMovieOrTv] = useState(localStorage.getItem("movie-tv"))
+    const [changeCall, setChangeCall] = useState(false)
+    const [count, setCount] = useState(1)
+     const valuesForPageInfo = [isSelected]
+    let stringNum = toString()   
+    localStorage.setItem("indexPage", count.toString())
+    stringNum = localStorage.getItem("indexPage")
+   
+    const selected = ((target) => {
+        if (target === "Movie") {
+            setCount(1)
+            setIsSelected("movie")
+            setChangeCall(!changeCall)
+            
         } else {
-            setchoseMovieTV("movie")
+            setCount(1)
+            setChangeCall(!changeCall)
+            setIsSelected("tv")
         }
-        valuesForPageInfo.push(choseMovieTV)
-    }, [choseMovieTV])
+    })
+
+    const nextPage = (() => {
+        setCount(count + 1)       
+        console.log(count)
+        setChangeCall(!changeCall)
+    })
+    
+    const firtsPage = (() => {
+        setCount(1)
+     
+        console.log(count)
+        setChangeCall(!changeCall)
+    })
+
+    const previousPage = (() => {
+        count < 2 ? null : setCount(count - 1)    
+        console.log(count)
+        setChangeCall(!changeCall)
+    })
 
     useEffect(() => {
-        if (choseMovieTV) {
-            //Devuelve todos los generos de pelis y series respactivamente
-            fetch(`https://api.themoviedb.org/3/genre/${choseMovieTV}/list?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
-                .then(resp => resp.json())
-                .then(resp => setInfoMovieGenre(resp.genres))
-        }
-    }, [choseMovieTV])
-    const handleClick = ((target) => {
-        setGenres(target.target.value)
-    })
-    useEffect(() => {
-        //Buscar por géneros
-        fetch(`https://api.themoviedb.org/3/discover/${choseMovieTV}/?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_adult=&with_genres=${genres}&page=1`)
+        fetch(`https://api.themoviedb.org/3/discover/${isSelected}?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=${stringNum}`)
             .then(resp => resp.json())
             .then(resp => setInfoMovie(resp.results))
-    }, [genres])
-    useEffect(() => {
-        if (selectValue !== undefined) {
-            setchoseMovieTV(selectValue.value)
-        }
-    }, [selectValue])
+    }, [changeCall])
+
     return (
-        <main className='page'>
-            <section className='container-page'>
-               
-                {
-                    infoMovieGender && (
-                        <form className='form' action="">
-                            <h2 onClick={() => setActiveGenres(!activeGenres)} >Genders</h2>
-                            {
-                                activeGenres && (
-                                    <select onChange={handleClick}>
-                                        {
-                                            infoMovieGender.map((e, i) => {
-                                                return (
-                                                    <option id={e.id} key={e.id} value={e.id}>{e.name}</option>)
-                                            })
-                                        }
-                                    </select>
-                                )
-                            }
-                        </form>
-                    )
-                }
-               
-
-
+        <main className='popular'>
+            <section className='container-popular'>              
                 <article className='container-button'>
-                    <button onClick={() => nextPage()}>Next</button>
-                    <button onClick={() => previousPage()}>Previus</button>
-                    <button onClick={() => firtsPage()}>First</button>
+                    {
+                        movieOrTv.map((e, i) => (
+                            <h2 key={i} id={i} onClick={() => selected(e)}>{e}</h2>
+                        ))
+                    }
                 </article>
-                <ListMovies
-                    infoMovie={infoMovie}
-                    valuesForPageInfo={valuesForPageInfo}
-                    movieOrTv={choseMovieTV}
-                />
-                <article className='container-button'>
-                    <button onClick={() => nextPage()}>Next</button>
-                    <button onClick={() => previousPage()}>Previus</button>
+                <nav className='container-button-popular'>
                     <button onClick={() => firtsPage()}>First</button>
-                </article>
+                    <button onClick={() => previousPage()}>Previus</button>
+                    <button onClick={() => nextPage()}>Next</button>
+                </nav>
+                <section>
+                    {
+                        infoMovie && (
+                            <ListMovie
+                                infoMovie={infoMovie}
+                                valuesForPageInfo={valuesForPageInfo}
+                            />
+                        )
+                    }
+                </section>
+                <nav className='container-button'>
+                    <button onClick={() => firtsPage()}>First</button>
+                    <button onClick={() => previousPage()}>Previus</button>
+                    <button onClick={() => nextPage()}>Next</button>
+                </nav>
             </section>
         </main>
     );

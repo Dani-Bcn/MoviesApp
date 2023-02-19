@@ -6,10 +6,8 @@ import Home from './components/Home'
 import Navbar from './components/Navbar'
 import PageInfoMovie from './components/PageInfoMovie'
 import PageInfoActor from './components/PageInfoActor'
-import MostPopular from './components/MostPopular'
 
 function App() {
-
 
   const [selectValue, setSelectValues] = useState()
   const handleValues = (value) => {
@@ -28,7 +26,6 @@ function App() {
         <Route path='/' element={<Home value={selectValue} info={info} />} />
         <Route path='/info' element={<PageInfoMovie valuesMovie={valuesMovie} />} />
         <Route path='/infoActor' element={<PageInfoActor />} />
-        <Route path='/popular' element={<MostPopular />}/>
       </Routes>
     </m.main>
   )
