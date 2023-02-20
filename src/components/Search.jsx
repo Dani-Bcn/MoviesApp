@@ -7,23 +7,17 @@ const Search = () => {
     const [isSelected, setIsSelected] = useState("movie")
     const [localeMovieOrTv, setLocaleMovieOrTv] = useState(localStorage.getItem("movie-tv"))
     const [changeCall, setChangeCall] = useState(true)
-    const [count, setCount] = useState()
+    const [count, setCount] = useState(1)
     const [resApiGenres, setResApiGenres] = useState([])
     const [genres, setGenres] = useState()
     const [searchPopularity, setSearchPopularity] = useState("")
     const valuesForPageInfo = [isSelected]
     let stringNum = toString()
 
-    localStorage.setItem("indexPage",1)
+    localStorage.setItem("indexPage",count)
     stringNum = localStorage.getItem("indexPage")
     const selectRef = useRef(null);
     console.log(localStorage.getItem("indexPage"))
-    useEffect(() => {
-        if (!localStorage.getItem("indexPage")) {
-            setCount(1)
-        }
-    })
-
 
     const selected = ((target) => {
         if (target === "Movie") {
