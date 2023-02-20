@@ -47,92 +47,101 @@ const PageInfoMovie = () => {
                 .then(resp => setInfoMovie(resp))
         }
     }, [count])
+    let img
+    if (infoMovie) {
+        img = `https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`
+    }
 
     return (
-        <main className='info-movie'>
-            {
-                infoMovie && (
-                    <section className='container-info-movie'>
-                        <article>
-                            <m.img src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`} ></m.img>
-                        </article>
-                        <article className='card-info'>
-                            {
-                                infoMovie && (
-                                    <h2>{`${valueTitleOrname}`}</h2>
-                                )
-                            }
-                            {
-                                infoMovie.release_date && (
-                                    <h3>Release date <br /> <span> {infoMovie.release_date}</span></h3>
-                                )
-                            }
-                            <section>
-                                <h3>Cast</h3><br />
-                                {
-                                    namesfromCast && (
-                                        namesfromCast.cast.map((e, i) => (
-                                            i < 4 ? <span key={e.id}> {e.name}</span> : null
-                                        ))
-                                    )
-                                }
-                            </section>
-                            <h3>Language <br /> <span> {infoMovie.original_language}</span></h3>
-                            {
-                                infoMovie.homepage && (
-                                    <h3>Home page  <br /> <span> <a
-                                        style={{
-                                            fontSize: "1rem"
-                                        }}
-                                        href={infoMovie.homepage} target="_blank" rel="noopener noreferrer">{infoMovie.homepage}</a></span></h3>
-                                )
-                            }
-                            {
-                                infoMovie.runtime && (
-                                    <h3>Run time <br /> <span> {infoMovie.runtime}'</span></h3>
-                                )
-                            }
-                            {
-                                infoMovie.production_companies[0] && (
-                                    <h3>Productor company &nbsp; &nbsp;<span>{infoMovie.production_companies[0].name}</span></h3>
-                                )
-                            }
-                            {
-                                infoMovie.runtime && (
-                                    <h3>Vote average &nbsp; &nbsp;<span>{infoMovie.vote_average}</span></h3>
-                                )
-                            }
-                            {
-                                infoMovie && (
-                                    <div
-                                    >Genres  &nbsp; &nbsp;[
-                                        {
-                                            infoMovie.genres.map((element, index) => {
-                                                return (
-                                                    <span
-                                                        key={index}> &nbsp; {element.name}, &nbsp;</span>
-                                                )
-                                            })}
-                                        ]</div>
-                                )
-                            }
-                            <button onClick={() => navigate(-1)}>Back</button>
-                        </article>
-                    </section>
-                )
-            }
-            <article className='card-biography'>
+
+        <main className='back-img' style={{
+            backgroundImage: `url(${img})`
+        }}>
+            <div className='info-movie' >
                 {
                     infoMovie && (
-                        <h3>overview  <br />  <br />
-                            <span> {infoMovie.overview}</span>
-                        </h3>
+                        <section className='container-info-movie'>
+                            <article>
+                                <m.img src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`} ></m.img>
+                            </article>
+                            <article className='card-info'>
+                                {
+                                    infoMovie && (
+                                        <h1>{`${valueTitleOrname}`}</h1>
+                                    )
+                                }
+                                {
+                                    infoMovie.release_date && (
+                                        <h3>Release date &nbsp; &nbsp; <span> {infoMovie.release_date}</span></h3>
+                                    )
+                                }
+                                <section>
+                                    <h3>Cast <br /> [ &nbsp;
+                                        {
+                                            namesfromCast && (
+                                                namesfromCast.cast.map((e, i) => (
+                                                    i < 4 ? <span key={e.id}> {e.name} | </span> : null
+                                                ))
+                                            )
+                                        }&nbsp; ]</h3>
+                                </section>
+                                <h3>Language &nbsp; &nbsp;<span> {infoMovie.original_language}</span></h3>
+                                {
+                                    infoMovie.homepage && (
+                                        <h3>Home page  &nbsp; &nbsp; <span> <a
+                                            style={{
+                                                fontSize: "1rem"
+                                            }}
+                                            href={infoMovie.homepage} target="_blank" rel="noopener noreferrer">{infoMovie.homepage}</a></span></h3>
+                                    )
+                                }
+                                {
+                                    infoMovie.runtime && (
+                                        <h3>Run time &nbsp; &nbsp; <span> {infoMovie.runtime}'</span></h3>
+                                    )
+                                }
+                                {
+                                    infoMovie.production_companies[0] && (
+                                        <h3>Productor company &nbsp; &nbsp;<span>{infoMovie.production_companies[0].name}</span></h3>
+                                    )
+                                }
+                                {
+                                    infoMovie.runtime && (
+                                        <h3>Vote average &nbsp; &nbsp;<span>{infoMovie.vote_average}</span></h3>
+                                    )
+                                }
+                                {
+                                    infoMovie && (
+                                        <div
+                                        >Genres  &nbsp; &nbsp;[
+                                            {
+                                                infoMovie.genres.map((element, index) => {
+                                                    return (
+                                                        <span
+                                                            key={index}> &nbsp; {element.name}  | </span>
+                                                    )
+                                                })}
+                                            ]</div>
+                                    )
+                                }
+                            </article>
+                        </section>
                     )
                 }
-            </article>
-            <>
-                <Cast valuesCast={infoMovie} funcCast={funcCast}></Cast>
-            </>
+                <article className='card-biography'>
+                    {
+                        infoMovie && (
+                            <h3>overview  <br />  <br />
+                                <span> {infoMovie.overview}</span>
+                            </h3>
+                        )
+                    }
+                </article>
+                <>
+                    <Cast valuesCast={infoMovie} funcCast={funcCast}></Cast>
+                </>
+                <button onClick={() => navigate(-1)}>Back</button>
+            </div>
         </main>
     );
 }
