@@ -76,8 +76,7 @@ const Cast = (props) => {
                   {e.profile_path && (
                     <h3
                       className="
-                        h-10  
-                        bg-slate-100                    
+                        h-10                       
                         mb-10
                         mx-5
                         md:text-2xl
@@ -92,7 +91,7 @@ const Cast = (props) => {
                     <img
                       className="
                         m-auto
-                           w-48
+                           w-56
                         "
                       onClick={() => goToActorInfoPage(i)}
                       src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
