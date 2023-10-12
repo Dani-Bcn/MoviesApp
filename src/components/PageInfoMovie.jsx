@@ -114,17 +114,14 @@ const PageInfoMovie = () => {
                   </h3>
                 )}
                
-                  <h3
-                    
+                  <h3                    
                   >Cast</h3>  
                   <p>
                     {namesfromCast &&
                       namesfromCast.cast.map((e, i) =>
                         i < 4 ? <span key={e.id}> {e.name} | </span> : null
-                      )}
-                  
-                  </p>
-               
+                      )}                  
+                  </p>               
                 <h3>
                   Language &nbsp; &nbsp;
                   <span> {infoMovie.original_language}</span>
@@ -164,15 +161,17 @@ const PageInfoMovie = () => {
                   </h3>
                 )}
                 {infoMovie && (
-                  <div>
-                    <h3>Genres</h3>[
+                 
+                    <h3>Genres
                     {infoMovie.genres.map((element, index) => {
                       return <span key={index}> &nbsp; {element.name} | </span>;
                     })}
-                    ]
-                  </div>
+                   </h3>
+                 
                 )}
+                 
               </div>
+             
             </article>
           </section>
         )}
@@ -183,10 +182,12 @@ const PageInfoMovie = () => {
             m-auto                
         "
         >
+       
           {infoMovie && (
             <article>
               <h3
                 className="
+                text-orange-200
                     text-2xl
                     my-5
                 "
@@ -208,8 +209,15 @@ const PageInfoMovie = () => {
         <>
           <Cast valuesCast={infoMovie} funcCast={funcCast}></Cast>
         </>
-        <button onClick={() => navigate(-1)}>Back</button>
+        
       </div>
+      <button 
+                  className="
+                  
+                    text-2xl
+                    text-orange-200
+                  "
+                  onClick={() => navigate(-1)}>Back</button>
     </main>
   );
 };
