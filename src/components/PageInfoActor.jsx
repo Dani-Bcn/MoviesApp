@@ -30,7 +30,7 @@ const PageInfoActor = () => {
         flex-col
         items-center
         justify-center
-        text-orange-200
+        text-indigo-200
         text-[1.1rem]
       "
     >
@@ -62,7 +62,7 @@ const PageInfoActor = () => {
         </div>
         <div
             className="
-            w-3/4
+            w-4/5
             ml-0
             md:ml-20
             md:text-2xl
@@ -71,7 +71,7 @@ const PageInfoActor = () => {
         >
           {infoActor && (
             <article className="card-info">
-              {infoActor.name && <h1>{infoActor.name}</h1>}
+              {infoActor.name && <h1 className="text-3xl mb-5">{infoActor.name}</h1>}
               {infoActor.birthday && (
                 <h3>
                   Birhtday &nbsp; &nbsp; <span>{infoActor.birthday}</span>
@@ -103,8 +103,8 @@ const PageInfoActor = () => {
       </section>
       <article 
        className="
-            w-3/4
-           m-auto
+            w-4/5
+           
        "
       >
         {infoActor && (
