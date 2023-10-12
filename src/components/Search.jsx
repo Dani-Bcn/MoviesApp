@@ -17,7 +17,7 @@ const Search = () => {
     localStorage.setItem("indexPage",count)
     stringNum = localStorage.getItem("indexPage")
     const selectRef = useRef(null);
-    console.log(localStorage.getItem("indexPage"))
+  
 
     const selected = ((target) => {
         if (target === "Movie") {
@@ -32,8 +32,6 @@ const Search = () => {
             setCount(1)
             setChangeCall(!changeCall)
             setIsSelected("tv")
-
-
             setGenres(10759)
         }
     })
@@ -87,7 +85,7 @@ const Search = () => {
     }, [changeCall])
 
     return (
-        <main className='popular'>
+        <main className='main-page'>
             <section className='container-popular'>
                 <article className='container-nav'>
                     {

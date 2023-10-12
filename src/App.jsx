@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import { motion as m } from 'framer-motion'
 import './App.css'
 import Home from './components/Home'
-import Navbar from './components/Navbar'
+
 import PageInfoMovie from './components/PageInfoMovie'
 import PageInfoActor from './components/PageInfoActor'
 
@@ -21,7 +21,7 @@ function App() {
 
   return (
     <m.main>
-      <Navbar handleValues={handleValues}></Navbar>
+     <h1>AppMovies</h1>
       <Routes>
         <Route path='/' element={<Home value={selectValue} info={info} />} />
         <Route path='/info' element={<PageInfoMovie valuesMovie={valuesMovie} />} />
