@@ -20,7 +20,11 @@ function App() {
   })
 
   return (
-    <m.main>
+    <m.main
+    className='
+    bg-slate-900
+    '
+    >
      <h1
       className='
         flex

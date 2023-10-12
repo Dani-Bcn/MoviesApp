@@ -39,10 +39,7 @@ const Search = () => {
     const funcPopular = (() => {
         setSearchPopularity("&sort_by=vote_count.desc")
         setChangeCall(!changeCall)
-
     })
-
-
     const funcActual = (() => {
         setSearchPopularity("")
         setChangeCall(!changeCall)
@@ -119,13 +116,10 @@ const Search = () => {
                     <form
                     className='
                         mx-5
+                        bg-slate-800
                     '
                     >
-                        <h3
-                            className='
-                            
-                            '
-                        >Genres</h3>
+                        <h3>Genres</h3>
                         <select   
                             className='                          
                                 cursor-pointer

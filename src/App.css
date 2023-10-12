@@ -10,14 +10,20 @@
 }
 
 button{
-  margin: 20px;
-  
+  margin: 20px;  
   border-radius: 5px;
   cursor: pointer;
+}
+html{
+  overflow-x: hidden;
 }
 
 img{
   cursor: pointer;
+}
+
+span{
+  color: rgb(255, 209, 157);
 }
 
 
