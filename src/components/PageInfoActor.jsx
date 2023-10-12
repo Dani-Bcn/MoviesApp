@@ -103,13 +103,17 @@ const PageInfoActor = () => {
       </section>
       <article 
        className="
-            w-4/5
-           
+            w-4/5           
        "
       >
         {infoActor && (
           <article>
-            <h3>Biography</h3>
+            <h3
+                className="
+                    text-2xl
+                    text-orange-200
+                "
+            >Biography</h3>
             <br />
             <br />
             <p>{infoActor.biography}</p>
@@ -118,6 +122,8 @@ const PageInfoActor = () => {
       </article>
       <button 
                 className="
+                text-2xl
+                text-orange-200
                     -ml-1
                 "
               onClick={() => navigate(-1)}>Back</button>
