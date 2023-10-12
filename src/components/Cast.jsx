@@ -77,9 +77,10 @@ const Cast = (props) => {
                     <h3
                       className="
                         h-10                       
-                        mb-10
+                        my-10
                         mx-5
-                    
+                        md:text-[1.2rem]
+                        md:ml-10
                         text-3xl   
                         text-orange-200                   
                     "
@@ -91,7 +92,7 @@ const Cast = (props) => {
                     <img
                       className="
                         m-auto
-                        lg:w-42
+                        md:w-40
                            w-46
                         "
                       onClick={() => goToActorInfoPage(i)}
