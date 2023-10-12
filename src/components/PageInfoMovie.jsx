@@ -54,13 +54,13 @@ const PageInfoMovie = () => {
 
     return (
 
-        <main className='back-img' style={{
-            backgroundImage: `url(${img})`
+        <main style={{
+           /*  backgroundImage: `url(${img})` */
         }}>
-            <div className='info-movie' >
+            <div>
                 {
                     infoMovie && (
-                        <section className='container-info-movie'>
+                        <section>
                             <article>
                                 <m.img src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`} ></m.img>
                             </article>

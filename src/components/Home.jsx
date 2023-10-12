@@ -3,7 +3,7 @@ import Search from './Search';
 
 const Home = (selectValue) => {
     return (
-        <main className='page'>
+        <main>
             <Search selectValue={selectValue} ></Search>
         </main>
     );

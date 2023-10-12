@@ -30,7 +30,7 @@ function App() {
         h-24
         text-5xl
         font-bold
-        bg-gradient-to-r from-red-900 to-red-200
+        bg-slate-900
       '
      >MoviesApp</h1>
       <Routes>

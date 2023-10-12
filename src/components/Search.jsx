@@ -89,22 +89,25 @@ const Search = () => {
             className="
                 overflow-hidden
                 w-full
-                bg-red-900    
+                bg-slate-900    
             "
         >
             <section
             className='
+        
                 font-normal
                 text-1xl
-                text-indigo-200  
+                text-orange-200  
             '
             >
                 <article 
                 className='
-                h-32               
+                my-20 
+                mx-5            
                 flex
+                flex-wrap
                 items-center
-                justify-around   
+                justify-start
                 '>
                     {
                         movieOrTv.map((e, i) => (
@@ -113,35 +116,35 @@ const Search = () => {
                     }
                     <button onClick={() => funcActual()}>Current</button>
                     <button onClick={() => funcPopular()}>Most popular</button>
-                    <form>
-                        <h3>Genres</h3>
-                        <select   className='
-                                    cursor-pointer
-                                    ' ref={selectRef} onChange={(e) => selectGenre(e)}>
+                    <form
+                    className='
+                        mx-5
+                    '
+                    >
+                        <h3
+                            className='
+                            
+                            '
+                        >Genres</h3>
+                        <select   
+                            className='                          
+                                cursor-pointer
+                            ' 
+                        ref={selectRef} onChange={(e) => selectGenre(e)}>
                             {
                                 resApiGenres.map((e, i) => (
                                     <option 
-
+                                    className='
+                                    bg-stale-200
+                                        cursor-pointer
+                                    ' 
                                     key={e.id} value={e.id} id={e.id}>{e.name}</option>
                                 ))
                             }
                         </select>
                     </form>
                 </article>
-                <nav 
-                className='                           
-                  w-screen
-                  h-10
-                  py-50
-                  my-10
-                  flex
-                  justify-around
-                  text-indigo-200          
-                '>
-                    <button onClick={() => firtsPage()}>First</button>
-                    <button onClick={() => previousPage()}>Previus</button>
-                    <button onClick={() => nextPage()}>Next</button>
-                </nav>
+               
                 <section>
                     {
                         infoMovie && (
@@ -156,9 +159,10 @@ const Search = () => {
                     className='
                     h-10
                     my-5
+                    ml-10
                     flex
                     items-center
-                    justify-around
+                    justify-start
                     '
                 >
                     <button onClick={() => firtsPage()}>First</button>
