@@ -114,13 +114,13 @@ const PageInfoMovie = () => {
                   </h3>
                 )}               
                   <h3                    
-                  >Cast</h3>  
-                  <p>
+                  >Cast &nbsp; &nbsp;
+                 
                     {namesfromCast &&
                       namesfromCast.cast.map((e, i) =>
                         i < 4 ? <span key={e.id}> {e.name} | </span> : null
                       )}                  
-                  </p>               
+                         </h3>       
                 <h3>
                   Language &nbsp; &nbsp;
                   <span> {infoMovie.original_language}</span>

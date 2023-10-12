@@ -21,22 +21,19 @@ const navigate = useNavigate()
   })
 
   return (
-    <m.main
-    className='
-    bg-slate-900
-    '
-    >
+    <m.main>
      <h1
       className='
         flex
-        mt-5
+        w-64
+        h-16
+        mt-10
+        m-auto
         items-center
         justify-center
         text-indigo-200
-        h-24
         text-5xl
         font-bold
-        bg-slate-900
         cursor-pointer
       '
      onClick={()=>navigate("/")}
