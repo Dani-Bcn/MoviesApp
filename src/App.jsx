@@ -21,7 +21,18 @@ function App() {
 
   return (
     <m.main>
-     <h1>AppMovies</h1>
+     <h1
+      className='
+        flex
+        items-center
+        justify-center
+        text-indigo-200
+        h-24
+        text-5xl
+        font-bold
+        bg-gradient-to-r from-red-900 to-red-200
+      '
+     >MoviesApp</h1>
       <Routes>
         <Route path='/' element={<Home value={selectValue} info={info} />} />
         <Route path='/info' element={<PageInfoMovie valuesMovie={valuesMovie} />} />

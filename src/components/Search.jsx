@@ -85,28 +85,60 @@ const Search = () => {
     }, [changeCall])
 
     return (
-        <main className='main-page'>
-            <section className='container-popular'>
-                <article className='container-nav'>
+        <main 
+            className="
+                overflow-hidden
+                w-full
+                bg-red-900    
+            "
+        >
+            <section
+            className='
+                font-normal
+                text-1xl
+                text-indigo-200  
+            '
+            >
+                <article 
+                className='
+                h-32
+               
+                flex
+                items-center
+                justify-around   
+                '>
                     {
                         movieOrTv.map((e, i) => (
-                            <h2 key={i} id={i} onClick={() => selected(e)}>{e}</h2>
+                            <button key={i} id={i} onClick={() => selected(e)}>{e}</button>
                         ))
                     }
-                    <h2 onClick={() => funcActual()}>Current</h2>
-                    <h2 onClick={() => funcPopular()}>Most popular</h2>
-                    <form className='select-genres'>
-                        <h2>Genres</h2>
-                        <select ref={selectRef} onChange={(e) => selectGenre(e)}>
+                    <button onClick={() => funcActual()}>Current</button>
+                    <button onClick={() => funcPopular()}>Most popular</button>
+                    <form>
+                        <h3>Genres</h3>
+                        <select   className='
+                                    cursor-pointer
+                                    ' ref={selectRef} onChange={(e) => selectGenre(e)}>
                             {
                                 resApiGenres.map((e, i) => (
-                                    <option key={e.id} value={e.id} id={e.id}>{e.name}</option>
+                                    <option 
+
+                                    key={e.id} value={e.id} id={e.id}>{e.name}</option>
                                 ))
                             }
                         </select>
                     </form>
                 </article>
-                <nav className='container-nav'>
+                <nav 
+                className='                           
+                  w-screen
+                  h-10
+                  py-50
+                  my-10
+                  flex
+                  justify-around
+                  text-indigo-200          
+                '>
                     <button onClick={() => firtsPage()}>First</button>
                     <button onClick={() => previousPage()}>Previus</button>
                     <button onClick={() => nextPage()}>Next</button>
@@ -121,7 +153,15 @@ const Search = () => {
                         )
                     }
                 </section>
-                <nav className='container-button-popular'>
+                <nav
+                    className='
+                    h-10
+                    my-5
+                    flex
+                    items-center
+                    justify-around
+                    '
+                >
                     <button onClick={() => firtsPage()}>First</button>
                     <button onClick={() => previousPage()}>Previus</button>
                     <button onClick={() => nextPage()}>Next</button>

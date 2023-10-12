@@ -10,18 +10,30 @@ const Infomovie = (infoMovie) => {
     },[infoMovie])
 
     return (
-        <section className='container-list-movies'>
+        <section 
+            className='
+                w-screen
+                flex
+                justify-start
+                flex-wrap
+            '
+        >
             {
                 valuesMovie && (
                     valuesMovie.map((e, i) => (
-                        <div className='card-movie'
+                        <div
                             onClick={() => {
                                 window.localStorage.setItem("value", infoMovie.valuesForPageInfo + e.id)
                                 navigate("/info")
                             }}
                             key={e.id}>
                             <div >
-                                <m.img className='img' src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`} alt={e.id} ></m.img>
+                                <m.img 
+                                className='
+                                w-32
+                                m-5
+                                '
+                                src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`} alt={e.id} ></m.img>
                             </div>
                         </div>
                     ))
