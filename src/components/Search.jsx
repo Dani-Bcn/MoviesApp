@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import ListMovie from "./ListMovies";
+import {motion as m} from "framer-motion"
 
 const Search = () => {
   const [infoMovie, setInfoMovie] = useState();
@@ -85,7 +86,7 @@ const Search = () => {
   }, [changeCall]);
 
   return (
-    <main
+    <m.main   
       className="
                 overflow-hidden
                 w-full
@@ -99,7 +100,14 @@ const Search = () => {
                 text-orange-200  
             "
       >
-        <article
+        <m.article
+         animate={{
+            x:[200,0],           
+            transition:{
+                duration:1,
+                delay:0.5,              
+            }
+        }}
           className="
                 my-10
                 mx-5            
@@ -116,7 +124,7 @@ const Search = () => {
           ))}
           <button onClick={() => funcActual()}>Current</button>
           <button onClick={() => funcPopular()}>Most popular</button>
-          <form
+          <m.form
             className="
                         mx-5
                         bg-slate-800
@@ -143,8 +151,8 @@ const Search = () => {
                 </option>
               ))}
             </select>
-          </form>
-        </article>
+          </m.form>
+        </m.article>
 
         <section>
           {infoMovie && (
@@ -170,7 +178,7 @@ const Search = () => {
           <button onClick={() => nextPage()}>Next</button>
         </nav>
       </section>
-    </main>
+    </m.main>
   );
 };
 

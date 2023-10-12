@@ -21,8 +21,16 @@ const navigate = useNavigate()
   })
 
   return (
-    <m.main>
-     <h1
+    <m.main
+      animate={{
+        opacity:[0,0.1,1],
+        x:[-200,0],
+        transition:{
+          duration:1
+        }
+      }}
+    >
+     <m.h1
       className='
         flex
         w-64
@@ -38,7 +46,14 @@ const navigate = useNavigate()
       '
      onClick={()=>navigate("/")}
      
-     >MoviesApp</h1>
+     animate={{
+      opacity:[0,1],
+        transition:{
+          duration:0.5,
+          delay:1.2,
+        }
+     }}
+     >MoviesApp</m.h1>
       <Routes>
         <Route path='/' element={<Home value={selectValue} info={info} />} />
         <Route path='/info' element={<PageInfoMovie valuesMovie={valuesMovie} />} />

@@ -35,4 +35,12 @@ h3{
   font-size: 1.1rem;
 }
 
+.clip-circle-28{
+  clip-path: circle(38% at 50% 50%);
+}
+
+.clip-circle-full{
+  clip-path: circle(70% at 50% 50%);
+}
+
 
