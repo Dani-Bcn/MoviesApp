@@ -14,7 +14,7 @@ const Infomovie = (infoMovie) => {
             className='
                 w-screen
                 flex
-                justify-start
+                justify-center
                 flex-wrap
             '
         >

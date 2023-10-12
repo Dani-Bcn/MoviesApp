@@ -101,8 +101,7 @@ const Search = () => {
             >
                 <article 
                 className='
-                h-32
-               
+                h-32               
                 flex
                 items-center
                 justify-around   
