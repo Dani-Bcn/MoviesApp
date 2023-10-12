@@ -72,10 +72,11 @@ const PageInfoMovie = () => {
               className="
                     md:mx-10
                     mb-10
-                    mx-20
+                    mx-10
                     md:w-64
                     lg:w-96
                     cursor-auto
+                    
                 "
               src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
             ></m.img>
