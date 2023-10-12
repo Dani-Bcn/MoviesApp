@@ -7,13 +7,14 @@ import Home from './components/Home'
 import PageInfoMovie from './components/PageInfoMovie'
 import PageInfoActor from './components/PageInfoActor'
 
+
 function App() {
 
   const [selectValue, setSelectValues] = useState()
   const handleValues = (value) => {
     setSelectValues(value[0])
   }
-
+const navigate = useNavigate()
   const [valuesMovie, setValuesMovie] = useState()
   const info = ((info) => {
     setValuesMovie(info)
@@ -28,6 +29,7 @@ function App() {
      <h1
       className='
         flex
+        mt-5
         items-center
         justify-center
         text-indigo-200
@@ -35,7 +37,10 @@ function App() {
         text-5xl
         font-bold
         bg-slate-900
+        cursor-pointer
       '
+     onClick={()=>navigate("/")}
+     
      >MoviesApp</h1>
       <Routes>
         <Route path='/' element={<Home value={selectValue} info={info} />} />

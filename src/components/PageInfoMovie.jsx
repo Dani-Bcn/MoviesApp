@@ -112,8 +112,7 @@ const PageInfoMovie = () => {
                     Release date &nbsp; &nbsp;
                     <span>{infoMovie.release_date}</span>
                   </h3>
-                )}
-               
+                )}               
                   <h3                    
                   >Cast</h3>  
                   <p>
@@ -166,8 +165,7 @@ const PageInfoMovie = () => {
                     {infoMovie.genres.map((element, index) => {
                       return <span key={index}> &nbsp; {element.name} | </span>;
                     })}
-                   </h3>
-                 
+                   </h3>                 
                 )}
                  
               </div>

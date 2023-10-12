@@ -65,9 +65,10 @@ const Cast = (props) => {
                   className="
                     flex
                     md:w-52
-                    w-96
+                    w-64
                     flex-wrap
-                    my-10             
+                    my-10 
+                    justify-center          
                 "
                   key={e.id}
                 >
@@ -75,9 +76,9 @@ const Cast = (props) => {
                   {e.profile_path && (
                     <h3
                       className="
-                        h-10
-                        m-auto
+                        h-10                       
                         mb-10
+                        mx-5
                         md:text-2xl
                         text-3xl   
                         text-orange-200                   

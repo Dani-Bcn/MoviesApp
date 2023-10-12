@@ -27,6 +27,10 @@ span{
   color: rgb(255, 209, 157);
 }
 
+select{
+  background-color: black;
+}
+
 h3{
   font-size: 1.1rem;
 }
