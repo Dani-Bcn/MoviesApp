@@ -79,6 +79,7 @@ const Cast = (props) => {
                         h-10  
                         bg-slate-100                    
                         mb-10
+                        mx-5
                         md:text-2xl
                         text-3xl   
                         text-orange-200                   
