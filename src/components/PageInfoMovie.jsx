@@ -75,8 +75,7 @@ const PageInfoMovie = () => {
                     mx-10
                     md:w-64
                     lg:w-96
-                    cursor-auto
-                    
+                    cursor-auto                    
                 "
               src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
             ></m.img>
@@ -88,11 +87,21 @@ const PageInfoMovie = () => {
                     m-auto                
                 "
             >
-              <div>
+              <div
+                className="
+                    h-96
+                    lg:-mt-5
+                    md:h-screen
+                    flex
+                    flex-col
+                    justify-around
+                "
+              >
                 {infoMovie && (
                   <h1
                     className="
                         text-4xl
+                        md:text-5xl
                         font-semibold
                         mb-5
                     "
@@ -101,11 +110,13 @@ const PageInfoMovie = () => {
                 {infoMovie.release_date && (
                   <h3>
                     Release date &nbsp; &nbsp;
-                    {infoMovie.release_date}
+                    <span>{infoMovie.release_date}</span>
                   </h3>
                 )}
-                <section>
-                  <h3>Cast</h3>  
+               
+                  <h3
+                    
+                  >Cast</h3>  
                   <p>
                     {namesfromCast &&
                       namesfromCast.cast.map((e, i) =>
@@ -113,7 +124,7 @@ const PageInfoMovie = () => {
                       )}
                   
                   </p>
-                </section>
+               
                 <h3>
                   Language &nbsp; &nbsp;
                   <span> {infoMovie.original_language}</span>
@@ -154,7 +165,7 @@ const PageInfoMovie = () => {
                 )}
                 {infoMovie && (
                   <div>
-                    Genres &nbsp; &nbsp;[
+                    <h3>Genres</h3>[
                     {infoMovie.genres.map((element, index) => {
                       return <span key={index}> &nbsp; {element.name} | </span>;
                     })}
@@ -180,7 +191,7 @@ const PageInfoMovie = () => {
                     my-5
                 "
               >
-                overview
+                Overview
               </h3>
               <p
                 className="

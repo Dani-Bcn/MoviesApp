@@ -116,6 +116,7 @@ const Search = () => {
                     <form
                     className='
                         mx-5
+                        mt-6
                         bg-slate-800
                     '
                     >
@@ -153,7 +154,8 @@ const Search = () => {
                     className='
                     h-10
                     my-5
-                    ml-10
+                    md:ml-0
+                    ml-5
                     flex
                     items-center
                     justify-start
