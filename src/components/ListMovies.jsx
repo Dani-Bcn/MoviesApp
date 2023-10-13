@@ -56,7 +56,6 @@ const Infomovie = (infoMovie) => {
                                     overflow-hidden
                                 "
             >
-              {" "}
               <p
                 className="
                     mt-[170px]
@@ -91,11 +90,13 @@ const Infomovie = (infoMovie) => {
                   cy="50"
                   r="25"
                   fill="#0009"
-                  stroke="#926"
+                  stroke="#9269"
                   strokeWidth={7}
-                  animate={{
+                  animate={{ 
+                    scale:[0,1],
                     pathLength: [0, e.vote_average / 10],
                     transition: {
+                       
                       delay: 1,
                       duration: 2,
                       ease: "circOut",
