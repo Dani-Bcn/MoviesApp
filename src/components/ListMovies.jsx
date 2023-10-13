@@ -68,8 +68,7 @@ const Infomovie = (infoMovie) => {
                     font-bold
                     absolute
                     z-20
-                "
-
+                "               
                 animate={{
                     opacity:[0,1],
                     transition: {                       

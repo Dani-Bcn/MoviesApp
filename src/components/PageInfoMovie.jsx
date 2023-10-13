@@ -184,6 +184,8 @@ const PageInfoMovie = () => {
                 text-orange-200
                     text-2xl
                     my-5
+                    md:mx-5
+                    lg:mx-2
                 "
               >
                 Overview
@@ -191,7 +193,10 @@ const PageInfoMovie = () => {
               <p
                 className="
                     text-1xl
-                    my-2
+                    w-full
+                    md:w-[96%]
+                    lg:w-[99%]
+                    m-auto
                 "
               >
                 {infoMovie.overview}

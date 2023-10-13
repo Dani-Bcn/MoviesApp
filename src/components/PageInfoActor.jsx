@@ -63,16 +63,18 @@ const PageInfoActor = () => {
         </div>
         <div
             className="
-            w-5/6
-            ml-0
-            md:ml-20
-            md:text-2xl
-                m-auto
+              w-5/6
+              ml-0
+              md:ml-20
+              md:mt-4
+              lg:mt-4
+              md:text-3xl
+              m-auto
             "
         >
           {infoActor && (
-            <article className="card-info">
-              {infoActor.name && <h1 className="text-3xl mb-5">{infoActor.name}</h1>}
+            <article>
+              {infoActor.name && <h1 className="text-4xl mb-5">{infoActor.name}</h1>}
               {infoActor.birthday && (
                 <h3>
                   Birhtday &nbsp; &nbsp; <span>{infoActor.birthday}</span>
@@ -113,10 +115,9 @@ const PageInfoActor = () => {
                 className="
                     text-2xl
                     text-orange-200
+                    my-5
                 "
             >Biography</h3>
-            <br />
-            <br />
             <p>{infoActor.biography}</p>
           </article>
         )}
