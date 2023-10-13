@@ -4,6 +4,9 @@ import { motion as m } from 'framer-motion'
 import gsap from 'gsap';
 
 const Infomovie = (infoMovie) => {
+
+    
+    
     const navigate = useNavigate()
     const [valuesMovie, setValuesMovie] = useState()
     useEffect(() => {
@@ -18,15 +21,11 @@ const Infomovie = (infoMovie) => {
         }) 
     })
     const handleOut=((e)=>{
-        console.log(e.target)
          gsap.to(e.target,{
             scale:2,
             filter: "sepia(100%)"
         }) 
     })
-
-
-
     return (
         <section 
             className='
@@ -47,13 +46,19 @@ const Infomovie = (infoMovie) => {
                             key={i}>
                             <div
                                 className='
-                                w-32
-                                m-2
-                               
-                                   overflow-hidden          
-
+                                    w-32
+                                    m-5
+                                    overflow-hidden
                                 '
-                            >
+                            >  <p
+                            className='
+                            -mt-5
+                                text-orenge-200
+                                font-bold
+                                absolute
+                                z-20
+                            '
+                        >{e.vote_average}</p>
                                 <m.img 
                                 id={e.id}
                                     onMouseOver={(e)=>handleOver(e)}
@@ -66,8 +71,12 @@ const Infomovie = (infoMovie) => {
                                 sepia(0)
                                 lg:sepia
                                 '
-                                src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`} alt={e.id} ></m.img>
+                                src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`} alt={e.id} >
+
+                                </m.img> 
+                              
                             </div>
+                           
                         </div>
                     ))
                 )

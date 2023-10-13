@@ -3,18 +3,23 @@ import { useNavigate } from "react-router-dom";
 import Cast from "./Cast";
 import { motion as m } from "framer-motion";
 
-const PageInfoMovie = () => {
+const PageInfoMovie = (props) => {
+
+
+
+  const {pointsMovie} = props
+
   const [localeValue, setLocaleValue] = useState(false);
   const [valuesMovieOrTv, setValuesMovieOrTv] = useState(false);
   const [valueTitleOrname, setTitleOrName] = useState();
   const [valueId, setValueId] = useState(false);
-  const [count, setcount] = useState(false);
+  const [count, setCount] = useState(false);
   const [infoMovie, setInfoMovie] = useState();
   const [namesfromCast, setNamesFromCast] = useState();
 
   const navigate = useNavigate();
   setTimeout(() => {
-    setcount(true);
+    setCount(true);
   }, 2);
 
   useEffect(() => {
@@ -47,8 +52,11 @@ const PageInfoMovie = () => {
       )
         .then((resp) => resp.json())
         .then((resp) => setInfoMovie(resp));
+
+       
     }
   }, [count]);
+
 
   return (
     <main
@@ -154,10 +162,14 @@ const PageInfoMovie = () => {
                   </h3>
                 )}
                 {infoMovie.runtime && (
+
+             
                   <h3>
                     Vote average &nbsp; &nbsp;
                     <span>{infoMovie.vote_average}</span>
-                  </h3>
+                  </h3>,
+                  
+                 pointsMovie(infoMovie.vote_average)
                 )}
                 {infoMovie && (
                  
@@ -198,7 +210,6 @@ const PageInfoMovie = () => {
                     my-2
                 "
               >
-                {" "}
                 {infoMovie.overview}
               </p>
             </article>

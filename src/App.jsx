@@ -20,6 +20,11 @@ const navigate = useNavigate()
     setValuesMovie(info)
   })
 
+  const pointsMovie=((e)=>{
+    console.log(e)
+  })
+
+
   return (
     <m.main
       animate={{
@@ -56,7 +61,7 @@ const navigate = useNavigate()
      >MoviesApp</m.h1>
       <Routes>
         <Route path='/' element={<Home value={selectValue} info={info} />} />
-        <Route path='/info' element={<PageInfoMovie valuesMovie={valuesMovie} />} />
+        <Route path='/info' element={<PageInfoMovie pointsMovie={pointsMovie} valuesMovie={valuesMovie} />} />
         <Route path='/infoActor' element={<PageInfoActor />} />
       </Routes>
     </m.main>
