@@ -54,6 +54,7 @@ const PageInfoActor = () => {
                 items-center                
                 w-full
                 my-5
+                cursor-auto
             "
               src={`https://image.tmdb.org/t/p/w500/${infoActor.profile_path}`}
               alt=""
@@ -62,7 +63,7 @@ const PageInfoActor = () => {
         </div>
         <div
             className="
-            w-4/5
+            w-5/6
             ml-0
             md:ml-20
             md:text-2xl
@@ -79,15 +80,15 @@ const PageInfoActor = () => {
               )}
               {infoActor.place_of_birth && (
                 <h3>
-                  Place of birth &nbsp; &nbsp;{" "}
+                  Place of birth &nbsp; &nbsp;
                   <span>{infoActor.place_of_birth}</span>
                 </h3>
               )}
               {infoActor.homepage && (
                 <h3>
-                  Homepage &nbsp; &nbsp;{" "}
-                  <a href={infoActor.homepage} target="_blank">
-                    {infoActor.homepage}
+                  Homepage &nbsp; &nbsp;
+                 <a href={infoActor.homepage} target="_blank">
+                    <span> {infoActor.homepage}</span>
                   </a>
                 </h3>
               )}

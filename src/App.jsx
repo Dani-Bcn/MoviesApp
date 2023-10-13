@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import { motion as m } from 'framer-motion'
 import './App.css'
 import Home from './components/Home'
+import Popularity_circle from './components/Popularity_circle'
 
 import PageInfoMovie from './components/PageInfoMovie'
 import PageInfoActor from './components/PageInfoActor'
@@ -18,10 +19,6 @@ const navigate = useNavigate()
   const [valuesMovie, setValuesMovie] = useState()
   const info = ((info) => {
     setValuesMovie(info)
-  })
-
-  const pointsMovie=((e)=>{
-    console.log(e)
   })
 
 
@@ -61,8 +58,10 @@ const navigate = useNavigate()
      >MoviesApp</m.h1>
       <Routes>
         <Route path='/' element={<Home value={selectValue} info={info} />} />
-        <Route path='/info' element={<PageInfoMovie pointsMovie={pointsMovie} valuesMovie={valuesMovie} />} />
+        <Route path='/info' element={<PageInfoMovie  valuesMovie={valuesMovie} />} />
         <Route path='/infoActor' element={<PageInfoActor />} />
+        <Route path='/svg-circle' element={<Popularity_circle />} />
+      
       </Routes>
     </m.main>
   )

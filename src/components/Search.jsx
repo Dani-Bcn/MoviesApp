@@ -100,14 +100,8 @@ const Search = () => {
                 text-orange-200  
             "
       >
-        <m.article
-         animate={{
-            x:[200,0],           
-            transition:{
-                duration:1,
-                delay:0.5,              
-            }
-        }}
+        <article
+        
           className="
                 my-10
                 mx-5            
@@ -152,7 +146,7 @@ const Search = () => {
               ))}
             </select>
           </m.form>
-        </m.article>
+        </article>
 
         <section>
           {infoMovie && (

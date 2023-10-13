@@ -3,11 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cast from "./Cast";
 import { motion as m } from "framer-motion";
 
-const PageInfoMovie = (props) => {
-
-
-
-  const {pointsMovie} = props
+const PageInfoMovie = () => {
 
   const [localeValue, setLocaleValue] = useState(false);
   const [valuesMovieOrTv, setValuesMovieOrTv] = useState(false);
@@ -167,9 +163,7 @@ const PageInfoMovie = (props) => {
                   <h3>
                     Vote average &nbsp; &nbsp;
                     <span>{infoMovie.vote_average}</span>
-                  </h3>,
-                  
-                 pointsMovie(infoMovie.vote_average)
+                  </h3>
                 )}
                 {infoMovie && (
                  
