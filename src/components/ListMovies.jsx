@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
-import Popularity_circle from "./Popularity_circle";
 import gsap from "gsap";
-import { info } from "autoprefixer";
 
 const Infomovie = (infoMovie) => {
   const navigate = useNavigate();

@@ -164,7 +164,7 @@ const Search = () => {
                     ml-5
                     flex
                     items-center
-                    justify-start
+                    justify-center
                     "
         >
           <button onClick={() => firtsPage()}>First</button>
