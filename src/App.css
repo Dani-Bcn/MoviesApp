@@ -9,11 +9,36 @@
   padding: 0;
 }
 
-button{
-  margin: 20px;  
-  border-radius: 5px;
-  cursor: pointer;
+button {
+  width: 7em;
+  height: 2em;
+  margin: 0 10px;
+  border-radius: 3em;
+  font-size: 15px;
+  font-family: inherit;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background-color: rgba(0, 119, 255, 0.247);
+  transition: 0.5s;
+ } 
+
+ @media(max-width: 400px) {
+  button {
+    font-size:0.7em;
+    width: 75px;
+
+    margin: 30px 5px;
+    height: 3em;
+  }
 }
+
+ button:hover{
+  background-color: rgba(255, 0, 0, 0.281);
+  border: 1px solid rgba(255, 136, 0, 0.247);
+ }
+
 html{
   background-color: rgb(15 23 42);
   overflow-x: hidden;

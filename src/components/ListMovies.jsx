@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import { gsap} from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 
 const Infomovie = (infoMovie) => {
   const navigate = useNavigate();
@@ -28,24 +27,6 @@ const Infomovie = (infoMovie) => {
   const visible = {
     pathLength: 0.99,
   };
-
-  const tl = gsap.timeline();
-  gsap.registerPlugin(ScrollTrigger);
- useEffect(() => { 
-  tl.set("#circle",{
-    opacity:0.05
-  }) 
-    tl.to("#circle", {
-        scrollTrigger:{
-            start:"top 50", 
-            end:350,   
-            scrub:2,
-            
-        },
-       opacity:1,
-        stagger:0.05,
-    });
-  },);
 
   return (
     <section
@@ -107,7 +88,7 @@ const Infomovie = (infoMovie) => {
                             items-center
                             w-20
                             h-20
-                            mt-[130px]
+                            mt-[132px]
                             ml-[60px]
                             z-10
                         "
@@ -134,7 +115,7 @@ const Infomovie = (infoMovie) => {
               </svg>
               <m.img
              
-                id="circle" 
+               id={e.i}
                   
                 onMouseOver={(e) => handleOver(e)}
                 onMouseOut={(e) => handleOut(e)}
