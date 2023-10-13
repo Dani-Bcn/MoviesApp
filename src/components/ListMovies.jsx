@@ -56,7 +56,7 @@ const Infomovie = (infoMovie) => {
                                     overflow-hidden
                                 "
             >
-              <p
+              <m.p
                 className="
                     mt-[170px]
                     ml-[90px]
@@ -69,20 +69,31 @@ const Infomovie = (infoMovie) => {
                     absolute
                     z-20
                 "
+
+                animate={{
+                    opacity:[0,1],
+                    transition: {                       
+                        delay: 1,
+                        duration: 3,  
+                      },
+                }}
               >
                 {e.vote_average}
-              </p>
+              </m.p>
               <svg
                 className="                            
                             absolute
-                            mt-[132px]
+                            flex
+                            justify-center
+                            items-center
+                            w-20
+                            h-20
+                            mt-[130px]
                             ml-[60px]
                             z-10
                         "
                 xmlns="http://www.w3.org/2000/svg"
-                width="124"
-                height="124"
-                viewBox="0 0 124 124"
+              
               >
                 <m.circle
                   id="circle"

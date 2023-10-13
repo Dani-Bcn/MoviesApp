@@ -166,6 +166,7 @@ const Search = () => {
                     flex
                     items-center
                     justify-center
+                    z-50
                     "
         >
           <button onClick={() => firtsPage()}>First</button>
