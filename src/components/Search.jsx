@@ -158,6 +158,7 @@ const Search = () => {
         </section>
         <nav
           className="
+         
                     h-10
                     my-5
                     md:ml-0

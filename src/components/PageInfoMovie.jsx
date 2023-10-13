@@ -4,7 +4,6 @@ import Cast from "./Cast";
 import { motion as m } from "framer-motion";
 
 const PageInfoMovie = () => {
-
   const [localeValue, setLocaleValue] = useState(false);
   const [valuesMovieOrTv, setValuesMovieOrTv] = useState(false);
   const [valueTitleOrname, setTitleOrName] = useState();
@@ -48,11 +47,8 @@ const PageInfoMovie = () => {
       )
         .then((resp) => resp.json())
         .then((resp) => setInfoMovie(resp));
-
-       
     }
   }, [count]);
-
 
   return (
     <main
@@ -116,15 +112,14 @@ const PageInfoMovie = () => {
                     Release date &nbsp; &nbsp;
                     <span>{infoMovie.release_date}</span>
                   </h3>
-                )}               
-                  <h3                    
-                  >Cast &nbsp; &nbsp;
-                 
-                    {namesfromCast &&
-                      namesfromCast.cast.map((e, i) =>
-                        i < 4 ? <span key={e.id}> {e.name} | </span> : null
-                      )}                  
-                         </h3>       
+                )}
+                <h3>
+                  Cast &nbsp; &nbsp;
+                  {namesfromCast &&
+                    namesfromCast.cast.map((e, i) =>
+                      i < 4 ? <span key={e.id}> {e.name} | </span> : null
+                    )}
+                </h3>
                 <h3>
                   Language &nbsp; &nbsp;
                   <span> {infoMovie.original_language}</span>
@@ -158,24 +153,20 @@ const PageInfoMovie = () => {
                   </h3>
                 )}
                 {infoMovie.runtime && (
-
-             
                   <h3>
                     Vote average &nbsp; &nbsp;
                     <span>{infoMovie.vote_average}</span>
                   </h3>
                 )}
                 {infoMovie && (
-                 
-                    <h3>Genres
+                  <h3>
+                    Genres
                     {infoMovie.genres.map((element, index) => {
                       return <span key={index}> &nbsp; {element.name} | </span>;
                     })}
-                   </h3>                 
+                  </h3>
                 )}
-                 
               </div>
-             
             </article>
           </section>
         )}
@@ -186,7 +177,6 @@ const PageInfoMovie = () => {
             m-auto                
         "
         >
-       
           {infoMovie && (
             <article>
               <h3
@@ -212,15 +202,25 @@ const PageInfoMovie = () => {
         <>
           <Cast valuesCast={infoMovie} funcCast={funcCast}></Cast>
         </>
-        
       </div>
-      <button 
-                  className="
+      <footer
+        className="
+        w-screen
+        flex
+        justify-center
+        "
+      >
+        <button
+          className="
                   
                     text-2xl
                     text-orange-200
                   "
-                  onClick={() => navigate(-1)}>Back</button>
+          onClick={() => navigate(-1)}
+        >
+          Back
+        </button>
+      </footer>
     </main>
   );
 };
