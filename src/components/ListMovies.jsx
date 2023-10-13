@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
-import gsap from "gsap";
+import { gsap} from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 const Infomovie = (infoMovie) => {
   const navigate = useNavigate();
@@ -27,6 +28,24 @@ const Infomovie = (infoMovie) => {
   const visible = {
     pathLength: 0.99,
   };
+
+  const tl = gsap.timeline();
+  gsap.registerPlugin(ScrollTrigger);
+ useEffect(() => { 
+  tl.set("#circle",{
+    opacity:0.05
+  }) 
+    tl.to("#circle", {
+        scrollTrigger:{
+            start:"top 50", 
+            end:350,   
+            scrub:2,
+            
+        },
+       opacity:1,
+        stagger:0.05,
+    });
+  },);
 
   return (
     <section
@@ -68,18 +87,19 @@ const Infomovie = (infoMovie) => {
                     font-bold
                     absolute
                     z-20
-                "               
+                "
                 animate={{
-                    opacity:[0,1],
-                    transition: {                       
-                        delay: 1,
-                        duration: 3,  
-                      },
+                  opacity: [0, 1],
+                  transition: {
+                    delay: 1,
+                    duration: 3,
+                  },
                 }}
               >
                 {e.vote_average}
               </m.p>
-              <svg
+              <svg        
+           
                 className="                            
                             absolute
                             flex
@@ -92,31 +112,30 @@ const Infomovie = (infoMovie) => {
                             z-10
                         "
                 xmlns="http://www.w3.org/2000/svg"
-              
               >
-                <m.circle
-                  id="circle"
+                <m.circle    
+                       
                   cx="50"
                   cy="50"
                   r="25"
-                  fill="#0009"
-                  stroke="#9269"
+                  fill="#0059"
+                  stroke="#929"
                   strokeWidth={7}
-                  animate={{ 
-                    scale:[0,1],
+                 animate={{
+                    scale: [0, 1],
                     pathLength: [0, e.vote_average / 10],
                     transition: {
-                       
                       delay: 1,
                       duration: 2,
                       ease: "circOut",
-
                     },
-                  }}
+                  }} 
                 />
               </svg>
               <m.img
-                id={e.id}
+             
+                id="circle" 
+                  
                 onMouseOver={(e) => handleOver(e)}
                 onMouseOut={(e) => handleOut(e)}
                 className="
