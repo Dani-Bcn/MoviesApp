@@ -154,7 +154,7 @@ activeGenres ?
           fixed
           ml-[800px]
           rounded-l-[50px]
-          mt-64
+          mt-[225px]
           p-5
           w-screen
           bg-indigo-900/[0.9]
