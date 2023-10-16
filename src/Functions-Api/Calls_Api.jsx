@@ -249,7 +249,8 @@ export default function Calls_Api() {
             })
           : null}
         {/* get searchMovie  */}
-        {resApiResults.results && findMovie.length < 1
+        {resApiResults.results && findMovie.length < 1 ||
+        resApiResults.results && activeMovies
           ? resApiResults.results.map((e, i) => {
               return (
                 <section key={i}
