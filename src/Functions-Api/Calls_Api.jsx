@@ -50,7 +50,7 @@ export default function Calls_Api() {
 activeGenres ?
 
   gsap.to("#card-genres",{
-    x:-400,
+    x:-250,
     ease: "expo.out",
   }):
   gsap.to("#card-genres",{
