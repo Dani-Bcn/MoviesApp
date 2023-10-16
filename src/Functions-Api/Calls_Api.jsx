@@ -14,18 +14,24 @@ export default function Calls_Api() {
   const [searchMovie, setSeachMovie] = useState([]);
   const [findMovie, setFindMovie] = useState();
   const [activeMovies, setActiveMovies] = useState(true);
+  const [textButtonTvActor, setTextButtonTvActor] = useState("Search Actor");
+  const [selectTvOrActor, setSelectTvOrActor] = useState("person");
+  const [posterOrProfile, setposterOrProfile] = useState(false);
 
   const inputMovies = useRef();
-/* Busqueda por título series y películas */
+
+  /* Busqueda por título de series y películas */
   useEffect(() => {
-    fetch(                               /* multi, para buscar tanto pelis como series */
-      `https://api.themoviedb.org/3/search/multi?query=${searchMovie}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&sort_by=vote_count.desc`
+    fetch(
+      /* multi, para buscar tanto pelis como series */
+      `https://api.themoviedb.org/3/search/${selectTvOrActor}?query=${searchMovie}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
     )
       .then((resp) => resp.json())
       .then((resp) => setFindMovie(resp.results));
+    findMovie ? console.log(findMovie) : null;
   }, [newCall]);
 
-/* Búsqueda de los géneros*/
+  /* Obtención de los géneros*/
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/genre/${selectMovieOrTv}/list?api_key=55b2cf9d90cb74c55683e395bb1ad12b&language=en-U`
@@ -34,8 +40,7 @@ export default function Calls_Api() {
       .then((resp) => setResApiGenres(resp.genres));
   }, [newCall]);
 
-
-/*Búsqueda de películas o series segun "selectMovieOrTv" */
+  /*Obtención  de películas o series segun "selectMovieOrTv" */
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/discover/${selectMovieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b${popularity}&page=${pageList}&with_genres=${selectGenres}`
@@ -45,25 +50,33 @@ export default function Calls_Api() {
     activeMovies ? (inputMovies.current.value = "") : null;
   }, [selectGenres, newCall]);
 
-  //pasamos la info a Home
-  /*  resApiResults.results ? infoApi(resApiResults) : null;
-  resApiGenres ? infoGenres(resApiGenres) : null; */
+  activeGenres
+    ? gsap.to("#card-genres", {
+        x: -250,
+        ease: "expo.out",
+      })
+    : gsap.to("#card-genres", {
+        x: 600,
+        ease: "expo.in",
+      });
+  let mm = gsap.matchMedia();
 
-activeGenres ?
+  // gsap responsibe lg
+  mm.add("(min-width: 400px)", () => {
+    activeGenres
+      ? gsap.to("#card-genres", {
+          x: 350,
+          ease: "expo.out",
+        })
+      : gsap.to("#card-genres", {
+          x: 800,
+          ease: "expo.in",
+        });
+  });
 
-  gsap.to("#card-genres",{
-    x:-250,
-    ease: "expo.out",
-  }):
-  gsap.to("#card-genres",{
-    x:600,
-    ease: "expo.in",
-  })
-
- 
   return (
     <main
-    onClick={()=> activeGenres?setActiveGenres(!activeGenres):null}
+      onClick={() => (activeGenres ? setActiveGenres(!activeGenres) : null)}
       className="
       w-screen
         z-10
@@ -154,25 +167,30 @@ activeGenres ?
           Genres
         </button>
         <m.article
-        id="card-genres"
+          id="card-genres"
           className="
           fixed
+          lg:p-2
+          lg:ml-[1600px]
           ml-[800px]
+          lg:rounded-[20px]
           rounded-l-[50px]
           mt-[225px]
           p-5
           w-screen
           bg-indigo-900/[0.9]
+          lg:mt-24
           z-20
-        "      
+        "
         >
-          {resApiGenres 
+          {resApiGenres
             ? resApiGenres.map((e, i) => {
                 return (
                   <p
                     className="                  
                       my-2
-                      mx-5
+                      mx-5                     
+                      lg:text-[0.9rem]
                       text-[1.2rem]
                       cursor-pointer
                       text-orange-300
@@ -204,18 +222,19 @@ activeGenres ?
             border-indigo-400
           "
           type="text"
-          placeholder="Search Title"
+          placeholder="Search name"
           onChange={(e) => {
             setSeachMovie(e.target.value);
             setNewCall(!newCall);
-           
-            e.target.value ===""? setActiveMovies(true): setActiveMovies(false);
+
+            e.target.value === ""
+              ? setActiveMovies(true)
+              : setActiveMovies(false);
           }}
         />
         {/* lógica para cuando no hayan resultados */}
         {findMovie && searchMovie.length !== 0 ? (
-          findMovie.length !== 0 ?null :(
-          
+          findMovie.length !== 0 ? null : (
             <h2
               className="
                 text-2xl
@@ -223,11 +242,35 @@ activeGenres ?
               "
             >
               No results
-            </h2>                  
-          ) 
-        ) :   null  }
-      </section>
+            </h2>
+          )
+        ) : null}
+        <button
+          className="
+            w-44
+        "
+          onClick={() => {
+            setActiveMovies(true);
+            inputMovies.current.value = ""
+            if( textButtonTvActor !== "Search Movie/Tv"){
+               setTextButtonTvActor("Search Movie/Tv")
+               inputMovies.current.placeholder= "Search title"
+            }else{
+                  setTextButtonTvActor("Search Actor")
+                  inputMovies.current.placeholder= "Search name"
 
+            }
+            
+          
+              selectTvOrActor !== "multi"
+                ? setSelectTvOrActor("multi")
+                : setSelectTvOrActor("person");
+            setposterOrProfile(!posterOrProfile);
+          }}
+        >
+          {textButtonTvActor}
+        </button>
+      </section>
       <section
         className="
           w-10/11
@@ -239,7 +282,7 @@ activeGenres ?
       >
         {!activeMovies
           ? findMovie.map((e, i) => {
-              return (
+              return e.profile_path ? 
                 <section
                   key={i}
                   className="
@@ -252,24 +295,40 @@ activeGenres ?
                 overflow-hidden
                 "
                 >
-                  {e.poster_path === null ? (
-                    <>
-                      <p>{e.title}</p>
-                    </>
-                  ) : (
+                  {
                     <m.img
-                      src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
                       whileInView={{
                         opacity: [0, 1],
                       }}
                     />
-                  )}
+                  }
                 </section>
-              );
+              : posterOrProfile ? 
+                <section
+                  key={i}
+                  className="
+                    flex
+                    items-center
+                    justify-center
+                    w-[150px]
+                    m-[10px]
+                    bg-indigo-400
+                    overflow-hidden
+                  "
+                >
+                  <m.img
+                    src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
+                    whileInView={{
+                      opacity: [0, 1],
+                    }}
+                  />
+                </section>
+               : null;
             })
           : null}
-       
-        {/* activa la busqueda de peliculas */}
+
+        {/* obtener peliculas */}
         {(resApiResults.results && findMovie.length < 1) ||
         (resApiResults.results && activeMovies)
           ? resApiResults.results.map((e, i) => {
@@ -277,13 +336,13 @@ activeGenres ?
                 <section
                   key={i}
                   className="
-                  flex
-                  items-center
-                  justify-center
-                  w-[150px]
-                  m-[10px]
-                  bg-indigo-100
-                  overflow-hidden
+                    flex
+                    items-center
+                    justify-center
+                    w-[150px]
+                    m-[10px]
+                    bg-indigo-100
+                    overflow-hidden
                   "
                 >
                   <m.img
@@ -303,14 +362,14 @@ activeGenres ?
       </section>
       <footer
         className="
-        my-5
-        w-screen
-        flex
-        justify-center
+          my-5
+          w-screen
+          flex
+          justify-center
         "
       >
         <button
-        /* desactiva los botones de paginado cuando buscamos por título  */
+          /* desactiva los botones de paginado cuando buscamos por título  */
           disabled={!activeMovies}
           onClick={() => {
             setPageList(pageList - 1), setNewCall(!newCall);
