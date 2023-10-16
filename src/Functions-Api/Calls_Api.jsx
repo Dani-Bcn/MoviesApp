@@ -15,6 +15,8 @@ export default function Calls_Api() {
   const [activeMovies, setActiveMovies] = useState(true);
 
 
+  const inputMovies = useRef()
+ 
 
   useEffect(() => {
     fetch(
@@ -39,13 +41,13 @@ export default function Calls_Api() {
     )
       .then((resp) => resp.json())
       .then((resp) => setResApiResults(resp));
+      activeMovies ?inputMovies.current.value ="":null
   }, [selectGenres, newCall]);
 
   //pasamos la info a Home
   /*  resApiResults.results ? infoApi(resApiResults) : null;
   resApiGenres ? infoGenres(resApiGenres) : null; */
 
-  console.log(findMovie);
 
   return (
     <main
@@ -77,6 +79,7 @@ export default function Calls_Api() {
         </button>
         <button
           onClick={() => {
+
             setActiveMovies(true);
             setselectMovieOrTv("tv"),
               setSelectGenres(10759),
@@ -175,6 +178,7 @@ export default function Calls_Api() {
         </m.article>
 
         <input
+          ref={inputMovies}
           className="
             m-5
             p-2
@@ -196,9 +200,9 @@ export default function Calls_Api() {
           findMovie.length === 0 ? (
             <h2
               className="
-        text-2xl
-          text-orange-200
-        "
+                text-2xl
+                  text-orange-200
+              "
             >
               No results
             </h2>
@@ -231,7 +235,6 @@ export default function Calls_Api() {
                 >
                   {e.poster_path === null ? (
                     <>
-                      {console.log(e.poster_path)}
                       <p>
                         {e.title}
                       </p>
@@ -271,7 +274,6 @@ export default function Calls_Api() {
                       scale:[2,1],
                       transition: {
                         duration: 0.5,
-
                       },
                     }}
                   />
@@ -280,6 +282,38 @@ export default function Calls_Api() {
             })
           : null}
       </section>
+      <footer
+        className="
+        my-5
+        w-screen
+        flex
+        justify-center
+        "
+      >
+      <button
+          onClick={() => {
+            setActiveMovies(true);
+            setPageList(pageList + 1), setNewCall(!newCall);
+          }}
+        >
+          Next
+        </button>
+        <button
+          onClick={() => {
+            setPageList(pageList - 1), setNewCall(!newCall);
+            pageList < 2 ? setPageList(1) : null;
+          }}
+        >
+          Back
+        </button>
+        <button
+          onClick={() => {
+            setPageList(1), setNewCall(!newCall);
+          }}
+        >
+          Start
+        </button>
+      </footer>
     </main>
   );
 }
