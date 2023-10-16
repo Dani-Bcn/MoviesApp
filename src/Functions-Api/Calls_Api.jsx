@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { motion as m } from "framer-motion";
+import { animate, motion as m } from "framer-motion";
+import gsap from "gsap";
 
 export default function Calls_Api() {
   const [selectMovieOrTv, setselectMovieOrTv] = useState("movie");
@@ -46,6 +47,16 @@ export default function Calls_Api() {
   /*  resApiResults.results ? infoApi(resApiResults) : null;
   resApiGenres ? infoGenres(resApiGenres) : null; */
 
+activeGenres ?
+
+  gsap.to("#card-genres",{
+    x:-400,
+    ease: "expo.out",
+  }):
+  gsap.to("#card-genres",{
+    x:600,
+    ease: "expo.in",
+  })
   return (
     <main
       className="
@@ -138,31 +149,31 @@ export default function Calls_Api() {
           Genres
         </button>
         <m.article
+        id="card-genres"
           className="
-          absolute
-          bg-slate-600/[0.9]
-          rounded-[10px]
-          overflow-hidden
-          ml-12
-          mt-[775px]
-          md:ml-[410px]
-          md:mt-[725px]
-          lg:mt-[820px]
-          lg:ml-[175px]
-          z-50
-        "
+          fixed
+          ml-[800px]
+          mt-64
+          p-5
+          w-screen
+          bg-indigo-900/[0.9]
+          z-20
+        "      
         >
-          {resApiGenres && activeGenres
+          {resApiGenres 
             ? resApiGenres.map((e, i) => {
                 return (
                   <p
                     className="
+                  
+                    my-2
+                    mx-5
+                    text-2xl
                       cursor-pointer
-                      p-2
                       text-orange-300
                       hover:text-orange-50
                       hover:bg-indigo-900
-                      w-full
+                     
                       transition duration-[0.5s]
                     "
                     id={e.id}
