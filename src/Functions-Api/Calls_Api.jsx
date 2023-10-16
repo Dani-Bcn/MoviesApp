@@ -153,6 +153,7 @@ activeGenres ?
           className="
           fixed
           ml-[800px]
+          rounded-l-[50px]
           mt-64
           p-5
           w-screen
