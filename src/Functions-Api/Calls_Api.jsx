@@ -26,7 +26,7 @@ export default function Calls_Api() {
       .then((resp) => setFindMovie(resp.results));
   }, [newCall]);
 
-  //obtener lista películas
+  //obtener lista de géneros
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/genre/${selectMovieOrTv}/list?api_key=55b2cf9d90cb74c55683e395bb1ad12b&language=en-U`
@@ -34,7 +34,7 @@ export default function Calls_Api() {
       .then((resp) => resp.json())
       .then((resp) => setResApiGenres(resp.genres));
   }, [newCall]);
-  //obtener lista de géneros
+ //obtener lista películas 
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/discover/${selectMovieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b${popularity}&page=${pageList}&with_genres=${selectGenres}`
@@ -69,6 +69,7 @@ export default function Calls_Api() {
       >
         <button
           onClick={() => {
+            setPageList(1)
             setActiveMovies(true);
             setselectMovieOrTv("movie"),
               setSelectGenres(28),
@@ -79,7 +80,7 @@ export default function Calls_Api() {
         </button>
         <button
           onClick={() => {
-
+            setPageList(1)
             setActiveMovies(true);
             setselectMovieOrTv("tv"),
               setSelectGenres(10759),
@@ -90,6 +91,7 @@ export default function Calls_Api() {
         </button>
         <button
           onClick={() => {
+            
             setActiveMovies(true);
             setPopularity(""), setNewCall(!newCall);
           }}
@@ -104,14 +106,7 @@ export default function Calls_Api() {
         >
           Popularity
         </button>
-        <button
-          onClick={() => {
-            setActiveMovies(true);
-            setPageList(pageList + 1), setNewCall(!newCall);
-          }}
-        >
-          Next
-        </button>
+        
         <button
           onClick={() => {
             setPageList(pageList - 1), setNewCall(!newCall);
@@ -130,9 +125,17 @@ export default function Calls_Api() {
         <button
           onClick={() => {
             setActiveMovies(true);
-            setActiveGenres(!activeGenres);
+            setPageList(pageList + 1), setNewCall(!newCall);
           }}
         >
+          Next
+        </button>
+        <button
+          onClick={() => {
+            setActiveMovies(true);
+            setActiveGenres(!activeGenres);
+          }}
+        >          
           Genres
         </button>
         <m.article
@@ -290,14 +293,7 @@ export default function Calls_Api() {
         justify-center
         "
       >
-      <button
-          onClick={() => {
-            setActiveMovies(true);
-            setPageList(pageList + 1), setNewCall(!newCall);
-          }}
-        >
-          Next
-        </button>
+     
         <button
           onClick={() => {
             setPageList(pageList - 1), setNewCall(!newCall);
@@ -312,6 +308,14 @@ export default function Calls_Api() {
           }}
         >
           Start
+        </button>
+        <button
+          onClick={() => {
+            setActiveMovies(true);
+            setPageList(pageList + 1), setNewCall(!newCall);
+          }}
+        >
+          Next
         </button>
       </footer>
     </main>
