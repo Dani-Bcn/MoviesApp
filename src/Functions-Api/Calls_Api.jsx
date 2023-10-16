@@ -14,9 +14,7 @@ export default function Calls_Api() {
   const [findMovie, setFindMovie] = useState();
   const [activeMovies, setActiveMovies] = useState(true);
 
-
-  const inputMovies = useRef()
- 
+  const inputMovies = useRef();
 
   useEffect(() => {
     fetch(
@@ -34,20 +32,19 @@ export default function Calls_Api() {
       .then((resp) => resp.json())
       .then((resp) => setResApiGenres(resp.genres));
   }, [newCall]);
- //obtener lista películas 
+  //obtener lista películas
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/discover/${selectMovieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b${popularity}&page=${pageList}&with_genres=${selectGenres}`
     )
       .then((resp) => resp.json())
       .then((resp) => setResApiResults(resp));
-      activeMovies ?inputMovies.current.value ="":null
+    activeMovies ? (inputMovies.current.value = "") : null;
   }, [selectGenres, newCall]);
 
   //pasamos la info a Home
   /*  resApiResults.results ? infoApi(resApiResults) : null;
   resApiGenres ? infoGenres(resApiGenres) : null; */
-
 
   return (
     <main
@@ -69,7 +66,7 @@ export default function Calls_Api() {
       >
         <button
           onClick={() => {
-            setPageList(1)
+            setPageList(1);
             setActiveMovies(true);
             setselectMovieOrTv("movie"),
               setSelectGenres(28),
@@ -80,7 +77,7 @@ export default function Calls_Api() {
         </button>
         <button
           onClick={() => {
-            setPageList(1)
+            setPageList(1);
             setActiveMovies(true);
             setselectMovieOrTv("tv"),
               setSelectGenres(10759),
@@ -91,7 +88,6 @@ export default function Calls_Api() {
         </button>
         <button
           onClick={() => {
-            
             setActiveMovies(true);
             setPopularity(""), setNewCall(!newCall);
           }}
@@ -106,8 +102,9 @@ export default function Calls_Api() {
         >
           Popularity
         </button>
-        
+
         <button
+          disabled={!activeMovies}
           onClick={() => {
             setPageList(pageList - 1), setNewCall(!newCall);
             pageList < 2 ? setPageList(1) : null;
@@ -116,6 +113,7 @@ export default function Calls_Api() {
           Back
         </button>
         <button
+          disabled={!activeMovies}
           onClick={() => {
             setPageList(1), setNewCall(!newCall);
           }}
@@ -123,6 +121,7 @@ export default function Calls_Api() {
           Start
         </button>
         <button
+          disabled={!activeMovies}
           onClick={() => {
             setActiveMovies(true);
             setPageList(pageList + 1), setNewCall(!newCall);
@@ -135,7 +134,7 @@ export default function Calls_Api() {
             setActiveMovies(true);
             setActiveGenres(!activeGenres);
           }}
-        >          
+        >
           Genres
         </button>
         <m.article
@@ -189,14 +188,13 @@ export default function Calls_Api() {
             rounded-[10px]
             border-2
             border-indigo-400
-          " 
+          "
           type="text"
           placeholder="Search Title"
           onChange={(e) => {
             setSeachMovie(e.target.value);
             setNewCall(!newCall);
             setActiveMovies(false);
-          
           }}
         />
         {findMovie && searchMovie.length !== 0 ? (
@@ -225,8 +223,9 @@ export default function Calls_Api() {
         {!activeMovies
           ? findMovie.map((e, i) => {
               return (
-                <section key={i}
-                className="
+                <section
+                  key={i}
+                  className="
                 flex
                 items-center
                 justify-center
@@ -238,9 +237,7 @@ export default function Calls_Api() {
                 >
                   {e.poster_path === null ? (
                     <>
-                      <p>
-                        {e.title}
-                      </p>
+                      <p>{e.title}</p>
                     </>
                   ) : (
                     <m.img
@@ -255,11 +252,12 @@ export default function Calls_Api() {
             })
           : null}
         {/* get searchMovie  */}
-        {resApiResults.results && findMovie.length < 1 ||
-        resApiResults.results && activeMovies
+        {(resApiResults.results && findMovie.length < 1) ||
+        (resApiResults.results && activeMovies)
           ? resApiResults.results.map((e, i) => {
               return (
-                <section key={i}
+                <section
+                  key={i}
                   className="
                   flex
                   items-center
@@ -274,7 +272,7 @@ export default function Calls_Api() {
                     src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                     whileInView={{
                       opacity: [0, 1],
-                      scale:[2,1],
+                      scale: [2, 1],
                       transition: {
                         duration: 0.5,
                       },
@@ -293,8 +291,8 @@ export default function Calls_Api() {
         justify-center
         "
       >
-     
         <button
+          disabled={!activeMovies}
           onClick={() => {
             setPageList(pageList - 1), setNewCall(!newCall);
             pageList < 2 ? setPageList(1) : null;
@@ -303,6 +301,7 @@ export default function Calls_Api() {
           Back
         </button>
         <button
+          disabled={!activeMovies}
           onClick={() => {
             setPageList(1), setNewCall(!newCall);
           }}
@@ -310,6 +309,7 @@ export default function Calls_Api() {
           Start
         </button>
         <button
+          disabled={!activeMovies}
           onClick={() => {
             setActiveMovies(true);
             setPageList(pageList + 1), setNewCall(!newCall);
