@@ -14,6 +14,8 @@ export default function Calls_Api() {
   const [findMovie, setFindMovie] = useState();
   const [activeMovies, setActiveMovies] = useState(true);
 
+
+
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?query=${searchMovie}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&sort_by=vote_count.desc`
@@ -187,6 +189,7 @@ export default function Calls_Api() {
             setSeachMovie(e.target.value);
             setNewCall(!newCall);
             setActiveMovies(false);
+          
           }}
         />
         {findMovie && searchMovie.length !== 0 ? (
@@ -246,7 +249,7 @@ export default function Calls_Api() {
             })
           : null}
         {/* get searchMovie  */}
-        {resApiResults.results
+        {resApiResults.results && findMovie.length < 1
           ? resApiResults.results.map((e, i) => {
               return (
                 <section key={i}
