@@ -16,16 +16,16 @@ export default function Calls_Api() {
   const [activeMovies, setActiveMovies] = useState(true);
 
   const inputMovies = useRef();
-
+/* Busqueda por título series y películas */
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${searchMovie}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&sort_by=vote_count.desc`
+    fetch(                               /* multi, para buscar tanto pelis como series */
+      `https://api.themoviedb.org/3/search/multi?query=${searchMovie}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&sort_by=vote_count.desc`
     )
       .then((resp) => resp.json())
       .then((resp) => setFindMovie(resp.results));
   }, [newCall]);
 
-  //obtener lista de géneros
+/* Búsqueda de los géneros*/
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/genre/${selectMovieOrTv}/list?api_key=55b2cf9d90cb74c55683e395bb1ad12b&language=en-U`
@@ -33,7 +33,9 @@ export default function Calls_Api() {
       .then((resp) => resp.json())
       .then((resp) => setResApiGenres(resp.genres));
   }, [newCall]);
-  //obtener lista películas
+
+
+/*Búsqueda de películas o series segun "selectMovieOrTv" */
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/discover/${selectMovieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b${popularity}&page=${pageList}&with_genres=${selectGenres}`
@@ -57,6 +59,8 @@ activeGenres ?
     x:600,
     ease: "expo.in",
   })
+
+ 
   return (
     <main
     onClick={()=> activeGenres?setActiveGenres(!activeGenres):null}
@@ -166,16 +170,14 @@ activeGenres ?
             ? resApiGenres.map((e, i) => {
                 return (
                   <p
-                    className="
-                  
-                    my-2
-                    mx-5
-                    text-[1.2rem]
+                    className="                  
+                      my-2
+                      mx-5
+                      text-[1.2rem]
                       cursor-pointer
                       text-orange-300
                       hover:text-orange-50
-                      hover:bg-indigo-900
-                     
+                      hover:bg-indigo-900                     
                       transition duration-[0.5s]
                     "
                     id={e.id}
@@ -191,7 +193,6 @@ activeGenres ?
               })
             : null}
         </m.article>
-
         <input
           ref={inputMovies}
           className="
@@ -207,11 +208,14 @@ activeGenres ?
           onChange={(e) => {
             setSeachMovie(e.target.value);
             setNewCall(!newCall);
-            setActiveMovies(false);
+           
+            e.target.value ===""? setActiveMovies(true): setActiveMovies(false);
           }}
         />
+        {/* lógica para cuando no hayan resultados */}
         {findMovie && searchMovie.length !== 0 ? (
-          findMovie.length === 0 ? (
+          findMovie.length !== 0 ?null :(
+          
             <h2
               className="
                 text-2xl
@@ -219,9 +223,9 @@ activeGenres ?
               "
             >
               No results
-            </h2>
-          ) : null
-        ) : null}
+            </h2>                  
+          ) 
+        ) :   null  }
       </section>
 
       <section
@@ -264,7 +268,8 @@ activeGenres ?
               );
             })
           : null}
-        {/* get searchMovie  */}
+       
+        {/* activa la busqueda de peliculas */}
         {(resApiResults.results && findMovie.length < 1) ||
         (resApiResults.results && activeMovies)
           ? resApiResults.results.map((e, i) => {
@@ -305,6 +310,7 @@ activeGenres ?
         "
       >
         <button
+        /* desactiva los botones de paginado cuando buscamos por título  */
           disabled={!activeMovies}
           onClick={() => {
             setPageList(pageList - 1), setNewCall(!newCall);
