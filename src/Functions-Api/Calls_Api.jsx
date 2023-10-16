@@ -169,7 +169,7 @@ activeGenres ?
                   
                     my-2
                     mx-5
-                    text-2xl
+                    text-[1.2rem]
                       cursor-pointer
                       text-orange-300
                       hover:text-orange-50
