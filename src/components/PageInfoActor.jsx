@@ -48,7 +48,7 @@ const PageInfoActor = () => {
         <div>
           {infoActor !== undefined && (
             <img
-            className="
+              className="
                 flex
                 justify-center
                 items-center                
@@ -62,7 +62,7 @@ const PageInfoActor = () => {
           )}
         </div>
         <div
-            className="
+          className="
               w-5/6
               ml-0
               md:ml-20
@@ -74,7 +74,9 @@ const PageInfoActor = () => {
         >
           {infoActor && (
             <article>
-              {infoActor.name && <h1 className="text-4xl mb-5">{infoActor.name}</h1>}
+              {infoActor.name && (
+                <h1 className="text-4xl mb-5">{infoActor.name}</h1>
+              )}
               {infoActor.birthday && (
                 <h3>
                   Birhtday &nbsp; &nbsp; <span>{infoActor.birthday}</span>
@@ -89,7 +91,7 @@ const PageInfoActor = () => {
               {infoActor.homepage && (
                 <h3>
                   Homepage &nbsp; &nbsp;
-                 <a href={infoActor.homepage} target="_blank">
+                  <a href={infoActor.homepage} target="_blank">
                     <span> {infoActor.homepage}</span>
                   </a>
                 </h3>
@@ -99,36 +101,46 @@ const PageInfoActor = () => {
                   Popularity &nbsp; &nbsp;<span>{infoActor.popularity}</span>
                 </h3>
               )}
-              
             </article>
           )}
         </div>
       </section>
-      <article 
-       className="
+      <article
+        className="
             w-4/5           
        "
       >
         {infoActor && (
           <article>
             <h3
-                className="
+              className="
                     text-2xl
                     text-orange-200
                     my-5
                 "
-            >Biography</h3>
+            >
+              Biography
+            </h3>
             <p>{infoActor.biography}</p>
           </article>
         )}
       </article>
-      <button 
-                className="
-                text-2xl
+      <footer
+        className="
+        md:m-10
+          m-2
+        "
+      >
+        <button
+          className="
+                text-0.5rem
                 text-orange-200
-                    -ml-1
                 "
-              onClick={() => navigate(-1)}>Back</button>
+          onClick={() => navigate(-1)}
+        >
+          Back
+        </button>
+      </footer>
     </main>
   );
 };

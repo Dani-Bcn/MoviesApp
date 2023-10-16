@@ -2,76 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-button {
-  width: 7em;
-  height: 2em;
-  margin: 0 10px;
-  border-radius: 3em;
-  font-size: 15px;
-  font-family: inherit;
-  border: none;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  background-color: rgba(0, 119, 255, 0.247);
-  transition: 0.5s;
- } 
-
- @media(max-width: 700px) {
-  button {
-    font-size:0.7em;
-    width: 77px;
-
-    margin: 30px 5px;
-    height: 3em;
-  }
-}
-
- button:hover{
-  background-color: rgba(255, 0, 0, 0.281);
-  border: 1px solid rgba(255, 136, 0, 0.247);
- }
-
-html{
-  background-color: rgb(15 23 42);
-  overflow-x: hidden;
+button{
+  font-size: 1rem;
+  padding: 5px 10px;
+  background-color: rgba(142, 162, 253, 0.808);
+  margin: 5px 10px;
+  border-radius: 5px;
+  color: rgb(253, 195, 128);
 }
 
 img{
-  cursor: pointer;
+  width: 150px;
+  height: 225px;
+  opacity: 0;
+  
 }
 
-span{
-  color: rgb(255, 209, 157);
+h1{
+  text-shadow: 1px 1px 25px rgb(7, 238, 255);
+  animation: animShadow 5s;
+  animation-iteration-count: infinite;
 }
 
-select{
-  background-color: black;
-}
-
-h3{
-  font-size: 1.1rem;
-}
-
-.clip-circle-28{
-  clip-path: circle(38% at 50% 50%);
-}
-
-.clip-circle-full{
-  clip-path: circle(70% at 50% 50%);
-}
-
-
-
-
-
-
-
-
+@keyframes animShadow {
+  0%{text-shadow: 1px 1px 50px rgb(111, 0, 255);}
+  50%{text-shadow: 1px 1px 50px rgb(255, 0, 0);}
+  100%{text-shadow: 1px 1px 50px rgb(111, 0, 255);}
+} 

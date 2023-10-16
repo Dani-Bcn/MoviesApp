@@ -3,12 +3,16 @@ import ListMovie from "./ListMovies";
 import {motion as m} from "framer-motion"
 
 const Search = () => {
+
+    useEffect(()=>{
+ const movieTv =localStorage.setItem("movieTv","movie")
+    },[])
+
+    const movieTv = localStorage.getItem("movieTv","movie")
   const [infoMovie, setInfoMovie] = useState();
   const [movieOrTv, setMovieOrTv] = useState(["Movie", "Tv"]);
-  const [isSelected, setIsSelected] = useState("movie");
-  const [localeMovieOrTv, setLocaleMovieOrTv] = useState(
-    localStorage.getItem("movie-tv")
-  );
+  const [isSelected, setIsSelected] = useState(movieTv);
+ 
   const [changeCall, setChangeCall] = useState(true);
   const [count, setCount] = useState(1);
   const [resApiGenres, setResApiGenres] = useState([]);
@@ -27,13 +31,16 @@ const Search = () => {
       setCount(1);
       setIsSelected("movie");
       setChangeCall(!changeCall);
-      setGenres(28);
+      setGenres(resApiGenres[0].name);
+      localStorage.setItem("movieTv","movie")
     } else {
       selectRef.current.selectedIndex = 0;
-      setCount(1);
+      localStorage.setItem("movieTv","tv")
+      setCount(1); 
+       setGenres(resApiGenres[0].name);
       setChangeCall(!changeCall);
       setIsSelected("tv");
-      setGenres(10759);
+    
     }
   };
 
@@ -46,7 +53,6 @@ const Search = () => {
     setChangeCall(!changeCall);
   };
   const nextPage = () => {
-    console.log(count);
     setCount(count + 1);
     setChangeCall(!changeCall);
   };
@@ -65,6 +71,7 @@ const Search = () => {
   };
 
   useEffect(() => {
+   
     fetch(
       `https://api.themoviedb.org/3/genre/${isSelected}/list?api_key=55b2cf9d90cb74c55683e395bb1ad12b&language=en-U`
     )
@@ -72,21 +79,25 @@ const Search = () => {
       .then((resp) => setResApiGenres(resp.genres));
   }, [changeCall]);
 
+ 
+
   const selectGenre = (target) => {
     setGenres(target.target.value);
     setChangeCall(!changeCall);
   };
 
+ 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/discover/${isSelected}?api_key=55b2cf9d90cb74c55683e395bb1ad12b${searchPopularity}&page=${stringNum}&with_genres=${genres}`
+      `https://api.themoviedb.org/3/discover/${isSelected}?api_key=55b2cf9d90cb74c55683e395bb1ad12b${searchPopularity}&page=${stringNum}&with_genres=${genres}`  
     )
       .then((resp) => resp.json())
       .then((resp) => setInfoMovie(resp.results));
   }, [changeCall]);
-
+  console.log(genres)
   return (
-    <m.main   
+    <m.main    
+   
       className="
                 overflow-hidden
                 w-full
@@ -116,7 +127,7 @@ const Search = () => {
               {e}
             </button>
           ))}
-          <button onClick={() => funcActual()}>Current</button>
+          <button  id="mainRef" onClick={() => funcActual()}>Current</button>
           <button onClick={() => funcPopular()}>Most popular</button>
           <m.form
             className="
@@ -129,8 +140,11 @@ const Search = () => {
                                 cursor-pointer
                             "
               ref={selectRef}
-              onChange={(e) => selectGenre(e)}
+             
+              onChange={(e) => {selectGenre(e)}}
             >
+                
+            
               {resApiGenres.map((e, i) => (
                 <option
                   className="
