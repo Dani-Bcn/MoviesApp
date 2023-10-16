@@ -59,7 +59,7 @@ activeGenres ?
   })
   return (
     <main
-    onClick={()=>setActiveGenres(!activeGenres)}
+    onClick={()=> activeGenres?setActiveGenres(!activeGenres):null}
       className="
       w-screen
         z-10
