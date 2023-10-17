@@ -5,6 +5,7 @@
 body{overflow-x: hidden;}
 
 button{
+  width: 90px;
   font-size: 1rem;
   padding: 5px 10px;
   background-color: rgba(142, 162, 253, 0.808);
