@@ -98,9 +98,11 @@ export default function Calls_Api() {
           <section
             className="
               flex
-              w-screen
+              w-[90%]
               items-center
-              flex-wrap
+              justify-between
+            
+             
             "
           >
             <button
@@ -131,12 +133,7 @@ export default function Calls_Api() {
             </button>
          
         
-            <section
-            className="
-              flex
-              w-screen
-            "
-            >
+           
               <button
                 onClick={() => {
                   setActiveMovies(
@@ -167,44 +164,8 @@ export default function Calls_Api() {
                 >
                   Genres
                 </button>  
-              <button
-              className="
-                w-16
-              "
-                onClick={() => {
-                  setPageList(pageList - 1); /* página siguiente */
-                  setNewCall(!newCall);
-                  pageList < 2 ? setPageList(1) : null;
-                }}
-              >
-                Back
-              </button>
-              <button
-                className="
-                w-16
-                -mx-1
-                "
-                onClick={() => {
-                  setPageList(1);
-                  setNewCall(!newCall);
-                }}
-              >
-                Start
-              </button>
-              <button
-                className="
-                w-16
-                mx-2
-                "
-                onClick={() => {
-                  setActiveMovies(true);
-                  setPageList(pageList + 1);
-                  setNewCall(!newCall);
-                }}
-              >
-                Next
-              </button>
-            </section>
+             
+          
           <m.article
             id="card-genres"
             className="
@@ -265,7 +226,7 @@ export default function Calls_Api() {
       ref={inputMovies}
       onClick={() => setActiveMovies(false)}
       className="  
-      w-[80%]   
+      w-40   
       m-2
       p-2
       bg-slate-200
