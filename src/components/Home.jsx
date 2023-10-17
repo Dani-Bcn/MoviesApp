@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import Calls_Api from "../Functions-Api/Calls_Api";
-
+import Svg from "./Svg";
 export default function Home() {
+
+  const dataOverage=((e)=>(
+     <Svg e={e}/>
+  ))
   
   return (
     <main
@@ -18,13 +22,14 @@ export default function Home() {
         <h1
           className="
           text-indigo-400
-            text-7xl
+            text-6xl
             mt-10
             drop-shadow-[200px]
             drop-red-500
           "
         >MoviesApp</h1>        
-      <Calls_Api/>
+       <Calls_Api dataOverage={dataOverage}/> 
+    
     </main>
   );
 }

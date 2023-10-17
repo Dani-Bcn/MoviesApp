@@ -2,18 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-html,body{overflow-x: hidden;}
+html,body{overflow-x: hidden}
 
 button{
   display: flex;
   align-items: center;
   justify-content: center;
- width: 50px;
- height: 20px;
- padding: 10px;
- margin: 10px;
- font-size: 1rem;
- color: wheat;
+  width: 50px;
+  height: 20px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1rem;
+  color: wheat;
 }
 
 img{

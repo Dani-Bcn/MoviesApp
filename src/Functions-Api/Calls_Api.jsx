@@ -2,7 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { animate, motion as m } from "framer-motion";
 import gsap from "gsap";
 
-export default function Calls_Api() {
+export default function Calls_Api(props) {
+  const { dataOverage } = props;
+
   const [selectMovieOrTv, setselectMovieOrTv] = useState("movie");
   const [pageList, setPageList] = useState(1);
   const [selectGenres, setSelectGenres] = useState(28);
@@ -17,7 +19,7 @@ export default function Calls_Api() {
   const [textButtonTvActor, setTextButtonTvActor] = useState("Search Person");
   const [selectTvOrActor, setSelectTvOrActor] = useState("person");
   const [posterOrProfile, setposterOrProfile] = useState(false);
-  const [textNoResults, setTextNoResults] = useState("")
+  const [textNoResults, setTextNoResults] = useState("");
 
   const inputMovies = useRef();
 
@@ -30,7 +32,6 @@ export default function Calls_Api() {
     )
       .then((resp) => resp.json())
       .then((resp) => setFindMovie(resp.results));
-        
   }, [newCall]);
 
   /* Obtención de los todos los géneros segun película o serie*/
@@ -54,27 +55,40 @@ export default function Calls_Api() {
 
   activeGenres
     ? gsap.to("#card-genres", {
-        x: -250,
+        x: -650,
         ease: "expo.out",
       })
     : gsap.to("#card-genres", {
-        x: 600,
+        x: 0,
         ease: "expo.in",
       });
   let mm = gsap.matchMedia();
 
-  // gsap responsive lg
+  // gsap responsive md
   mm.add("(min-width: 400px)", () => {
     activeGenres
       ? gsap.to("#card-genres", {
-          x: 350,
-          ease: "expo.out",
+          x: 250,
+          duration:1,
         })
       : gsap.to("#card-genres", {
-          x: 800,
+          x: 500,
           ease: "expo.in",
         });
-  })
+  });
+  
+  // gsap responsive lg
+  mm.add("(min-width: 1000px)", () => {
+    activeGenres
+      ? gsap.to("#card-genres", {
+          x: -200,
+          duration:1,
+        })
+      : gsap.to("#card-genres", {
+          x: 0,
+          ease: "expo.in",
+        });
+  });
   return (
     <main
       onClick={() =>
@@ -88,110 +102,114 @@ export default function Calls_Api() {
         flex-col
         items-center
       "
-    >      
- 
+    >
       <section
         className="
           my-5
         "
       >
-         
-          <section
-            className="
+        <section
+          className="
               flex
               w-[90%]
+              md:w-screen
               items-center
-              justify-between           
-             
+              justify-between    
+              md:justify-around          
             "
+        >
+          <button
+            onClick={() => {
+              setPageList(1); /* volver a la primera página */
+              setActiveMovies(true);
+              setselectMovieOrTv("movie") /* búsqueda por péliculas */,
+                setSelectGenres(
+                  28
+                ) /* selecciona el primer género  de películas*/,
+                setNewCall(!newCall); /* hace una lllmada */
+            }}
           >
-            <button
-              onClick={() => {
-                setPageList(1); /* volver a la primera página */
-                setActiveMovies(true);
-                setselectMovieOrTv("movie") /* búsqueda por péliculas */,
-                  setSelectGenres(
-                    28
-                  ) /* selecciona el primer género  de películas*/,
-                  setNewCall(!newCall); /* hace una lllmada */
-              }}
-            >
-              Movies
-            </button>
-            <button
-              onClick={() => {
-                setPageList(1); /* volver a la primera página */
-                setActiveMovies(true);
-                setselectMovieOrTv("tv") /* búsqueda  por series*/,
-                  setSelectGenres(
-                    10759
-                  ) /* selecciona el primer género  de series*/,
-                  setNewCall(!newCall); /* hace una llamada */
-              }}
-            >
-              TV
-            </button>
-         
-        
-           
-              <button
-                onClick={() => {
-                  setActiveMovies(
-                    true
-                  ); /* desactiva la llamada por popularidad */
-                  setPopularity(""), setNewCall(!newCall);
-                }}
-              >
-                Current
-              </button>
-              <button
-                onClick={() => {
-                  setActiveMovies(true);
-                  setPopularity(
-                    "&sort_by=vote_count.desc"
-                  ) /* activa la llamada por popularidad */,
-                    setNewCall(!newCall);
-                }}
-              >
-                Popularity
-              </button>      
-              
-                <button
-                  onClick={() => {
-                    setActiveMovies(true);
-                    setActiveGenres(!activeGenres);
-                  }}
-                >
-                  Genres
-                </button>  
-             
-          
+            Movies
+          </button>
+          <button
+            onClick={() => {
+              setPageList(1); /* volver a la primera página */
+              setActiveMovies(true);
+              setselectMovieOrTv("tv") /* búsqueda  por series*/,
+                setSelectGenres(
+                  10759
+                ) /* selecciona el primer género  de series*/,
+                setNewCall(!newCall); /* hace una llamada */
+            }}
+          >
+            TV
+          </button>
+
+          <button
+            onClick={() => {
+              setActiveMovies(true); /* desactiva la llamada por popularidad */
+              setPopularity(""), setNewCall(!newCall);
+            }}
+          >
+            Current
+          </button>
+          <button
+            onClick={() => {
+              setActiveMovies(true);
+              setPopularity(
+                "&sort_by=vote_count.desc"
+              ) /* activa la llamada por popularidad */,
+                setNewCall(!newCall);
+            }}
+          >
+            Popularity
+          </button>
+
+          <button
+            onClick={() => {
+              setActiveMovies(true);
+              setActiveGenres(!activeGenres);
+            }}
+          >
+            Genres
+          </button>
+
           <m.article
             id="card-genres"
             className="
           fixed
           lg:p-2
-          lg:ml-[1600px]
+          mt-[565px]
+          md:mt-28
           ml-[800px]
+          lg:ml-[2700px]
+
           lg:rounded-[20px]
           rounded-l-[50px]
-          mt-[225px]
+         
           p-5
           w-screen
           bg-indigo-900/[0.9]
-          lg:mt-24
-          z-20
+          lg:mt-80
+          z-50
         "
+       
           >
             {resApiGenres
               ? resApiGenres.map((e, i) => {
                   return (
                     <p
                       className="                  
-                      my-2
+                      my-3 
+                      md:my-[0.5px]
+                      lg:my-2
+                     
+                     
                       mx-5                     
-                      lg:text-[0.9rem]
+                      
                       text-[1.2rem]
+                      md:text-[0.9rem]
+                      lg:text-[0.9rem]
                       cursor-pointer
                       text-orange-300
                       hover:text-orange-50
@@ -211,21 +229,22 @@ export default function Calls_Api() {
                 })
               : null}
           </m.article>
-      
         </section>
         <section
-      className="  
+          className="  
         flex
         flex-col
         justify-center
         items-center    
         m-10              
       "
-    >
-    <input
-      ref={inputMovies}
-      onClick={() => {setActiveMovies(false), setTextNoResults("")}}
-      className="  
+        >
+          <input
+            ref={inputMovies}
+            onClick={() => {
+              setActiveMovies(false), setTextNoResults("");
+            }}
+            className="  
       w-40   
       m-2
       p-2
@@ -234,59 +253,50 @@ export default function Calls_Api() {
       border-2
       border-indigo-400
     "
-      type="text"
-      placeholder="Search name"
-      onChange={(e) => {
-        setSeachMovie(e.target.value);
-        setNewCall(!newCall);
-      }}
-    />
-    {/* lógica para cuando no hayan resultados en la búsqueda*/}
-    {!findMovie ?null:
-      findMovie.length === 0 && inputMovies.current.value.length >1 ?
-    
-
-      
-    
-        
-             <h2
-             className="
+            type="text"
+            placeholder="Search name"
+            onChange={(e) => {
+              setSeachMovie(e.target.value);
+              setNewCall(!newCall);
+            }}
+          />
+          {/* lógica para cuando no hayan resultados en la búsqueda*/}
+          {!findMovie ? null : findMovie.length === 0 &&
+            inputMovies.current.value.length > 1 ? (
+            <h2
+              className="
               text-red-300
              "
-             >
-             No results
-             </h2>
-         :null
-        }
-        
-   
-       
-  
-    <button
-      className="
+            >
+              No results
+            </h2>
+          ) : null}
+
+          <button
+            className="
       w-44
   "
-      /* Selección de películas y series o de actores */
-      onClick={() => {
-        setActiveMovies(false);
-        inputMovies.current.value = "";
-        /* Cambiamos el texto del boton y el placeholder del input */
-        if (textButtonTvActor !== "Search Movie/Tv") {
-          setTextButtonTvActor("Search Movie/Tv");
-          inputMovies.current.placeholder = "Search title";
-        } else {
-          setTextButtonTvActor("Search Person");
-          inputMovies.current.placeholder = "Search name";
-        }
-        selectTvOrActor !== "multi"
-          ? setSelectTvOrActor("multi")
-          : setSelectTvOrActor("person");
-        setposterOrProfile(!posterOrProfile);
-      }}
-    >
-      {textButtonTvActor}
-    </button>
-  </section>
+            /* Selección de películas y series o de actores */
+            onClick={() => {
+              setActiveMovies(false);
+              inputMovies.current.value = "";
+              /* Cambiamos el texto del boton y el placeholder del input */
+              if (textButtonTvActor !== "Search Movie/Tv") {
+                setTextButtonTvActor("Search Movie/Tv");
+                inputMovies.current.placeholder = "Search title";
+              } else {
+                setTextButtonTvActor("Search Person");
+                inputMovies.current.placeholder = "Search name";
+              }
+              selectTvOrActor !== "multi"
+                ? setSelectTvOrActor("multi")
+                : setSelectTvOrActor("person");
+              setposterOrProfile(!posterOrProfile);
+            }}
+          >
+            {textButtonTvActor}
+          </button>
+        </section>
       </section>
       <section
         className="
@@ -315,13 +325,17 @@ export default function Calls_Api() {
                 overflow-hidden
                 "
                 >
+               
                   {
+                    <>
+                    
                     <m.img
                       src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
                       whileInView={{
                         opacity: [0, 1],
                       }}
                     />
+                    </>
                   }
                 </section>
               ) : e.poster_path /* si hay imagen de la película o serie */ ? (
@@ -352,6 +366,8 @@ export default function Calls_Api() {
         (resApiResults.results && activeMovies)
           ? resApiResults.results.map((e, i) => {
               return (
+
+               
                 <section
                   key={i}
                   className="
@@ -364,12 +380,25 @@ export default function Calls_Api() {
                     overflow-hidden
                   "
                 >
+                  <h2 
+                  className="
+                  absolute
+                  text-2xl
+                  text-orange-300
+                  mt-[170px]
+                  ml-[100px]
+                  z-20
+                  "
+                  >
+                    {e.vote_average}
+                  </h2>
+                    {dataOverage(e.vote_average)}
                   <m.img
                     src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                     whileInView={{
-                      opacity: [0, 1],
-                      scale: [2, 1],
-                      transition: {
+                        opacity: [0, 1],
+                        scale: [2, 1],
+                        transition: {
                         duration: 0.5,
                       },
                     }}
