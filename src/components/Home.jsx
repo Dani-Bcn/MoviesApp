@@ -22,8 +22,11 @@ export default function Home() {
         <h1
           className="
           text-indigo-400
-            text-6xl
+
+            text-7xl
+            lg:text-8xl
             mt-10
+            my-20
             drop-shadow-[200px]
             drop-red-500
           "

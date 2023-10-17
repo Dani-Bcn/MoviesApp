@@ -43,18 +43,22 @@ export default function List_Movies(props) {
     "
   >
     <section
-      className="
-        my-5
-      "
+    className='
+    md:w-[60%]
+    w-full    
+    flex
+    flex-col
+    items-center
+    '
     >
       <section
         className="
             flex
             w-[90%]
-            md:w-screen
+            md:w-full
             items-center
             justify-between    
-            md:justify-around          
+            md:justify-around      
           "
       >
         <button
@@ -83,7 +87,6 @@ export default function List_Movies(props) {
         >
           TV
         </button>
-
         <button
           onClick={() => {
             setActiveMovies(true); /* desactiva la llamada por popularidad */
@@ -103,7 +106,6 @@ export default function List_Movies(props) {
         >
           Popularity
         </button>
-
         <button
           onClick={() => {
             setActiveMovies(true);
@@ -112,24 +114,21 @@ export default function List_Movies(props) {
         >
           Genres
         </button>
-
         <m.article
           id="card-genres"
           className="
         fixed
         lg:p-2
-        mt-[565px]
-        md:mt-28
+        mt-[400px]
+        md:-mt-16
+        lg:mt-24
         ml-[800px]
         lg:ml-[2700px]
-
         lg:rounded-[20px]
-        rounded-l-[50px]
-       
+        rounded-l-[50px]       
         p-5
         w-screen
-        bg-indigo-900/[0.9]
-        lg:mt-80
+        bg-indigo-900/[0.9]        
         z-50
       "     
         >
@@ -299,9 +298,7 @@ export default function List_Movies(props) {
       {(resApiResults.results && findMovie.length < 1) ||
       (resApiResults.results && activeMovies)
         ? resApiResults.results.map((e, i) => {
-            return (
-
-             
+            return (             
               <section
                 key={i}
                 className="
