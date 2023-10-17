@@ -17,7 +17,7 @@ export default function Calls_Api() {
   const [textButtonTvActor, setTextButtonTvActor] = useState("Search Person");
   const [selectTvOrActor, setSelectTvOrActor] = useState("person");
   const [posterOrProfile, setposterOrProfile] = useState(false);
-  const [textNoResults, setTextNoResults] = useState(false)
+  const [textNoResults, setTextNoResults] = useState("")
 
   const inputMovies = useRef();
 
@@ -30,8 +30,7 @@ export default function Calls_Api() {
     )
       .then((resp) => resp.json())
       .then((resp) => setFindMovie(resp.results));
-        findMovie ?
-      findMovie.length === 0 ?setTextNoResults("No results"):null:null
+        
   }, [newCall]);
 
   /* Obtención de los todos los géneros segun película o serie*/
@@ -89,18 +88,21 @@ export default function Calls_Api() {
         flex-col
         items-center
       "
-    >       
+    >      
+ 
       <section
         className="
           my-5
         "
-      >         
+      >
+         
           <section
             className="
               flex
               w-[90%]
               items-center
-              justify-between             
+              justify-between           
+             
             "
           >
             <button
@@ -129,6 +131,9 @@ export default function Calls_Api() {
             >
               TV
             </button>
+         
+        
+           
               <button
                 onClick={() => {
                   setActiveMovies(
@@ -149,7 +154,8 @@ export default function Calls_Api() {
                 }}
               >
                 Popularity
-              </button>                
+              </button>      
+              
                 <button
                   onClick={() => {
                     setActiveMovies(true);
@@ -157,7 +163,9 @@ export default function Calls_Api() {
                   }}
                 >
                   Genres
-                </button> 
+                </button>  
+             
+          
           <m.article
             id="card-genres"
             className="
@@ -202,7 +210,8 @@ export default function Calls_Api() {
                   );
                 })
               : null}
-          </m.article>      
+          </m.article>
+      
         </section>
         <section
       className="  
@@ -215,9 +224,7 @@ export default function Calls_Api() {
     >
     <input
       ref={inputMovies}
-      onClick={() => {setActiveMovies(false),         
-        inputMovies.current.value !=="" ?null:
-        setTextNoResults(false)}}
+      onClick={() => {setActiveMovies(false), setTextNoResults("")}}
       className="  
       w-40   
       m-2
@@ -235,20 +242,25 @@ export default function Calls_Api() {
       }}
     />
     {/* lógica para cuando no hayan resultados en la búsqueda*/}
-    {findMovie && findMovie.length !==0 ?null:
-
-    textNoResults && inputMovies.current.value !==""?
-      <h2
-        className="
-          text-orange-300
-
-        "
-      >
-          No results
-        </h2>
-        :null
-    }
+    {!findMovie ?null:
+      findMovie.length === 0 && inputMovies.current.value.length >1 ?
     
+
+      
+    
+        
+             <h2
+             className="
+              text-red-300
+             "
+             >
+             No results
+             </h2>
+         :null
+        }
+        
+   
+       
   
     <button
       className="
