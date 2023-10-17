@@ -24,6 +24,7 @@ export default function Calls_Api() {
   useEffect(() => {
     fetch(
       /* multi, para buscar tanto pelis como series */
+      /* person, buscar personas */
       `https://api.themoviedb.org/3/search/${selectTvOrActor}?query=${searchMovie}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
     )
       .then((resp) => resp.json())
@@ -31,7 +32,7 @@ export default function Calls_Api() {
     findMovie ? console.log(findMovie) : null;
   }, [newCall]);
 
-  /* Obtención de los géneros*/
+  /* Obtención de los todos los géneros segun película o serie*/
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/genre/${selectMovieOrTv}/list?api_key=55b2cf9d90cb74c55683e395bb1ad12b&language=en-U`
@@ -40,7 +41,7 @@ export default function Calls_Api() {
       .then((resp) => setResApiGenres(resp.genres));
   }, [newCall]);
 
-  /*Obtención  de películas o series segun "selectMovieOrTv" */
+  /*Obtención  de películas o series segun  pelídula o serie : "selectMovieOrTv" */
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/discover/${selectMovieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b${popularity}&page=${pageList}&with_genres=${selectGenres}`
@@ -61,7 +62,7 @@ export default function Calls_Api() {
       });
   let mm = gsap.matchMedia();
 
-  // gsap responsibe lg
+  // gsap responsive lg
   mm.add("(min-width: 400px)", () => {
     activeGenres
       ? gsap.to("#card-genres", {
@@ -75,8 +76,8 @@ export default function Calls_Api() {
   });
 
   return (
-    <main
-      onClick={() => (activeGenres ? setActiveGenres(!activeGenres) : null)}
+    <main                      
+      onClick={() => (activeGenres ? setActiveGenres(!activeGenres) : null)}/* esconde la card géneros  */
       className="
       w-screen
         z-10
@@ -95,30 +96,31 @@ export default function Calls_Api() {
       >
         <button
           onClick={() => {
-            setPageList(1);
+            setPageList(1); /* volver a la primera página */
             setActiveMovies(true);
-            setselectMovieOrTv("movie"),
-              setSelectGenres(28),
-              setNewCall(!newCall);
+            setselectMovieOrTv("movie"),/* búsqueda por péliculas */
+              setSelectGenres(28), /* selecciona el primer género  de películas*/
+              setNewCall(!newCall);/* hace una lllmada */
           }}
         >
           Movies
         </button>
         <button
           onClick={() => {
-            setPageList(1);
+            setPageList(1);/* volver a la primera página */
             setActiveMovies(true);
-            setselectMovieOrTv("tv"),
-              setSelectGenres(10759),
-              setNewCall(!newCall);
+            setselectMovieOrTv("tv"),/* búsqueda  por series*/
+              setSelectGenres(10759), /* selecciona el primer género  de series*/
+              setNewCall(!newCall); /* hace una llamada */
           }}
         >
           TV
         </button>
         <button
           onClick={() => {
-            setActiveMovies(true);
-            setPopularity(""), setNewCall(!newCall);
+            setActiveMovies(true);/* desactiva la llamada por popularidad */
+            setPopularity(""), 
+            setNewCall(!newCall);
           }}
         >
           Current
@@ -126,17 +128,19 @@ export default function Calls_Api() {
         <button
           onClick={() => {
             setActiveMovies(true);
-            setPopularity("&sort_by=vote_count.desc"), setNewCall(!newCall);
+            setPopularity("&sort_by=vote_count.desc"), /* activa la llamada por popularidad */
+            setNewCall(!newCall);
           }}
         >
           Popularity
         </button>
-
+       
         <button
-          disabled={!activeMovies}
+          disabled={!activeMovies} /* si "activeMovies" está desactivado cancela el evento del botón*/
           onClick={() => {
-            setPageList(pageList - 1), setNewCall(!newCall);
-            pageList < 2 ? setPageList(1) : null;
+            setPageList(pageList - 1) /* página siguiente */
+            setNewCall(!newCall);
+            pageList < 2 ? setPageList(1) : null; {/* */}
           }}
         >
           Back
@@ -144,7 +148,8 @@ export default function Calls_Api() {
         <button
           disabled={!activeMovies}
           onClick={() => {
-            setPageList(1), setNewCall(!newCall);
+            setPageList(1)
+            setNewCall(!newCall);
           }}
         >
           Start
@@ -153,7 +158,8 @@ export default function Calls_Api() {
           disabled={!activeMovies}
           onClick={() => {
             setActiveMovies(true);
-            setPageList(pageList + 1), setNewCall(!newCall);
+            setPageList(pageList + 1) 
+            setNewCall(!newCall);
           }}
         >
           Next
@@ -249,19 +255,18 @@ export default function Calls_Api() {
           className="
             w-44
         "
+        /* Selección de películas y seros o actores */
           onClick={() => {
             setActiveMovies(true);
             inputMovies.current.value = ""
+            /* Cambiamos el texto del boton y el placeholder del input */
             if( textButtonTvActor !== "Search Movie/Tv"){
                setTextButtonTvActor("Search Movie/Tv")
                inputMovies.current.placeholder= "Search title"
             }else{
                   setTextButtonTvActor("Search Actor")
                   inputMovies.current.placeholder= "Search name"
-
-            }
-            
-          
+            }          
               selectTvOrActor !== "multi"
                 ? setSelectTvOrActor("multi")
                 : setSelectTvOrActor("person");
@@ -270,7 +275,7 @@ export default function Calls_Api() {
         >
           {textButtonTvActor}
         </button>
-      </section>
+      </section>    
       <section
         className="
           w-10/11
@@ -279,10 +284,10 @@ export default function Calls_Api() {
           flex-wrap
           justify-center
         "
-      >
+      >  {/* mostrar por búsqueda  */}
         {!activeMovies
           ? findMovie.map((e, i) => {
-              return e.profile_path ? 
+              return e.profile_path ? /* si hay imagen del actor */
                 <section
                   key={i}
                   className="
@@ -304,7 +309,7 @@ export default function Calls_Api() {
                     />
                   }
                 </section>
-              : posterOrProfile ? 
+              : posterOrProfile ? /* si hay imagen de la película o serie */
                 <section
                   key={i}
                   className="
@@ -328,7 +333,7 @@ export default function Calls_Api() {
             })
           : null}
 
-        {/* obtener peliculas */}
+        {/* mostrar películas y series */}
         {(resApiResults.results && findMovie.length < 1) ||
         (resApiResults.results && activeMovies)
           ? resApiResults.results.map((e, i) => {
@@ -366,10 +371,10 @@ export default function Calls_Api() {
           w-screen
           flex
           justify-center
-        "
+       "
       >
         <button
-          /* desactiva los botones de paginado cuando buscamos por título  */
+          /* desactiva los botones de paginado cuando buscamos por título o actor */
           disabled={!activeMovies}
           onClick={() => {
             setPageList(pageList - 1), setNewCall(!newCall);
@@ -381,7 +386,8 @@ export default function Calls_Api() {
         <button
           disabled={!activeMovies}
           onClick={() => {
-            setPageList(1), setNewCall(!newCall);
+            setPageList(1)
+            setNewCall(!newCall);
           }}
         >
           Start
@@ -390,7 +396,8 @@ export default function Calls_Api() {
           disabled={!activeMovies}
           onClick={() => {
             setActiveMovies(true);
-            setPageList(pageList + 1), setNewCall(!newCall);
+            setPageList(pageList + 1) 
+            setNewCall(!newCall);
           }}
         >
           Next
