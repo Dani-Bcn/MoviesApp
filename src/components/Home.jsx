@@ -6,6 +6,7 @@ export default function Home() {
   return (
     <main
       className="
+      w-screen
         flex
         flex-col
         justify-center
@@ -18,7 +19,7 @@ export default function Home() {
           className="
           text-indigo-400
             text-7xl
-            mt-20
+            mt-10
             drop-shadow-[200px]
             drop-red-500
           "

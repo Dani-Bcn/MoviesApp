@@ -5,20 +5,21 @@
 body{overflow-x: hidden;}
 
 button{
-  width: 90px;
-  font-size: 1rem;
-  padding: 5px 10px;
-  background-color: rgba(142, 162, 253, 0.808);
-  margin: 5px 10px;
-  border-radius: 5px;
-  color: rgb(253, 195, 128);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ width: 50px;
+ height: 20px;
+ padding: 10px;
+ margin: 10px;
+ font-size: 1rem;
+ color: wheat;
 }
 
 img{
   width: 150px;
   height: 225px;
-  opacity: 0;
-  
+  opacity: 0;  
 }
 
 h1{
