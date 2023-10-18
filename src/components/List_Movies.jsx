@@ -182,7 +182,7 @@ export default function List_Movies(props) {
           }}
           className="  
             w-40
-            m-2
+            m-5
             bg-slate-200
             rounded-[5px]
             border-2
