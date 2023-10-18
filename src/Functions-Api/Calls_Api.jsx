@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { animate, motion as m } from "framer-motion";
 import gsap from "gsap";
 import List_Movies from "../components/List_Movies";
+import Search from "../components/Search";
 
 export default function Calls_Api(props) {
   const { dataOverage } = props;
@@ -116,6 +117,7 @@ export default function Calls_Api(props) {
         setSelectGenres={setSelectGenres}
         setActiveGenres={setActiveGenres}
         setPopularity={setPopularity}
+        pageList={pageList}
       />
 
   </main>

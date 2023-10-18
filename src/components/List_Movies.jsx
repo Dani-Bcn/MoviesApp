@@ -27,6 +27,7 @@ export default function List_Movies(props) {
     const {setSelectGenres}=props
     const {setActiveGenres}=props
     const {setPopularity}=props
+    const {pageList}=props
 
   return (
     <main
@@ -36,6 +37,7 @@ export default function List_Movies(props) {
     }
     className="
       w-screen   
+      my-5
       z-10
       flex
       flex-col
@@ -114,14 +116,15 @@ export default function List_Movies(props) {
         >
           Genres
         </button>
+        {/* card categorias */}
         <m.article
           id="card-genres"
           className="
         fixed
         lg:p-2
-        mt-[400px]
-        md:-mt-16
-        lg:mt-24
+        mt-[800px]
+        md:mt-[350px]
+        lg:mt-[575px]
         ml-[800px]
         lg:ml-[2700px]
         lg:rounded-[20px]
@@ -138,7 +141,7 @@ export default function List_Movies(props) {
                   <p
                     className="                  
                     my-3 
-                   md:my-0.5
+                    md:my-0.5
                     lg:my-2  
                     mx-5   
                     text-[1.2rem]
@@ -166,12 +169,11 @@ export default function List_Movies(props) {
       </section>
       <section
         className="  
-      flex
-      flex-col
-      justify-center
-      items-center    
-      m-10              
-    "
+          flex
+          flex-col
+          justify-center
+          items-center               
+        "
       >
         <input
           ref={inputMovies}
@@ -179,14 +181,13 @@ export default function List_Movies(props) {
             setActiveMovies(false), setTextNoResults("");
           }}
           className="  
-    w-40   
-    m-2
-    p-2
-    bg-slate-200
-    rounded-[10px]
-    border-2
-    border-indigo-400
-  "
+            w-40
+            m-2
+            bg-slate-200
+            rounded-[5px]
+            border-2
+            border-indigo-400
+          "
           type="text"
           placeholder="Search name"
           onChange={(e) => {
@@ -208,8 +209,8 @@ export default function List_Movies(props) {
 
         <button
           className="
-    w-44
-"
+              w-44
+          "
           /* Selección de películas y series o de actores */
           onClick={() => {
             setActiveMovies(false);
