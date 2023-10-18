@@ -6,7 +6,7 @@ export default function Svg(props) {
   return (
     <main
       className="     
-      absolute
+      fixed
       flex
       w-24
       mt-[170px]

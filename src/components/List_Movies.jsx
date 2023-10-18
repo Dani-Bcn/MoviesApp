@@ -30,11 +30,12 @@ export default function List_Movies(props) {
     const {pageList}=props
 
   return (
-    <main
+    <m.main
     onClick={() =>
       /* esconde la card géneros  */
       activeGenres ? setActiveGenres(!activeGenres) : null
     }
+   
     className="
       w-screen   
       my-5
@@ -124,7 +125,7 @@ export default function List_Movies(props) {
         lg:p-2
         mt-[800px]
         md:mt-[350px]
-        lg:mt-[575px]
+        lg:mt-[525px]
         ml-[800px]
         lg:ml-[2700px]
         lg:rounded-[20px]
@@ -141,17 +142,19 @@ export default function List_Movies(props) {
                   <p
                     className="                  
                     my-3 
+                    w-full
                     md:my-0.5
                     lg:my-2  
-                    mx-5   
+                   px-5
+                   -m-2
                     text-[1.2rem]
                     md:text-[0.7rem]
                     lg:text-[0.9rem]
                     cursor-pointer
                     text-orange-300
                     hover:text-orange-50
-                    hover:bg-indigo-900                     
-                    transition duration-[0.5s]
+                    hover:bg-gray-900                     
+                    transition duration-[0.4s]
                   "
                     id={e.id}
                     key={i}
@@ -233,14 +236,14 @@ export default function List_Movies(props) {
         </button>
       </section>
     </section>
-    <section
-      className="
-        w-[90%]
+    <m.section
+    layout
+    drag="x"
+      className="      
         bg-slate-800
         flex
         m-auto
-        mt-5
-        flex-wrap
+        mt-5       
         items-center
         justify-center
       "
@@ -249,7 +252,7 @@ export default function List_Movies(props) {
       {!activeMovies
         ? findMovie.map((e, i) => {
             return e.profile_path /* si hay imagen del actor */ ? (
-              <section
+              <m.section
                 key={i}
                 className="
               flex
@@ -272,9 +275,9 @@ export default function List_Movies(props) {
                   />
                   </>
                 }
-              </section>
+              </m.section>
             ) : e.poster_path /* si hay imagen de la película o serie */ ? (
-              <section
+              <m.section
                 key={i}
                 className="
                   flex
@@ -285,14 +288,18 @@ export default function List_Movies(props) {
                   bg-indigo-400
                   overflow-hidden
                 "
+            
+
+               
               >
                 <m.img
+
                   src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                   whileInView={{
                     opacity: [0, 1],
                   }}
                 />
-              </section>
+              </m.section>
             ) : null;
           })
         : null}
@@ -315,7 +322,7 @@ export default function List_Movies(props) {
               >
                 <h2 
                 className="
-                absolute
+                fixed
                 text-2xl
                 text-orange-300
                 mt-[170px]
@@ -340,7 +347,7 @@ export default function List_Movies(props) {
             );
           })
         : null}
-    </section>
+    </m.section>
 
     {activeMovies ? (
       <footer
@@ -378,6 +385,6 @@ export default function List_Movies(props) {
         </button>
       </footer>
     ) : null}
-  </main>
+  </m.main>
   )
 }

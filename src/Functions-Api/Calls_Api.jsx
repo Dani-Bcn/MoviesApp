@@ -92,7 +92,11 @@ export default function Calls_Api(props) {
         });
   });
   return (
-  <main>
+  <main
+  
+  className="
+    overflow-hidden
+  ">
       <List_Movies
         dataOverage={dataOverage}
         resApiGenres={resApiGenres}
