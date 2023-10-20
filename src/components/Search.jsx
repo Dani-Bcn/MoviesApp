@@ -37,10 +37,10 @@ const [activePage,setActivePage] = useState(true)
   return (
     <m.main
       className="
-      fixed
+      absolute
       w-screen
      
-      -mt-5
+      -mt-[75px]
     bg-slate-800
       z-50
     "

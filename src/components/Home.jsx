@@ -27,8 +27,7 @@ export default function Home() {
       transition:{
         duration:0.5,
         ease:"circIn"
-      }
-    
+      }    
     },
 
   };
@@ -38,10 +37,22 @@ export default function Home() {
     z-10
     "
     >
+      <h1
+        className="
+        w-screen
+        flex
+        justify-center
+        my-5
+        text-orange-200
+        
+
+          text-2xl        "
+      >Movies App</h1>
       <m.section 
       className="
         fixed
         ml-[400px]
+        z-50
       "
       variants={variants} 
       animate={activeSearch ? "open" : "closed"}>
