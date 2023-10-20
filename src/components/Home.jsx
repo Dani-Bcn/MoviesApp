@@ -57,9 +57,7 @@ export default function Home() {
       variants={variants} 
       animate={activeSearch ? "open" : "closed"}>
         <Search active={active} />
-      </m.section>
-     
-    
+      </m.section>    
       <Carousel_movies 
       getIdMovieToMovieInfo={getIdMovieToMovieInfo}
       active={active}
