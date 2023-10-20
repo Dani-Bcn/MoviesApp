@@ -16,8 +16,21 @@ export default function Home() {
   const dataOverage = (e) => <Svg e={e} />;
 
   const variants = {
-    open: { x: 0 },
-    closed: { x: 400 },
+    open: { x: 0,
+      transition:{
+        duration:0.5,
+        ease:"circOut"
+      }
+    },
+    
+    closed: { x: 400,
+      transition:{
+        duration:0.5,
+        ease:"circIn"
+      }
+    
+    },
+
   };
   return (
     <main
@@ -29,7 +42,8 @@ export default function Home() {
       className="
         fixed
       "
-      variants={variants} animate={activeSearch ? "open" : "closed"}>
+      variants={variants} 
+      animate={activeSearch ? "open" : "closed"}>
         <Search active={active} />
       </m.section>
       <Navbar active={active} />
