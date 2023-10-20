@@ -4,14 +4,19 @@ import Svg from "./Svg";
 import Carousel_movies from "./Carousel_header";
 import Navbar from "./Navbar";
 import Search from "./Search";
+import Movie_info from "./Movie_info";
 
 export default function Home() {
 
   const [activeSearch, setActiveSearch] = useState(false);
-
+  const [idMovie,setIdMovie] = useState()
   const active = (e) => {
     setActiveSearch(e);
   };
+
+  const getIdMovieToMovieInfo =((e)=>{
+    setIdMovie(e)
+  })
 
   const dataOverage = (e) => <Svg e={e} />;
 
@@ -47,6 +52,7 @@ export default function Home() {
           text-2xl    
         "
       >Movies App</h1>
+    
       <m.section 
       className="
       absolute
@@ -58,8 +64,12 @@ export default function Home() {
         <Search active={active} />
       </m.section>
       <Navbar active={active} />
-      <Carousel_movies active={active} />
-
+    
+      <Carousel_movies 
+      getIdMovieToMovieInfo={getIdMovieToMovieInfo}
+      active={active}
+       />
+       <Movie_info idMovie={idMovie}/>
       {/*   <List_Movies/> */}
       {/*   <Calls_Api dataOverage={dataOverage}/>  */}
     </main>

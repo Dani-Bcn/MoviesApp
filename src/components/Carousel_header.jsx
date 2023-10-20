@@ -3,6 +3,7 @@ import { motion as m } from "framer-motion";
 
 export default function Carousel_movies(props) {
   const { active } = props;
+  const {getIdMovieToMovieInfo} = props
   const posterRef = useRef();
   const [resApi, setResApi] = useState();
   const [countMovie, setCountMovie] = useState(0);
@@ -34,7 +35,7 @@ export default function Carousel_movies(props) {
     setCountMovie(countMovie + 1);
     countMovie === 19 ? setCountMovie((countMovie) => 0) : null;
     clearInterval(setIn);
-    respImages.backdrops ? console.log(respImages) : null;
+   /*  respImages.backdrops ? console.log(respImages) : null; */
   };
 
   setIn = setInterval(count, 5000);
@@ -124,7 +125,10 @@ export default function Carousel_movies(props) {
         {
           activePoster?
           <button
-          onClick={()=> console.log(resApi[countMovie].id)}
+          onClick={()=> {
+          /*   console.log(resApi[countMovie].id), */
+             getIdMovieToMovieInfo(resApi[countMovie].id) 
+          }}
             className="
               m-5
               py-5
