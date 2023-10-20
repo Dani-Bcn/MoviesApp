@@ -1,26 +1,35 @@
 import React, { useState } from "react";
+import { motion as m } from "framer-motion";
 import Svg from "./Svg";
 import Carousel_movies from "./Carousel_movies";
 import Navbar from "./Navbar";
 import Search from "./Search";
 
 export default function Home() {
+  const [activeSearch, setActiveSearch] = useState(false);
 
-
+  const active = (e) => {
+    console.log(activeSearch);
+    setActiveSearch(e);
+  };
 
   const dataOverage = (e) => <Svg e={e} />;
+
+  const variants = {
+    open: { x: 0 },
+    closed: { x: 400 },
+  };
   return (
     <main
-    className="
+      className="
     z-10
     "
     >
-      
-       <Search /> 
-   
-   <Navbar />  
-    <Carousel_movies />   
-       
+      <m.section variants={variants} animate={activeSearch ? "open" : "closed"}>
+        <Search active={active} />
+      </m.section>
+      <Navbar active={active} />
+      <Carousel_movies />
 
       {/*   <List_Movies/> */}
       {/*   <Calls_Api dataOverage={dataOverage}/>  */}

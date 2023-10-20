@@ -8,6 +8,7 @@ export default function Carousel_movies() {
   const [stateCount, setStateCount] = useState(false);
   const [respImages, setResImages] = useState();
   const [activePoster, setActiveposter] = useState(false);
+  const [stopCounter, setStopCounter] = useState(5000)
   let setIn;
 
   useEffect(() => {
@@ -37,14 +38,15 @@ export default function Carousel_movies() {
   };
 
   useEffect(() => {
-    setIn = setInterval(count, 5000);
+    setIn = setInterval(count,stopCounter);
   }, [count]);
 
   const handlePoster = () => {
     setActiveposter(!activePoster)
+    activePoster? setStopCounter(5000):setStopCounter(50000)
+    console.log(stopCounter)
   
   };
-
 
   const variantsPoster = {
     open: {
@@ -63,8 +65,7 @@ export default function Carousel_movies() {
   };
 
   const variantsImages = {
-    open: {
-        
+    open: {        
         borderRadius:"50px",
         backgroundImage: "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59 0))",
         width:"90vw",

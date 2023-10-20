@@ -2,32 +2,20 @@ import React, { useEffect, useState, useRef } from "react";
 import {motion as m} from "framer-motion"
 
 
-export default function Search() { 
+export default function Search(props) { 
 
   const inputRef = useRef();
   const buttonTextRef = useRef();
   const [newCall, setNewCall] = useState(false);
   const [seacrhInput, setSearchInput] = useState("movie");
   const [findMovie, setFindMovie] = useState();
-  const [activePageSearch,setActivePageSearch] = useState(false)
-
  
-const [activePage,setActivePage]= useState(localStorage.getItem("activePage"))
+ 
+  const {active} = props
 
-setInterval(()=>{
-   setActivePage(localStorage.getItem("activePage"))
-})
+const [activePage,setActivePage] = useState(true)
 
 
-useEffect(()=>{
-  console.log(activePageSearch)
-   setActivePageSearch(activePage)
-},[activePage])
-
-const handleClick =(()=>{
-
-  setActivePageSearch(!activePage)
-})
 
 
 
@@ -45,26 +33,17 @@ const handleClick =(()=>{
     }
   }, [newCall]);
 
-  const variants ={
-    open:{x:-0},
-    closed:{x:400}
-  }
-
- 
 
   return (
     <m.main
       className="
       absolute
       w-screen
+     
       -mt-5
     bg-slate-800
       z-20
     "
-    variants={variants}
-    animate={
-      activePageSearch ? "open":"closed"
-    }
     >
       <section
         className="
@@ -73,15 +52,12 @@ const handleClick =(()=>{
         "
       >
 
-{
-  console.log(activePageSearch)
-}
 
         
 
         <svg
 
-          onClick={()=>handleClick()}
+          onClick={()=>active(false)}
           width="30px"
           height="30px"
           viewBox="0 0 60 50"
@@ -181,13 +157,11 @@ const handleClick =(()=>{
                     className="
                     flex
                     m-5
-                    shadow     
-                             
+                    shadow                                
                   "
                   >
                     <img
-                      className="rounded-l-lg
-                      
+                      className="rounded-l-lg                      
                       shadow-lg shadow-cyan-400/50 
                       "
                       src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
