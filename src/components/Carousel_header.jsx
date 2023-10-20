@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion as m } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Carousel_movies(props) {
   const { active } = props;
-  const {getIdMovieToMovieInfo} = props
+  const { getIdMovieToMovieInfo } = props;
   const posterRef = useRef();
   const [resApi, setResApi] = useState();
   const [countMovie, setCountMovie] = useState(0);
@@ -35,7 +36,7 @@ export default function Carousel_movies(props) {
     setCountMovie(countMovie + 1);
     countMovie === 19 ? setCountMovie((countMovie) => 0) : null;
     clearInterval(setIn);
-   /*  respImages.backdrops ? console.log(respImages) : null; */
+    /*  respImages.backdrops ? console.log(respImages) : null; */
   };
 
   setIn = setInterval(count, 5000);
@@ -59,7 +60,7 @@ export default function Carousel_movies(props) {
       borderRadius: "0px",
       border: "none",
       backgroundImage:
-        "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59))",
+        "linear-gradient(to bottom,  rgba(30, 41, 59, 0),   rgba(30, 41, 59, 0),rgba(30 41 59))",
     },
   };
 
@@ -80,68 +81,66 @@ export default function Carousel_movies(props) {
 
   return (
     <main
-      className="   
-        w-screen
-        h-screen
-        flex
-        flex-col
-        items-center   
-        mt-[60px]     
-        z-10
-      "
+    className="
+    flex
+    justify-center
+    "
     >
-      <section>
+      <section
+        className="
+        absolute
+        "
+      >
         {resApi ? (
           <>
-         
-          <m.img
-            variants={variantsImages}
-            animate={activePoster ? "open" : "closed"}
-            className="
+            <m.img
+              variants={variantsImages}
+              animate={activePoster ? "open" : "closed"}
+              className="
                 w-screen
                 h-[500px] 
             "
-            src={`https://image.tmdb.org/t/p/w500/${resApi[countMovie].poster_path}`}
-          />        
+              src={`https://image.tmdb.org/t/p/w500/${resApi[countMovie].poster_path}`}
+            />
           </>
-        )        
-        : null} 
+        ) : null}
       </section>
-      <m.section
-        className="
-       absolute
-       w-screen
-       flex
-       items-end
-       justify-center
-       h-[500px] 
-       "
-        variants={variantsPoster}
-        animate={activePoster ? "open" : "closed"}
-        onClick={() => handlePoster()}
-        id="posterHeader"
-        ref={posterRef}
-      >
-        {
-          activePoster?
-          <button
-          onClick={()=> {
-          /*   console.log(resApi[countMovie].id), */
-             getIdMovieToMovieInfo(resApi[countMovie].id) 
-          }}
-            className="
+        <m.section
+          className="
+            absolute
+            w-screen
+            flex
+            items-end
+            justify-center
+            h-[500px] 
+        "
+          variants={variantsPoster}
+          animate={activePoster ? "open" : "closed"}
+          onClick={() => handlePoster()}
+          id="posterHeader"
+          ref={posterRef}
+        >
+
+          {activePoster ? (
+             <Link to="/infoMovie">
+            <button
+              onClick={() => {
+                getIdMovieToMovieInfo(resApi[countMovie].id);
+              }}
+              className="
               m-5
               py-5
               text-[1.4rem]
               bg-indigo-700/[0.9]
               rounded-xl
             "
-          >
-            Info
-          </button>
-          :null
-        }
-      </m.section>
+            >
+              Info
+            </button>
+            </Link>
+          ) : null}
+        </m.section>
+      
 
       {/*  <section>
         {respImages

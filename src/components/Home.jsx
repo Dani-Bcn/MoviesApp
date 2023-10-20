@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Routes,Route,useLocation } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import Svg from "./Svg";
 import Carousel_movies from "./Carousel_header";
@@ -7,7 +8,7 @@ import Search from "./Search";
 import Movie_info from "./Movie_info";
 
 export default function Home() {
-
+  const location = useLocation()
   const [activeSearch, setActiveSearch] = useState(false);
   const [idMovie,setIdMovie] = useState()
   const active = (e) => {
@@ -34,25 +35,19 @@ export default function Home() {
         ease:"circIn"
       }    
     },
-
   };
   return (
     <main
       className="
-    z-10
-    "
+        z-10
+      "
     >
-      <h1
-        className="
-          w-screen
-          flex
-          justify-center
-          my-10
-          text-orange-200
-          text-2xl    
-        "
-      >Movies App</h1>
-    
+
+      <Navbar active={active} />
+     <Routes  location={location} key={location.pathname}>
+          
+          <Route path="infoMovie" element={<Movie_info idMovie={idMovie}/>}/>
+      </Routes> 
       <m.section 
       className="
       absolute
@@ -63,13 +58,12 @@ export default function Home() {
       animate={activeSearch ? "open" : "closed"}>
         <Search active={active} />
       </m.section>
-      <Navbar active={active} />
+     
     
       <Carousel_movies 
       getIdMovieToMovieInfo={getIdMovieToMovieInfo}
       active={active}
-       />
-       <Movie_info idMovie={idMovie}/>
+       />       
       {/*   <List_Movies/> */}
       {/*   <Calls_Api dataOverage={dataOverage}/>  */}
     </main>

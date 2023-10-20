@@ -7,6 +7,20 @@ export default function Navbar(props) {
 
   return (
     <main >
+
+     <h1
+     
+     className="
+     w-screen
+     my-5
+     flex
+     items-center
+     justify-center
+     text-2xl
+
+     
+     text-orange-200
+     ">App Movies</h1>
       <section
         className="
             w-full
@@ -14,8 +28,11 @@ export default function Navbar(props) {
             flex
             items-center
             justify-center
+            z-50
         "
-      >
+      > 
+
+
         <button
           className="
             w-12

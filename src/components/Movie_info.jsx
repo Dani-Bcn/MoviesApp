@@ -1,35 +1,46 @@
 import React ,{useEffect, useState} from "react";
+import {motion as m} from "framer-motion"
 
 export default function Movie_info(props) {
 
   const { idMovie } = props;
-  const [findMovie, setFindMovie] = useState()
-
-
+  const [infoMovie, setInfoMovie] = useState()
 
   useEffect(() => {
- idMovie !== undefined?
+    idMovie !== undefined?
     fetch(
         `https://api.themoviedb.org/3/movie/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
     )
       .then((resp) => resp.json())
-      .then((resp) => setFindMovie(resp))
+      .then((resp) => setInfoMovie(resp))
   :null
   },[idMovie])
-
-  console.log(findMovie);
- 
+  console.log(infoMovie); 
   return (
-
     <main
-    className="
+   className="
     absolute
-    w-screen
-    text-5xl
-    text-red-800
-    "
+    z-20
+    "   
     >
-        <h1>Movie info</h1>
+        {
+            infoMovie?
+           <> 
+          
+
+            <m.img
+             /*  variants={variantsImages}
+              animate={activePoster ? "open" : "closed"} */
+              className="
+                w-screen
+                h-[500px] 
+            "
+              src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
+            />
+            </> 
+         :null
+        
+        }
     </main>
   );      
 } 

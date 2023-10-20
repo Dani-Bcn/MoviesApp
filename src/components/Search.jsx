@@ -28,8 +28,7 @@ const [activePage,setActivePage] = useState(true)
         `https://api.themoviedb.org/3/search/movie?query=${seacrhInput}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
       )
         .then((resp) => resp.json())
-        .then((resp) => setFindMovie(resp.results));
-      
+        .then((resp) => setFindMovie(resp.results));      
     }
   }, [newCall]);
 
@@ -39,7 +38,7 @@ const [activePage,setActivePage] = useState(true)
       className="
       absolute
       w-screen  
-      -mt-[110px]
+      -mt-[60px]
     bg-slate-800
       z-50
     "
@@ -78,11 +77,15 @@ const [activePage,setActivePage] = useState(true)
          "
         >
           <svg
-            width="50px"
+            width="25px"
             height="30px"
-            viewBox="0 0 20 20"
+            viewBox="0 0 25 25"
             fill="red"
             xmlns="http://www.w3.org/2000/svg"
+            className="
+            scale-[1.3]
+            mx-5
+            "
           >
             <path
               d="M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-8 6a8 8 0 1 1 14.32 4.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 0 1 2 10z"
