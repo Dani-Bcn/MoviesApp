@@ -25,7 +25,11 @@ export default function Home() {
     z-10
     "
     >
-      <m.section variants={variants} animate={activeSearch ? "open" : "closed"}>
+      <m.section 
+      className="
+        fixed
+      "
+      variants={variants} animate={activeSearch ? "open" : "closed"}>
         <Search active={active} />
       </m.section>
       <Navbar active={active} />

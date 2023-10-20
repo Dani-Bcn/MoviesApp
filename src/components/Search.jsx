@@ -37,7 +37,7 @@ const [activePage,setActivePage] = useState(true)
   return (
     <m.main
       className="
-      absolute
+      fixed
       w-screen
      
       -mt-5
@@ -155,6 +155,7 @@ const [activePage,setActivePage] = useState(true)
                 return (
                   <section
                     className="
+                  
                     flex
                     m-5
                     shadow                                
