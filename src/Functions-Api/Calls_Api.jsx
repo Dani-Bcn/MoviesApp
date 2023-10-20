@@ -45,7 +45,7 @@ export default function Calls_Api(props) {
       .then((resp) => setResApiGenres(resp.genres));
   }, [newCall]);
 
-  /*Obtención  de películas o series segun  pelídula o serie : "selectMovieOrTv" */
+  /*Obtención  de películas o series segun  pelílula o serie : "selectMovieOrTv" */
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/discover/${selectMovieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b${popularity}&page=${pageList}&with_genres=${selectGenres}`
@@ -92,11 +92,7 @@ export default function Calls_Api(props) {
         });
   });
   return (
-  <main
-  
-  className="
-    overflow-hidden
-  ">
+  <main>
       <List_Movies
         dataOverage={dataOverage}
         resApiGenres={resApiGenres}

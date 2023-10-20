@@ -1,21 +1,29 @@
 import React, { useState } from "react";
-import Calls_Api from "../Functions-Api/Calls_Api";
 import Svg from "./Svg";
+import Carousel_movies from "./Carousel_movies";
+import Navbar from "./Navbar";
 import Search from "./Search";
 
 export default function Home() {
+
+
+
   const dataOverage = (e) => <Svg e={e} />;
   return (
     <main
-      className="
-      overfolw-hidden    
-        bg-slate-800
-        z-20
-      "
+    className="
+    z-10
+    "
     >
-     
+      
+       <Search /> 
+   
+   <Navbar />  
+    <Carousel_movies />   
+       
 
-      <Calls_Api dataOverage={dataOverage}/> 
+      {/*   <List_Movies/> */}
+      {/*   <Calls_Api dataOverage={dataOverage}/>  */}
     </main>
   );
 }
