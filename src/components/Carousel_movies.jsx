@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion as m } from "framer-motion";
 
-export default function Carousel_movies() {
+export default function Carousel_movies(props) {
+
+    const {active} =props
   const posterRef = useRef();
   const [resApi, setResApi] = useState();
   const [countMovie, setCountMovie] = useState(0);
@@ -42,10 +44,10 @@ export default function Carousel_movies() {
   }, [count]);
 
   const handlePoster = () => {
+    active(false)
     setActiveposter(!activePoster)
     activePoster? setStopCounter(5000):setStopCounter(50000)
-    console.log(stopCounter)
-  
+    console.log(stopCounter)  
   };
 
   const variantsPoster = {
@@ -84,7 +86,8 @@ export default function Carousel_movies() {
         h-screen
         flex
         flex-col
-        items-center
+        items-center   
+        mt-[60px]     
         z-10
       "
     >
@@ -92,7 +95,6 @@ export default function Carousel_movies() {
         {resApi ? (
           <m.img
           variants={variantsImages}
-
           animate={
             activePoster? "open":"closed"
           }

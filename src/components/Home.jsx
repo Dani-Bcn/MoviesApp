@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import Search from "./Search";
 
 export default function Home() {
+
   const [activeSearch, setActiveSearch] = useState(false);
 
   const active = (e) => {
@@ -16,14 +17,14 @@ export default function Home() {
   const dataOverage = (e) => <Svg e={e} />;
 
   const variants = {
-    open: { x: -400,
+    open: { x: 400,
       transition:{
         duration:0.5,
         ease:"circOut"
       }
     },
     
-    closed: { x: 0,
+    closed: { x: -400,
       transition:{
         duration:0.5,
         ease:"circIn"
@@ -39,19 +40,18 @@ export default function Home() {
     >
       <h1
         className="
-        w-screen
-        flex
-        justify-center
-        my-5
-        text-orange-200
-        
-
-          text-2xl        "
+          w-screen
+          flex
+          justify-center
+          my-10
+          text-orange-200
+          text-2xl    
+        "
       >Movies App</h1>
       <m.section 
       className="
-        fixed
-        ml-[400px]
+      absolute
+        ml-[-400px]
         z-50
       "
       variants={variants} 
@@ -59,7 +59,7 @@ export default function Home() {
         <Search active={active} />
       </m.section>
       <Navbar active={active} />
-      <Carousel_movies />
+      <Carousel_movies active={active} />
 
       {/*   <List_Movies/> */}
       {/*   <Calls_Api dataOverage={dataOverage}/>  */}

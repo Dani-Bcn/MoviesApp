@@ -38,21 +38,18 @@ const [activePage,setActivePage] = useState(true)
     <m.main
       className="
       absolute
-      w-screen
-     
-      -mt-[75px]
+      w-screen  
+      -mt-[110px]
     bg-slate-800
       z-50
     "
     >
       <section
         className="
-          fixed
+        absolute
           bg-slate-800
         "
       >
-
-
         
 
         <svg
