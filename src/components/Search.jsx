@@ -50,10 +50,7 @@ const [activePage,setActivePage] = useState(true)
           bg-slate-800
         "
       >
-        
-
         <svg
-
           onClick={()=>active(false)}
           width="30px"
           height="30px"
@@ -125,7 +122,9 @@ const [activePage,setActivePage] = useState(true)
               className="
             flex
             w-screen
+            items-center
             justify-center
+            my-3
             text-2xl
             text-orange-200
           "
