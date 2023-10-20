@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar(props) {
   const { active } = props;
 
   const [activePage, setActivePage] = useState(true);
+ const navigate = useNavigate()
 
   return (
     <main >
+<section>
 
      <h1
-     
+     onClick={()=>navigate("/")}
      className="
      w-screen
      my-5
@@ -21,6 +24,8 @@ export default function Navbar(props) {
      
      text-orange-200
      ">App Movies</h1>
+     
+     </section>
       <section
         className="
             w-full

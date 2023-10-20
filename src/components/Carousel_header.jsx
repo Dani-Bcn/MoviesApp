@@ -49,42 +49,38 @@ export default function Carousel_movies(props) {
   const variantsPoster = {
     open: {
       width: "90vw",
-      height: "475px",
+      height: "480px",
       borderRadius: "50px",
       border: "2px solid wheat",
-      backgroundImage:
-        "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59 0))",
       boxShadow: "0 20px 10px rgb(0,0,0)",
+      background: "linear-gradient(rgba(30 41 59 0), rgba(30 41 59 0),rgba(30 41 59 0)",
     },
     closed: {
       borderRadius: "0px",
       border: "none",
-      backgroundImage:
-        "linear-gradient(to bottom,  rgba(30, 41, 59, 0),   rgba(30, 41, 59, 0),rgba(30 41 59))",
+      background: "linear-gradient(rgba(30 41 59 0), rgba(30 41 59 0.1),rgb(30 41 59)",
+
     },
   };
 
   const variantsImages = {
     open: {
-      borderRadius: "50px",
-      backgroundImage:
-        "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59 0))",
+      borderRadius: "50px",     
       width: "90vw",
       height: "475px",
     },
     closed: {
-      borderRadius: "0px",
-      backgroundImage:
-        "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59))",
+      borderRadius: "0px",      
     },
   };
 
   return (
     <main
     className="
-    flex
-    justify-center
-    "
+      flex
+      justify-center
+      
+      "
     >
       <section
         className="
@@ -99,6 +95,7 @@ export default function Carousel_movies(props) {
               className="
                 w-screen
                 h-[500px] 
+                
             "
               src={`https://image.tmdb.org/t/p/w500/${resApi[countMovie].poster_path}`}
             />
