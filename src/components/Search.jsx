@@ -42,7 +42,7 @@ const [activePage,setActivePage] = useState(true)
      
       -mt-5
     bg-slate-800
-      z-20
+      z-50
     "
     >
       <section
