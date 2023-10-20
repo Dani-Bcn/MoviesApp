@@ -125,7 +125,7 @@ const [activePage,setActivePage] = useState(true)
             items-center
             justify-center
             my-3
-            text-2xl
+            text-[1.3rem]
             text-orange-200
           "
             >
