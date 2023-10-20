@@ -2,15 +2,13 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion as m } from "framer-motion";
 
 export default function Carousel_movies(props) {
-
-    const {active} =props
+  const { active } = props;
   const posterRef = useRef();
   const [resApi, setResApi] = useState();
   const [countMovie, setCountMovie] = useState(0);
   const [stateCount, setStateCount] = useState(false);
   const [respImages, setResImages] = useState();
   const [activePoster, setActiveposter] = useState(false);
-  const [stopCounter, setStopCounter] = useState(5000)
   let setIn;
 
   useEffect(() => {
@@ -39,44 +37,44 @@ export default function Carousel_movies(props) {
     respImages.backdrops ? console.log(respImages) : null;
   };
 
-  useEffect(() => {
-    setIn = setInterval(count,stopCounter);
-  }, [count]);
+  setIn = setInterval(count, 5000);
 
   const handlePoster = () => {
-    active(false)
-    setActiveposter(!activePoster)
-    activePoster? setStopCounter(5000):setStopCounter(50000)
-    console.log(stopCounter)  
+    active(false);
+    setActiveposter(!activePoster);
   };
 
   const variantsPoster = {
     open: {
-        width:"90vw",
-        height:"475px",
-        borderRadius:"50px",
-        border:"2px solid blue",
-        backgroundImage: "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59 0))",
-        boxShadow:"0 20px 10px rgb(0,0,0)"    
+      width: "90vw",
+      height: "475px",
+      borderRadius: "50px",
+      border: "2px solid wheat",
+      backgroundImage:
+        "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59 0))",
+      boxShadow: "0 20px 10px rgb(0,0,0)",
     },
-    closed: {  
-        borderRadius:"0px",
-        border:"0px solid blue",
-        backgroundImage: "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59))"
-     },   
+    closed: {
+      borderRadius: "0px",
+      border: "none",
+      backgroundImage:
+        "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59))",
+    },
   };
 
   const variantsImages = {
-    open: {        
-        borderRadius:"50px",
-        backgroundImage: "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59 0))",
-        width:"90vw",
-        height:"475px",    
+    open: {
+      borderRadius: "50px",
+      backgroundImage:
+        "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59 0))",
+      width: "90vw",
+      height: "475px",
     },
-    closed: {        
-        borderRadius:"0px",
-        backgroundImage: "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59))"
-     },   
+    closed: {
+      borderRadius: "0px",
+      backgroundImage:
+        "linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgba(30 41 59))",
+    },
   };
 
   return (
@@ -93,31 +91,52 @@ export default function Carousel_movies(props) {
     >
       <section>
         {resApi ? (
+          <>
+         
           <m.img
-          variants={variantsImages}
-          animate={
-            activePoster? "open":"closed"
-          }
+            variants={variantsImages}
+            animate={activePoster ? "open" : "closed"}
             className="
                 w-screen
                 h-[500px] 
             "
             src={`https://image.tmdb.org/t/p/w500/${resApi[countMovie].poster_path}`}
-          />
-        ) : null}
+          />        
+          </>
+        )        
+        : null} 
       </section>
-      <m.section 
-       className="
+      <m.section
+        className="
        absolute
        w-screen
+       flex
+       items-end
+       justify-center
        h-[500px] 
        "
-      variants={variantsPoster}
-      animate={
-            activePoster? "open":"closed"
-      }
-      onClick={() => handlePoster()} id="posterHeader" ref={posterRef}>
-    
+        variants={variantsPoster}
+        animate={activePoster ? "open" : "closed"}
+        onClick={() => handlePoster()}
+        id="posterHeader"
+        ref={posterRef}
+      >
+        {
+          activePoster?
+          <button
+          onClick={()=> console.log(resApi[countMovie].id)}
+            className="
+              m-5
+              py-5
+              text-[1.4rem]
+              bg-indigo-700/[0.9]
+              rounded-xl
+            "
+          >
+            Info
+          </button>
+          :null
+        }
       </m.section>
 
       {/*  <section>

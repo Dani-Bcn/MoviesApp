@@ -29,7 +29,7 @@ const [activePage,setActivePage] = useState(true)
       )
         .then((resp) => resp.json())
         .then((resp) => setFindMovie(resp.results));
-      setFindMovie ? console.log(findMovie) : null;
+      
     }
   }, [newCall]);
 
