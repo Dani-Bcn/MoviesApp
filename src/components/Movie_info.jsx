@@ -51,8 +51,7 @@ export default function Movie_info(props) {
       {infoMovie ? (
         <>
           <m.img
-            /*  variants={variantsImages}
-              animate={activePoster ? "open" : "closed"} */
+          
             className="
                 m-auto
                 w-screen

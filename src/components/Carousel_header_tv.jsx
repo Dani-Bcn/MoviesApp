@@ -40,7 +40,7 @@ export default function Carousel_tv(props) {
     /*  respImages.backdrops ? console.log(respImages) : null; */
   };
 
-  setIn = setInterval(count, 4000);
+  setIn = setInterval(count, 3000);
 
   const handlePoster = () => {
     active(false);

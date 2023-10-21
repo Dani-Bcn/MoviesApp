@@ -31,6 +31,10 @@ export default function Home() {
     setIdMovie(e);
   };
 
+  const getIdMovie=((e)=>{
+    setIdMovie(e)     
+ })
+
   const getIdPerson=((e)=>{
      setIdPerson(e)     
   })
@@ -70,7 +74,7 @@ export default function Home() {
         <Route path="infoMovie" element={<Movie_info idMovie={idMovie} getIdPerson={getIdPerson} />} />
         <Route path="infoTv" element={<Tv_info idMovie={idMovie}  getIdPerson={getIdPerson} />} />
         <Route path="infoActor" element={<Actor_info idPerson={idPerson} getKeyWord={getKeyWord}/>} />
-        <Route path="filmography" element={<Filmography  keyWord={keyWord}/>} />
+        <Route path="filmography" element={<Filmography  keyWord={keyWord} getIdMovie={getIdMovie}/>} />
  </Routes>
         <m.section
           className="

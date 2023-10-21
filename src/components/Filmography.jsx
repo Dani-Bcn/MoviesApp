@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Filmography(props) {
+  const navigate = useNavigate();
+  const {getIdMovie} = props
   const { keyWord } = props;
   const [info, setInfo] = useState();
 
@@ -36,28 +39,38 @@ export default function Filmography(props) {
       >
         Filmography
       </h2>
-      <section  
+      <section
         className="
-        w-screen
-        m-5
-        flex        
-        flex-wrap
-        items-center
-        justify-center
+          w-screen
+          m-5
+          flex        
+          flex-wrap
+          items-center
+          justify-center
         "
       >
         {info
           ? info.map((e, i) => {
-              return (
-
-                e.poster_path ?
-                <img key={i}
-                className="
-                m-5
-                "
-                src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`} />
-                :null
-              );
+              return e.poster_path ? (
+                <section
+                  key={i}
+                  onClick={() => {navigate("/infoMovie"), getIdMovie(e.id)}}
+                  className="
+                    flex
+                    flex-col
+                    items-center
+                    rounded-[10px]
+                  "
+                >
+                  <img
+                    className="
+                    m-5
+                    rounded-[10px]
+                  "
+                    src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
+                  />
+                </section>
+              ) : null;
             })
           : null}
       </section>

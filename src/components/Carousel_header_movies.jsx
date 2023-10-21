@@ -41,7 +41,7 @@ export default function Carousel_movies(props) {
     /*  respImages.backdrops ? console.log(respImages) : null; */
   };
 
-  setIn = setInterval(count, 4000);
+  setIn = setInterval(count, 3000);
 
   const handlePoster = () => {
     active(false);
@@ -128,7 +128,7 @@ export default function Carousel_movies(props) {
               m-5
               py-5
               text-[1.4rem]
-              bg-indigo-700/[0.9]
+              bg-slate-700/[0.9]
               rounded-xl
             "
             >
