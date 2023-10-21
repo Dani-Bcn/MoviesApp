@@ -31,6 +31,8 @@ export default function Carousel_movies(props) {
       : null;
   }, [stateCount]);
 
+/*   resApi? console.log(resApi):null */
+
   const count = () => {
     setStateCount(!stateCount);
     setCountMovie(countMovie + 1);

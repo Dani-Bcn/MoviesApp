@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Actor_info = (props) => {
   const { idPerson } = props;
+  const {getKeyWord} = props
   console.log(idPerson, "id");
   const navigate = useNavigate();
   const [infoActor, setInfoActor] = useState();
@@ -68,7 +69,7 @@ const Actor_info = (props) => {
     
             <p>{infoActor.biography}</p>
             <button
-              onClick={()=>navigate("/filmography")}
+              onClick={()=>{navigate("/filmography"), getKeyWord(idPerson)}}
             >Filmography</button>
           </section>
         ) : null}

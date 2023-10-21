@@ -17,6 +17,7 @@ export default function Home() {
   const [idMovie, setIdMovie] = useState();
   const [selectMovieTv,setSelectMovieTv] = useState(true)
   const [idPerson, setIdPerson] = useState()
+  const [keyWord, setKeyWord] = useState()
 
   const active = (e) => {
     setActiveSearch(e);
@@ -31,8 +32,13 @@ export default function Home() {
   };
 
   const getIdPerson=((e)=>{
-     setIdPerson(e)
+     setIdPerson(e)     
   })
+
+  const getKeyWord=((e)=>{
+    setKeyWord(e)
+  })
+  console.log(keyWord)
 
   const dataOverage = (e) => <Svg e={e} />;
 
@@ -63,8 +69,8 @@ export default function Home() {
       <Routes location={location} key={location.pathname}>
         <Route path="infoMovie" element={<Movie_info idMovie={idMovie} getIdPerson={getIdPerson} />} />
         <Route path="infoTv" element={<Tv_info idMovie={idMovie}  getIdPerson={getIdPerson} />} />
-        <Route path="infoActor" element={<Actor_info idPerson={idPerson}/>} />
-        <Route path="filmography" element={<Filmography/>} />
+        <Route path="infoActor" element={<Actor_info idPerson={idPerson} getKeyWord={getKeyWord}/>} />
+        <Route path="filmography" element={<Filmography  keyWord={keyWord}/>} />
  </Routes>
         <m.section
           className="
