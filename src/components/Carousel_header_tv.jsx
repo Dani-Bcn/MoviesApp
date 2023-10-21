@@ -15,7 +15,7 @@ export default function Carousel_tv(props) {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/discover/tv?api_key=55b2cf9d90cb74c55683e395bb1ad12b&sort_by=popularity.desc`
+      `https://api.themoviedb.org/3/discover/tv?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_adult=false&page=1&language=en-US&sort_by=popularity.desc`
     )
       .then((resp) => resp.json())
       .then((resp) => setResApi(resp.results));
@@ -25,7 +25,7 @@ export default function Carousel_tv(props) {
   useEffect(() => {
     resApi
       ? fetch(
-          `http://api.themoviedb.org/3/tv/${resApi[countMovie].id}/images?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+          `http://api.themoviedb.org/3/tv/${resApi[countMovie].id}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
         )
           .then((resp) => resp.json())
           .then((resp) => setResImages(resp))
@@ -40,7 +40,7 @@ export default function Carousel_tv(props) {
     /*  respImages.backdrops ? console.log(respImages) : null; */
   };
 
-  setIn = setInterval(count, 5000);
+  setIn = setInterval(count, 4000);
 
   const handlePoster = () => {
     active(false);
@@ -81,13 +81,6 @@ export default function Carousel_tv(props) {
       flex
       justify-center      
       "
-      animate={{
-        opacity: [0, 1],
-        y:[-200,0],
-        transition:{
-            duration:1
-        }
-      }}
     >
       <section
         className="

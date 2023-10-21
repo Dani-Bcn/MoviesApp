@@ -8,12 +8,15 @@ import Navbar from "./Navbar";
 import Search from "./Search";
 import Movie_info from "./Movie_info";
 import Tv_info from "./Tv_info"
+import Actor_info from "./Actor_info"
 
 export default function Home() {
   const location = useLocation();
   const [activeSearch, setActiveSearch] = useState(false);
   const [idMovie, setIdMovie] = useState();
   const [selectMovieTv,setSelectMovieTv] = useState(true)
+  const [idPerson, setIdPerson] = useState()
+
   const active = (e) => {
     setActiveSearch(e);
   };
@@ -25,6 +28,10 @@ export default function Home() {
   const getIdMovieToMovieInfo = (e) => {
     setIdMovie(e);
   };
+
+  const getIdPerson=((e)=>{
+     setIdPerson(e)
+  })
 
   const dataOverage = (e) => <Svg e={e} />;
 
@@ -53,8 +60,9 @@ export default function Home() {
     >
       <Navbar active={active} selectMovieOrTv={selectMovieOrTv}/>
       <Routes location={location} key={location.pathname}>
-        <Route path="infoMovie" element={<Movie_info idMovie={idMovie} />} />
+        <Route path="infoMovie" element={<Movie_info idMovie={idMovie} getIdPerson={getIdPerson} />} />
         <Route path="infoTv" element={<Tv_info idMovie={idMovie} />} />
+        <Route path="infoActor" element={<Actor_info idPerson={idPerson}/>} />
  </Routes>
         <m.section
           className="

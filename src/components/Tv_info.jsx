@@ -149,6 +149,7 @@ export default function Movie_info(props) {
                         >
                             <h3>{e.name}</h3> 
                             <button
+                             onClick={()=> Navigate("/infoActor")}
                                 className="
                                  text
                                 py-3

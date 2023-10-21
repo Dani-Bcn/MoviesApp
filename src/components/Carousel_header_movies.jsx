@@ -39,7 +39,7 @@ export default function Carousel_movies(props) {
     /*  respImages.backdrops ? console.log(respImages) : null; */
   };
 
-  setIn = setInterval(count, 2000);
+  setIn = setInterval(count, 4000);
 
   const handlePoster = () => {
     active(false);
@@ -78,15 +78,8 @@ export default function Carousel_movies(props) {
     <m.main
     className="
       flex
-      justify-center
-      
+      justify-center      
       "
-      animate={{
-        y:[-200,-0],
-        transition:{
-            duration:1
-        }
-      }}
     >
       <section
         className="
@@ -101,7 +94,6 @@ export default function Carousel_movies(props) {
               className="
                 w-screen
                 h-[500px] 
-                
             "
               src={`https://image.tmdb.org/t/p/w500/${resApi[countMovie].poster_path}`}
             />

@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function Movie_info(props) {
+  const {getIdPerson} = props 
   const { idMovie } = props;
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
+  const navigate  = useNavigate()
 
   useEffect(() => {
     idMovie !== undefined
@@ -19,13 +23,14 @@ export default function Movie_info(props) {
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
-          `https://api.themoviedb.org/3/movie/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1&`
+          `https://api.themoviedb.org/3/movie/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1&page=1`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoCast(resp))
+   
       : null;
 
-    idMovie ? console.log(infoCast) : null;
+   
   }, [idMovie]);
   return (
     <m.main
@@ -153,6 +158,7 @@ export default function Movie_info(props) {
                         >
                             <h3>{e.name}</h3> 
                             <button
+                            onClick={()=> {navigate("/infoActor"),getIdPerson(e.id) }}
                                 className="
                                  text
                                 py-3
