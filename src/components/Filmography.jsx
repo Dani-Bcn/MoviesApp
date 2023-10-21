@@ -36,7 +36,7 @@ export default function Filmography(props) {
       >
         Filmography
       </h2>
-      <section
+      <section  
         className="
         w-screen
         m-5
