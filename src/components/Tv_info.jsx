@@ -74,7 +74,7 @@ export default function Movie_info(props) {
                 text-2xl
                 "
             >
-              {infoMovie.title}
+              {infoMovie.name}
             </h2>
             <p>{infoMovie.overview}</p>
             <section
