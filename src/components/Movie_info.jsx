@@ -102,7 +102,6 @@ export default function Movie_info(props) {
                 <p>{infoMovie.release_date.slice(0, 4)}</p>
                 <p>{infoMovie.runtime}"</p>
                 <p>{infoMovie.original_language}</p>
-
                 <p>{infoMovie.production_companies[0].origin_country}</p>
               </section>
               <section
@@ -167,8 +166,7 @@ export default function Movie_info(props) {
                                 rounded-[5px]
                               "
                             >Info</button>
-                        </section>
-                       
+                        </section>                       
                     </section> 
                     ) 
                   })}

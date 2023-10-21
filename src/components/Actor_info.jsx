@@ -60,8 +60,16 @@ const Actor_info = (props) => {
             <h2>{infoActor.name}</h2>
             <p>{infoActor.birthday}</p>
             <p>{infoActor.place_of_birth}</p>
-            <a href={infoActor.homepage}>Home page</a>
+            {
+              infoActor.homepage?
+                      <a href={infoActor.homepage}>Home page</a>
+                      :null
+            }
+    
             <p>{infoActor.biography}</p>
+            <button
+              onClick={()=>navigate("/filmography")}
+            >Filmography</button>
           </section>
         ) : null}
       </div>

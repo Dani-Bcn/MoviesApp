@@ -9,6 +9,7 @@ import Search from "./Search";
 import Movie_info from "./Movie_info";
 import Tv_info from "./Tv_info"
 import Actor_info from "./Actor_info"
+import Filmography from "./Filmography";
 
 export default function Home() {
   const location = useLocation();
@@ -61,8 +62,9 @@ export default function Home() {
       <Navbar active={active} selectMovieOrTv={selectMovieOrTv}/>
       <Routes location={location} key={location.pathname}>
         <Route path="infoMovie" element={<Movie_info idMovie={idMovie} getIdPerson={getIdPerson} />} />
-        <Route path="infoTv" element={<Tv_info idMovie={idMovie} />} />
+        <Route path="infoTv" element={<Tv_info idMovie={idMovie}  getIdPerson={getIdPerson} />} />
         <Route path="infoActor" element={<Actor_info idPerson={idPerson}/>} />
+        <Route path="filmography" element={<Filmography/>} />
  </Routes>
         <m.section
           className="

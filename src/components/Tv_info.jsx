@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 
 export default function Movie_info(props) {
   const { idMovie } = props;
+  const navigate = useNavigate()
+  const {getIdPerson} = props 
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
 
@@ -149,7 +152,7 @@ export default function Movie_info(props) {
                         >
                             <h3>{e.name}</h3> 
                             <button
-                             onClick={()=> Navigate("/infoActor")}
+                             onClick={()=> {navigate("/infoActor"),getIdPerson(e.id)}}
                                 className="
                                  text
                                 py-3
