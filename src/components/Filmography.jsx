@@ -49,11 +49,14 @@ export default function Filmography(props) {
         {info
           ? info.map((e, i) => {
               return (
+
+                e.poster_path ?
                 <img key={i}
                 className="
                 m-5
                 "
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`} />
+                :null
               );
             })
           : null}

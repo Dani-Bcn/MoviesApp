@@ -4,11 +4,11 @@ import { motion as m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export default function Movie_info(props) {
-  const {getIdPerson} = props 
+  const { getIdPerson } = props;
   const { idMovie } = props;
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
-  const navigate  = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     idMovie !== undefined
@@ -27,10 +27,7 @@ export default function Movie_info(props) {
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoCast(resp))
-   
       : null;
-
-   
   }, [idMovie]);
   return (
     <m.main
@@ -117,15 +114,13 @@ export default function Movie_info(props) {
                 })}
               </section>
               <a href={infoMovie.homepage}>Home page</a>
-          <p>Cast</p>
+              <p>Cast</p>
 
-              {infoCast !== undefined? (
+              {infoCast !== undefined ? (
                 <>
                   {infoCast.cast.map((e, i) => {
-
-                   
-                    return(
-                        <section 
+                    return (
+                      <section
                         key={i}
                         className=" 
                           w-full
@@ -139,39 +134,51 @@ export default function Movie_info(props) {
                           shadow-lg shadow-cyan-500/50              
                           "
                       >
-                        <img  
-                        className="
-                            w-[150px]
-                            h-[150px]
-                            p-1
-                            rounded-[10px]
-                        "
-                        src={`https://image.tmdb.org/t/p/w500/${e.profile_path}` } alt="" />
-                        <section
+                        {
+
+                          e.profile_path ?
+                          <img
                             className="
+                              w-[150px]
+                              h-[150px]
+                              p-1
+                              rounded-[10px]
+                          "
+                            src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
+                            alt=""
+                          />
+                          :null
+                        }
+
+                        <section
+                          className="
                                 flex
                                 flex-col
                                 items-center
                                 justify-between                                
                             "
                         >
-                            <h3>{e.name}</h3> 
-                            <button
-                            onClick={()=> {navigate("/infoActor"),getIdPerson(e.id) }}
-                                className="
+                          <h3>{e.name}</h3>
+                          <button
+                            onClick={() => {
+                              navigate("/infoActor"), getIdPerson(e.id);
+                            }}
+                            className="
                                  text
                                 py-3
                                 bg-slate-600
                                 text-[0.8rem]
                                 rounded-[5px]
                               "
-                            >Info</button>
-                        </section>                       
-                    </section> 
-                    ) 
+                          >
+                            Info
+                          </button>
+                        </section>
+                      </section>
+                    );
                   })}
                 </>
-              ) : null} 
+              ) : null}
             </section>
           </section>
         </>
