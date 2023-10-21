@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Navbar(props) {
   const { active } = props;
+  const {selectMovieOrTv} = props
 
   const [activePage, setActivePage] = useState(true);
  const navigate = useNavigate()
@@ -19,12 +20,9 @@ export default function Navbar(props) {
      flex
      items-center
      justify-center
-     text-2xl
-
-     
+     text-2xl     
      text-orange-200
-     ">App Movies</h1>
-     
+     ">App Movies</h1>     
      </section>
       <section
         className="
@@ -39,15 +37,17 @@ export default function Navbar(props) {
 
 
         <button
+         onClick={()=>{selectMovieOrTv(true),navigate("/")}}
           className="
             w-12
           "
         >Movies</button>
         <button
+        onClick={()=>{selectMovieOrTv(false),navigate("/")}}
          className="
          w-40
        "
-        >Series</button>
+        >Tv</button>
         <svg
           onClick={() => active(true)}
           width="25px"

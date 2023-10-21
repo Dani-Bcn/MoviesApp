@@ -2,12 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion as m } from "framer-motion";
 import { Link } from "react-router-dom";
 
-export default function Carousel_movies(props) {
+export default function Carousel_tv(props) {
   const { active } = props;
   const { getIdMovieToMovieInfo } = props;
   const posterRef = useRef();
   const [resApi, setResApi] = useState();
-  const [countMovie, setCountMovie] = useState(0);
+  const [countMovie, setCountMovie] = useState(1);
   const [stateCount, setStateCount] = useState(false);
   const [respImages, setResImages] = useState();
   const [activePoster, setActiveposter] = useState(false);
@@ -15,16 +15,17 @@ export default function Carousel_movies(props) {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_video=fals`
+      `https://api.themoviedb.org/3/discover/tv?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_video=fals`
     )
       .then((resp) => resp.json())
       .then((resp) => setResApi(resp.results));
-  }, []);
+      stateCount ?console.log(resApi):null
+  }, [stateCount]);
 
   useEffect(() => {
     resApi
       ? fetch(
-          `http://api.themoviedb.org/3/movie/${resApi[countMovie].id}/images?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+          `http://api.themoviedb.org/3/tv/${resApi[countMovie].id}/images?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
         )
           .then((resp) => resp.json())
           .then((resp) => setResImages(resp))
@@ -126,7 +127,7 @@ export default function Carousel_movies(props) {
         >
 
           {activePoster ? (
-             <Link to="/infoMovie">
+             <Link to="/infoTv">
             <button
               onClick={() => {
                 getIdMovieToMovieInfo(resApi[countMovie].id);
@@ -143,26 +144,7 @@ export default function Carousel_movies(props) {
             </button>
             </Link>
           ) : null}
-        </m.section>
-      
-
-      {/*  <section>
-        {respImages
-          ? respImages.posters.map((e, i) => {
-              return (
-                <m.img
-                  key={i}
-                  className="
-         
-            w-full 
-            h-[200px] 
-        "
-                  src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
-                />
-              );
-            })
-          : null}
-      </section>  */}
+        </m.section>     
     </m.main>
   );
 }

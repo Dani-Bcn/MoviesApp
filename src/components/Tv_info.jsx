@@ -9,7 +9,7 @@ export default function Movie_info(props) {
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
-          `https://api.themoviedb.org/3/movie/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+          `https://api.themoviedb.org/3/tv/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoMovie(resp))
@@ -19,7 +19,7 @@ export default function Movie_info(props) {
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
-          `https://api.themoviedb.org/3/movie/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1&`
+          `https://api.themoviedb.org/3/tv/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1&`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoCast(resp))
@@ -94,10 +94,8 @@ export default function Movie_info(props) {
                     justify-between
                 "
               >
-                <p>{infoMovie.release_date.slice(0, 4)}</p>
-                <p>{infoMovie.runtime}"</p>
+                <p>{infoMovie.first_air_date.slice(0, 4)}</p>
                 <p>{infoMovie.original_language}</p>
-
                 <p>{infoMovie.production_companies[0].origin_country}</p>
               </section>
               <section
@@ -117,15 +115,13 @@ export default function Movie_info(props) {
 
               {infoCast !== undefined? (
                 <>
-                  {infoCast.cast.map((e, i) => {
-
-                   
+                  {infoCast.cast.map((e, i) => {                   
                     return(
                     <section 
                       key={i}
                       className=" 
                         w-full
-                        h-32
+                        h-40
                         p-5
                         bg-slate-700
                         gap-5
@@ -137,9 +133,10 @@ export default function Movie_info(props) {
                     >
                         <img  
                         className="
-                            w-[100px]
-                            h-[100px]
-                            rounded-[50px]
+                            w-[150px]
+                            h-[150px]
+                            p-1
+                            rounded-[10px]
                         "
                         src={`https://image.tmdb.org/t/p/w500/${e.profile_path}` } alt="" />
                         <section
