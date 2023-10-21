@@ -83,9 +83,9 @@ export default function Carousel_movies(props) {
       "
       animate={{
         opacity: [0, 1],
-        y:[200,0],
+        y:[-200,-0],
         transition:{
-            duration:0.5
+            duration:1
         }
       }}
     >

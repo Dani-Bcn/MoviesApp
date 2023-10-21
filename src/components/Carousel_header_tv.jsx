@@ -35,7 +35,7 @@ export default function Carousel_tv(props) {
   const count = () => {
     setStateCount(!stateCount);
     setCountMovie(countMovie + 1);
-    countMovie === 19 ? setCountMovie((countMovie) => 0) : null;
+    countMovie === 19 ? setCountMovie((countMovie) => 1) : null;
     clearInterval(setIn);
     /*  respImages.backdrops ? console.log(respImages) : null; */
   };
@@ -52,7 +52,7 @@ export default function Carousel_tv(props) {
       width: "90vw",
       height: "480px",
       borderRadius: "50px",
-      border: "2px solid wheat",
+      border: "3px solid wheat",
       boxShadow: "0 20px 10px rgb(0,0,0)",
       background: "linear-gradient(rgba(30 41 59 0), rgba(30 41 59 0),rgba(30 41 59 0)",
     },
@@ -68,7 +68,7 @@ export default function Carousel_tv(props) {
     open: {
       borderRadius: "50px",     
       width: "90vw",
-      height: "475px",
+      height: "480px",
     },
     closed: {
       borderRadius: "0px",      
@@ -79,15 +79,13 @@ export default function Carousel_tv(props) {
     <m.main
     className="
       flex
-      justify-center
-      
+      justify-center      
       "
       animate={{
         opacity: [0, 1],
-        opacity:[0,1],
         y:[-200,0],
         transition:{
-            duration:0.5
+            duration:1
         }
       }}
     >
@@ -137,7 +135,7 @@ export default function Carousel_tv(props) {
               m-5
               py-5
               text-[1.4rem]
-              bg-indigo-700/[0.9]
+              bg-slate-800
               rounded-xl
             "
             >

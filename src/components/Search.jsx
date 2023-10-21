@@ -43,6 +43,9 @@ const [activePage,setActivePage] = useState(true)
     rounded-r-[25px]
       z-50
     "
+    whileInView={{
+      opacity:[0.01,1]
+    }}
     >
       <section
         className="
