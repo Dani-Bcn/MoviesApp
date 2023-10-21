@@ -121,25 +121,26 @@ export default function Movie_info(props) {
 
                    
                     return(
-                    <section 
-                      key={i}
-                      className=" 
-                        w-full
-                        h-32
-                        p-5
-                        bg-slate-700
-                        gap-5
-                        flex
-                        items-center
-                        rounded-[10px]
-                        shadow-lg shadow-cyan-500/50              
-                        "
-                    >
+                        <section 
+                        key={i}
+                        className=" 
+                          w-full
+                          h-40
+                          p-5
+                          bg-slate-700
+                          gap-5
+                          flex
+                          items-center
+                          rounded-[10px]
+                          shadow-lg shadow-cyan-500/50              
+                          "
+                      >
                         <img  
                         className="
-                            w-[100px]
-                            h-[100px]
-                            rounded-[50px]
+                            w-[150px]
+                            h-[150px]
+                            p-1
+                            rounded-[10px]
                         "
                         src={`https://image.tmdb.org/t/p/w500/${e.profile_path}` } alt="" />
                         <section

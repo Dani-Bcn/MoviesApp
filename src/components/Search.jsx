@@ -38,8 +38,9 @@ const [activePage,setActivePage] = useState(true)
       className="
       absolute
       w-screen  
-      -mt-[60px]
+      -mt-[120px]
     bg-slate-800
+    rounded-r-[25px]
       z-50
     "
     >
@@ -47,6 +48,7 @@ const [activePage,setActivePage] = useState(true)
         className="
         absolute
           bg-slate-800
+          
         "
       >
         <svg
@@ -97,6 +99,7 @@ const [activePage,setActivePage] = useState(true)
               className="
               bg-slate-500
               text-slate-300
+              
             "
               ref={inputRef}
               placeholder="Search Movies/Tv"
@@ -130,6 +133,7 @@ const [activePage,setActivePage] = useState(true)
             my-3
             text-[1.3rem]
             text-orange-200
+            rounded-[50px]
           "
             >
               No results
@@ -139,13 +143,14 @@ const [activePage,setActivePage] = useState(true)
       </section>
       <section
         className="          
-            mt-40
-            m-auto
-            w-96
+            mt-32
+            m-auto    
+               
             p-2
             text-[1.2rem]            
             text-orange-200
             bg-slate-800
+            rounded-[50px]
           "
       >
         {findMovie
@@ -157,7 +162,7 @@ const [activePage,setActivePage] = useState(true)
                   
                     flex
                     m-5
-                    shadow                                
+                    shadow     rounded-[50px]                             
                   "
                   >
                     <img
