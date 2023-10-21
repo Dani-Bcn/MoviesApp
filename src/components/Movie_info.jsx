@@ -14,14 +14,19 @@ export default function Movie_info(props) {
           .then((resp) => resp.json())
           .then((resp) => setInfoMovie(resp))
       : null;
-
-    fetch(
-      `https://api.themoviedb.org/3/movie/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
-    )
-      .then((resp) => resp.json())
-      .then((resp) => setInfoCast(resp));
   }, [idMovie]);
-  idMovie ? console.log(infoMovie) : null;
+
+  useEffect(() => {
+    idMovie !== undefined
+      ? fetch(
+          `https://api.themoviedb.org/3/movie/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+        )
+          .then((resp) => resp.json())
+          .then((resp) => setInfoCast(resp))
+      : null;
+
+    idMovie ? console.log(infoCast) : null;
+  }, [idMovie]);
   return (
     <m.main
       className="
@@ -33,6 +38,12 @@ export default function Movie_info(props) {
     "
       animate={{
         opacity: [0, 1],
+        transition: {
+          duration: 0.5,
+        },
+      }}
+      exit={{
+        x: 200,
       }}
     >
       {infoMovie ? (
@@ -51,7 +62,7 @@ export default function Movie_info(props) {
             className="
                 w-screen
                 flex
-                flex-col
+                flex-col 
                 items-center
                 justify-center            
                 gap-5
@@ -97,10 +108,63 @@ export default function Movie_info(props) {
                     gap-5
                 "
               >
-                {infoMovie.genres.map((e) => {
-                  return <p> {e.name}</p>;
+                {infoMovie.genres.map((e, i) => {
+                  return <p key={i}> {e.name}</p>;
                 })}
               </section>
+              <a href={infoMovie.homepage}>Home page</a>
+          <p>Cast</p>
+
+              {infoCast !== undefined? (
+                <>
+                  {infoCast.cast.map((e, i) => {
+                    return(
+                    <section 
+                      key={i}
+                      className=" 
+                        w-full
+                        h-32
+                        p-5
+                        bg-slate-700
+                        gap-5
+                        flex
+                        items-center
+                        rounded-[10px]
+                        shadow-lg shadow-cyan-500/50              
+                        "
+                    >
+                        <img  
+                        className="
+                            w-[100px]
+                            h-[100px]
+                            rounded-[50px]
+                        "
+                        src={`https://image.tmdb.org/t/p/w500/${e.profile_path}` } alt="" />
+                        <section
+                            className="
+                                flex
+                                flex-col
+                                items-center
+                                justify-between                                
+                            "
+                        >
+                            <h3>{e.name}</h3> 
+                            <button
+                                className="
+                                 text
+                                py-3
+                                bg-slate-600
+                                text-[0.8rem]
+                                rounded-[5px]
+                              "
+                            >Info</button>
+                        </section>
+                       
+                    </section> 
+                    ) 
+                  })}
+                </>
+              ) : null} 
             </section>
           </section>
         </>

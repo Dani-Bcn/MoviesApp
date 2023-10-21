@@ -191,6 +191,7 @@ const [activePage,setActivePage] = useState(true)
                           bg-slate-600
                           py-4
                           mx-auto
+                          rounded-[5px]
                         "
                       >Info</button>
                     </section>

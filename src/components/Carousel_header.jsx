@@ -75,12 +75,19 @@ export default function Carousel_movies(props) {
   };
 
   return (
-    <main
+    <m.main
     className="
       flex
       justify-center
       
       "
+      animate={{
+        opacity: [0, 1],
+        x:[200,0],
+        transition:{
+            duration:0.5
+        }
+      }}
     >
       <section
         className="
@@ -156,6 +163,6 @@ export default function Carousel_movies(props) {
             })
           : null}
       </section>  */}
-    </main>
+    </m.main>
   );
 }
