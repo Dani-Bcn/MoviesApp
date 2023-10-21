@@ -15,7 +15,7 @@ export default function Carousel_tv(props) {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/discover/tv?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_video=fals`
+      `https://api.themoviedb.org/3/discover/tv?api_key=55b2cf9d90cb74c55683e395bb1ad12b&sort_by=popularity.desc`
     )
       .then((resp) => resp.json())
       .then((resp) => setResApi(resp.results));
@@ -84,7 +84,8 @@ export default function Carousel_tv(props) {
       "
       animate={{
         opacity: [0, 1],
-        x:[200,0],
+        opacity:[0,1],
+        y:[-200,0],
         transition:{
             duration:0.5
         }
