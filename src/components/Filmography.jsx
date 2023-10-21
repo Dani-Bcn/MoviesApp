@@ -7,7 +7,7 @@ export default function Filmography(props) {
   useEffect(() => {
     keyWord
       ? fetch(
-          `https://api.themoviedb.org/3/discover/movie?with_cast=${keyWord}&sort_by=release_date.desc&api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
+          `http://api.themoviedb.org/3/discover/movie?with_cast=${keyWord}&sort_by=release_date.desc&api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfo(resp.results))
