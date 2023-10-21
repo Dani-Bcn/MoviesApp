@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion as m } from "framer-motion";
 
 const Actor_info = (props) => {
   const { idPerson } = props;
-  const {getKeyWord} = props
+  const { getKeyWord } = props;
   console.log(idPerson, "id");
   const navigate = useNavigate();
   const [infoActor, setInfoActor] = useState();
+  const [activeBiography,setActiveBiography] = useState(false)
+
+
   useEffect(() => {
     idPerson
       ? fetch(
@@ -17,6 +21,18 @@ const Actor_info = (props) => {
       : null;
   }, []);
   idPerson ? console.log(infoActor) : null;
+
+  const variantsBiography ={
+    open:{ 
+      height:"100vh",
+      transition:{
+        duration:5
+      }
+    },
+    closed:{
+      height:"0vh"
+    }
+  }
   return (
     <main
       className="
@@ -61,16 +77,39 @@ const Actor_info = (props) => {
             <h2>{infoActor.name}</h2>
             <p>{infoActor.birthday}</p>
             <p>{infoActor.place_of_birth}</p>
-            {
-              infoActor.homepage?
-                      <a href={infoActor.homepage}>Home page</a>
-                      :null
-            }
-    
-            <p>{infoActor.biography}</p>
+            {infoActor.homepage ? (
+              <a href={infoActor.homepage}>Home page</a>
+            ) : null}
+            <section
+            >
+              <button
+              onClick={()=>setActiveBiography(!activeBiography)}
+              className="
+                w-20
+                p-4
+              "
+              >Biography</button>
+              <m.section
+                className="
+                my-5
+                overflow-hidden
+                h-[0vh]
+              "
+              variants={variantsBiography}
+                animate={
+                  activeBiography? "open" : "closed"
+                }
+              >
+                <p>{infoActor.biography}</p>
+              </m.section>
+            </section>
             <button
-              onClick={()=>{navigate("/filmography"), getKeyWord(idPerson)}}
-            >Filmography</button>
+              onClick={() => {
+                navigate("/filmography"), getKeyWord(idPerson)
+              }}
+            >
+              Filmography
+            </button>
           </section>
         ) : null}
       </div>
