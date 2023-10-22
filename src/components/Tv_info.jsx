@@ -9,6 +9,7 @@ export default function Movie_info(props) {
   const {getIdPerson} = props 
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
+ 
 
   useEffect(() => {
     idMovie !== undefined

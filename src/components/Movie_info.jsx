@@ -75,7 +75,7 @@ export default function Movie_info(props) {
             border-2
             rounded-lg
             "
-          >Trailer</button>
+          >Trailer/s</button>
           <section
             className="
                 w-screen
