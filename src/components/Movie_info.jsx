@@ -63,7 +63,7 @@ export default function Movie_info(props) {
           />
           <button
 
-          onClick={(idMovie)=>{navigate("/trailers")}}
+          onClick={()=>{navigate("/trailers")}}
             className="
             absolute 
             -mt-12 

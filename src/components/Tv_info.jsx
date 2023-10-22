@@ -19,7 +19,7 @@ export default function Movie_info(props) {
           .then((resp) => setInfoMovie(resp))
       : null;
   }, [idMovie]);
-
+console.log(infoMovie)
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
@@ -59,7 +59,21 @@ export default function Movie_info(props) {
                 h-[500px]                 
             "
             src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
-          />
+          /><button
+
+          onClick={()=>{navigate("/trailers")}}
+            className="
+            absolute 
+            -mt-12 
+             mx-2
+            
+            py-5 
+            text-3xl 
+            border-red-300
+            border-2
+            rounded-lg
+            "
+          >Triler</button>
           <section
             className="
                 w-screen
@@ -160,8 +174,7 @@ export default function Movie_info(props) {
                                 rounded-[5px]
                               "
                             >Info</button>
-                        </section>
-                       
+                        </section>                       
                     </section> 
                     ) 
                   })}

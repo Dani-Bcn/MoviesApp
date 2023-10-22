@@ -27,6 +27,7 @@ export default function Home() {
 
   const selectMovieOrTv =((e)=>{
    setSelectMovieTv(e)
+   console.log(e)
 
   })
   const getIdMovieToMovieInfo = (e) => {
@@ -44,6 +45,8 @@ export default function Home() {
   const getKeyWord=((e)=>{
     setKeyWord(e)
   })
+
+ 
 
   const dataOverage = (e) => <Svg e={e} />;
 
@@ -74,9 +77,9 @@ export default function Home() {
       <Routes location={location} key={location.pathname}>
         <Route path="infoMovie" element={<Movie_info idMovie={idMovie} getIdPerson={getIdPerson} getIdMovie={getIdMovie}/>} />
         <Route path="infoTv" element={<Tv_info idMovie={idMovie}  getIdPerson={getIdPerson} getIdMovie={getIdMovie}/>} />
-        <Route path="infoActor" element={<Actor_info idPerson={idPerson} getKeyWord={getKeyWord}/>} />
+        <Route path="infoActor" element={<Actor_info idPerson={idPerson} getKeyWord={getKeyWord} getIdMovie={getIdMovie}/>} />
         <Route path="filmography" element={<Filmography  keyWord={keyWord} getIdMovie={getIdMovie}/>} />
-      <Route path="trailers" element={<Get_videos idMovie={idMovie}/>}/> 
+      <Route path="trailers" element={<Get_videos idMovie={idMovie} selectMovieTv={selectMovieTv}/>}/> 
  </Routes>
         <m.section
           className="
