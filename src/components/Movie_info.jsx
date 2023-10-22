@@ -59,6 +59,21 @@ export default function Movie_info(props) {
             "
             src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
           />
+          <button
+
+          onClick={()=>navigate("/trailers")}
+            className="
+            absolute 
+            -mt-12 
+             mx-2
+            
+            py-5 
+            text-3xl 
+            border-red-300
+            border-2
+            rounded-lg
+            "
+          >Triler</button>
           <section
             className="
                 w-screen
@@ -70,6 +85,7 @@ export default function Movie_info(props) {
                 p-10
                 "
           >
+           
             <h2
               className="
                 text-2xl
@@ -114,7 +130,6 @@ export default function Movie_info(props) {
               </section>
               <a href={infoMovie.homepage}>Home page</a>
               <p>Cast</p>
-
               {infoCast !== undefined ? (
                 <>
                   {infoCast.cast.map((e, i) => {

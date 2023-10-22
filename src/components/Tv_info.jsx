@@ -27,8 +27,6 @@ export default function Movie_info(props) {
           .then((resp) => resp.json())
           .then((resp) => setInfoCast(resp))
       : null;
-
-    idMovie ? console.log(infoCast) : null;
   }, [idMovie]);
   return (
     <m.main

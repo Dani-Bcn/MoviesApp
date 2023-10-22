@@ -5,22 +5,18 @@ import { motion as m } from "framer-motion";
 const Actor_info = (props) => {
   const { idPerson } = props;
   const { getKeyWord } = props;
-  console.log(idPerson, "id");
   const navigate = useNavigate();
   const [infoActor, setInfoActor] = useState();
   const [activeBiography,setActiveBiography] = useState(false)
 
-
-  useEffect(() => {
-    idPerson
-      ? fetch(
+ fetch(
           `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoActor(resp))
-      : null;
-  }, []);
-  idPerson ? console.log(infoActor) : null;
+      
+ 
+
 
   const variantsBiography ={
     open:{ 

@@ -22,6 +22,7 @@ export default function Carousel_movies(props) {
   }, []);
 
   useEffect(() => {
+    // obtener todas las imágenes 
     resApi
       ? fetch(
           `http://api.themoviedb.org/3/movie/${resApi[countMovie].id}/images?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
@@ -31,7 +32,7 @@ export default function Carousel_movies(props) {
       : null;
   }, [stateCount]);
 
-/*   resApi? console.log(resApi):null */
+  /*  resApi? console.log(resApi):null  */
 
   const count = () => {
     setStateCount(!stateCount);

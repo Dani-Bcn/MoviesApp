@@ -10,6 +10,7 @@ import Movie_info from "./Movie_info";
 import Tv_info from "./Tv_info"
 import Actor_info from "./Actor_info"
 import Filmography from "./Filmography";
+import Get_videos from "./Get_videos"; 
 
 export default function Home() {
   const location = useLocation();
@@ -42,7 +43,6 @@ export default function Home() {
   const getKeyWord=((e)=>{
     setKeyWord(e)
   })
-  console.log(keyWord)
 
   const dataOverage = (e) => <Svg e={e} />;
 
@@ -75,6 +75,7 @@ export default function Home() {
         <Route path="infoTv" element={<Tv_info idMovie={idMovie}  getIdPerson={getIdPerson} />} />
         <Route path="infoActor" element={<Actor_info idPerson={idPerson} getKeyWord={getKeyWord}/>} />
         <Route path="filmography" element={<Filmography  keyWord={keyWord} getIdMovie={getIdMovie}/>} />
+      <Route path="trailers" element={<Get_videos/>}/> 
  </Routes>
         <m.section
           className="

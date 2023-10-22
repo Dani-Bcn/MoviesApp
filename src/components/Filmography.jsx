@@ -16,7 +16,6 @@ export default function Filmography(props) {
           .then((resp) => setInfo(resp.results))
       : null;
   }, []);
-  keyWord ? console.log(info) : null;
   return (
     <main
       className="

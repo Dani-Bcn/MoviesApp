@@ -19,7 +19,6 @@ export default function Carousel_tv(props) {
     )
       .then((resp) => resp.json())
       .then((resp) => setResApi(resp.results));
-      stateCount ?console.log(resApi):null
   }, [stateCount]);
 
   useEffect(() => {
