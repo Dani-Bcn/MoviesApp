@@ -4,12 +4,14 @@ import { motion as m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export default function Movie_info(props) {
+
   const { getIdPerson } = props;
+  const {getIdMovie} = props
   const { idMovie } = props;
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
   const navigate = useNavigate();
-
+  console.log(idMovie)
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
@@ -61,7 +63,7 @@ export default function Movie_info(props) {
           />
           <button
 
-          onClick={()=>navigate("/trailers")}
+          onClick={(idMovie)=>{navigate("/trailers")}}
             className="
             absolute 
             -mt-12 

@@ -19,6 +19,7 @@ export default function Home() {
   const [selectMovieTv,setSelectMovieTv] = useState(true)
   const [idPerson, setIdPerson] = useState()
   const [keyWord, setKeyWord] = useState()
+  console.log(idMovie)
 
   const active = (e) => {
     setActiveSearch(e);
@@ -71,11 +72,11 @@ export default function Home() {
     >
       <Navbar active={active} selectMovieOrTv={selectMovieOrTv}/>
       <Routes location={location} key={location.pathname}>
-        <Route path="infoMovie" element={<Movie_info idMovie={idMovie} getIdPerson={getIdPerson} />} />
-        <Route path="infoTv" element={<Tv_info idMovie={idMovie}  getIdPerson={getIdPerson} />} />
+        <Route path="infoMovie" element={<Movie_info idMovie={idMovie} getIdPerson={getIdPerson} getIdMovie={getIdMovie}/>} />
+        <Route path="infoTv" element={<Tv_info idMovie={idMovie}  getIdPerson={getIdPerson} getIdMovie={getIdMovie}/>} />
         <Route path="infoActor" element={<Actor_info idPerson={idPerson} getKeyWord={getKeyWord}/>} />
         <Route path="filmography" element={<Filmography  keyWord={keyWord} getIdMovie={getIdMovie}/>} />
-      <Route path="trailers" element={<Get_videos/>}/> 
+      <Route path="trailers" element={<Get_videos idMovie={idMovie}/>}/> 
  </Routes>
         <m.section
           className="

@@ -4,6 +4,7 @@ import { motion as m } from "framer-motion";
 
 export default function Movie_info(props) {
   const { idMovie } = props;
+  console.log(idMovie)
   const navigate = useNavigate()
   const {getIdPerson} = props 
   const [infoMovie, setInfoMovie] = useState();
