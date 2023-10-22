@@ -41,10 +41,10 @@ export default function Carousel_tv(props) {
 
   setIn = setInterval(count, 3000);
 
-  const handlePoster = () => {
+  const handlePoster = () => { 
     active(false);
     setActiveposter(!activePoster);
-  };
+  }; 
 
   const variantsPoster = {
     open: {

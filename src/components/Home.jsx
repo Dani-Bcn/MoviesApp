@@ -83,34 +83,26 @@ export default function Home() {
  </Routes>
         <m.section
           className="
-      absolute
-        ml-[-400px]
-        z-50
-      "
+            absolute
+            ml-[-400px]
+            z-50
+          "
           variants={variants}
           animate={activeSearch ? "open" : "closed"}
         >
           <Search active={active} />
         </m.section>
-
         {
-
           selectMovieTv?
-
         <Carousel_movies
           getIdMovieToMovieInfo={getIdMovieToMovieInfo}
           active={active}
         /> :
           <Carousel_tv
           getIdMovieToMovieInfo={getIdMovieToMovieInfo}
-          active={active}
-          
-        />
-          
-       
+          active={active}          
+        />            
        }
-      {/*   <List_Movies/> */}
-      {/*   <Calls_Api dataOverage={dataOverage}/>  */}
     </main>
   );
 }

@@ -107,12 +107,19 @@ console.log(infoMovie)
                 className="
                     flex
                     w-full
-                    justify-between
+                    gap-5
                 "
               >
                 <p>{infoMovie.first_air_date.slice(0, 4)}</p>
                 <p>{infoMovie.original_language}</p>
-                <p>{infoMovie.production_companies[0].origin_country}</p>
+
+                {
+                  infoMovie.production_companies.length > 0?
+                    <p>{infoMovie.production_companies[0].origin_country}</p>
+                    :
+                    <p>{infoMovie.production_countries[0].iso_3166_1}</p>
+                }
+              
               </section>
               <section
                 className="
