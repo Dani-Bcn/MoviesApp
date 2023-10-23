@@ -6,8 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function Movie_info(props) {
 
   const { getIdPerson } = props;
-  const {getIdMovie} = props
-  const { idMovie } = props;
+  let  idMovie  = localStorage.getItem("idMovie")
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
   const navigate = useNavigate();
@@ -37,12 +36,11 @@ export default function Movie_info(props) {
       className="
         absolute
         w-screen      
-        text-orange-200
+        text-slate-200
         bg-slate-800
         z-20
     "
-      animate={{
-       
+      animate={{       
         transition: {
           duration: 0.5,
         },
@@ -66,9 +64,10 @@ export default function Movie_info(props) {
           onClick={()=>{navigate("/trailers")}}
             className="
             absolute 
-            -mt-12 
-             mx-2            
-            py-5 
+            -mt-16
+             mx-5            
+            py-1
+            px-5
             text-3xl 
             border-red-300
             border-2
@@ -85,8 +84,7 @@ export default function Movie_info(props) {
                 gap-5
                 p-10
                 "
-          >
-           
+          >           
             <h2
               className="
                 text-2xl
@@ -180,7 +178,8 @@ export default function Movie_info(props) {
                             }}
                             className="
                                  text
-                                py-3
+                                py-1
+                                px-16
                                 bg-slate-600
                                 text-[0.8rem]
                                 rounded-[5px]

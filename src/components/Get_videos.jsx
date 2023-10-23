@@ -52,7 +52,7 @@ export default function Get_videos() {
                         justify-start
                         text-orange-200
                         text-left
-                        py-4
+                        p-1
                     "
                 >
                   {e.name}

@@ -7,30 +7,33 @@ const Actor_info = (props) => {
   const { getKeyWord } = props;
   const navigate = useNavigate();
   const [infoActor, setInfoActor] = useState();
-  const [activeBiography,setActiveBiography] = useState(false)
+  const [activeBiography, setActiveBiography] = useState(false);
 
- fetch(
-          `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
-        )
-          .then((resp) => resp.json())
-          .then((resp) => setInfoActor(resp))
-  const variantsBiography ={
-    open:{ 
-      height:"100vh",
-      transition:{
-        duration:5
-      }
+  fetch(
+    `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+  )
+    .then((resp) => resp.json())
+    .then((resp) => setInfoActor(resp));
+  const variantsBiography = {
+    open: {
+      height: "auto",
+      transition: {
+        duration: 1,
+      },
     },
-    closed:{
-      height:"0vh"
-    }
-  }
+    closed: {
+      height: "0vh",
+      transition: {
+        duration: 1,
+      },
+    },
+  };
   return (
     <main
       className="
       absolute
         w-screen
-        bg-slate-700
+        bg-slate-800
         flex
         flex-col
         items-center
@@ -72,21 +75,44 @@ const Actor_info = (props) => {
             {infoActor.homepage ? (
               <a href={infoActor.homepage}>Home page</a>
             ) : null}
-            <section
-            >
-              <button
-              onClick={()=>setActiveBiography(!activeBiography)}
-              className="
-                w-20
-                p-4
+            <section>
+              <section
+                className="
+                w-full
+                h-20
+                flex
+                flex-col
+                items-start
+                justify-around
+                "              
+              >
+                <button
+                  className="
+                    w-0
+                                              
+                  "
+                  onClick={() => {
+                    navigate("/filmography"), getKeyWord(idPerson);
+                  }}
+                >
+                  Filmography
+                </button>
+                <button
+                  className="
+                w-0
+                  
               "
-              >Biography</button>
+                  onClick={() => setActiveBiography(!activeBiography)}
+                >
+                  Biography
+                </button>
+              </section>
               <m.section
                 className="
-                my-5
-                overflow-hidden
-                h-[0vh]
-              "
+                  overflow-hidden
+                  h-0
+                "
+
               variants={variantsBiography}
                 animate={
                   activeBiography? "open" : "closed"
@@ -95,13 +121,6 @@ const Actor_info = (props) => {
                 <p>{infoActor.biography}</p>
               </m.section>
             </section>
-            <button
-              onClick={() => {
-                navigate("/filmography"), getKeyWord(idPerson)
-              }}
-            >
-              Filmography
-            </button>
           </section>
         ) : null}
       </div>

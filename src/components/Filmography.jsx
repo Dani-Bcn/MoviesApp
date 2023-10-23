@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function Filmography(props) {
   const navigate = useNavigate();
   const {getIdMovie} = props
+  console.log(getIdMovie)
   const { keyWord } = props;
   const [info, setInfo] = useState();
 
@@ -53,7 +54,10 @@ export default function Filmography(props) {
               return e.poster_path ? (
                 <section
                   key={i}
-                  onClick={() => {navigate("/infoMovie"), getIdMovie(e.id)}}
+                  onClick={() => {navigate("/infoMovie"), 
+                  localStorage.setItem("idMovie",e.id)
+                  localStorage.setItem("movieOrTv","movie")                
+                }}
                   className="
                     flex
                     flex-col

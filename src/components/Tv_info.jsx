@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 
 export default function Movie_info(props) {
-  const { idMovie } = props;
-  console.log(idMovie)
+  let idMovie = localStorage.getItem("idMovie")
+
   const navigate = useNavigate()
   const {getIdPerson} = props 
   const [infoMovie, setInfoMovie] = useState();
@@ -39,8 +39,7 @@ console.log(infoMovie)
         bg-slate-800
         z-20
     "
-      animate={{
-       
+      animate={{       
         transition: {
           duration: 0.5,
         },
@@ -65,9 +64,10 @@ console.log(infoMovie)
           onClick={()=>{navigate("/trailers")}}
             className="
             absolute 
-            -mt-12 
-             mx-2            
-            py-5 
+            -mt-16
+             mx-5            
+            py-1
+            px-5
             text-3xl 
             border-red-300
             border-2
@@ -175,7 +175,8 @@ console.log(infoMovie)
                              onClick={()=> {navigate("/infoActor"),getIdPerson(e.id)}}
                                 className="
                                  text
-                                py-3
+                                py-1
+                                px-16
                                 bg-slate-600
                                 text-[0.8rem]
                                 rounded-[5px]

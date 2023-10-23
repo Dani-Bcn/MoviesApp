@@ -132,7 +132,8 @@ export default function Carousel_movies(props) {
               }}
               className="
               m-5
-              py-5
+              py-2
+              px-16
               text-[1.4rem]
               bg-slate-700/[0.9]
               rounded-xl
