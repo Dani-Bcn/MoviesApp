@@ -191,7 +191,7 @@ const [activePage,setActivePage] = useState(true)
                       <button
 
                       onClick={()=>{
-                        "/infoMovie",
+                        navigate("/infoMovie"),
                         active(false), 
                         localStorage.setItem("idMovie", e.id)
                         localStorage.setItem("movieOrTv", "movie")
@@ -207,7 +207,7 @@ const [activePage,setActivePage] = useState(true)
                       :
                       <button
                       onClick={()=>{
-                        "/infoMovie",
+                        navigate("/infoMovie"),
                         active(false), 
                         localStorage.setItem("idMovie", e.id)
                         localStorage.setItem("movieOrTv", "tv")
