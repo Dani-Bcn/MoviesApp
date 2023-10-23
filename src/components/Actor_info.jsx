@@ -88,8 +88,7 @@ const Actor_info = (props) => {
               >
                 <button
                   className="
-                    w-0
-                                              
+                    w-0                                              
                   "
                   onClick={() => {
                     navigate("/filmography"), getKeyWord(idPerson);
@@ -99,9 +98,8 @@ const Actor_info = (props) => {
                 </button>
                 <button
                   className="
-                w-0
-                  
-              "
+                    w-0                  
+                  "
                   onClick={() => setActiveBiography(!activeBiography)}
                 >
                   Biography
@@ -112,7 +110,6 @@ const Actor_info = (props) => {
                   overflow-hidden
                   h-0
                 "
-
               variants={variantsBiography}
                 animate={
                   activeBiography? "open" : "closed"

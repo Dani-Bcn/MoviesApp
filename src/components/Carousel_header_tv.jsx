@@ -122,6 +122,7 @@ export default function Carousel_tv(props) {
             <button
               onClick={() => {
                 getIdMovieToMovieInfo(resApi[countMovie].id);
+                localStorage.setItem("movieOrTv", "tv")
               }}
               className="
               m-5

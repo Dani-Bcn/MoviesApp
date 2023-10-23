@@ -21,6 +21,8 @@ export default function Carousel_movies(props) {
       .then((resp) => setResApi(resp.results));
   }, []);
 
+  resApi? console.log(resApi):null
+
 
 
   useEffect(() => {
@@ -39,7 +41,7 @@ export default function Carousel_movies(props) {
   const count = () => {
     setStateCount(!stateCount);
     setCountMovie(countMovie + 1);
-    countMovie === 19? setCountMovie((countMovie) => 1) : null;
+    countMovie === 19? setCountMovie(countMovie => 1) : null;
     clearInterval(setIn);
   };
 
@@ -125,7 +127,8 @@ export default function Carousel_movies(props) {
              <Link to="/infoMovie" >
             <button
               onClick={() => {
-                getIdMovieToMovieInfo(resApi[countMovie].id,          
+                getIdMovieToMovieInfo(resApi[countMovie].id,
+                  localStorage.setItem("movieOrTv", "movie")
                   );
               }}
               className="
