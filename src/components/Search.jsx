@@ -20,9 +20,7 @@ const [activePage,setActivePage] = useState(true)
 
   useEffect(() => {
     if (inputRef.current.value.length > 3) { 
-      fetch(
-        /* multi, para buscar tanto pelis como series */
-        /* person, buscar personas */
+      fetch(     
         `https://api.themoviedb.org/3/search/multi?query=${seacrhInput}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
       )
         .then((resp) => resp.json())
@@ -30,9 +28,7 @@ const [activePage,setActivePage] = useState(true)
     }
   }, [newCall]);
 
-  findMovie? console.log(findMovie):null
-
- 
+  findMovie? console.log(findMovie):null 
 
   return (
     <m.main
@@ -188,11 +184,8 @@ const [activePage,setActivePage] = useState(true)
 
                     {
                       e.media_type === "person"?null:
-                      e.media_type  === "movie" ?
-
-                  
+                      e.media_type  === "movie" ?                  
                       <button
-
                       onClick={()=>{
                         navigate("/infoMovie"),
                         active(false), 
@@ -201,7 +194,8 @@ const [activePage,setActivePage] = useState(true)
                       }}
                         className="
                           bg-slate-600
-                          py-4
+                          py-1
+                          px-10
                           mx-auto
                           rounded-[5px]
                         "
@@ -217,7 +211,8 @@ const [activePage,setActivePage] = useState(true)
                       }}
                         className="
                           bg-slate-600
-                          py-4
+                          py-1
+                          px-10
                           mx-auto
                           rounded-[5px]
                         "

@@ -4,13 +4,12 @@ import { motion as m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export default function Movie_info(props) {
-
   const { getIdPerson } = props;
-  let  idMovie  = localStorage.getItem("idMovie")
+  let idMovie = localStorage.getItem("idMovie");
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
   const navigate = useNavigate();
-  console.log(idMovie)
+  console.log(idMovie);
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
@@ -20,7 +19,6 @@ export default function Movie_info(props) {
           .then((resp) => setInfoMovie(resp))
       : null;
   }, [idMovie]);
-  infoMovie?console.log(infoMovie):null
 
   useEffect(() => {
     idMovie !== undefined
@@ -31,6 +29,8 @@ export default function Movie_info(props) {
           .then((resp) => setInfoCast(resp))
       : null;
   }, [idMovie]);
+
+  infoCast ? console.log(infoCast) : null;
   return (
     <m.main
       className="
@@ -40,7 +40,7 @@ export default function Movie_info(props) {
         bg-slate-800
         z-20
     "
-      animate={{       
+      animate={{
         transition: {
           duration: 0.5,
         },
@@ -51,7 +51,7 @@ export default function Movie_info(props) {
     >
       {infoMovie ? (
         <>
-          <m.img          
+          <m.img
             className="
                 m-auto
                 w-screen
@@ -60,8 +60,9 @@ export default function Movie_info(props) {
             src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
           />
           <button
-
-          onClick={()=>{navigate("/trailers")}}
+            onClick={() => {
+              navigate("/trailers");
+            }}
             className="
             absolute 
             -mt-16
@@ -73,7 +74,9 @@ export default function Movie_info(props) {
             border-2
             rounded-lg
             "
-          >Trailer/s</button>
+          >
+            Trailer/s
+          </button>
           <section
             className="
                 w-screen
@@ -84,7 +87,7 @@ export default function Movie_info(props) {
                 gap-5
                 p-10
                 "
-          >           
+          >
             <h2
               className="
                 text-2xl
@@ -113,16 +116,11 @@ export default function Movie_info(props) {
                 <p>{infoMovie.release_date.slice(0, 4)}</p>
                 <p>{infoMovie.runtime}"</p>
                 <p>{infoMovie.original_language}</p>
-{
- infoMovie.production_companies.length !== 0?
-  <p>{infoMovie.production_companies[0].origin_country}</p>
-  :
-  <p>{infoMovie.production_countries[0].iso_3166_1}</p>
-
-}
-               
-
-              
+                {infoMovie.production_companies.length !== 0 ? (
+                  <p>{infoMovie.production_companies[0].origin_country}</p>
+                ) : (
+                  <p>{infoMovie.production_countries[0].iso_3166_1}</p>
+                )}
               </section>
               <section
                 className="
@@ -142,9 +140,14 @@ export default function Movie_info(props) {
                 <>
                   {infoCast.cast.map((e, i) => {
                     return (
-                      <section
-                        key={i}
-                        className=" 
+                      <>
+                        {e.profile_path !== null ? (
+                          <section
+                            onClick={() => {
+                              navigate("/infoActor"), getIdPerson(e.id);
+                            }}
+                            key={i}
+                            className=" 
                           w-full
                           h-40
                           p-5
@@ -155,49 +158,30 @@ export default function Movie_info(props) {
                           rounded-[10px]
                           shadow-lg shadow-cyan-500/50              
                           "
-                      >
-                        {
-
-                          e.profile_path ?
-                          <img
-                            className="
-                              w-[150px]
+                          >
+                            <img
+                              className="
+                              w-[100px]
                               h-[150px]
                               p-1
                               rounded-[10px]
                           "
-                            src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
-                            alt=""
-                          />
-                          :null
-                        }
-
-                        <section
-                          className="
+                              src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
+                              alt=""
+                            />
+                            <section
+                              className="
                                 flex
                                 flex-col
                                 items-center
                                 justify-between                                
                             "
-                        >
-                          <h3>{e.name}</h3>
-                          <button
-                            onClick={() => {
-                              navigate("/infoActor"), getIdPerson(e.id);
-                            }}
-                            className="
-                                 text
-                                py-1
-                                px-16
-                                bg-slate-600
-                                text-[0.8rem]
-                                rounded-[5px]
-                              "
-                          >
-                            Info
-                          </button>
-                        </section>
-                      </section>
+                            >
+                              <h3>{e.name}</h3>
+                            </section>
+                          </section>
+                        ) : null}
+                      </>
                     );
                   })}
                 </>
