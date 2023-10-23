@@ -9,7 +9,7 @@ export default function Search(props) {
   const inputRef = useRef();
   const buttonTextRef = useRef();
   const [newCall, setNewCall] = useState(false);
-  const [seacrhInput, setSearchInput] = useState("movie");
+  const [seacrhInput, setSearchInput] = useState();
   const [findMovie, setFindMovie] = useState();
   const [movirOrTv,setMovieOrTv] = useState()
  
@@ -19,7 +19,7 @@ export default function Search(props) {
 const [activePage,setActivePage] = useState(true)
 
   useEffect(() => {
-    if (inputRef.current.value.length > 3) {
+    if (inputRef.current.value.length > 3) { 
       fetch(
         /* multi, para buscar tanto pelis como series */
         /* person, buscar personas */
@@ -29,6 +29,8 @@ const [activePage,setActivePage] = useState(true)
         .then((resp) => setFindMovie(resp.results));      
     }
   }, [newCall]);
+
+  findMovie? console.log(findMovie):null
 
  
 
@@ -153,7 +155,8 @@ const [activePage,setActivePage] = useState(true)
                     className="                  
                     flex
                     m-5
-                    shadow     rounded-[50px]                             
+                    shadow     
+                    rounded-[50px]                             
                   "
                   >
                     <img
@@ -207,7 +210,7 @@ const [activePage,setActivePage] = useState(true)
                       :
                       <button
                       onClick={()=>{
-                        navigate("/infoMovie"),
+                        navigate("/infoTV"),
                         active(false), 
                         localStorage.setItem("idMovie", e.id)
                         localStorage.setItem("movieOrTv", "tv")

@@ -21,7 +21,7 @@ export default function Carousel_movies(props) {
       .then((resp) => setResApi(resp.results));
   }, []);
 
-  resApi? console.log(resApi):null
+
 
 
 
