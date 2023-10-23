@@ -57,8 +57,7 @@ export default function Navbar(props) {
             justify-center
             z-50
         "
-      >
-        b
+      >        
         <button
           onClick={() => {
             selectMovieOrTv(true), navigate("/");
