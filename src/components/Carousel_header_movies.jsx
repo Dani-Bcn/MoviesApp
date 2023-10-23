@@ -125,9 +125,7 @@ export default function Carousel_movies(props) {
              <Link to="/infoMovie" >
             <button
               onClick={() => {
-                getIdMovieToMovieInfo(resApi[countMovie].id,
-                 
-                  
+                getIdMovieToMovieInfo(resApi[countMovie].id,          
                   );
               }}
               className="
@@ -144,8 +142,6 @@ export default function Carousel_movies(props) {
             </Link>
           ) : null}
         </m.section>
-      
-
       {/*  <section>
         {respImages
           ? respImages.posters.map((e, i) => {

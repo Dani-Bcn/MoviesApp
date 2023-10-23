@@ -1,37 +1,36 @@
 import React, { useEffect, useState, useRef } from "react";
 import {motion as m} from "framer-motion"
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Search(props) { 
 
+  const navigate = useNavigate()
   const inputRef = useRef();
   const buttonTextRef = useRef();
   const [newCall, setNewCall] = useState(false);
   const [seacrhInput, setSearchInput] = useState("movie");
   const [findMovie, setFindMovie] = useState();
+  const [movirOrTv,setMovieOrTv] = useState()
  
  
   const {active} = props
 
 const [activePage,setActivePage] = useState(true)
 
-
-
-
-
-
   useEffect(() => {
     if (inputRef.current.value.length > 3) {
       fetch(
         /* multi, para buscar tanto pelis como series */
         /* person, buscar personas */
-        `https://api.themoviedb.org/3/search/movie?query=${seacrhInput}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
+        `https://api.themoviedb.org/3/search/multi?query=${seacrhInput}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
       )
         .then((resp) => resp.json())
         .then((resp) => setFindMovie(resp.results));      
     }
   }, [newCall]);
 
+ 
 
   return (
     <m.main
@@ -50,8 +49,7 @@ const [activePage,setActivePage] = useState(true)
       <section
         className="
         absolute
-          bg-slate-800
-          
+          bg-slate-800          
         "
       >
         <svg
@@ -113,15 +111,7 @@ const [activePage,setActivePage] = useState(true)
             />
           </form>
           <article>
-            <button
-              onClick={() => window.location.replace("")}
-              className="
-                w-20
-                text-orange-200
-              "
-            >
-              Clear
-            </button>
+           
           </article>
         </section>
         {findMovie ? (
@@ -147,8 +137,7 @@ const [activePage,setActivePage] = useState(true)
       <section
         className="          
             mt-32
-            m-auto    
-               
+            m-auto                   
             p-2
             text-[1.2rem]            
             text-orange-200
@@ -160,9 +149,8 @@ const [activePage,setActivePage] = useState(true)
           ? findMovie.map((e, i) => {
               if (e.poster_path) {
                 return (
-                  <section
-                    className="
-                  
+                  <section key={i}
+                    className="                  
                     flex
                     m-5
                     shadow     rounded-[50px]                             
@@ -192,9 +180,38 @@ const [activePage,setActivePage] = useState(true)
                           mx-5
                         "
                       >
-                        {e.title.slice(0,60) } 
+                        {e.title } 
                       </h2>
+
+                    {
+                      e.media_type === "person"?null:
+                      e.media_type  === "movie" ?
+
+                  
                       <button
+
+                      onClick={()=>{
+                        "/infoMovie",
+                        active(false), 
+                        localStorage.setItem("idMovie", e.id)
+                        localStorage.setItem("movieOrTv", "movie")
+                      }}
+                        className="
+                          bg-slate-600
+                          py-4
+                          mx-auto
+                          rounded-[5px]
+                        "
+                      >Info</button>      
+                                
+                      :
+                      <button
+                      onClick={()=>{
+                        "/infoMovie",
+                        active(false), 
+                        localStorage.setItem("idMovie", e.id)
+                        localStorage.setItem("movieOrTv", "tv")
+                      }}
                         className="
                           bg-slate-600
                           py-4
@@ -202,6 +219,10 @@ const [activePage,setActivePage] = useState(true)
                           rounded-[5px]
                         "
                       >Info</button>
+                    
+                    
+                    }
+                     
                     </section>
                   </section>
                 );
