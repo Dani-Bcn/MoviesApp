@@ -14,10 +14,6 @@ const Actor_info = (props) => {
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoActor(resp))
-      
- 
-
-
   const variantsBiography ={
     open:{ 
       height:"100vh",

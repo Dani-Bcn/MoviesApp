@@ -27,15 +27,21 @@ export default function Home() {
 
   const selectMovieOrTv =((e)=>{
    setSelectMovieTv(e)
-   console.log(e)
+   e?  localStorage.setItem("movieOrTv","movie"):
+   localStorage.setItem("movieOrTv","tv")
 
+  
   })
+
   const getIdMovieToMovieInfo = (e) => {
-    setIdMovie(e);
-  };
+    setIdMovie(e); 
+    localStorage.setItem("idMovie",e)
+  };  
 
   const getIdMovie=((e)=>{
     setIdMovie(e)     
+    console.log(e)
+ 
  })
 
   const getIdPerson=((e)=>{

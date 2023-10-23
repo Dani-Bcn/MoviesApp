@@ -62,7 +62,6 @@ export default function Carousel_movies(props) {
       borderRadius: "0px",
       border: "none",
       background: "linear-gradient(rgba(30 41 59 0), rgba(30 41 59 0.1),rgb(30 41 59)",
-
     },
   };
 
@@ -120,10 +119,13 @@ export default function Carousel_movies(props) {
         >
 
           {activePoster ? (
-             <Link to="/infoMovie">
+             <Link to="/infoMovie" >
             <button
               onClick={() => {
-                getIdMovieToMovieInfo(resApi[countMovie].id);
+                getIdMovieToMovieInfo(resApi[countMovie].id,
+                 
+                  
+                  );
               }}
               className="
               m-5

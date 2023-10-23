@@ -52,8 +52,7 @@ export default function Movie_info(props) {
     >
       {infoMovie ? (
         <>
-          <m.img
-          
+          <m.img          
             className="
                 m-auto
                 w-screen
@@ -110,7 +109,7 @@ export default function Movie_info(props) {
                 className="
                     flex
                     w-full
-                    justify-between
+                    gap-5
                 "
               >
                 <p>{infoMovie.release_date.slice(0, 4)}</p>
