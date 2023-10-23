@@ -26,7 +26,7 @@ export default function Get_videos() {
             w-screen 
             h-screen
             z-20
-            bg-red-950
+            bg-slate-800
         "
     >
       <section
@@ -48,9 +48,11 @@ export default function Get_videos() {
                   className="
                         w-full
                         flex
+                        items-center
                         justify-start
                         text-orange-200
-                        py-3
+                        text-left
+                        py-4
                     "
                 >
                   {e.name}

@@ -21,6 +21,7 @@ export default function Movie_info(props) {
           .then((resp) => setInfoMovie(resp))
       : null;
   }, [idMovie]);
+  infoMovie?console.log(infoMovie):null
 
   useEffect(() => {
     idMovie !== undefined
@@ -41,7 +42,7 @@ export default function Movie_info(props) {
         z-20
     "
       animate={{
-        opacity: [0, 1],
+       
         transition: {
           duration: 0.5,
         },
@@ -66,8 +67,7 @@ export default function Movie_info(props) {
             className="
             absolute 
             -mt-12 
-             mx-2
-            
+             mx-2            
             py-5 
             text-3xl 
             border-red-300

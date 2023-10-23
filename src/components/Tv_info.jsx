@@ -40,7 +40,7 @@ console.log(infoMovie)
         z-20
     "
       animate={{
-        opacity: [0, 1],
+       
         transition: {
           duration: 0.5,
         },
@@ -66,8 +66,7 @@ console.log(infoMovie)
             className="
             absolute 
             -mt-12 
-             mx-2
-            
+             mx-2            
             py-5 
             text-3xl 
             border-red-300

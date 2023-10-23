@@ -1,29 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Navbar(props) {
   const { active } = props;
-  const {selectMovieOrTv} = props
+  const { selectMovieOrTv } = props;
 
   const [activePage, setActivePage] = useState(true);
- const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
-    <main >
-<section>
+    <main>
+      <section
+        className="
+          flex
+          items-center
+          justify-start
+        "
+      >
+        {location.pathname !== "/" ? (
+          <button
+            className="
+              absolute
+              w-5              
+              px-10
+            "
+            onClick={() => {
+              navigate(-1), console.log(location.pathname);
+            }}
+          >
+            Back
+          </button>
+        ) : null}
 
-     <h1
-     onClick={()=>navigate("/")}
-     className="
-     w-screen
-     my-5
-     flex
-     items-center
-     justify-center
-     text-2xl     
-     text-orange-200
-     ">App Movies</h1>     
-     </section>
+        <h1
+          onClick={() => navigate("/")}
+          className="
+              w-screen
+              my-5
+              flex
+              items-center
+              justify-center
+              text-2xl     
+              text-orange-200
+            "
+        >
+          App Movies
+        </h1>
+      </section>
       <section
         className="
             w-full
@@ -33,27 +57,34 @@ export default function Navbar(props) {
             justify-center
             z-50
         "
-      > 
-
-
+      >
+        b
         <button
-         onClick={()=>{selectMovieOrTv(true),navigate("/")}}
+          onClick={() => {
+            selectMovieOrTv(true), navigate("/");
+          }}
           className="
             w-12
           "
-        >Movies</button>
+        >
+          Movies
+        </button>
         <button
-        onClick={()=>{selectMovieOrTv(false),navigate("/")}}
-         className="
+          onClick={() => {
+            selectMovieOrTv(false), navigate("/");
+          }}
+          className="
          w-40
        "
-        >Tv</button>
+        >
+          Tv
+        </button>
         <svg
           onClick={() => active(true)}
           width="25px"
           height="25px"
           viewBox="0 0 24 24"
-          fill="none"         
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="
             -pl-2

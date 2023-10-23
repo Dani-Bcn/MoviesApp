@@ -21,6 +21,8 @@ export default function Carousel_movies(props) {
       .then((resp) => setResApi(resp.results));
   }, []);
 
+
+
   useEffect(() => {
     // obtener todas las imágenes 
     resApi
@@ -39,8 +41,9 @@ export default function Carousel_movies(props) {
     setCountMovie(countMovie + 1);
     countMovie === 19? setCountMovie((countMovie) => 1) : null;
     clearInterval(setIn);
-    /*  respImages.backdrops ? console.log(respImages) : null; */
   };
+
+
 
   setIn = setInterval(count, 3000);
 
