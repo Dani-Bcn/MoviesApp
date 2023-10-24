@@ -101,7 +101,7 @@ const [activePage,setActivePage] = useState(true)
               
             "
               ref={inputRef}
-              placeholder="Search Movies/Tv"
+              placeholder="Search Movies/Tv..."
               onChange={() => {
                 setSearchInput(inputRef.current.value);
                 setNewCall(!newCall);

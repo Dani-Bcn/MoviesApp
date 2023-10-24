@@ -61,22 +61,7 @@ export default function Movie_info(props) {
         x: 200,
       }}
     >
-      <header
-        className="
-          w-screen
-          flex
-          items-center
-          justify-around
-          
-        "
-      >
-        <button onClick={() => navigate("/trailers")}>Trailer</button>
-        <button onClick={() => navigate("/backImages")}>
-          Background images
-        </button>
-        <button onClick={() => navigate("/logos")}>Logo</button>
-        <button>Posters</button>
-      </header>
+     
       {infoMovie ? (
         <section>
           <m.img
@@ -171,7 +156,7 @@ export default function Movie_info(props) {
                             <m.img
                               className="
                             rounded-[10px]
-                          shadow-xl
+                            shadow-xl
                             shadow-slate-950/100
 
                             "
@@ -188,10 +173,14 @@ export default function Movie_info(props) {
                                 flex
                                 flex-col
                                 items-center
-                                justify-between                                
+                                justify-center
+                                text-center                              
                             "
                             >
                               <h3>{e.name}</h3>
+                              <h3
+                              className="text-slate-400"
+                              >{e.character}</h3>
                             </section>
                           </section>
                         ) : null}
@@ -204,26 +193,27 @@ export default function Movie_info(props) {
             <section
               className="
               overflow-y-hidden
-              w-screen
                 flex
-                w-full
+                w-screen
               "
             >
+
               {dataVideos
                 ? dataVideos.map((e, i) => (
                     <section>
-                       <a href={`https://www.youtube.com/watch?v=UqcGdmJJVTY`}>
+                      <h3 className="px-5">Triler/s</h3>                     
                       <iframe
                         className="
                           w-screen
                           h-56
                           my-10
                           sm:my-0
-                          sm:h-[350px]
+                          sm:h-[390px]
+                          mr-5
                         "
                         src={`//www.youtube.com/embed/${e.key}/?autoplay=1;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
                       ></iframe>
-                      </a>
+                      
                     </section>
                   ))
                 : null}
