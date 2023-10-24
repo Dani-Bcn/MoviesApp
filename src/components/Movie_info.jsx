@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export default function Movie_info(props) {
   const { getIdPerson } = props;
   let idMovie = localStorage.getItem("idMovie");
+  const [movieOrTv, setMovieOrTv] = useState(localStorage.getItem("movieOrTv"));
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
+  const [dataVideos, setDataVideos] = useState();
   const navigate = useNavigate();
   console.log(idMovie);
   useEffect(() => {
@@ -31,6 +32,17 @@ export default function Movie_info(props) {
   }, [idMovie]);
 
   infoCast ? console.log(infoCast) : null;
+
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}/videos?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+    )
+      .then((resp) => resp.json())
+      .then((resp) => setDataVideos(resp.results));
+  }, [setDataVideos]);
+
+  dataVideos ? console.log(dataVideos) : null;
+
   return (
     <m.main
       className="
@@ -58,9 +70,11 @@ export default function Movie_info(props) {
           
         "
       >
-        <button onClick={()=>navigate("/trailers")}>Trailer</button>
-        <button onClick={()=> navigate("/backImages")}>Background images</button>
-        <button onClick={()=> navigate("/logos")}>Logo</button>
+        <button onClick={() => navigate("/trailers")}>Trailer</button>
+        <button onClick={() => navigate("/backImages")}>
+          Background images
+        </button>
+        <button onClick={() => navigate("/logos")}>Logo</button>
         <button>Posters</button>
       </header>
       {infoMovie ? (
@@ -72,7 +86,7 @@ export default function Movie_info(props) {
                 h-[500px]                 
             "
             src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
-          />      
+          />
           <section
             className="
                 w-screen
@@ -152,22 +166,21 @@ export default function Movie_info(props) {
                              w-40
                               p-1
                            
-                            " >
+                            "
+                          >
                             <m.img
-                            className="
+                              className="
                             rounded-[10px]
                           shadow-xl
                             shadow-slate-950/100
 
                             "
                               src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
-                              
                               whileInView={{
-                                opacity:[0,1],
-                                transition:{
-                                  duration:0.5
-                                }
-                                
+                                opacity: [0, 1],
+                                transition: {
+                                  duration: 0.5,
+                                },
                               }}
                             />
                             <section
@@ -187,6 +200,33 @@ export default function Movie_info(props) {
                   })}
                 </section>
               ) : null}
+            </section>
+            <section
+              className="
+              overflow-y-hidden
+              w-screen
+                flex
+                w-full
+              "
+            >
+              {dataVideos
+                ? dataVideos.map((e, i) => (
+                    <section>
+                       <a href={`https://www.youtube.com/watch?v=UqcGdmJJVTY`}>
+                      <iframe
+                        className="
+                          w-screen
+                          h-56
+                          my-10
+                          sm:my-0
+                          sm:h-[350px]
+                        "
+                        src={`//www.youtube.com/embed/${e.key}/?autoplay=1;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
+                      ></iframe>
+                      </a>
+                    </section>
+                  ))
+                : null}
             </section>
           </section>
         </section>
