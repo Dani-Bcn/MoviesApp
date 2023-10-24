@@ -60,7 +60,7 @@ export default function Movie_info(props) {
       >
         <button onClick={()=>navigate("/trailers")}>Trailer</button>
         <button onClick={()=> navigate("/backImages")}>Background images</button>
-        <button>Logo</button>
+        <button onClick={()=> navigate("/logos")}>Logo</button>
         <button>Posters</button>
       </header>
       {infoMovie ? (

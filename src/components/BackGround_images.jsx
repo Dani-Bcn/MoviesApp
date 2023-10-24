@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function BackGround_images() {
   const [movieOrTv, setMovieOrTv] = useState(localStorage.getItem("movieOrTv"));
   const [idMovie, setIdMovie] = useState(localStorage.getItem("idMovie"));
   const [dataMovie, setDataMovie] = useState();
   const [keyWord, setKeyWord] = useState();
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch(
@@ -30,7 +33,12 @@ export default function BackGround_images() {
             z-20
         "
     >
-      <header>
+      <header      
+        className="
+        flex
+        gap-5
+      ">
+        <button onClick={()=>navigate(-1)}>Back</button>
         <h2
             className="
               py-10  
