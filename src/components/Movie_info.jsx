@@ -129,14 +129,19 @@ export default function Movie_info(props) {
                   return <p key={i}> {e.name}</p>;
                 })}
               </section>
-              <a href={infoMovie.homepage}>Home page</a>
-              <p>Cast</p>
+              <a href={infoMovie.homepage}>
+                <button>Home page</button>
+                </a>
+               <p>Cast</p>
+              </section>
+             
               {infoCast !== undefined ? (
                 <section
                   className="
                   overflow-y-hidden
                     flex
-                    w-full
+                    
+                    w-[325px]
                   "
                 >
                   {infoCast.cast.map((e, i) => {
@@ -148,9 +153,8 @@ export default function Movie_info(props) {
                               navigate("/infoActor"), getIdPerson(e.id);
                             }}
                             className="
-                             w-40
-                              p-1
-                           
+                              w-40
+                              p-2                          
                             "
                           >
                             <m.img
@@ -177,7 +181,9 @@ export default function Movie_info(props) {
                                 text-center                              
                             "
                             >
-                              <h3>{e.name}</h3>
+                              <h3
+                                className="z-20"
+                              >{e.name}</h3>
                               <h3
                               className="text-slate-400"
                               >{e.character}</h3>
@@ -189,7 +195,7 @@ export default function Movie_info(props) {
                   })}
                 </section>
               ) : null}
-            </section>
+           
             <section
               className="
               overflow-y-hidden
@@ -200,7 +206,7 @@ export default function Movie_info(props) {
 
               {dataVideos
                 ? dataVideos.map((e, i) => (
-                    <section>
+                    <section key={i}>
                       <h3 className="px-5">Triler/s</h3>                     
                       <iframe
                         className="

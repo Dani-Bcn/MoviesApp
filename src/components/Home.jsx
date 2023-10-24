@@ -18,7 +18,6 @@ export default function Home() {
   const [selectMovieTv,setSelectMovieTv] = useState(true)
   const [idPerson, setIdPerson] = useState()
   const [keyWord, setKeyWord] = useState()
-  console.log(idMovie)
 
   const active = (e) => {
     setActiveSearch(e);
