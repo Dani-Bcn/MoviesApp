@@ -216,11 +216,8 @@ const [activePage,setActivePage] = useState(true)
                           mx-auto
                           rounded-[5px]
                         "
-                      >Info</button>
-                    
-                    
-                    }
-                     
+                      >Info</button>                  
+                    }                     
                     </section>
                   </section>
                 );

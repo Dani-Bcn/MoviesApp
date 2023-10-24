@@ -12,6 +12,7 @@ export default function Movie_info(props) {
  
 
   useEffect(() => {
+
     idMovie !== undefined
       ? fetch(
           `https://api.themoviedb.org/3/tv/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
@@ -20,8 +21,10 @@ export default function Movie_info(props) {
           .then((resp) => setInfoMovie(resp))
       : null;
   }, [idMovie]);
+
 console.log(infoMovie)
-  useEffect(() => {
+
+  useEffect(() => {    
     idMovie !== undefined
       ? fetch(
           `https://api.themoviedb.org/3/tv/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1&`
@@ -30,6 +33,7 @@ console.log(infoMovie)
           .then((resp) => setInfoCast(resp))
       : null;
   }, [idMovie]);
+
   return (
     <m.main
       className="
@@ -47,33 +51,29 @@ console.log(infoMovie)
       exit={{
         x: 200,
       }}
-    >
+    > <header
+    className="
+      w-screen
+      flex
+      items-center
+      justify-around
+    "
+  >
+    <button onClick={()=>navigate("/trailers")}>Trailers</button>
+    <button>Background images</button>
+    <button>Logos</button>
+    <button>Posters</button>
+  </header>
       {infoMovie ? (
         <>
-          <m.img
-            /*  variants={variantsImages}
-              animate={activePoster ? "open" : "closed"} */
+          <img           
             className="
                 m-auto
                 w-screen
                 h-[500px]                 
             "
             src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
-          /><button
-
-          onClick={()=>{navigate("/trailers")}}
-            className="
-            absolute 
-            -mt-16
-             mx-5            
-            py-1
-            px-5
-            text-3xl 
-            border-red-300
-            border-2
-            rounded-lg
-            "
-          >Trailer</button>
+          />
           <section
             className="
                 w-screen
@@ -118,8 +118,7 @@ console.log(infoMovie)
                     <p>{infoMovie.production_companies[0].origin_country}</p>
                     :
                     <p>{infoMovie.production_countries[0].iso_3166_1}</p>
-                }
-              
+                }              
               </section>
               <section
                 className="

@@ -16,7 +16,7 @@ export default function Get_videos() {
     )
       .then((resp) => resp.json())
       .then((resp) => setInfoMovie(resp));
-    infoMovie ? setMaxResults(infoMovie.results.slice(0, 10)) : null;
+   
   }, [infoMovie]);
 
   return (
@@ -35,16 +35,16 @@ export default function Get_videos() {
             text-[0.8rem] 
         "
       >
-        {maxResults ? (
-          maxResults.length > 0 ? (
+        {infoMovie ? (
+          infoMovie.length > 0 ? (
             maxResults.map((e, i) => {
               return (
-                <button
+                <button key={i}
                   onClick={() => {
                     setVisibleVideo(true), setKeyWord(e.key);
                     console.log(e);
                   }}
-                  key={i}
+        
                   className="
                         w-full
                         flex

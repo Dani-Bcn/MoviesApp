@@ -49,8 +49,22 @@ export default function Movie_info(props) {
         x: 200,
       }}
     >
+      <header
+        className="
+          w-screen
+          flex
+          items-center
+          justify-around
+          
+        "
+      >
+        <button onClick={()=>navigate("/trailers")}>Trailers</button>
+        <button>Background images</button>
+        <button>Logo</button>
+        <button>Posters</button>
+      </header>
       {infoMovie ? (
-        <>
+        <section>
           <m.img
             className="
                 m-auto
@@ -58,25 +72,7 @@ export default function Movie_info(props) {
                 h-[500px]                 
             "
             src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
-          />
-          <button
-            onClick={() => {
-              navigate("/trailers");
-            }}
-            className="
-            absolute 
-            -mt-16
-             mx-5            
-            py-1
-            px-5
-            text-3xl 
-            border-red-300
-            border-2
-            rounded-lg
-            "
-          >
-            Trailer/s
-          </button>
+          />      
           <section
             className="
                 w-screen
@@ -140,13 +136,12 @@ export default function Movie_info(props) {
                 <>
                   {infoCast.cast.map((e, i) => {
                     return (
-                      <>
+                      <section key={i}>
                         {e.profile_path !== null ? (
                           <section
                             onClick={() => {
                               navigate("/infoActor"), getIdPerson(e.id);
                             }}
-                            key={i}
                             className=" 
                           w-full
                           h-40
@@ -181,14 +176,14 @@ export default function Movie_info(props) {
                             </section>
                           </section>
                         ) : null}
-                      </>
+                      </section>
                     );
                   })}
                 </>
               ) : null}
             </section>
           </section>
-        </>
+        </section>
       ) : null}
     </m.main>
   );

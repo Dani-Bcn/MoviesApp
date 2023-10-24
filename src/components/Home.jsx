@@ -11,6 +11,7 @@ import Tv_info from "./Tv_info"
 import Actor_info from "./Actor_info"
 import Filmography from "./Filmography";
 import Get_videos from "./Get_videos"; 
+import Trailers from "./Trailers";
 
 export default function Home() {
   const location = useLocation();
@@ -85,7 +86,7 @@ export default function Home() {
         <Route path="infoTv" element={<Tv_info idMovie={idMovie}  getIdPerson={getIdPerson} getIdMovie={getIdMovie}/>} />
         <Route path="infoActor" element={<Actor_info idPerson={idPerson} getKeyWord={getKeyWord} getIdMovie={getIdMovie}/>} />
         <Route path="filmography" element={<Filmography  keyWord={keyWord} getIdMovie={getIdMovie}/>} />
-      <Route path="trailers" element={<Get_videos idMovie={idMovie} selectMovieTv={selectMovieTv}/>}/> 
+        <Route path="trailers" element={<Trailers />}/> 
  </Routes>
         <m.section
           className="
