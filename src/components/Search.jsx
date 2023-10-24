@@ -156,8 +156,7 @@ const [activePage,setActivePage] = useState(true)
                   "
                   >
                     <img
-                      className="rounded-l-lg                      
-                      shadow-lg shadow-cyan-400/50 
+                      className="rounded-l-lg        
                       "
                       src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                     />
@@ -170,8 +169,7 @@ const [activePage,setActivePage] = useState(true)
                         items-start
                         justify-between
                         bg-slate-700 
-                        rounded-r-lg  
-                        shadow-lg shadow-cyan-500/50              
+                        rounded-r-lg               
                       "
                     >
                       <h2
@@ -216,7 +214,7 @@ const [activePage,setActivePage] = useState(true)
                           mx-auto
                           rounded-[5px]
                         "
-                      >Info</button>                  
+                      >Info</button> 
                     }                     
                     </section>
                   </section>

@@ -58,8 +58,8 @@ export default function Movie_info(props) {
           
         "
       >
-        <button onClick={()=>navigate("/trailers")}>Trailers</button>
-        <button>Background images</button>
+        <button onClick={()=>navigate("/trailers")}>Trailer</button>
+        <button onClick={()=> navigate("/backImages")}>Background images</button>
         <button>Logo</button>
         <button>Posters</button>
       </header>
