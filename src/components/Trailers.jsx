@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import gsap from "gsap";
 
 export default function Trailers() {
   const [movieOrTv, setMovieOrTv] = useState(localStorage.getItem("movieOrTv"));
@@ -16,45 +17,43 @@ export default function Trailers() {
 
   dataMovie ? console.log(dataMovie) : null;
 
+  const showTrailerMode = (e) => {
+    console.log(e);
+  };
+
   return dataMovie ? (
     <main
-      className="
-      absolute
+      className="      
+           fixed
             w-screen
+            h-full
             bg-slate-800
+            -mt-[140px]
             z-50
         "
     >
       <section
-        className="
-            w-screen            
-            h-screen
+        className="          
+            
             text-orange-50            
-            text-[0.8rem]
+            text-[1rem]
+            flex
+            flex-col
+            gap-10
         "
       >
-        {dataMovie.map((e, i) => (
-          <section key={i}>
-            <article
-                className="
-                    p-5
-                    
-                "
-            >
-              <h2>{e.name}</h2>
-              <h2>{e.published_at}</h2>
-            </article>
-            {console.log(e.key)}
-            <iframe
-              className="
+      
+        <iframe
+          className="
                w-screen
                h-56
-               sm:h-96
-               "
-              src={`//www.youtube.com/embed/${e.key}/?autoplay=1;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
-            ></iframe>
-          </section>
-        ))}
+               my-10
+               sm:my-0
+               sm:h-[395px]
+               lg:h-[600px]
+            "
+          src={`//www.youtube.com/embed/${dataMovie[0].key}/?autoplay=1;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
+        ></iframe>
       </section>
     </main>
   ) : null;

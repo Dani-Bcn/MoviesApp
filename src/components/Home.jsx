@@ -67,7 +67,7 @@ export default function Home() {
     },
 
     closed: {
-      x: -400,
+      x: -450,
       transition: {
         duration: 0.5,
         ease: "circIn",
