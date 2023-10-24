@@ -133,7 +133,13 @@ export default function Movie_info(props) {
               <a href={infoMovie.homepage}>Home page</a>
               <p>Cast</p>
               {infoCast !== undefined ? (
-                <>
+                <section
+                  className="
+                  overflow-y-hidden
+                    flex
+                    w-full
+                  "
+                >
                   {infoCast.cast.map((e, i) => {
                     return (
                       <section key={i}>
@@ -142,26 +148,27 @@ export default function Movie_info(props) {
                             onClick={() => {
                               navigate("/infoActor"), getIdPerson(e.id);
                             }}
-                            className=" 
-                                w-80
-                                h-40
-                                p-5
-                                bg-slate-700
-                                gap-5
-                                flex
-                                items-center
-                                rounded-[10px]            
-                              "
-                          >
-                            <img
-                              className="
-                              w-[100px]
-                              h-[150px]
+                            className="
+                             w-40
                               p-1
-                              rounded-[10px]
-                          "
+                           
+                            " >
+                            <m.img
+                            className="
+                            rounded-[10px]
+                          shadow-xl
+                            shadow-slate-950/100
+
+                            "
                               src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
-                              alt=""
+                              
+                              whileInView={{
+                                opacity:[0,1],
+                                transition:{
+                                  duration:0.5
+                                }
+                                
+                              }}
                             />
                             <section
                               className="
@@ -178,7 +185,7 @@ export default function Movie_info(props) {
                       </section>
                     );
                   })}
-                </>
+                </section>
               ) : null}
             </section>
           </section>

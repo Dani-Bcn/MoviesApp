@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion as m } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 export default function Carousel_movies(props) {
   const { active } = props;
+  const navigate = useNavigate()
   const { getIdMovieToMovieInfo } = props;
   const posterRef = useRef();
   const [resApi, setResApi] = useState();
@@ -96,6 +97,12 @@ export default function Carousel_movies(props) {
         {resApi ? (
           <>
             <m.img
+             onClick={() => {
+              navigate("/infoMovie")
+              getIdMovieToMovieInfo(resApi[countMovie].id,
+                localStorage.setItem("movieOrTv", "movie")
+                );
+            }}
               variants={variantsImages}
               animate={activePoster ? "open" : "closed"}
               className="
@@ -106,62 +113,7 @@ export default function Carousel_movies(props) {
             />
           </>
         ) : null}
-      </section>
-        <m.section
-          className="
-            absolute
-            w-screen
-            flex
-            items-end
-            justify-center
-            h-[500px] 
-        "
-          variants={variantsPoster}
-          animate={activePoster ? "open" : "closed"}
-          onClick={() => handlePoster()}
-          id="posterHeader"
-          ref={posterRef}
-        >
-
-          {activePoster ? (
-             <Link to="/infoMovie" >
-            <button
-              onClick={() => {
-                getIdMovieToMovieInfo(resApi[countMovie].id,
-                  localStorage.setItem("movieOrTv", "movie")
-                  );
-              }}
-              className="
-              m-5
-              py-2
-              px-16
-              text-[1.4rem]
-              bg-slate-700/[0.9]
-              rounded-xl
-            "
-            >
-              Info
-            </button>
-            </Link>
-          ) : null}
-        </m.section>
-      {/*  <section>
-        {respImages
-          ? respImages.posters.map((e, i) => {
-              return (
-                <m.img
-                  key={i}
-                  className="
-         
-            w-full 
-            h-[200px] 
-        "
-                  src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
-                />
-              );
-            })
-          : null}
-      </section>  */}
+      </section>    
     </m.main>
   );
 }
