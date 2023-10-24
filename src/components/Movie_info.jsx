@@ -143,16 +143,15 @@ export default function Movie_info(props) {
                               navigate("/infoActor"), getIdPerson(e.id);
                             }}
                             className=" 
-                          w-full
-                          h-40
-                          p-5
-                          bg-slate-700
-                          gap-5
-                          flex
-                          items-center
-                          rounded-[10px]
-                          shadow-lg shadow-cyan-500/50              
-                          "
+                                w-80
+                                h-40
+                                p-5
+                                bg-slate-700
+                                gap-5
+                                flex
+                                items-center
+                                rounded-[10px]            
+                              "
                           >
                             <img
                               className="
