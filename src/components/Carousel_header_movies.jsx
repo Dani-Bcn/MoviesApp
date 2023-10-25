@@ -4,6 +4,8 @@ import { Link,useNavigate } from "react-router-dom";
 
 export default function Carousel_movies(props) {
   const { active } = props;
+  const idMovie = localStorage.getItem("idMovie")
+  const movieOrTv = localStorage.getItem("movieOrTv")
   const navigate = useNavigate()
   const { getIdMovieToMovieInfo } = props;
   const posterRef = useRef();
@@ -16,11 +18,11 @@ export default function Carousel_movies(props) {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_video=fals`
+      `https://api.themoviedb.org/3/discover/${movieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_video=fals`
     )
       .then((resp) => resp.json())
       .then((resp) => setResApi(resp.results));
-  }, []);
+  }, [movieOrTv]);
 
 
 
@@ -30,7 +32,7 @@ export default function Carousel_movies(props) {
     // obtener todas las imágenes 
     resApi
       ? fetch(
-          `http://api.themoviedb.org/3/movie/${resApi[countMovie].id}/images?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+          `http://api.themoviedb.org/3/${movieOrTv}/${resApi[countMovie].id}/images?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
         )
           .then((resp) => resp.json())
           .then((resp) => setResImages(resp))
@@ -100,7 +102,7 @@ export default function Carousel_movies(props) {
              onClick={() => {
               navigate("/infoMovie")
               getIdMovieToMovieInfo(resApi[countMovie].id,
-                localStorage.setItem("movieOrTv", "movie")
+               
                 );
             }}
               variants={variantsImages}

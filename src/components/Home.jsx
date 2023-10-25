@@ -3,7 +3,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import Svg from "./Svg";
 import Carousel_movies from "./Carousel_header_movies";
-import Carousel_tv from "./Carousel_header_tv";
 import Navbar from "./Navbar";
 import Search from "./Search";
 import Movie_info from "./Movie_info";
@@ -102,10 +101,10 @@ export default function Home() {
           getIdMovieToMovieInfo={getIdMovieToMovieInfo}
           active={active}
         /> :
-          <Carousel_tv
-          getIdMovieToMovieInfo={getIdMovieToMovieInfo}
-          active={active}          
-        />            
+        <Carousel_movies
+        getIdMovieToMovieInfo={getIdMovieToMovieInfo}
+        active={active}
+      />          
        }
     </main>
   );

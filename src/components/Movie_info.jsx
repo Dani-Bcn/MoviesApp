@@ -14,7 +14,7 @@ export default function Movie_info(props) {
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
-          `https://api.themoviedb.org/3/movie/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+          `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoMovie(resp))
@@ -24,7 +24,7 @@ export default function Movie_info(props) {
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
-          `https://api.themoviedb.org/3/movie/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1&page=1`
+          `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1&page=1`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoCast(resp))
@@ -39,7 +39,7 @@ export default function Movie_info(props) {
     )
       .then((resp) => resp.json())
       .then((resp) => setDataVideos(resp.results));
-  }, [setDataVideos]);
+  }, [movieOrTv]);
 
   dataVideos ? console.log(dataVideos) : null;
 
@@ -48,6 +48,7 @@ export default function Movie_info(props) {
       className="
         absolute
         w-screen      
+        h-full
         text-slate-200
         bg-slate-800
         z-20
@@ -72,7 +73,7 @@ export default function Movie_info(props) {
             <article className="flex flex-col px-5">
               <h2 className="text-[1.3rem]">{infoMovie.title}</h2>
               <section className="flex gap-5">
-              <p>{infoMovie.release_date.slice(0, 4)}</p>
+              {/* <p>{infoMovie.release_date.slice(0, 4)}</p> */}
               <p>{infoMovie.runtime}"</p>
               <p>{infoMovie.original_language}</p>
 
@@ -125,8 +126,9 @@ export default function Movie_info(props) {
               })}
             </section>
           ) : null}
+          
           <section className="flex w-screen overflow-y-hidden my-2 md:my-0">
-            {dataVideos
+            {dataVideos 
               ? dataVideos.map((e, i) => (
                   <section key={i}>
                    
