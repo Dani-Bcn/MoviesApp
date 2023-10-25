@@ -9,6 +9,7 @@ export default function Navbar(props) {
   const navigate = useNavigate();
   const location = useLocation();
 
+
   return (
     <main className="z-100">
       <section

@@ -67,9 +67,9 @@ export default function Movie_info(props) {
       {infoMovie ? (
         <>
       
-          <div className="fixed - z-10 w-screen h-screen bg-gradient-to-t to-black/[0.1] from-black/[0.99]"></div>
+          <div className="fixed - z-10 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99] from-black/[0.01]"></div>
            <div
-            className=" fixed w-screen h-screen z-1 opacity-[0.9] "
+            className=" fixed w-screen h-screen z-1 opacity-[0.7] "
             style={{
               backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
             }}
@@ -81,7 +81,7 @@ export default function Movie_info(props) {
         <section className="z-20">
           <section className="flex p-5 z-20">
             <m.img
-              className=" z-20 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 "
+              className=" z-20 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
               src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
             />
 
@@ -121,7 +121,7 @@ export default function Movie_info(props) {
                         }}
                       >
                         <img
-                          className=" z-20 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 "
+                          className=" z-20 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                           src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
                         />
                         <section className="z-20">
