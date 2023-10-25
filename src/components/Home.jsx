@@ -66,7 +66,6 @@ export default function Home() {
       className="
         z-10
       "
-
       animate={{
         opacity:[0,1]
       }}

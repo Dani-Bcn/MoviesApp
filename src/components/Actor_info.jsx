@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {motion as m} from "framer-motion"
+import { useNavigate } from "react-router-dom";
+import { motion as m } from "framer-motion";
 
 export default function Actor_info() {
- 
   const [idPerson, setIdPerson] = useState(localStorage.getItem("idPerson"));
   const [dataActor, setDataActor] = useState();
   const [dataMovies, setDataMovies] = useState();
-  const [activeBio, setActiveBio] = useState(true)
-
+  const [activeBio, setActiveBio] = useState(true);
+  const navigate = useNavigate()
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
@@ -25,20 +25,20 @@ export default function Actor_info() {
       : null;
   }, []);
 
- 
-  const variantsBio ={
-    open:{
-      height:"0%"
+  const variantsBio = {
+    open: {
+      height: "0%",
     },
-    closed:{
-      height:"100%"
-    }
-  }
+    closed: {
+      height: "100%",
+    },
+  };
 
   return (
-    <m.main className="absolute w-full z-20 px-5  bg-slate-800"
+    <m.main
+      className="absolute w-full z-20 px-5  bg-slate-800"
       animate={{
-        opacity:[0,1]
+        opacity: [0, 1],
       }}
     >
       {dataActor ? (
@@ -47,7 +47,7 @@ export default function Actor_info() {
             className="rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 "
             src={`https://image.tmdb.org/t/p/w500/${dataActor.profile_path}`}
           />
-          <article className="w-52 px-5 flex flex-col flex-wrap" >
+          <article className="w-52 px-5 flex flex-col flex-wrap">
             <h2 className="text-[1.1rem] py-1">{dataActor.name}</h2>
             <p>{dataActor.birthday}</p>
             <p>{dataActor.place_of_birth}</p>
@@ -57,38 +57,29 @@ export default function Actor_info() {
         </section>
       ) : null}
 
-      <section className="flex overflow-y-hidden gap-10  h-64">
+      <section className="flex overflow-y-hidden gap-10  h-72">
         {dataMovies
-          ? dataMovies.map((e, i) => {             
-              return (     
-                    <img key={i}
-                      className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
-                      src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
-                    />
+          ? dataMovies.map((e, i) => {
+              return (
+                <img
+                  onClick={()=> {navigate("/infoMovie"), localStorage.setItem("idMovie", e.id)}}
+                  key={i}
+                  className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                  src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
+                />
               );
             })
           : null}
       </section>
-     {dataActor?
-      <>
-        <h2 className="text-orange-300 m-2  w-32 h-0% text-[1.1rem]"
-          onClick={()=>{setActiveBio(!activeBio),console.log(activeBio)}}>Biography</h2>
-      <m.article className=" w-[80%]  text-orange-50 px-2 overflow-hidden" 
-      variants={variantsBio}
-        animate={    
-          activeBio ? "open":"closed"                   
-        }      
-        transition={{
-          duration:0.5
-        }}
-      >
-      
-        <p>{dataActor.biography}</p>
-      </m.article>
-       </>
-      :null
-     
-      } 
+      {dataActor ? (
+        <>
+          <h2 className="z-20 text-orange-300 m-2  w-32 h-5 text-[1.1rem]">
+            Biography
+          </h2>     
+          <p className="p-2 text-orange-100">{dataActor.biography}</p>
+         
+        </>
+      ) : null}
     </m.main>
   );
 }
