@@ -114,9 +114,9 @@ export default function Movie_info(props) {
                             },
                           }}
                         />
-                        <section>
+                        <section className="z-20">
                           <h3 className="z-20">{e.name}</h3>
-                          <h3>{e.character}</h3>
+                          <h3 className="text-slate-400">{e.character}</h3>
                         </section>
                       </section>
                     ) : null}
