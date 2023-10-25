@@ -109,14 +109,9 @@ export default function Movie_info(props) {
                           localStorage.setItem("idPerson",e.id)                          
                         }}
                       >
-                        <m.img className="rounded-2xl shadow-xl shadow-slate-950/100 "
+                        <img className="rounded-2xl shadow-xl shadow-slate-950/100 "
                           src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
-                          whileInView={{
-                            opacity: [0, 1],
-                            transition: {
-                              duration: 0.5,
-                            },
-                          }}
+                        
                         />
                         <section className="z-20">
                           <h3 className="z-20">{e.name}</h3>
