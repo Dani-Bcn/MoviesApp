@@ -114,7 +114,7 @@ export default function Movie_info(props) {
                         
                         />
                         <section className="z-20">
-                          <h3 className="z-20 py-2">{e.name}</h3>
+                          <h3 className="z-20 mt-2">{e.name}</h3>
                           <h3 className=" text-[0.8rem] text-slate-400">{e.character}</h3>
                         </section>
                       </section>
