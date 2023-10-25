@@ -64,7 +64,7 @@ export default function Home() {
   return (
     <m.main
       className="
-        z-10
+        z-100
       "
       animate={{
         opacity:[0,1]
@@ -81,17 +81,7 @@ export default function Home() {
         <Route path="filmography" element={<Filmography  keyWord={keyWord} getIdMovie={getIdMovie}/>} />
       
  </Routes>
-        <m.section
-          className="
-            absolute
-            ml-[-400px]
-            z-50
-          "
-          variants={variants}
-          animate={activeSearch ? "open" : "closed"}
-        >
-          <Search active={active} />
-        </m.section>
+       
         {
           selectMovieTv?
         <Carousel_movies
@@ -102,7 +92,19 @@ export default function Home() {
         getIdMovieToMovieInfo={getIdMovieToMovieInfo}
         active={active}
       />          
+      
        }
+        <m.section
+          className="
+            absolute
+            ml-[-400px]
+          
+          "
+          variants={variants}
+          animate={activeSearch ? "open" : "closed"}
+        >
+          <Search active={active} />
+        </m.section>
     </m.main>
   );
 }

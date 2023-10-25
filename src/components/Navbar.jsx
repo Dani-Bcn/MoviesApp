@@ -10,7 +10,7 @@ export default function Navbar(props) {
   const location = useLocation();
 
   return (
-    <main>
+    <main className="z-100">
       <section
         className="flex items-center justify-start "
       >

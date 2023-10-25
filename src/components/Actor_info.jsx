@@ -61,12 +61,19 @@ export default function Actor_info() {
         {dataMovies
           ? dataMovies.map((e, i) => {
               return (
-                <img
+                  <>
+                {
+                  e.poster_path?
+                   <img
                   onClick={()=> {navigate("/infoMovie"), localStorage.setItem("idMovie", e.id)}}
                   key={i}
                   className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                   src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                 />
+                  :null
+                }
+                </>
+               
               );
             })
           : null}
