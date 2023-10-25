@@ -36,13 +36,13 @@ export default function Actor_info() {
   }
 
   return (
-    <m.main className="absolute z-20  h-screen bg-slate-800"
+    <m.main className="absolute w-full z-20 px-5  bg-slate-800"
       animate={{
         opacity:[0,1]
       }}
     >
       {dataActor ? (
-        <section className=" text-orange-50 flex p-5">
+        <section className=" text-orange-50 flex py-5">
           <img
             className="rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 "
             src={`https://image.tmdb.org/t/p/w500/${dataActor.profile_path}`}
@@ -57,12 +57,12 @@ export default function Actor_info() {
         </section>
       ) : null}
 
-      <section className="flex overflow-y-hidden h-64">
+      <section className="flex overflow-y-hidden gap-10  h-64">
         {dataMovies
           ? dataMovies.map((e, i) => {             
               return (     
                     <img key={i}
-                      className=" rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 ml-5 "
+                      className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                       src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                     />
               );
@@ -71,9 +71,9 @@ export default function Actor_info() {
       </section>
      {dataActor?
       <>
-        <h2 className="text-orange-300 m-5  w-32 h-0% text-[1.1rem]"
+        <h2 className="text-orange-300 m-2  w-32 h-0% text-[1.1rem]"
           onClick={()=>{setActiveBio(!activeBio),console.log(activeBio)}}>Biography</h2>
-      <m.article className=" w-[90%] text-orange-50 px-5 overflow-hidden" 
+      <m.article className=" w-[80%]  text-orange-50 px-2 overflow-hidden" 
       variants={variantsBio}
         animate={    
           activeBio ? "open":"closed"                   
