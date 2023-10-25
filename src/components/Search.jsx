@@ -25,7 +25,7 @@ export default function Search(props) {
 
   return (
     <m.main
-      className="absolute w-screen -mt-[120px] bg-slate-800 rounded-r-[25px] z-50"
+      className=" absolute z-50 w-screen -mt-[120px] bg-slate-800 rounded-r-[25px] z-100"
       whileInView={{
         opacity: [0.01, 1],
       }}
@@ -84,7 +84,7 @@ export default function Search(props) {
         ) : null}
       </section>
 
-      <section className=" mt-32 m-auto p-2 text-[1.2rem]  text-orange-200  bg-slate-800 rounded-[50px]">
+      <section className="mt-32 m-auto p-2 text-[1.2rem]  text-orange-200  bg-slate-800 rounded-[50px]">
         {findMovie
           ? findMovie.map((e, i) => {
               if (e.poster_path) {

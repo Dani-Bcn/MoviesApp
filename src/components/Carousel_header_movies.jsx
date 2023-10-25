@@ -83,7 +83,7 @@ export default function Carousel_movies(props) {
   };
 
   return (
-    <m.main className="fle justify-cente"
+    <m.main className="flex justify-center"
     variants={variantsImages}
       animate={
         activePoster? "open":"closed"

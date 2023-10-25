@@ -96,7 +96,6 @@ export default function Home() {
        }
         <m.section
           className="
-            absolute
             ml-[-400px]
           
           "
