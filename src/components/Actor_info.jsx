@@ -71,7 +71,7 @@ export default function Actor_info() {
       </section>
      {dataActor?
       <>
-        <h2 className="text-orange-300 mx-5 w-screen h-0% text-[1.1rem]"
+        <h2 className="text-orange-300 m-5  w-32 h-0% text-[1.1rem]"
           onClick={()=>{setActiveBio(!activeBio),console.log(activeBio)}}>Biography</h2>
       <m.article className=" w-[90%] text-orange-50 px-5 overflow-hidden" 
       variants={variantsBio}
