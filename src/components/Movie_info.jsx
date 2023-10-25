@@ -125,8 +125,7 @@ export default function Movie_info(props) {
               })}
             </section>
           ) : null}
- <h3 className="px-5">Triler/s</h3>
-          <section className="flex w-screen overflow-y-hidden ">
+          <section className="flex w-screen overflow-y-hidden my-2 ">
             {dataVideos
               ? dataVideos.map((e, i) => (
                   <section key={i}>
