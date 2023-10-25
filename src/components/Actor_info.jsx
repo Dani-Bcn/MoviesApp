@@ -1,131 +1,94 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion as m } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import {motion as m} from "framer-motion"
 
-const Actor_info = (props) => {
-  const { idPerson } = props;
-  const { getKeyWord } = props;
-  const navigate = useNavigate();
-  const [infoActor, setInfoActor] = useState();
-  const [activeBiography, setActiveBiography] = useState(false);
+export default function Actor_info() {
+ 
+  const [idPerson, setIdPerson] = useState(localStorage.getItem("idPerson"));
+  const [dataActor, setDataActor] = useState();
+  const [dataMovies, setDataMovies] = useState();
+  const [activeBio, setActiveBio] = useState(true)
 
-useEffect(()=>{
-  fetch(
-    `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
-  )
-    .then((resp) => resp.json())
-    .then((resp) => setInfoActor(resp));
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+    )
+      .then((resp) => resp.json())
+      .then((resp) => setDataActor(resp));
+  }, []);
+  useEffect(() => {
+    idPerson
+      ? fetch(
+          `https://api.themoviedb.org/3/discover/movie?with_cast=${idPerson}&sort_by=release_date.desc&api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
+        )
+          .then((resp) => resp.json())
+          .then((resp) => setDataMovies(resp.results))
+      : null;
+  }, []);
 
-  },[infoActor])
-  const variantsBiography = {
-    open: {
-      height: "auto",
-      transition: {
-        duration: 1,
-      },
+ 
+  const variantsBio ={
+    open:{
+      height:"0%"
     },
-    closed: {
-      height: "0vh",
-      transition: {
-        duration: 1,
-      },
-    },
-  };
+    closed:{
+      height:"100%"
+    }
+  }
+
   return (
-    <main
-      className="
-      absolute
-        w-screen
-        bg-slate-800
-        flex
-        flex-col
-        items-center
-        justify-center
-        text-indigo-200
-        text-[1.1rem]
-        z-50
-      "
+    <m.main className="absolute z-20  h-screen bg-slate-800"
+      animate={{
+        opacity:[0,1]
+      }}
     >
-      <div>
-        {infoActor !== undefined ? (
-          <section
-            className="
-            flex
-            flex-col
-            w-screen
-            justify-center
-            items-center
-            p-10
-            gap-5
-            "
-          >
-            <img
-              className="
-                flex
-                justify-center
-                items-center                
-                w-[150px]
-                my-5
-                cursor-auto
-                m-auto
-            "
-              src={`https://image.tmdb.org/t/p/w500/${infoActor.profile_path}`}
-              alt=""
-            />
-            <h2>{infoActor.name}</h2>
-            <p>{infoActor.birthday}</p>
-            <p>{infoActor.place_of_birth}</p>
-            {infoActor.homepage ? (
-              <a href={infoActor.homepage}>Home page</a>
-            ) : null}
-            <section>
-              <section
-                className="
-                w-full
-                h-20
-                flex
-                flex-col
-                items-start
-                justify-around
-                "              
-              >
-                <button
-                  className="
-                    w-0                                              
-                  "
-                  onClick={() => {
-                    navigate("/filmography"), getKeyWord(idPerson);
-                  }}
-                >
-                  Filmography
-                </button>
-                <button
-                  className="
-                    w-0                  
-                  "
-                  onClick={() => setActiveBiography(!activeBiography)}
-                >
-                  Biography
-                </button>
-              </section>
-              <m.section
-                className="
-                  overflow-hidden
-                  h-0
-                "
-              variants={variantsBiography}
-                animate={
-                  activeBiography? "open" : "closed"
-                }
-              >
-                <p>{infoActor.biography}</p>
-              </m.section>
-            </section>
-          </section>
-        ) : null}
-      </div>
-    </main>
-  );
-};
+      {dataActor ? (
+        <section className=" text-orange-50 flex p-5">
+          <img
+            className="rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 "
+            src={`https://image.tmdb.org/t/p/w500/${dataActor.profile_path}`}
+          />
+          <article className="w-52 px-5 flex flex-col flex-wrap" >
+            <h2 className="text-[1.1rem] py-1">{dataActor.name}</h2>
+            <p>{dataActor.birthday}</p>
+            <p>{dataActor.place_of_birth}</p>
+            <p>{dataActor.known_for_department}</p>
+            <p>{dataActor.popularity}</p>
+          </article>
+        </section>
+      ) : null}
 
-export default Actor_info;
+      <section className="flex overflow-y-hidden h-64">
+        {dataMovies
+          ? dataMovies.map((e, i) => {             
+              return (     
+                    <img key={i}
+                      className=" rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 ml-5 "
+                      src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
+                    />
+              );
+            })
+          : null}
+      </section>
+     {dataActor?
+      <>
+        <h2 className="text-orange-300 mx-5 w-screen h-0% text-[1.1rem]"
+          onClick={()=>{setActiveBio(!activeBio),console.log(activeBio)}}>Biography</h2>
+      <m.article className=" w-[90%] text-orange-50 px-5 overflow-hidden" 
+      variants={variantsBio}
+        animate={    
+          activeBio ? "open":"closed"                   
+        }      
+        transition={{
+          duration:0.5
+        }}
+      >
+      
+        <p>{dataActor.biography}</p>
+      </m.article>
+       </>
+      :null
+     
+      } 
+    </m.main>
+  );
+}

@@ -18,9 +18,10 @@ export default function Movie_info(props) {
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoMovie(resp))
+         
       : null;
   }, [idMovie]);
-
+ infoMovie?console.log(infoMovie):null
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
@@ -104,7 +105,8 @@ export default function Movie_info(props) {
                     {e.profile_path !== null ? (
                       <section className="m-2 flex flex-col items-center w-40"
                         onClick={() => {
-                          navigate("/infoActor"), getIdPerson(e.id);
+                          navigate("/infoActor"),
+                          localStorage.setItem("idPerson",e.id)                          
                         }}
                       >
                         <m.img className="rounded-2xl shadow-xl shadow-slate-950/100 "
