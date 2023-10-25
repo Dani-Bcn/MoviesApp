@@ -61,169 +61,82 @@ export default function Movie_info(props) {
         x: 200,
       }}
     >
-     
       {infoMovie ? (
         <section>
-          <m.img
-            className="
-                m-auto
-                w-screen
-                h-[500px]                 
-            "
-            src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
-          />
-          <section
-            className="
-                w-screen
-                flex
-                flex-col 
-                items-center
-                justify-center            
-                gap-5
-                p-10
-                "
-          >
-            <h2
-              className="
-                text-2xl
-                "
-            >
-              {infoMovie.title}
-            </h2>
-            <p>{infoMovie.overview}</p>
-            <section
-              className="
-                w-screen
-                flex
-                flex-col
-                items-start
-                px-10
-                gap-5
-                "
-            >
-              <section
-                className="
-                    flex
-                    w-full
-                    gap-5
-                "
-              >
-                <p>{infoMovie.release_date.slice(0, 4)}</p>
-                <p>{infoMovie.runtime}"</p>
-                <p>{infoMovie.original_language}</p>
-                {infoMovie.production_companies.length !== 0 ? (
-                  <p>{infoMovie.production_companies[0].origin_country}</p>
-                ) : (
-                  <p>{infoMovie.production_countries[0].iso_3166_1}</p>
-                )}
+          <section className="flex p-5">
+            <m.img
+            className="rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 "
+              src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
+            />          
+
+            <article className="flex flex-col px-5">
+              <h2 className="text-[1.3rem]">{infoMovie.title}</h2>
+              <section className="flex gap-5">
+              <p>{infoMovie.release_date.slice(0, 4)}</p>
+              <p>{infoMovie.runtime}"</p>
+              <p>{infoMovie.original_language}</p>
+
+              {infoMovie.production_companies.length !== 0 ? (
+                <p>{infoMovie.production_companies[0].origin_country}</p>
+              ) : (
+                <p>{infoMovie.production_countries[0].iso_3166_1}</p>
+              )}
               </section>
-              <section
-                className="
-                    flex
-                    w-full
-                    flex-wrap
-                    gap-5
-                "
-              >
-                {infoMovie.genres.map((e, i) => {
-                  return <p key={i}> {e.name}</p>;
-                })}
-              </section>
+              <section className="flex gap-x-2 flex-wrap" >
+              {infoMovie.genres.map((e, i) => {
+                return <p key={i}> {e.name}</p>;
+              })}
+              </section>              
               <a href={infoMovie.homepage}>
                 <button>Home page</button>
-                </a>
-               <p>Cast</p>
-              </section>
-             
-              {infoCast !== undefined ? (
-                <section
-                  className="
-                  overflow-y-hidden
-                    flex
-                    
-                    w-[325px]
-                  "
-                >
-                  {infoCast.cast.map((e, i) => {
-                    return (
-                      <section key={i}>
-                        {e.profile_path !== null ? (
-                          <section
-                            onClick={() => {
-                              navigate("/infoActor"), getIdPerson(e.id);
-                            }}
-                            className="
-                              w-40
-                              p-2                          
-                            "
-                          >
-                            <m.img
-                              className="
-                            rounded-[10px]
-                            shadow-xl
-                            shadow-slate-950/100
+              </a>             
+            </article>
+          </section> 
+          <p className="p-x10 p-5">{infoMovie.overview}</p> 
 
-                            "
-                              src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
-                              whileInView={{
-                                opacity: [0, 1],
-                                transition: {
-                                  duration: 0.5,
-                                },
-                              }}
-                            />
-                            <section
-                              className="
-                                flex
-                                flex-col
-                                items-center
-                                justify-center
-                                text-center                              
-                            "
-                            >
-                              <h3
-                                className="z-20"
-                              >{e.name}</h3>
-                              <h3
-                              className="text-slate-400"
-                              >{e.character}</h3>
-                            </section>
-                          </section>
-                        ) : null}
+          {infoCast !== undefined ? (
+            <section className="flex overflow-y-hidden mx-2">
+              {infoCast.cast.map((e, i) => {
+                return (
+                  <section key={i}>
+                    {e.profile_path !== null ? (
+                      <section className="m-2 flex flex-col items-center w-40"
+                        onClick={() => {
+                          navigate("/infoActor"), getIdPerson(e.id);
+                        }}
+                      >
+                        <m.img className="rounded-2xl shadow-xl shadow-slate-950/100 "
+                          src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
+                          whileInView={{
+                            opacity: [0, 1],
+                            transition: {
+                              duration: 0.5,
+                            },
+                          }}
+                        />
+                        <section>
+                          <h3 className="z-20">{e.name}</h3>
+                          <h3>{e.character}</h3>
+                        </section>
                       </section>
-                    );
-                  })}
-                </section>
-              ) : null}
-           
-            <section
-              className="
-              overflow-y-hidden
-                flex
-                w-screen
-              "
-            >
-
-              {dataVideos
-                ? dataVideos.map((e, i) => (
-                    <section key={i}>
-                      <h3 className="px-5">Triler/s</h3>                     
-                      <iframe
-                        className="
-                          w-screen
-                          h-56
-                          my-10
-                          sm:my-0
-                          sm:h-[390px]
-                          mr-5
-                        "
-                        src={`//www.youtube.com/embed/${e.key}/?autoplay=1;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
-                      ></iframe>
-                      
-                    </section>
-                  ))
-                : null}
+                    ) : null}
+                  </section>
+                );
+              })}
             </section>
+          ) : null}
+ <h3 className="px-5">Triler/s</h3>
+          <section className="flex w-screen overflow-y-hidden ">
+            {dataVideos
+              ? dataVideos.map((e, i) => (
+                  <section key={i}>
+                   
+                    <iframe className="w-screen h-60 mr-5"
+                      src={`//www.youtube.com/embed/${e.key}/?autoplay=1;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
+                    ></iframe>
+                  </section>
+                ))
+              : null}
           </section>
         </section>
       ) : null}
