@@ -109,13 +109,13 @@ export default function Movie_info(props) {
                           localStorage.setItem("idPerson",e.id)                          
                         }}
                       >
-                        <img className="rounded-2xl shadow-xl shadow-slate-950/100 "
+                       <img className="rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 "
                           src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
                         
                         />
                         <section className="z-20">
-                          <h3 className="z-20">{e.name}</h3>
-                          <h3 className="text-slate-400">{e.character}</h3>
+                          <h3 className="z-20 py-2">{e.name}</h3>
+                          <h3 className=" text-[0.8rem] text-slate-400">{e.character}</h3>
                         </section>
                       </section>
                     ) : null}
