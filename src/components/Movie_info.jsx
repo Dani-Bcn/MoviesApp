@@ -39,7 +39,7 @@ export default function Movie_info(props) {
     )
       .then((resp) => resp.json())
       .then((resp) => setDataVideos(resp.results));
-  }, [movieOrTv]);
+  }, [idMovie]);
 
   dataVideos ? console.log(dataVideos) : null;
 
@@ -78,7 +78,7 @@ export default function Movie_info(props) {
               <p>{infoMovie.runtime}"</p>
               <p>{infoMovie.original_language}</p>
 
-              {infoMovie.production_companies.length !== 0 ? (
+              {infoMovie.production_companies? (
                 <p>{infoMovie.production_companies[0].origin_country}</p>
               ) : (
                 <p>{infoMovie.production_countries[0].iso_3166_1}</p>

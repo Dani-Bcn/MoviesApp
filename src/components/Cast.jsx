@@ -25,13 +25,13 @@ const Cast = (props) => {
         .then((resp) => resp.json())
         .then((resp) => setInfoCast(resp));
     }
-  }, [movieOrTv]);
+  }, []);
   useEffect(() => {
     if (infoCast) {
       localStorage.setItem("infoActor", JSON.stringify(infoCast));
       funcCast(infoCast);
     }
-  });
+  },[]);
 
   const goToActorInfoPage = (value) => {
     localStorage.setItem("indexActor", value);

@@ -9,11 +9,14 @@ const Actor_info = (props) => {
   const [infoActor, setInfoActor] = useState();
   const [activeBiography, setActiveBiography] = useState(false);
 
+useEffect(()=>{
   fetch(
     `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
   )
     .then((resp) => resp.json())
     .then((resp) => setInfoActor(resp));
+
+  },[infoActor])
   const variantsBiography = {
     open: {
       height: "auto",

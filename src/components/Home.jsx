@@ -6,7 +6,6 @@ import Carousel_movies from "./Carousel_header_movies";
 import Navbar from "./Navbar";
 import Search from "./Search";
 import Movie_info from "./Movie_info";
-import Tv_info from "./Tv_info"
 import Actor_info from "./Actor_info"
 import Filmography from "./Filmography";
 
@@ -78,7 +77,7 @@ export default function Home() {
       <Navbar active={active} selectMovieOrTv={selectMovieOrTv}/>
       <Routes location={location} key={location.pathname}>
         <Route path="infoMovie" element={<Movie_info idMovie={idMovie} getIdPerson={getIdPerson} getIdMovie={getIdMovie}/>} />
-        <Route path="infoTv" element={<Tv_info idMovie={idMovie}  getIdPerson={getIdPerson} getIdMovie={getIdMovie}/>} />
+      
         <Route path="infoActor" element={<Actor_info idPerson={idPerson} getKeyWord={getKeyWord} getIdMovie={getIdMovie}/>} />
         <Route path="filmography" element={<Filmography  keyWord={keyWord} getIdMovie={getIdMovie}/>} />
       

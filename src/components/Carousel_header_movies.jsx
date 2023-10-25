@@ -14,7 +14,6 @@ export default function Carousel_movies(props) {
   const [respImages, setResImages] = useState();
   const [activePoster, setActiveposter] = useState(false);
   let setIn;
-  console.log(activePoster)
 
   useEffect(() => {
     fetch(
@@ -38,7 +37,7 @@ export default function Carousel_movies(props) {
           .then((resp) => resp.json())
           .then((resp) => setResImages(resp))
       : null;
-  }, [stateCount]);
+  }, []);
 
   /*  resApi? console.log(resApi):null  */
 

@@ -42,13 +42,13 @@ export default function Navbar(props) {
       >        
         <button
           onClick={() => {
-            selectMovieOrTv(true), navigate("/");
+            selectMovieOrTv(true), navigate("/") ,localStorage.setItem("movieOrTv","movie");
           }}>
           Movies
         </button>
         <button
           onClick={() => {
-            selectMovieOrTv(false), navigate("/");
+            selectMovieOrTv(false), navigate("/"),localStorage.setItem("movieOrTv","tv");
           }}
         >
           Tv
