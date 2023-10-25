@@ -125,12 +125,12 @@ export default function Movie_info(props) {
               })}
             </section>
           ) : null}
-          <section className="flex w-screen overflow-y-hidden my-2 ">
+          <section className="flex w-screen overflow-y-hidden my-2 md:my-0">
             {dataVideos
               ? dataVideos.map((e, i) => (
                   <section key={i}>
                    
-                    <iframe className="w-screen h-60 mr-5"
+                    <iframe className="w-screen h-60 mr-5 md:h-96"
                       src={`//www.youtube.com/embed/${e.key}/?autoplay=1;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
                     ></iframe>
                   </section>
