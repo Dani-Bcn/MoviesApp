@@ -54,12 +54,13 @@ export default function Movie_info(props) {
         z-20
     "
       animate={{
+        opacity:[0,1],
         transition: {
           duration: 0.5,
         },
       }}
       exit={{
-        x: 200,
+        opacity:[1,0]
       }}
     >
       {infoMovie ? (

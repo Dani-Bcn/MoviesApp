@@ -8,13 +8,13 @@ export default function Carousel_movies(props) {
   const movieOrTv = localStorage.getItem("movieOrTv")
   const navigate = useNavigate()
   const { getIdMovieToMovieInfo } = props;
-  const posterRef = useRef();
   const [resApi, setResApi] = useState();
   const [countMovie, setCountMovie] = useState(1);
   const [stateCount, setStateCount] = useState(false);
   const [respImages, setResImages] = useState();
   const [activePoster, setActiveposter] = useState(false);
   let setIn;
+  console.log(activePoster)
 
   useEffect(() => {
     fetch(
@@ -22,6 +22,7 @@ export default function Carousel_movies(props) {
     )
       .then((resp) => resp.json())
       .then((resp) => setResApi(resp.results));
+      movieOrTv === "movie" ? setActiveposter(false):setActiveposter(true)
   }, [movieOrTv]);
 
 
@@ -75,30 +76,31 @@ export default function Carousel_movies(props) {
 
   const variantsImages = {
     open: {
-      borderRadius: "50px",     
-      width: "90vw",
-      height: "475px",
+      opacity:[0,1],
     },
     closed: {
-      borderRadius: "0px",      
+      opacity:[0,1]      
     },
   };
 
   return (
-    <m.main
-    className="
-      flex
-      justify-center      
-      "
+    <m.main className="fle justify-cente"
+    variants={variantsImages}
+      animate={
+        activePoster? "open":"closed"
+      }
     >
-      <section
-        className="
-        absolute
-        "
-      >
+      <section className="absolute">
         {resApi ? (
-          <>
-            <m.img
+          <m.section
+            animate={{
+              opacity:[0,1]
+            }}
+            exit={{
+              opacity:[0,1]
+            }}
+          >
+            <m.img className="w-screen h-[500px]"
              onClick={() => {
               navigate("/infoMovie")
               getIdMovieToMovieInfo(resApi[countMovie].id,
@@ -107,13 +109,10 @@ export default function Carousel_movies(props) {
             }}
               variants={variantsImages}
               animate={activePoster ? "open" : "closed"}
-              className="
-                w-screen
-                h-[500px] 
-            "
+              
               src={`https://image.tmdb.org/t/p/w500/${resApi[countMovie].poster_path}`}
             />
-          </>
+          </m.section>
         ) : null}
       </section>    
     </m.main>

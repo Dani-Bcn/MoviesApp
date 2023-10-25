@@ -17,7 +17,6 @@ export default function Home() {
   const [selectMovieTv,setSelectMovieTv] = useState(true)
   const [idPerson, setIdPerson] = useState()
   const [keyWord, setKeyWord] = useState()
-
   const active = (e) => {
     setActiveSearch(e);
   };
@@ -25,9 +24,7 @@ export default function Home() {
   const selectMovieOrTv =((e)=>{
    setSelectMovieTv(e)
    e?  localStorage.setItem("movieOrTv","movie"):
-   localStorage.setItem("movieOrTv","tv")
-
-  
+   localStorage.setItem("movieOrTv","tv")  
   })
 
   const getIdMovieToMovieInfo = (e) => {
@@ -37,8 +34,7 @@ export default function Home() {
 
   const getIdMovie=((e)=>{
     setIdMovie(e)     
-    console.log(e)
- 
+    console.log(e) 
  })
 
   const getIdPerson=((e)=>{
@@ -49,10 +45,7 @@ export default function Home() {
     setKeyWord(e)
   })
 
- 
-
   const dataOverage = (e) => <Svg e={e} />;
-
   const variants = {
     open: {
       x: 400,
@@ -61,7 +54,6 @@ export default function Home() {
         ease: "circOut",
       },
     },
-
     closed: {
       x: -450,
       transition: {
@@ -71,10 +63,17 @@ export default function Home() {
     },
   };
   return (
-    <main
+    <m.main
       className="
         z-10
       "
+
+      animate={{
+        opacity:[0,1]
+      }}
+      exit={{
+        opacity:[1,0]
+      }}
     >
       <Navbar active={active} selectMovieOrTv={selectMovieOrTv}/>
       <Routes location={location} key={location.pathname}>
@@ -106,6 +105,6 @@ export default function Home() {
         active={active}
       />          
        }
-    </main>
+    </m.main>
   );
 }

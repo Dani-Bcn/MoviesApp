@@ -73,6 +73,7 @@ export default function Search(props) {
           </form>
           <article></article>
         </section>
+
         {findMovie ? (
           findMovie.length === undefined ||
           (findMovie.length < 1 && inputRef.current.value.length > 3) ? (
@@ -82,6 +83,7 @@ export default function Search(props) {
           ) : null
         ) : null}
       </section>
+
       <section className=" mt-32 m-auto p-2 text-[1.2rem]  text-orange-200  bg-slate-800 rounded-[50px]">
         {findMovie
           ? findMovie.map((e, i) => {
