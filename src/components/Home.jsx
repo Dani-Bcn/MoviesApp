@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { motion as m } from "framer-motion";
+import { motion as m, AnimatePresence } from "framer-motion";
 import Svg from "./Svg";
 import Carousel_movies from "./Carousel_header_movies";
 import Navbar from "./Navbar";
@@ -33,7 +33,7 @@ export default function Home() {
   const variants = {
     open: {
       x: 400,
-      display: ["flex","flex", "flex", "flex"],
+      display: ["flex", "flex", "flex", "flex"],
       transition: {
         duration: 0.5,
         ease: "circOut",
@@ -67,14 +67,14 @@ export default function Home() {
   };
   const variantsCarousel = {
     open: {
-     opacity:[0,1],
+      opacity: [1, 0],
       transition: {
         ease: "backInOut",
         duration: 1,
       },
     },
     closed: {
-     opacity:[1,0],
+      opacity: [0, 1],
       transition: {
         ease: "backInOut",
         duration: 1,
@@ -91,13 +91,10 @@ export default function Home() {
         opacity: [1, 0],
       }}
     >
-      <m.section 
-      variants={variantsCarousel}
-      animate={
-        !activePageSearch && activeNavbar? "open":"closed"
-      }
+      <m.section
+        variants={variantsCarousel}
+        animate={activePageSearch || !activeNavbar ? "open" : "closed"}
       >
-        
         <Carousel_movies />
       </m.section>
       <m.section
@@ -128,12 +125,13 @@ export default function Home() {
       >
         <Navbar activeSearch={activeSearch} selectMovieOrTv={selectMovieOrTv} />
       </m.section>
-
-      <Routes location={location} key={location.pathname}>
-        <Route path="infoMovie" element={<Movie_info />} />
-        <Route path="infoActor" element={<Actor_info />} />
-        <Route path="filmography" element={<Filmography />} />
-      </Routes>
+      <AnimatePresence>
+        <Routes location={location} key={location.pathname}>
+          <Route path="infoMovie" element={<Movie_info />} />
+          <Route path="infoActor" element={<Actor_info />} />
+          <Route path="filmography" element={<Filmography />} />
+        </Routes>
+      </AnimatePresence>
       <m.section
         className="ml-[-400px]"
         variants={variants}

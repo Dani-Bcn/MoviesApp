@@ -53,13 +53,18 @@ export default function Movie_info() {
       z-10
     "
       animate={{
-        opacity: [0, 1],
+        opacity:[0,1],
+        scale: [1.5, 1],
         transition: {
           duration: 0.5,
         },
       }}
       exit={{
-        opacity: [1, 0],
+        scale: [1, 2],
+        opacity:[1,0,0,0],
+        transition: {
+          duration: 1,
+        },
       }}
     >
       {infoMovie ? (
