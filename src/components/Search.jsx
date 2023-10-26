@@ -83,7 +83,7 @@ export default function Search(props) {
         ) : null}
       </section>
 
-      <section className="  absolute overflow-y-hidden flex mt-32 m-auto p-2 gap-20 text-[1.2rem]  text-orange-200  bg-slate-800 rounded-[50px]">
+      <section className="overflow-y-hidden flex mt-32 m-auto p-2 gap-20 text-[1.2rem]  text-orange-200  bg-slate-800 rounded-[50px]">
         {findMovie
           ? findMovie.map((e, i) => {
               if (e.poster_path) {
