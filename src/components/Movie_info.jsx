@@ -3,8 +3,7 @@ import { motion as m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { info } from "autoprefixer";
 
-export default function Movie_info(props) {
-  const { getIdPerson } = props;
+export default function Movie_info() {
   let idMovie = localStorage.getItem("idMovie");
   const [movieOrTv, setMovieOrTv] = useState(localStorage.getItem("movieOrTv"));
   const [infoMovie, setInfoMovie] = useState();
@@ -66,19 +65,18 @@ export default function Movie_info(props) {
     >
       {infoMovie ? (
         <>
-      
           <div className="fixed z-10 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
-           <div
-            className=" fixed w-screen h-screen opacity-[0.4] "
+          <div
+            className=" fixed w-screen h-screen opacity-[0.8] "
             style={{
               backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
             }}
-          ></div> 
+          ></div>
         </>
       ) : null}
 
       {infoMovie ? (
-        <section >
+        <section>
           <section className="flex p-5">
             <m.img
               className=" z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
@@ -86,11 +84,27 @@ export default function Movie_info(props) {
             />
 
             <article className="flex flex-col px-5 z-10">
-              <h2 className="text-[1.3rem]">{infoMovie.title}</h2>
+              {infoMovie.title ? (
+                <h2 className="text-[1.3rem]">{infoMovie.title}</h2>
+              ) : (
+                <h2 className="text-[1.3rem]">{infoMovie.name}</h2>
+              )}
+
               <section className="flex gap-5">
-                <p>{infoMovie.release_date.slice(0, 4)}</p>
-                <p>{infoMovie.runtime}"</p>
-                <p>{infoMovie.original_language}</p>
+                {infoMovie.release_date ? (
+                  <p>{infoMovie.release_date}</p>
+                ) : (
+                  <p>{infoMovie.first_air_date}</p>
+                )}
+                {infoMovie.runtime ? (
+                  <p>{infoMovie.runtime}"</p>
+                ) : (
+                  infoMovie.episode_run_time.length !== 0?
+                  <p>{infoMovie.episode_run_time}"</p>
+                  :null
+                )}
+
+                <p>{infoMovie.original_language.toUpperCase()}</p>
               </section>
               <section className="flex gap-x-2 flex-wrap">
                 {infoMovie.genres.map((e, i) => {
@@ -104,7 +118,9 @@ export default function Movie_info(props) {
             </article>
           </section>
           <section className=" relative w-full h-full z-10">
-            <p className="text-slate-50 h-full p-x10 p-5">{infoMovie.overview}</p>
+            <p className="text-slate-50 h-full p-x10 p-5">
+              {infoMovie.overview}
+            </p>
           </section>
 
           {infoCast !== undefined ? (

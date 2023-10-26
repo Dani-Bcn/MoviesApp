@@ -8,8 +8,7 @@ export default function Search(props) {
   const [newCall, setNewCall] = useState(false);
   const [seacrhInput, setSearchInput] = useState();
   const [findMovie, setFindMovie] = useState();
-
-  const { active } = props;
+  const { activeSearch } = props;
 
   useEffect(() => {
     if (inputRef.current.value.length > 2) {
@@ -33,7 +32,7 @@ export default function Search(props) {
       <section className="absolute bg-slate-800">
         <svg
           className="m-5"
-          onClick={() => active(false)}
+          onClick={() => activeSearch(false)}
           width="30px"
           height="30px"
           viewBox="0 0 60 50"
@@ -102,7 +101,7 @@ export default function Search(props) {
                           className=" bg-slate-600 py-1 px-10 mx-auto rounded-[5px]"
                           onClick={() => {
                             navigate("/infoMovie"),
-                              active(false),
+                              activeSearch(false),
                               localStorage.setItem("idMovie", e.id);
                             localStorage.setItem("movieOrTv", "movie");
                           }}
@@ -113,7 +112,7 @@ export default function Search(props) {
                         <button
                           onClick={() => {
                             navigate("/infoTV"),
-                              active(false),
+                              activeSearch(false),
                               localStorage.setItem("idMovie", e.id);
                             localStorage.setItem("movieOrTv", "tv");
                           }}

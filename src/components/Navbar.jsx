@@ -1,40 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import {motion as m} from "framer-motion"
 
 export default function Navbar(props) {
-  const { active } = props;
-  const { selectMovieOrTv } = props;
+  const { activeSearch } = props;
 
-  const [activePage, setActivePage] = useState(true);
+
+
   const navigate = useNavigate();
   const location = useLocation();
+  console.log(navigate.current)
 
+  useEffect(() => {
+   
+   console.log(location.pathname)
+  }, []);
 
   return (
     <main className="z-100">
       <section
         className="flex items-center justify-start "
       >
-        {location.pathname !== "/" ? (
-          <button
-            className="
-              absolute
-              w-5              
-              px-5
-            "
-            onClick={() => {
-              navigate(-1), console.log(location.pathname);
-            }}
-          >
-            Back
-          </button>
-        ) : null}
+    
 
         <h1
           onClick={() => navigate("/")}
-          className="
-              w-screen my-5 flex items-center justify-center text-2xl text-orange-200 "
-        >
+          className="w-screen my-5 flex items-center justify-center text-2xl text-orange-200 ">
           App Movies
         </h1>
       </section>
@@ -43,19 +34,21 @@ export default function Navbar(props) {
       >        
         <button
           onClick={() => {
-            selectMovieOrTv(true), navigate("/") ,localStorage.setItem("movieOrTv","movie");
+            navigate("/")
+           localStorage.setItem("movieOrTv","movie");
           }}>
           Movies
         </button>
         <button
           onClick={() => {
-            selectMovieOrTv(false), navigate("/"),localStorage.setItem("movieOrTv","tv");
+            navigate("/")
+            localStorage.setItem("movieOrTv","tv");
           }}
         >
           Tv
         </button>
         <svg
-          onClick={() => active(true)}
+          onClick={() => activeSearch(true)}
           width="25px"
           height="25px"
           viewBox="0 0 24 24"

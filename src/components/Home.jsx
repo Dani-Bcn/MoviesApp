@@ -11,13 +11,11 @@ import Filmography from "./Filmography";
 
 export default function Home() {
   const location = useLocation();
-  const [activeSearch, setActiveSearch] = useState(false);
-  const [idMovie, setIdMovie] = useState();
+  const [activePageSearch, setActivePageSearch] = useState(false);
   const [selectMovieTv,setSelectMovieTv] = useState(true)
-  const [idPerson, setIdPerson] = useState()
-  const [keyWord, setKeyWord] = useState()
-  const active = (e) => {
-    setActiveSearch(e);
+
+  const activeSearch = (e) => {
+    setActivePageSearch(e);
   };
 
   const selectMovieOrTv =((e)=>{
@@ -25,25 +23,6 @@ export default function Home() {
    e?  localStorage.setItem("movieOrTv","movie"):
    localStorage.setItem("movieOrTv","tv")  
   })
-
-  const getIdMovieToMovieInfo = (e) => {
-    setIdMovie(e); 
-    localStorage.setItem("idMovie",e)
-  };  
-
-  const getIdMovie=((e)=>{
-    setIdMovie(e)     
-    console.log(e) 
- })
-
-  const getIdPerson=((e)=>{
-     setIdPerson(e)     
-  })
-
-  const getKeyWord=((e)=>{
-    setKeyWord(e)
-  })
-
   const dataOverage = (e) => <Svg e={e} />;
   const variants = {
     open: {
@@ -63,9 +42,7 @@ export default function Home() {
   };
   return (
     <m.main
-      className="
-        z-100
-      "
+      className="z-100"
       animate={{
         opacity:[0,1]
       }}
@@ -73,36 +50,25 @@ export default function Home() {
         opacity:[1,0]
       }}
     >
-      <Navbar active={active} selectMovieOrTv={selectMovieOrTv}/>
+      <Navbar activeSearch={activeSearch} selectMovieOrTv={selectMovieOrTv}/>
       <Routes location={location} key={location.pathname}>
-        <Route path="infoMovie" element={<Movie_info idMovie={idMovie} getIdPerson={getIdPerson} getIdMovie={getIdMovie}/>} />
-      
-        <Route path="infoActor" element={<Actor_info idPerson={idPerson} getKeyWord={getKeyWord} getIdMovie={getIdMovie}/>} />
-        <Route path="filmography" element={<Filmography  keyWord={keyWord} getIdMovie={getIdMovie}/>} />
+        <Route path="infoMovie" element={<Movie_info />} />      
+        <Route path="infoActor" element={<Actor_info />} />
+        <Route path="filmography" element={<Filmography  />} />
       
  </Routes>
        
-        {
-          selectMovieTv?
-        <Carousel_movies
-          getIdMovieToMovieInfo={getIdMovieToMovieInfo}
-          active={active}
-        /> :
-        <Carousel_movies
-        getIdMovieToMovieInfo={getIdMovieToMovieInfo}
-        active={active}
-      />          
+        
       
-       }
+        <Carousel_movies/>          
+      
+     
         <m.section
-          className="
-            ml-[-400px]
-          
-          "
+          className="ml-[-400px]"
           variants={variants}
-          animate={activeSearch ? "open" : "closed"}
+          animate={activePageSearch ? "open" : "closed"}
         >
-          <Search active={active} />
+          <Search activeSearch={activeSearch} />
         </m.section>
     </m.main>
   );
