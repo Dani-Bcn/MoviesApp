@@ -53,7 +53,6 @@ export default function Movie_info() {
       z-10
     "
       animate={{      
-        scale: [1.5, 1],
         transition: {
           duration: 0.5,
         },
