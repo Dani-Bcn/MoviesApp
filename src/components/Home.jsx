@@ -94,7 +94,7 @@ export default function Home() {
       <m.section 
       variants={variantsCarousel}
       animate={
-        !activePageSearch? "open":"closed"
+        !activePageSearch && activeNavbar? "open":"closed"
       }
       >
         
