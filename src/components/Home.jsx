@@ -74,7 +74,7 @@ export default function Home() {
       exit={{
         opacity: [1, 0],
       }}
-    >   {activeNavbar ? <Carousel_movies /> : null}
+    >   { !activePageSearch? <Carousel_movies /> : null}
       <m.section className="absolute z-50" onClick={() => navigate(-1)}
       variants={variantsActiveSearch}
       animate={
