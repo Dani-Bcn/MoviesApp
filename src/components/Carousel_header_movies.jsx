@@ -52,14 +52,14 @@ const interval = setInterval(() => {
   } 
 
   return (
-    <m.main className="absolute z-1 text-orange-200 w-screen bg-slate-800"
+    <m.main className="absolute z-1 mt-20 text-orange-200  bg-slate-800"
       whileInView={{
         opacity:[0,1]
       }}    
     >
 
       {dataMovies ? (
-        <m.section
+        <m.section className="z-1"
           onClick={()=>{navigate("/infoMovie"),localStorage.setItem("idMovie",dataMovies[count].id)}
         }
         >

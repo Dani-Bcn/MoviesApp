@@ -24,12 +24,12 @@ export default function Search(props) {
 
   return (
     <m.main
-      className="absolute z-50 w-screen -mt-[75px] bg-slate-800 rounded-r-[25px] z-100"
+      className="-mt-20 z-50 w-screen h-screen  bg-slate-800 rounded-r-[25px] z-100"
       whileInView={{
         opacity: [0.01, 1],
       }}
     >
-      <section className="absolute bg-slate-800">
+      <section className=" bg-slate-800">
         <svg
           className="m-5"
           onClick={() => activeSearch(false)}
@@ -83,17 +83,17 @@ export default function Search(props) {
         ) : null}
       </section>
 
-      <section className="overflow-y-hidden flex mt-32 m-auto p-2 gap-20 text-[1.2rem]  text-orange-200  bg-slate-800 rounded-[50px]">
+      <section className=" overflow-y-hidden flex mt-32 m-auto text-[1.2rem]  text-orange-200 ">
         {findMovie
           ? findMovie.map((e, i) => {
               if (e.poster_path) {
                 return (
-                  <section key={i} className="flex m-5 shadow rounded-[50px] ">
+                  <section key={i} className="w-96 flex m-5 shadow rounded-[50px]  ">
                     <img
-                      className="rounded-l-lg "
+                      className="rounded-l-lg"
                       src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                     />
-                    <section className="flex w-48 py-5 flex-col items-start justify-between bg-slate-700 rounded-r-lg">
+                    <section className="flex w-96 py-5 flex-col items-start justify-between bg-slate-700 rounded-r-lg">
                       <h2 className="mx-5 ">{e.title}</h2>
                       {e.media_type === "person" ? null : e.media_type ===
                         "movie" ? (

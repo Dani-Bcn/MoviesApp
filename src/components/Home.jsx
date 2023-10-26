@@ -49,22 +49,30 @@ export default function Home() {
 
   const variantsActiveSearch ={
     open:{
-        y:[-100,0]
+        y:[-100,0],
+        transition:{
+          ease:"backInOut",
+          duration:1
+        }
     },
     closed:{
-      y:[0,-100]
+      y:[0,-100],
+      transition:{
+        ease:"backInOut",
+        duration:1
+      }
     }
   }
   return (
     <m.main
-      className="z-100"
+      className=" bg-slate-100/[0] overflow-y-hidden"
       animate={{
         opacity: [0, 1],
       }}
       exit={{
         opacity: [1, 0],
       }}
-    >
+    >   {activeNavbar ? <Carousel_movies /> : null}
       <m.section className="absolute z-50" onClick={() => navigate(-1)}
       variants={variantsActiveSearch}
       animate={
@@ -95,15 +103,13 @@ export default function Home() {
       >
         <Navbar activeSearch={activeSearch} selectMovieOrTv={selectMovieOrTv} />
       </m.section>
+     
 
       <Routes location={location} key={location.pathname}>
         <Route path="infoMovie" element={<Movie_info />} />
         <Route path="infoActor" element={<Actor_info />} />
         <Route path="filmography" element={<Filmography />} />
       </Routes>
-
-      {activeNavbar ? <Carousel_movies /> : null}
-
       <m.section
         className="ml-[-400px]"
         variants={variants}
@@ -111,6 +117,10 @@ export default function Home() {
       >
         <Search activeSearch={activeSearch} />
       </m.section>
+
+    
+
+      
     </m.main>
   );
 }
