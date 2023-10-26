@@ -24,7 +24,7 @@ export default function Search(props) {
 
   return (
     <m.main
-      className="-mt-20 z-50 w-screen h-screen  bg-slate-800 rounded-r-[25px] z-100"
+      className="-mt-20 z-50 w-screen bg-slate-800/[0.9] rounded-r-[25px] z-100"
       whileInView={{
         opacity: [0.01, 1],
       }}
@@ -83,22 +83,29 @@ export default function Search(props) {
         ) : null}
       </section>
 
-      <section className=" overflow-y-hidden flex mt-32 m-auto text-[1.2rem]  text-orange-200 ">
+      <section className=" m-auto text-[0.7rem]  text-orange-200 ">
         {findMovie
           ? findMovie.map((e, i) => {
-              if (e.poster_path) {
+              if (e.poster_path && e.backdrop_path && !e.name && e.title) {
                 return (
-                  <section key={i} className="w-96 flex m-5 shadow rounded-[50px]  ">
+                  <section key={i} className="w-42 h-20 flex m-5 shadow rounded-[50px]  ">
+                    
                     <img
-                      className="rounded-l-lg"
-                      src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
+                      className="rounded-l-lg h-20"
+                      src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
                     />
-                    <section className="flex w-96 py-5 flex-col items-start justify-between bg-slate-700 rounded-r-lg">
-                      <h2 className="mx-5 ">{e.title}</h2>
+                    <section className="flex w-96 py-5  items-start justify-between bg-slate-700 rounded-r-lg">
+                      {
+                        e.title.length >25 ? 
+                        <h2 className="mx-5 ">{e.title.slice(0,25)}...</h2>
+                        :
+                        <h2 className="mx-5 ">{e.title.slice(0,25)}</h2>
+                      }
+                 
                       {e.media_type === "person" ? null : e.media_type ===
                         "movie" ? (
                         <button
-                          className=" bg-slate-600 py-1 px-10 mx-auto rounded-[5px]"
+                          className=" bg-slate-600 py-1 px-5 mx-5 rounded-[5px]"
                           onClick={() => {
                             navigate("/infoMovie"),
                               activeSearch(false),
@@ -116,7 +123,7 @@ export default function Search(props) {
                                 localStorage.setItem("idMovie", e.id);
                               localStorage.setItem("movieOrTv", "tv");
                             }}
-                            className="bg-slate-600 py-1 px-10 mx-auto rounded-[5px]"
+                            className="bg-slate-600 py-1 px-5 mx-5 rounded-[5px]"
                           >
                             Info
                           </button>

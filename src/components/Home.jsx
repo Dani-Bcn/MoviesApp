@@ -33,15 +33,17 @@ export default function Home() {
   const variants = {
     open: {
       x: 400,
-      transition: {
+      display:["flex"],
+      transition: {    
         duration: 0.5,
         ease: "circOut",
       },
     },
     closed: {
-      x: -450,
+      x: [0,0,-450],
+      display:["flex","flex","flex","none"],
       transition: {
-        duration: 0.5,
+        duration: 2,
         ease: "circIn",
       },
     },
