@@ -63,14 +63,26 @@ export default function Movie_info() {
       }}
     >
       {infoMovie ? (
-        <section>
-          <div className="fixed z-10 mt-76 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
-          <div className=" fixed w-screen h-screen opacity-[0.8] "
-            style={{
-              backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
-            }}
-          ></div>
-        </section>
+        <>
+          <section className="mx-5">
+            {infoMovie ? (
+              infoMovie.title ? (
+                <h2 className="text-[1.5rem]">{infoMovie.title}</h2>
+              ) : (
+                <h2 className="text-[1.5rem]">{infoMovie.name}</h2>
+              )
+            ) : null}
+          </section>
+          <section>
+            <div className="fixed z-10 mt-76 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
+            <div
+              className=" fixed w-screen h-screen opacity-[0.8] "
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
+              }}
+            ></div>
+          </section>
+        </>
       ) : null}
 
       {infoMovie ? (
@@ -82,34 +94,40 @@ export default function Movie_info() {
             />
 
             <article className="flex flex-col px-5 z-10">
-              {infoMovie.title ? (
-                <h2 className="text-[1.3rem]">{infoMovie.title}</h2>
-              ) : (
-                <h2 className="text-[1.3rem]">{infoMovie.name}</h2>
-              )}
+              <section className="flex gap-2.5 my-1">
+                <div className="w-8 h-8 rounded-[20px]  flex items-center justify-center border-2 border-green-500">
+                  <p className="mt-0.5">
+                    {infoMovie.original_language.toUpperCase()}
+                  </p>
+                </div>
+                <div className="w-8 h-8 flex items-center justify-center border-2 border-red-500">
+                  <p>{infoMovie.vote_average.toFixed(1)}</p>
+                </div>
+              </section>
 
-              <section className="flex gap-5">
+              <section className="flex gap-3">
                 {infoMovie.release_date ? (
                   <p>{infoMovie.release_date}</p>
                 ) : (
                   <p>{infoMovie.first_air_date}</p>
                 )}
-                {infoMovie.runtime ? (
-                  <p>{infoMovie.runtime}"</p>
-                ) : (
-                  infoMovie.episode_run_time.length !== 0?
-                  <p>{infoMovie.episode_run_time}"</p>
-                  :null
-                )}
-
-                <p>{infoMovie.original_language.toUpperCase()}</p>
               </section>
+              <section className="flex gap-3">
+                {movieOrTv === "movie" ? (
+                
+                  <p>{infoMovie.runtime}'</p>
+                ) : (
+                  infoMovie.episode_run_time.length === 0?null:
+                  <p> {infoMovie.episode_run_time}'</p>
+                )}
+              </section>
+
               <section className="flex gap-x-2 flex-wrap">
                 {infoMovie.genres.map((e, i) => {
                   return <p key={i}> {e.name}</p>;
                 })}
               </section>
-              <p>{infoMovie.vote_average.toFixed(1)}</p>
+
               <a href={infoMovie.homepage}>
                 <button>Home page</button>
               </a>
@@ -140,7 +158,7 @@ export default function Movie_info() {
                         />
                         <section className="z-10">
                           <h3 className="mt-2">{e.name}</h3>
-                          <h3 className=" text-[0.8rem] text-slate-400">
+                          <h3 className=" text-[0.8rem] text-slate-300">
                             {e.character}
                           </h3>
                         </section>
