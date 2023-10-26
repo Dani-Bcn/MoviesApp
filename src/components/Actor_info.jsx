@@ -73,7 +73,7 @@ export default function Actor_info() {
             })
           : null}
       </section>
-      {dataActor ? (
+      {dataActor.biography ? (
         <>
           <h2 className="z-20 text-orange-300 m-2  w-32 h-5 text-[1.1rem]">
             Biography
