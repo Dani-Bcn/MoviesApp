@@ -24,7 +24,7 @@ export default function Search(props) {
 
   return (
     <m.main
-      className="-mt-20 z-50 w-screen h-screen bg-slate-800 rounded-r-[25px] z-100"
+      className="-mt-20 z-50 w-screen  bg-slate-800 rounded-r-[25px] z-100"
       whileInView={{
         opacity: [0.01, 1],
       }}
@@ -70,9 +70,7 @@ export default function Search(props) {
               }}
             />
           </form>
-          <article></article>
         </section>
-
         {findMovie ? (
           findMovie.length === undefined ||
           (findMovie.length < 1 && inputRef.current.value.length > 3) ? (
