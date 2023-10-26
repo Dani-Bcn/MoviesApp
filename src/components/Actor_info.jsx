@@ -36,7 +36,7 @@ export default function Actor_info() {
 
   return (
     <m.main
-      className="w-full z-20 px-5  bg-slate-800"
+      className="w-full absolute z-50 px-5  bg-slate-800"
       animate={{
         opacity: [0, 1],
       }}
