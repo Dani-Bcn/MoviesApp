@@ -53,6 +53,7 @@ export default function Movie_info() {
       z-10
     "
       animate={{      
+        opacity:[0,1],
         transition: {
           duration: 0.5,
         },
