@@ -52,7 +52,7 @@ const interval = setInterval(() => {
   } 
 
   return (
-    <m.main className="absolute z-1 text-orange-200 w-screen h-screen bg-slate-800"
+    <m.main className="absolute z-1 text-orange-200 w-screen bg-slate-800"
       whileInView={{
         opacity:[0,1]
       }}    

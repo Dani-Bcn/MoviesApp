@@ -24,7 +24,7 @@ export default function Search(props) {
 
   return (
     <m.main
-      className=" absolute z-50 w-screen -mt-[75px] bg-slate-800 rounded-r-[25px] z-100"
+      className="absolute z-50 w-screen -mt-[75px] bg-slate-800 rounded-r-[25px] z-100"
       whileInView={{
         opacity: [0.01, 1],
       }}
@@ -83,7 +83,7 @@ export default function Search(props) {
         ) : null}
       </section>
 
-      <section className="mt-32 m-auto p-2 text-[1.2rem]  text-orange-200  bg-slate-800 rounded-[50px]">
+      <section className="  absolute overflow-y-hidden flex mt-32 m-auto p-2 gap-20 text-[1.2rem]  text-orange-200  bg-slate-800 rounded-[50px]">
         {findMovie
           ? findMovie.map((e, i) => {
               if (e.poster_path) {
@@ -109,17 +109,18 @@ export default function Search(props) {
                           Info
                         </button>
                       ) : (
-                        <button
-                          onClick={() => {
-                            navigate("/infoTV"),
+                        <a href="/infoMovie">
+                          <button
+                            onClick={() => {
                               activeSearch(false),
-                              localStorage.setItem("idMovie", e.id);
-                            localStorage.setItem("movieOrTv", "tv");
-                          }}
-                          className="bg-slate-600 py-1 px-10 mx-auto rounded-[5px]"
-                        >
-                          Info
-                        </button>
+                                localStorage.setItem("idMovie", e.id);
+                              localStorage.setItem("movieOrTv", "tv");
+                            }}
+                            className="bg-slate-600 py-1 px-10 mx-auto rounded-[5px]"
+                          >
+                            Info
+                          </button>
+                        </a>
                       )}
                     </section>
                   </section>

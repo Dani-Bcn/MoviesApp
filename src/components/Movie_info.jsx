@@ -47,8 +47,7 @@ export default function Movie_info() {
     <m.main
       className="
         absolute
-        w-screen      
-        h-full
+        w-screen  
         bg-slate-800
         text-slate-200
       z-10
