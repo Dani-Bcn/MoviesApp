@@ -33,15 +33,15 @@ export default function Home() {
   const variants = {
     open: {
       x: 400,
-      display:["flex"],
-      transition: {    
+      display: ["flex","flex", "flex", "flex"],
+      transition: {
         duration: 0.5,
         ease: "circOut",
       },
     },
     closed: {
-      x: [0,0,-450],
-      display:["flex","flex","flex","none"],
+      x: [0, 0, -450],
+      display: ["flex", "flex", "flex", "none"],
       transition: {
         duration: 2,
         ease: "circIn",
@@ -49,22 +49,38 @@ export default function Home() {
     },
   };
 
-  const variantsActiveSearch ={
-    open:{
-        y:[-100,0],
-        transition:{
-          ease:"backInOut",
-          duration:1
-        }
+  const variantsActiveSearch = {
+    open: {
+      y: [-100, 0],
+      transition: {
+        ease: "backInOut",
+        duration: 1,
+      },
     },
-    closed:{
-      y:[0,-100],
-      transition:{
-        ease:"backInOut",
-        duration:1
-      }
-    }
-  }
+    closed: {
+      y: [0, -100],
+      transition: {
+        ease: "backInOut",
+        duration: 1,
+      },
+    },
+  };
+  const variantsCarousel = {
+    open: {
+     opacity:[0,1],
+      transition: {
+        ease: "backInOut",
+        duration: 1,
+      },
+    },
+    closed: {
+     opacity:[1,0],
+      transition: {
+        ease: "backInOut",
+        duration: 1,
+      },
+    },
+  };
   return (
     <m.main
       className=" bg-slate-100/[0] overflow-y-hidden"
@@ -74,12 +90,21 @@ export default function Home() {
       exit={{
         opacity: [1, 0],
       }}
-    >   { !activePageSearch? <Carousel_movies /> : null}
-      <m.section className="absolute z-50" onClick={() => navigate(-1)}
-      variants={variantsActiveSearch}
+    >
+      <m.section 
+      variants={variantsCarousel}
       animate={
-        activeNavbar? "closed":"open"
+        !activePageSearch? "open":"closed"
       }
+      >
+        
+        <Carousel_movies />
+      </m.section>
+      <m.section
+        className="absolute z-50"
+        onClick={() => navigate(-1)}
+        variants={variantsActiveSearch}
+        animate={activeNavbar ? "closed" : "open"}
       >
         <svg
           className="m-5"
@@ -98,14 +123,11 @@ export default function Home() {
         </svg>
       </m.section>
       <m.section
-      variants={variantsActiveSearch}
-      animate={
-        activeNavbar? "open":"closed"
-      }
+        variants={variantsActiveSearch}
+        animate={activeNavbar ? "open" : "closed"}
       >
         <Navbar activeSearch={activeSearch} selectMovieOrTv={selectMovieOrTv} />
       </m.section>
-     
 
       <Routes location={location} key={location.pathname}>
         <Route path="infoMovie" element={<Movie_info />} />
@@ -119,10 +141,6 @@ export default function Home() {
       >
         <Search activeSearch={activeSearch} />
       </m.section>
-
-    
-
-      
     </m.main>
   );
 }

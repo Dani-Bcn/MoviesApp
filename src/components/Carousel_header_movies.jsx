@@ -53,9 +53,7 @@ const interval = setInterval(() => {
 
   return (
     <m.main className="absolute z-1 mt-20 text-orange-200  bg-slate-800"
-      whileInView={{
-        opacity:[0,1]
-      }}    
+     
     >
 
       {dataMovies ? (
