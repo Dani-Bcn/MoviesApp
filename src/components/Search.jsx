@@ -24,7 +24,7 @@ export default function Search(props) {
 
   return (
     <m.main
-      className=" absolute z-50 w-screen -mt-[120px] bg-slate-800 rounded-r-[25px] z-100"
+      className=" absolute z-50 w-screen -mt-[75px] bg-slate-800 rounded-r-[25px] z-100"
       whileInView={{
         opacity: [0.01, 1],
       }}

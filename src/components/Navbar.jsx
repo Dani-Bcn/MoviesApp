@@ -5,32 +5,22 @@ import {motion as m} from "framer-motion"
 export default function Navbar(props) {
   const { activeSearch } = props;
 
-
-
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(navigate.current)
-
-  useEffect(() => {
-   
-   console.log(location.pathname)
-  }, []);
 
   return (
     <main className="z-100">
       <section
         className="flex items-center justify-start "
       >
-    
-
         <h1
           onClick={() => navigate("/")}
-          className="w-screen my-5 flex items-center justify-center text-2xl text-orange-200 ">
+          className="w-screen my-1 flex items-center justify-center text-[1.3rem] text-orange-200 ">
           App Movies
         </h1>
       </section>
       <section
-        className="m-5 flex items-center justify-around z-50"
+        className="m-2 flex items-center justify-around z-50"
       >        
         <button
           onClick={() => {
