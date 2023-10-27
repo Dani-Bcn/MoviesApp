@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import { motion as m } from "framer-motion";
 
 export default function Actor_info() {
   const [idPerson, setIdPerson] = useState(localStorage.getItem("idPerson"));
   const [dataActor, setDataActor] = useState();
   const [dataMovies, setDataMovies] = useState();
-  const [dataTV, setDataTv] = useState();
+  const [dataTv, setDataTv] = useState();
   const [activeBio, setActiveBio] = useState(true);
   const navigate = useNavigate();
+
+  
   useEffect(() => {
+    localStorage.setItem("movieOrTv","movie")
     fetch(
       `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
     )
@@ -25,16 +28,7 @@ export default function Actor_info() {
           .then((resp) => setDataMovies(resp.results))
       : null;
   }, []);
-  useEffect(() => {
-    idPerson
-      ? fetch(
-          `https://api.themoviedb.org/3/discover/tv?with_cast=${idPerson}&sort_by=release_date.desc&api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
-        )
-          .then((resp) => resp.json())
-          .then((resp) => setDataTv(resp.results))
-      : null;
-  }, []);
-
+ 
   const variantsBio = {
     open: {
       height: "0%",
@@ -73,23 +67,6 @@ export default function Actor_info() {
       {dataMovies ? (
         <section className="flex  overflow-y-hidden gap-10  h-72">
           {dataMovies.map((e, i) => {
-            return e.poster_path ? (
-              <img
-                onClick={() => {
-                  navigate("/infoMovie"), localStorage.setItem("idMovie", e.id);
-                }}
-                key={i}
-                className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
-                src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
-              />
-            ) : null;
-          })}
-        </section>
-      ) : null}
-
-      {dataTV ? (
-        <section className="flex  overflow-y-hidden gap-10  h-72">
-          {dataTV.map((e, i) => {
             return e.poster_path ? (
               <img
                 onClick={() => {
