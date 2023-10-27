@@ -99,9 +99,9 @@ export default function Actor_info() {
             return (
               <img
                 onClick={() =>
-                  activeImage(e.file_path.slice(2, e.file_path.length - 4))
+                  activeImage(e.file_path.slice(3, e.file_path.length - 22))
                 }
-                id={e.file_path.slice(2, e.file_path.length - 4)}
+                id={e.file_path.slice(3, e.file_path.length - 22)}
                 key={i}
                 className="flex m-auto rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                 src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
