@@ -41,7 +41,7 @@ export default function Actor_info() {
     setActiveBio(!activeBio);
     activeBio
       ? gsap.to(`#${e}`, {
-          scale: 2,
+          scale: 3,
           position: "absolute",
         })
       : gsap.to(`#${e}`, {
