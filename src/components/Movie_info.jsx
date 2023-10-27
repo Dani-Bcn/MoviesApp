@@ -45,12 +45,9 @@ export default function Movie_info() {
 
   return (
     <m.main
-      className="
-        absolute
-        w-screen  
-        bg-slate-800
-        text-slate-200
-      z-10
+      className="      
+        w-screen         
+        text-slate-200    
     "
       animate={{      
         opacity:[0,1],
@@ -59,9 +56,9 @@ export default function Movie_info() {
         },
       }}
       exit={{      
-        opacity:[1,0,0,0],
+        opacity:[1,0],
         transition: {
-          duration: 1,
+          duration: 0.3,
         },
       }}
     >
@@ -77,7 +74,7 @@ export default function Movie_info() {
             ) : null}
           </section>
           <section>
-            <div className="fixed z-10 mt-76 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
+            <div className=" fixed z-10 mt-76 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
             <div
               className=" fixed w-screen h-screen opacity-[0.8] "
               style={{
@@ -136,8 +133,8 @@ export default function Movie_info() {
               </a>
             </article>
           </section>
-          <section className=" relative w-full h-full z-10">
-            <p className="text-slate-50 h-full p-x10 p-5">
+          <section className="relative  z-10">
+            <p className="text-slate-50 p-x10 p-5">
               {infoMovie.overview}
             </p>
           </section>
@@ -179,7 +176,7 @@ export default function Movie_info() {
                   <section key={i} className="z-10">
                     <m.iframe
                       className="w-screen h-60 mr-5 md:h-96"
-                      src={`//www.youtube.com/embed/${e.key}/?autoplay=1;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
+                      src={`//www.youtube.com/embed/${e.key}/?autoplay=0;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
                       whileInView={{
                         opacity: [0, 1],
                         transition: {

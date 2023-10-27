@@ -36,9 +36,18 @@ export default function Actor_info() {
 
   return (
     <m.main
-      className="w-full absolute z-50 px-5  bg-slate-800"
-      animate={{
-        opacity: [0, 1],
+      className=" absolute w-full  z-50 px-5  bg-slate-800"
+      animate={{      
+        opacity:[0,1],
+        transition: {
+          duration: 0.5,
+        },
+      }}
+      exit={{      
+        opacity:[1,0],
+        transition: {
+          duration: 0.3,
+        },
       }}
     >
       {dataActor ? (
@@ -57,7 +66,7 @@ export default function Actor_info() {
         </section>
       ) : null}
 
-      <section className="flex overflow-y-hidden gap-10  h-72">
+      <section className="flex  overflow-y-hidden gap-10  h-72">
         {dataMovies
           ? dataMovies.map((e, i) => {
               return (     

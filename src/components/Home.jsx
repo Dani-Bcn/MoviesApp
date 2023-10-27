@@ -51,14 +51,34 @@ export default function Home() {
 
   const variantsActiveSearch = {
     open: {
-      y: [-100, 0],
+      opacity:[1,0],
+      y: [0, -130],
       transition: {
         ease: "backInOut",
         duration: 1,
       },
     },
     closed: {
-      y: [0, -100],
+      opacity:[0,1],
+      y: [-130, 0],
+      transition: {
+        ease: "backInOut",
+        duration: 1,
+      },
+    },
+  };
+  const variantsActiveArrow = {
+    open: {
+      opacity:[0,1],
+      y: [0, 130],
+      transition: {
+        ease: "backInOut",
+        duration: 1,
+      },
+    },
+    closed: {
+      opacity:[1,0],
+      y: [130, 0],
       transition: {
         ease: "backInOut",
         duration: 1,
@@ -90,38 +110,38 @@ export default function Home() {
       exit={{
         opacity: [1, 0],
       }}
+    > <m.section
+    className="fixed  -mt-32 z-0 bg-slate-800/[0.7] w-screen"
+    onClick={() => navigate(-1)}
+    variants={variantsActiveArrow}
+    animate={activeNavbar ? "closed" : "open"}
+  >
+    <svg
+      className="m-5"
+      onClick={() => activeSearch(false)}
+      width="30px"
+      height="30px"
+      viewBox="0 0 60 50"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <m.section
+      <g id="Shopicon">
+        <polygon
+          fill="#977"
+          points="40,22 14.828,22 28.828,8 26,5.172 7.172,24 26,42.828 28.828,40 14.828,26 400,26 	"
+        />
+      </g>
+    </svg>
+  </m.section>
+      <m.section className="z-10"
         variants={variantsCarousel}
         animate={activePageSearch || !activeNavbar ? "open" : "closed"}
       >
         <Carousel_movies />
       </m.section>
-      <m.section
-        className="absolute z-50"
-        onClick={() => navigate(-1)}
+     
+      <m.section className="mt-7"
         variants={variantsActiveSearch}
-        animate={activeNavbar ? "closed" : "open"}
-      >
-        <svg
-          className="m-5"
-          onClick={() => activeSearch(false)}
-          width="30px"
-          height="30px"
-          viewBox="0 0 60 50"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g id="Shopicon">
-            <polygon
-              fill="#999"
-              points="40,22 14.828,22 28.828,8 26,5.172 7.172,24 26,42.828 28.828,40 14.828,26 400,26 	"
-            />
-          </g>
-        </svg>
-      </m.section>
-      <m.section
-        variants={variantsActiveSearch}
-        animate={activeNavbar ? "open" : "closed"}
+        animate={!activeNavbar ? "open" : "closed"}
       >
         <Navbar activeSearch={activeSearch} selectMovieOrTv={selectMovieOrTv} />
       </m.section>
