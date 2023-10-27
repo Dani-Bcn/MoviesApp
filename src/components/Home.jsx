@@ -20,7 +20,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    location.pathname === "/" ? setActiveNavbar(true) : setActiveNavbar(false);
+    location.pathname !== "/" ? setActiveNavbar(true) : setActiveNavbar(false);
   }, [location.pathname]);
 
   const selectMovieOrTv = (e) => {
@@ -51,16 +51,16 @@ export default function Home() {
 
   const variantsActiveSearch = {
     open: {
-      opacity:[1,0],
-      y: [0, -130],
+      opacity:[0,1],
+      y: [-130,0],
       transition: {
         ease: "backInOut",
         duration: 1,
       },
     },
     closed: {
-      opacity:[0,1],
-      y: [-130, 0],
+      opacity:[1,0],
+      y: [0,-130],
       transition: {
         ease: "backInOut",
         duration: 1,
@@ -69,16 +69,16 @@ export default function Home() {
   };
   const variantsActiveArrow = {
     open: {
-      opacity:[0,1],
-      y: [0, 130],
+      opacity:[1,0],
+      y: [130, 0],
       transition: {
         ease: "backInOut",
         duration: 1,
       },
     },
     closed: {
-      opacity:[1,0],
-      y: [130, 0],
+      opacity:[0,1],
+      y: [0, 130],
       transition: {
         ease: "backInOut",
         duration: 1,
@@ -87,17 +87,15 @@ export default function Home() {
   };
   const variantsCarousel = {
     open: {
-      opacity: [1, 0],
+      display:"none",
       transition: {
-        ease: "backInOut",
-        duration: 1,
+        delay:0.5
       },
     },
     closed: {
-      opacity: [0, 1],
+      display:"flex",
       transition: {
-        ease: "backInOut",
-        duration: 1,
+        delay:0.5
       },
     },
   };
@@ -117,8 +115,8 @@ export default function Home() {
     animate={activeNavbar ? "closed" : "open"}
   >
     <svg
-      className="m-5"
-      onClick={() => activeSearch(false)}
+      className="m-4"
+      onClick={() => activeSearch(true)}
       width="30px"
       height="30px"
       viewBox="0 0 60 50"
@@ -134,8 +132,14 @@ export default function Home() {
   </m.section>
       <m.section className="z-10"
         variants={variantsCarousel}
-        animate={activePageSearch || !activeNavbar ? "open" : "closed"}
-      >
+        animate={
+          activeNavbar || activePageSearch ? "open":"close"
+        }
+         >
+        {
+          console.log(activeNavbar,activePageSearch)
+        }
+    
         <Carousel_movies />
       </m.section>
      

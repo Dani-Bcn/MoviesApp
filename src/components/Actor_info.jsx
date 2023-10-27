@@ -36,11 +36,11 @@ export default function Actor_info() {
 
   return (
     <m.main
-      className=" absolute w-full  z-50 px-5  bg-slate-800"
+      className="opacity-0 absolute w-full  z-50 px-5  bg-slate-800"
       animate={{      
         opacity:[0,1],
         transition: {
-          duration: 0.5,
+          duration: 0.3,
         },
       }}
       exit={{      
@@ -51,13 +51,15 @@ export default function Actor_info() {
       }}
     >
       {dataActor ? (
+        
         <section className=" text-orange-50 flex py-5">
+           <h2 className=" absolute -mt-12  text-[1.5rem] ">{dataActor.name}</h2>
           <img
-            className="rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 "
+            className="rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 my-2 "
             src={`https://image.tmdb.org/t/p/w500/${dataActor.profile_path}`}
           />
           <article className="w-52 px-5 flex flex-col flex-wrap">
-            <h2 className="text-[1.1rem] py-1">{dataActor.name}</h2>
+           
             <p>{dataActor.birthday}</p>
             <p>{dataActor.place_of_birth}</p>
             <p>{dataActor.known_for_department}</p>

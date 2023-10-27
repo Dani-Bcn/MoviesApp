@@ -66,7 +66,7 @@ const interval = setInterval(() => {
             animate={
               activeEffect?"open":"closed"             
             }
-            className="w-full h-full z-50"
+            className="w-full h-full z-20"
             src={`https://image.tmdb.org/t/p/w500/${dataMovies[count].poster_path}`}
           /> 
         </m.section>

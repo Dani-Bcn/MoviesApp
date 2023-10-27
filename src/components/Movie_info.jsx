@@ -45,14 +45,15 @@ export default function Movie_info() {
 
   return (
     <m.main
-      className="      
+      className="    
+      -mt-7
         w-screen         
         text-slate-200    
     "
       animate={{      
         opacity:[0,1],
         transition: {
-          duration: 0.5,
+          duration: 0.3,
         },
       }}
       exit={{      
