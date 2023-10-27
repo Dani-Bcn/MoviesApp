@@ -24,7 +24,7 @@ export default function Movie_info() {
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
-          `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1&page=1`
+          `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}/credits?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoCast(resp))
@@ -51,11 +51,11 @@ export default function Movie_info() {
         text-slate-200    
         opacity-100
     "
-      exit={{      
-        opacity:[1,0],
-        transition:{
-          duration:0.1,
-        }
+      exit={{
+        opacity: [1, 0],
+        transition: {
+          duration: 0.1,
+        },
       }}
     >
       {infoMovie ? (
@@ -110,10 +110,8 @@ export default function Movie_info() {
               </section>
               <section className="flex gap-3">
                 {movieOrTv === "movie" ? (
-                
                   <p>{infoMovie.runtime}'</p>
-                ) : (
-                  infoMovie.episode_run_time.length === 0?null:
+                ) : infoMovie.episode_run_time.length === 0 ? null : (
                   <p> {infoMovie.episode_run_time}'</p>
                 )}
               </section>
@@ -130,9 +128,7 @@ export default function Movie_info() {
             </article>
           </section>
           <section className="relative  z-10">
-            <p className="text-slate-50 p-x10 p-5">
-              {infoMovie.overview}
-            </p>
+            <p className="text-slate-50 p-x10 p-5">{infoMovie.overview}</p>
           </section>
 
           {infoCast !== undefined ? (
@@ -141,13 +137,15 @@ export default function Movie_info() {
                 return (
                   <section key={i}>
                     {e.profile_path !== null ? (
-                      <section className="m-2 flex flex-col items-center w-40"
+                      <section
+                        className="m-2 flex flex-col items-center w-40"
                         onClick={() => {
                           navigate("/infoActor"),
                             localStorage.setItem("idPerson", e.id);
                         }}
                       >
-                        <img className=" z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                        <img
+                          className=" z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                           src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
                         />
                         <section className="z-10">
@@ -159,21 +157,30 @@ export default function Movie_info() {
                       </section>
                     ) : null}
                   </section>
-                )
+                );
               })}
             </section>
           ) : null}
-  <section className=" mt-2 z-50 absolute w-screen h-[250px]"
-    onClick={()=>navigate("/trailers")}
-  ></section>
-          <section className="flex w-screen overflow-y-hidden my-2 md:my-0">
-            {dataVideos ? 
+
+          {dataVideos ? (
+            dataVideos.length !== 0 ? (
+              <section>
+                <section
+                  className=" mt-2 z-50 absolute w-screen h-[250px]"
+                  onClick={() => navigate("/trailers")}
+                ></section>
+
+                <section className="flex w-screen overflow-y-hidden my-2 md:my-0">
                   <section className="z-10">
-                    <iframe className="w-screen h-60 mr-5 md:h-96"
-                      src={`//www.youtube.com/embed/${dataVideos[0].key}/?autoplay=0;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}></iframe>
-                  </section>             
-              : null}
-          </section>
+                    <iframe
+                      className="w-screen h-60 mr-5 md:h-96"
+                      src={`//www.youtube.com/embed/${dataVideos[0].key}/?autoplay=0;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
+                    ></iframe>
+                  </section>
+                </section>
+              </section>
+            ) : null
+          ) : null}
         </section>
       ) : null}
     </m.main>

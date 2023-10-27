@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { data } from "autoprefixer";
 
 export default function Carousel_movies() {
-  const movieOrTv = localStorage.getItem("movieOrTv");
-  const [idMovie, setIdMovie] = useState(localStorage.getItem("idMovie"));
+  const movieOrTv = localStorage.getItem("movieOrTv")
+  const idMovie = localStorage.getItem("idMovie")
   const [dataMovies, setDataMovies] = useState();
   const [dataImages, setDataImages] = useState();
   const [count, setCount] = useState(Math.floor(Math.random()*19));
@@ -14,7 +14,7 @@ export default function Carousel_movies() {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/discover/${movieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b&sort_by=popularity.desc`
+      `https://api.themoviedb.org/3/discover/${movieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
     )
       .then((resp) => resp.json())
       .then((resp) => setDataMovies(resp.results));
@@ -28,7 +28,7 @@ export default function Carousel_movies() {
   const countImages =(()=>{
     setActiveEffect(!activeEffect)
     setCount(count+1)
-    count === 19?setCount(0):null
+    count === 19?setCount(Math.floor(Math.random()*19)):null
   clearInterval(interval)
 }) 
 
@@ -53,18 +53,14 @@ const interval = setInterval(() => {
   } 
 
   return (
-    <m.main className="absolute z-1 mt-20 text-orange-200  bg-slate-800"
-   
-   
+    <m.main className="absolute z-1 mt-20 text-orange-200  bg-slate-800"     
     exit={{
       opacity:[1,0],
       transition:{
         duration:0.3,
       }
-    }}
-     
+    }}     
     >
-
       {dataMovies ? (
         <m.section className="z-1"
           onClick={()=>{navigate("/infoMovie"),localStorage.setItem("idMovie",dataMovies[count].id)}
@@ -79,9 +75,7 @@ const interval = setInterval(() => {
             src={`https://image.tmdb.org/t/p/w500/${dataMovies[count].poster_path}`}
           /> 
         </m.section>
-      ) :null
-      
-      
+      ) :null     
       }
     </m.main>
   );
