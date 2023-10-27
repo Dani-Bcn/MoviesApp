@@ -53,17 +53,12 @@ const interval = setInterval(() => {
 
   return (
     <m.main className="absolute z-1 mt-20 text-orange-200  bg-slate-800"
-    animate={{
-      scale:[1.5,1],
-      opacity:[0,1],
-      transition:{
-        duration:0.1,
-      }
-    }}
+   
+   
     exit={{
       opacity:[1,0],
       transition:{
-        duration:0.1,
+        duration:0.3,
       }
     }}
      
