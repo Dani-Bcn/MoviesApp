@@ -9,6 +9,7 @@ import Search from "./components/Search";
 import Movie_info from "./components/Movie_info";
 import Actor_info from "./components/Actor_info";
 import Filmography from "./components/Filmography";
+import Trailers from "./components/Trailers";
 import Home from "./components/Home";
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
           <Route path="infoMovie" element={<Movie_info />} />
           <Route path="infoActor" element={<Actor_info />} />
           <Route path="filmography" element={<Filmography />} />
+          <Route path="trailers" element={<Trailers />} />
         </Routes>
       </AnimatePresence>
     </m.main>

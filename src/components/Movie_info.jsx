@@ -159,19 +159,19 @@ export default function Movie_info() {
                       </section>
                     ) : null}
                   </section>
-                );
+                )
               })}
             </section>
           ) : null}
-
+  <section className=" mt-2 z-50 absolute w-screen h-[250px]"
+    onClick={()=>navigate("/trailers")}
+  ></section>
           <section className="flex w-screen overflow-y-hidden my-2 md:my-0">
-            {dataVideos
-              ? dataVideos.map((e, i) => (
-                  <section key={i} className="z-10">
+            {dataVideos ? 
+                  <section className="z-10">
                     <iframe className="w-screen h-60 mr-5 md:h-96"
-                      src={`//www.youtube.com/embed/${e.key}/?autoplay=0;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}></iframe>
-                  </section>
-                ))
+                      src={`//www.youtube.com/embed/${dataVideos[0].key}/?autoplay=0;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}></iframe>
+                  </section>             
               : null}
           </section>
         </section>
