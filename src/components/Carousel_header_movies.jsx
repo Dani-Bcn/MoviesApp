@@ -20,6 +20,7 @@ export default function Carousel_movies() {
       .then((resp) => setDataMovies(resp.results));
 
     dataMovies ? console.log(dataMovies) : null;
+    dataMovies?setCount(Math.floor(Math.random()*19)):null
   }, [movieOrTv]);
 
   dataImages ? console.log(dataImages.backdrops) : null;
