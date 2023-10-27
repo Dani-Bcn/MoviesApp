@@ -39,14 +39,14 @@ const interval = setInterval(() => {
       x:[-50,0],
       opacity:[0.1,0.1,1],
       transition:{
-        duration:0.5
+        duration:0.1
       }
     },
     closed:{
       x:[-50,0],
       opacity:[0.1,0.1,1],
       transition:{
-        duration:0.5
+        duration:0.1
       }
     }
   } 
