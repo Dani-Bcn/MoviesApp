@@ -7,7 +7,7 @@ export default function Actor_info() {
   const [idPerson, setIdPerson] = useState(localStorage.getItem("idPerson"));
   const [dataActor, setDataActor] = useState();
   const [dataMovies, setDataMovies] = useState();
-  const [dataPictures,setDataPictures]= useState()
+  const [dataPictures, setDataPictures] = useState();
   const [dataTv, setDataTv] = useState();
   const [activeBio, setActiveBio] = useState(true);
   const navigate = useNavigate();
@@ -21,29 +21,33 @@ export default function Actor_info() {
       .then((resp) => setDataActor(resp));
   }, []);
   useEffect(() => {
-    if(idPerson){
-       fetch(
-          `https://api.themoviedb.org/3/discover/movie?with_cast=${idPerson}&sort_by=release_date.desc&api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
-        )
-          .then((resp) => resp.json())
-          .then((resp) => setDataMovies(resp.results))
-     
-    fetch(`https://api.themoviedb.org/3/person/${idPerson}/images?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
-      .then((res) => res.json())
-      .then((resp) => setDataPictures(resp));
-      
-      } 
-      dataPictures ? console.log(dataPictures):null
+    if (idPerson) {
+      fetch(
+        `https://api.themoviedb.org/3/discover/movie?with_cast=${idPerson}&sort_by=release_date.desc&api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
+      )
+        .then((resp) => resp.json())
+        .then((resp) => setDataMovies(resp.results));
+
+      fetch(
+        `https://api.themoviedb.org/3/person/${idPerson}/images?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+      )
+        .then((res) => res.json())
+        .then((resp) => setDataPictures(resp));
+    }
+    dataPictures ? console.log(dataPictures) : null;
   }, []);
 
-
-  const activeImage=((e)=>{
-     gsap.to(`#${e}`,{
-        scale:2
-
-     })
-  })
- 
+  const activeImage = (e) => {
+    setActiveBio(!activeBio);
+    activeBio
+      ? gsap.to(`#${e}`, {
+          scale: 2,
+          position: "absolute",
+        })
+      : gsap.to(`#${e}`, {
+          scale: 1,
+        });
+  };
 
   const variantsBio = {
     open: {
@@ -83,8 +87,7 @@ export default function Actor_info() {
       {dataMovies ? (
         <section className="flex  overflow-y-hidden gap-10  h-72">
           {dataMovies.map((e, i) => {
-            return  (
-             e.poster_path ?
+            return e.poster_path ? (
               <img
                 onClick={() => {
                   navigate("/infoMovie"), localStorage.setItem("idMovie", e.id);
@@ -93,23 +96,24 @@ export default function Actor_info() {
                 className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
-              :null
-            )    
-          })} 
+            ) : null;
+          })}
         </section>
-      ) : null} 
-        {dataPictures? (
-        <section className="flex  overflow-y-hidden gap-10  h-72">
+      ) : null}
+      {dataPictures ? (
+        <section className="flex justify-center overflow-y-hidden gap-10  h-72">
           {dataPictures.profiles.map((e, i) => {
-            return  (        
+            return (
               <img
-              onClick={()=> activeImage(e.file_path.slice(2,e.file_path.length-4))}
-               id={e.file_path.slice(2,e.file_path.length-4)}
+                onClick={() =>
+                  activeImage(e.file_path.slice(2, e.file_path.length - 4))
+                }
+                id={e.file_path.slice(2, e.file_path.length - 4)}
                 key={i}
-                className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                className="flex m-auto rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                 src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
               />
-            ) 
+            );
           })}
         </section>
       ) : null}
