@@ -18,10 +18,10 @@ export default function Trailers() {
 
   return (
     <main className="my-20">
-      <h1 className="m-5 text-2xl text-orange-100">Trailes</h1>
       {dataVideos
         ? dataVideos.map((e, i) => (
             <section key={i} className="z-10 my-10">
+                 <h1 className="m-5 text-[1.1rem] text-orange-100">{e.name}</h1>
               <iframe
                 className="w-screen h-60 mr-5 md:h-96"
                 src={`//www.youtube.com/embed/${e.key}/?autoplay=0;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}

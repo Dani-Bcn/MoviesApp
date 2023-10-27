@@ -15,7 +15,7 @@ import Home from "./components/Home";
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [activePageSearch, setActivePageSearch] = useState(false);
+  const [activePageSearch, setActivePageSearch] = useState();
   const [selectMovieTv, setSelectMovieTv] = useState(true);
   const [activeNavbar, setActiveNavbar] = useState(true);
 

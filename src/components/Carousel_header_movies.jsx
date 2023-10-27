@@ -28,7 +28,7 @@ export default function Carousel_movies() {
   const countImages =(()=>{
     setActiveEffect(!activeEffect)
     setCount(count+1)
-    count === 19?setCount(Math.floor(Math.random()*19)):null
+    count === 19?setCount(count +1):null
   clearInterval(interval)
 }) 
 

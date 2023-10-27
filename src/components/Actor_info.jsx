@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion as m } from "framer-motion";
 
 export default function Actor_info() {
   const [idPerson, setIdPerson] = useState(localStorage.getItem("idPerson"));
   const [dataActor, setDataActor] = useState();
   const [dataMovies, setDataMovies] = useState();
+  const [dataPictures,setDataPictures]= useState()
   const [dataTv, setDataTv] = useState();
   const [activeBio, setActiveBio] = useState(true);
   const navigate = useNavigate();
 
-  
   useEffect(() => {
-    localStorage.setItem("movieOrTv","movie")
+    localStorage.setItem("movieOrTv", "movie");
     fetch(
       `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
     )
@@ -20,15 +20,21 @@ export default function Actor_info() {
       .then((resp) => setDataActor(resp));
   }, []);
   useEffect(() => {
-    idPerson
-      ? fetch(
+    if(idPerson){
+       fetch(
           `https://api.themoviedb.org/3/discover/movie?with_cast=${idPerson}&sort_by=release_date.desc&api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
         )
           .then((resp) => resp.json())
           .then((resp) => setDataMovies(resp.results))
-      : null;
+     
+    fetch(`https://api.themoviedb.org/3/person/${idPerson}/images?api_key=55b2cf9d90cb74c55683e395bb1ad12b`)
+      .then((res) => res.json())
+      .then((resp) => setDataPictures(resp));
+      
+      } 
+      dataPictures ? console.log(dataPictures):null
   }, []);
- 
+
   const variantsBio = {
     open: {
       height: "0%",
@@ -41,12 +47,11 @@ export default function Actor_info() {
   return (
     <m.main
       className="opacity-100 mt-28 w-full  z-10 px-5  bg-slate-800"
-    
       exit={{
         opacity: [1, 0],
-        transition:{
-          duration:0.1,
-        }
+        transition: {
+          duration: 0.1,
+        },
       }}
     >
       {dataActor ? (
@@ -68,7 +73,8 @@ export default function Actor_info() {
       {dataMovies ? (
         <section className="flex  overflow-y-hidden gap-10  h-72">
           {dataMovies.map((e, i) => {
-            return e.poster_path ? (
+            return  (
+             e.poster_path ?
               <img
                 onClick={() => {
                   navigate("/infoMovie"), localStorage.setItem("idMovie", e.id);
@@ -77,7 +83,23 @@ export default function Actor_info() {
                 className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
-            ) : null;
+              :null
+            ) 
+          })}
+        </section>
+      ) : null}
+        {dataPictures? (
+        <section className="flex  overflow-y-hidden gap-10  h-72">
+          {dataPictures.profiles.map((e, i) => {
+            return  (
+
+        
+              <img
+                key={i}
+                className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
+              />
+            ) 
           })}
         </section>
       ) : null}

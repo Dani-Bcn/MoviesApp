@@ -16,13 +16,12 @@ export default function Search(props) {
 
   const variantsActiveSearch ={
     open:{
-      opacity:[0,1],
-      x:[0,400]
-    },
-    clsed:{
-      opacity:[1,0],
-      x:[400,0]
+      x:[0,850],
+      transition:{
+        duration:0.3
+      }
     }
+   
   }
 
   useEffect(() => {
@@ -39,13 +38,13 @@ export default function Search(props) {
 
   return (
     <m.main
-      className=" absolute -ml-[400px] z-50 w-screen  bg-slate-800/[0.9] rounded-r-[25px] z-100"
+      className=" absolute -ml-[850px] z-50 w-screen  bg-slate-800/[0.9] rounded-r-[25px] z-100"
       variants={variantsActiveSearch}
       animate={
         activePageSearch? "open":"closed"
       }
       whileInView={{
-        opacity: [0.01, 1],
+        opacity: [0, 1],
       }}
     >
       <section className=" bg-slate-800">

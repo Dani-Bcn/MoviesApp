@@ -92,9 +92,13 @@ export default function Movie_info() {
             <article className="flex flex-col px-5 z-10">
               <section className="flex gap-2.5 my-1">
                 <div className="w-8 h-8 rounded-[20px]  flex items-center justify-center border-2 border-green-500">
-                  <p className="mt-0.5">
-                    {infoMovie.spoken_languages[0].iso_639_1.toUpperCase()}
-                  </p>
+                  {infoMovie.spoken_languages.length === 0 ? (
+                    infoMovie.original_language.toUpperCase()
+                  ) : (
+                    <p className="mt-0.5">
+                      {infoMovie.spoken_languages[0].iso_639_1.toUpperCase()}
+                    </p>
+                  )}
                 </div>
                 <div className="w-8 h-8 flex items-center justify-center border-2 border-red-500">
                   <p>{infoMovie.vote_average.toFixed(1)}</p>
