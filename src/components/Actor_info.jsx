@@ -46,6 +46,7 @@ export default function Actor_info() {
         })
       : gsap.to(`#${e}`, {
           scale: 1,
+          position:"static"
         });
   };
 
