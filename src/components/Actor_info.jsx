@@ -41,7 +41,7 @@ export default function Actor_info() {
     setActiveBio(!activeBio);
     activeBio
       ? gsap.to(`#${e}`, {
-          scale: 2.5,
+          scale: 2.4,
           position: "absolute",
         })
       : gsap.to(`#${e}`, {
@@ -50,17 +50,9 @@ export default function Actor_info() {
         });
   };
 
-  const variantsBio = {
-    open: {
-      height: "0%",
-    },
-    closed: {
-      height: "100%",
-    },
-  };
-
   return (
     <m.main
+    id="#main"
       className="opacity-100 mt-28 w-full  z-10 px-5  bg-slate-800"
       exit={{
         opacity: [1, 0],
