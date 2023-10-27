@@ -93,7 +93,7 @@ export default function Movie_info() {
               <section className="flex gap-2.5 my-1">
                 <div className="w-8 h-8 rounded-[20px]  flex items-center justify-center border-2 border-green-500">
                   <p className="mt-0.5">
-                    {infoMovie.original_language.toUpperCase()}
+                    {infoMovie.spoken_languages[0].iso_639_1.toUpperCase()}
                   </p>
                 </div>
                 <div className="w-8 h-8 flex items-center justify-center border-2 border-red-500">
