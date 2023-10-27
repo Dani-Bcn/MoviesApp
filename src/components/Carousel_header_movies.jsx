@@ -8,7 +8,7 @@ export default function Carousel_movies() {
   const [idMovie, setIdMovie] = useState(localStorage.getItem("idMovie"));
   const [dataMovies, setDataMovies] = useState();
   const [dataImages, setDataImages] = useState();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(Math.floor(Math.random()*19));
   const [activeEffect,setActiveEffect] = useState(false)
   const navigate = useNavigate()
 
@@ -20,7 +20,7 @@ export default function Carousel_movies() {
       .then((resp) => setDataMovies(resp.results));
 
     dataMovies ? console.log(dataMovies) : null;
-    dataMovies?setCount(Math.floor(Math.random()*19)):null
+
   }, [movieOrTv]);
 
   dataImages ? console.log(dataImages.backdrops) : null;
