@@ -3,12 +3,27 @@ import { motion as m } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Search(props) {
+
+  const { activeSearch } = props;
+  const {activePageSearch}=props
   const navigate = useNavigate();
   const inputRef = useRef();
   const [newCall, setNewCall] = useState(false);
   const [seacrhInput, setSearchInput] = useState();
   const [findMovie, setFindMovie] = useState();
-  const { activeSearch } = props;
+  
+  console.log(activePageSearch )
+
+  const variantsActiveSearch ={
+    open:{
+      opacity:[0,1],
+      x:[0,400]
+    },
+    clsed:{
+      opacity:[1,0],
+      x:[400,0]
+    }
+  }
 
   useEffect(() => {
     if (inputRef.current.value.length > 2) {
@@ -24,7 +39,11 @@ export default function Search(props) {
 
   return (
     <m.main
-      className="-mt-20 z-50 w-screen  bg-slate-800 rounded-r-[25px] z-100"
+      className=" absolute -ml-[400px] z-50 w-screen  bg-slate-800/[0.9] rounded-r-[25px] z-100"
+      variants={variantsActiveSearch}
+      animate={
+        activePageSearch? "open":"closed"
+      }
       whileInView={{
         opacity: [0.01, 1],
       }}

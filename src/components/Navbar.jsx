@@ -9,19 +9,8 @@ export default function Navbar(props) {
   const location = useLocation();
 
   return (
-    <main className="z-50">
-      <section
-        className="flex items-center justify-start "
-      >
-        <h1
-          onClick={() => navigate("/")}
-          className="fixed w-screen my-1 flex items-center justify-center text-[1.3rem] text-orange-200 ">
-          App Movies
-        </h1>
-      </section>
-      <section
-        className="m-2 my-5 flex items-center justify-around z-50"
-      >        
+    <main className=" fixed  w-screen mt-8 z-20 flex flex-col bg-slate-800/[0.8]" >  
+      <section className="flex justify-around py-2">        
         <button
           onClick={() => {
             navigate("/")
