@@ -51,16 +51,10 @@ export default function Movie_info() {
         text-slate-200    
     "
       animate={{      
-        opacity:[0,1],
-        transition: {
-          duration: 0.5,
-        },
+        opacity:[0,1]
       }}
       exit={{      
-        opacity:[1,0],
-        transition: {
-          duration: 0.5,
-        },
+        opacity:[1,0]
       }}
     >
       {infoMovie ? (

@@ -9,8 +9,8 @@ export default function Navbar(props) {
   const location = useLocation();
 
   return (
-    <main className=" fixed  w-screen mt-8 z-20 flex flex-col bg-slate-800/[0.8]" >  
-      <section className="flex justify-around py-2">        
+    <main className=" fixed  w-screen h-20 z-20 justify-center flex flex-col bg-slate-800/[0.8]" >  
+      <section className="flex mt-10 justify-around">        
         <button
           onClick={() => {
             navigate("/")
