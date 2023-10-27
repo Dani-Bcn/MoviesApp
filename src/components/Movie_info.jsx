@@ -54,7 +54,10 @@ export default function Movie_info() {
         opacity:[0,1]
       }}
       exit={{      
-        opacity:[1,0]
+        opacity:[1,0],
+        transition:{
+          duration:0.1,
+        }
       }}
     >
       {infoMovie ? (
@@ -83,7 +86,7 @@ export default function Movie_info() {
       {infoMovie ? (
         <section>
           <section className="flex p-5">
-            <m.img
+            <img
               className=" z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
               src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
             />
@@ -140,15 +143,13 @@ export default function Movie_info() {
                 return (
                   <section key={i}>
                     {e.profile_path !== null ? (
-                      <section
-                        className="m-2 flex flex-col items-center w-40"
+                      <section className="m-2 flex flex-col items-center w-40"
                         onClick={() => {
                           navigate("/infoActor"),
                             localStorage.setItem("idPerson", e.id);
                         }}
                       >
-                        <img
-                          className=" z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                        <img className=" z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                           src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
                         />
                         <section className="z-10">
@@ -169,16 +170,8 @@ export default function Movie_info() {
             {dataVideos
               ? dataVideos.map((e, i) => (
                   <section key={i} className="z-10">
-                    <m.iframe
-                      className="w-screen h-60 mr-5 md:h-96"
-                      src={`//www.youtube.com/embed/${e.key}/?autoplay=0;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
-                      whileInView={{
-                        opacity: [0, 1],
-                        transition: {
-                          delay: 0.2,
-                        },
-                      }}
-                    ></m.iframe>
+                    <iframe className="w-screen h-60 mr-5 md:h-96"
+                      src={`//www.youtube.com/embed/${e.key}/?autoplay=0;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}></iframe>
                   </section>
                 ))
               : null}

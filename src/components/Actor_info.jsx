@@ -46,6 +46,9 @@ export default function Actor_info() {
       }}
       exit={{
         opacity: [1, 0],
+        transition:{
+          duration:0.1,
+        }
       }}
     >
       {dataActor ? (
