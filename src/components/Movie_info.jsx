@@ -49,13 +49,8 @@ export default function Movie_info() {
         mt-20
         w-screen         
         text-slate-200    
+        opacity-100
     "
-      animate={{      
-        opacity:[0,1],
-        transition:{
-          duration:0.1,
-        }
-      }}
       exit={{      
         opacity:[1,0],
         transition:{
