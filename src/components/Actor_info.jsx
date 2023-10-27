@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion as m } from "framer-motion";
+import gsap from "gsap";
 
 export default function Actor_info() {
   const [idPerson, setIdPerson] = useState(localStorage.getItem("idPerson"));
@@ -34,6 +35,15 @@ export default function Actor_info() {
       } 
       dataPictures ? console.log(dataPictures):null
   }, []);
+
+
+  const activeImage=((e)=>{
+     gsap.to(`#${e}`,{
+        scale:2
+
+     })
+  })
+ 
 
   const variantsBio = {
     open: {
@@ -84,17 +94,17 @@ export default function Actor_info() {
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
               :null
-            ) 
-          })}
+            )    
+          })} 
         </section>
-      ) : null}
+      ) : null} 
         {dataPictures? (
         <section className="flex  overflow-y-hidden gap-10  h-72">
           {dataPictures.profiles.map((e, i) => {
-            return  (
-
-        
+            return  (        
               <img
+              onClick={()=> activeImage(e.file_path.slice(2,e.file_path.length-4))}
+               id={e.file_path.slice(2,e.file_path.length-4)}
                 key={i}
                 className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                 src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
