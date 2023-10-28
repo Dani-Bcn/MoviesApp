@@ -10,14 +10,20 @@ import Movie_info from "./components/Movie_info";
 import Actor_info from "./components/Actor_info";
 import Filmography from "./components/Filmography";
 import Trailers from "./components/Trailers";
+import Images from "./components/Images";
 import Home from "./components/Home";
 
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [dataImagesMovie, setDataImagesMovie] = useState()
   const [activePageSearch, setActivePageSearch] = useState();
   const [selectMovieTv, setSelectMovieTv] = useState(true);
   const [activeNavbar, setActiveNavbar] = useState(true);
+
+  const getImages=((e)=>{
+    setDataImagesMovie(e)
+  })
 
   const activeSearch = (e) => {
     setActivePageSearch(e);
@@ -61,10 +67,11 @@ function App() {
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
-          <Route path="infoMovie" element={<Movie_info />} />
+          <Route path="infoMovie" element={<Movie_info getImages={getImages}/>} />
           <Route path="infoActor" element={<Actor_info />} />
           <Route path="filmography" element={<Filmography />} />
           <Route path="trailers" element={<Trailers />} />
+         <Route path="images" element={<Images dataImagesMovie={dataImagesMovie} />} />
         </Routes>
       </AnimatePresence>
     </m.main>

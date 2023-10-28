@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { motion as m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { info } from "autoprefixer";
+import { data, info } from "autoprefixer";
 
-export default function Movie_info() {
+export default function Movie_info(props) {
+  const { getImages } = props;
   let idMovie = localStorage.getItem("idMovie");
   const [movieOrTv, setMovieOrTv] = useState(localStorage.getItem("movieOrTv"));
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
   const [dataVideos, setDataVideos] = useState();
+  const [dataImages, setDataImages] = useState(); 
+  const [selectedImages, setSelectedImages] = useState();
+  let arrayNames = ["Backdrops", "Logos", "Posters"];
+  let arrayImages = [];
   const navigate = useNavigate();
-  console.log(idMovie);
+
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
@@ -20,7 +25,7 @@ export default function Movie_info() {
           .then((resp) => setInfoMovie(resp))
       : null;
   }, [idMovie]);
-  infoMovie ? console.log(infoMovie) : null;
+
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
@@ -31,8 +36,6 @@ export default function Movie_info() {
       : null;
   }, [idMovie]);
 
-  infoCast ? console.log(infoCast) : null;
-
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}/videos?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
@@ -41,7 +44,36 @@ export default function Movie_info() {
       .then((resp) => setDataVideos(resp.results));
   }, [idMovie]);
 
-  dataVideos ? console.log(dataVideos) : null;
+  useEffect(() => {
+    idMovie !== undefined
+      ? fetch(
+          `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}/images?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+        )
+          .then((resp) => resp.json())
+          .then((resp) => setDataImages(resp))
+      : null;
+  }, [idMovie]);
+
+  dataImages ? (arrayImages = Object.values(dataImages)) : null;
+  console.log(arrayImages);
+  arrayImages.map((e, i) => {
+    console.log(typeof e);
+    typeof e === "number" ? arrayImages.splice(i, 1) : null;
+  });
+  arrayImages.map((e, i) => {
+    console.log(typeof e);
+    e.length === 0 ? arrayNames.splice(i, 1) : null;
+  });
+  console.log(arrayNames);
+
+  const variantsShowImages={
+    open:{
+     marginTop:[-50,0]
+    },
+    closed:{
+      marginTop:[0,-50]
+    }
+  }
 
   return (
     <m.main
@@ -129,8 +161,37 @@ export default function Movie_info() {
               <a href={infoMovie.homepage}>
                 <button>Home page</button>
               </a>
+              <section className="relative w-screen z-20 flex gap-5">
+                <span className="flex flex-col justify-start items-start">
+                  <button className=" bg-red-300 h-0" onClick={()=>setSelectedImages(!selectedImages)}>Images</button>
+                  <m.section className="absolute my-7 flex flex-col items-start overflow-hidden h-20"
+                 
+                  >
+
+                  {arrayNames.map((e, i) => {
+                    return (
+                      <m.button
+                      variants={variantsShowImages}
+                      animate={
+                        selectedImages ? "open":"closed"
+                      }
+                        className="opacity-100"
+                        key={i}
+                        onClick={() =>  {
+                          navigate("/images"),
+                          localStorage.setItem("imagesTypes", i);
+                        }}
+                      >
+                        {e}
+                      </m.button>
+                    );
+                  })}
+                  </m.section>
+                </span>
+              </section>
             </article>
           </section>
+
           <section className="relative  z-10">
             <p className="text-slate-50 p-x10 p-5">{infoMovie.overview}</p>
           </section>

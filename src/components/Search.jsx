@@ -11,8 +11,6 @@ export default function Search(props) {
   const [newCall, setNewCall] = useState(false);
   const [seacrhInput, setSearchInput] = useState();
   const [findMovie, setFindMovie] = useState();
-  
-  console.log(activePageSearch )
 
   const variantsActiveSearch ={
     open:{
@@ -20,8 +18,7 @@ export default function Search(props) {
       transition:{
         duration:0.3
       }
-    }
-   
+    }   
   }
 
   useEffect(() => {
@@ -33,9 +30,7 @@ export default function Search(props) {
         .then((resp) => setFindMovie(resp.results));
     }
   }, [newCall]);
-
-  findMovie ? console.log(findMovie) : null;
-
+  
   return (
     <m.main
       className=" absolute -ml-[850px] z-50 w-screen  bg-slate-800/[0.9] rounded-r-[25px] z-100"
