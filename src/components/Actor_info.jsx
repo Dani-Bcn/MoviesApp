@@ -33,8 +33,7 @@ export default function Actor_info() {
       )
         .then((res) => res.json())
         .then((resp) => setDataPictures(resp));
-    }
-    dataPictures ? console.log(dataPictures) : null;
+    }    
   }, []);
 
   const activeImage = (e) => {

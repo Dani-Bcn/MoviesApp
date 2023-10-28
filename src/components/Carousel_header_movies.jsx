@@ -19,12 +19,10 @@ export default function Carousel_movies() {
       .then((resp) => resp.json())
       .then((resp) => setDataMovies(resp.results));
 
-    dataMovies ? console.log(dataMovies) : null;
-
+ 
   }, [movieOrTv]);
 
-  dataImages ? console.log(dataImages.backdrops) : null;
-
+  
   const countImages =(()=>{
     setActiveEffect(!activeEffect)
     setCount(count+1)

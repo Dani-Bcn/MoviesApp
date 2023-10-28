@@ -14,7 +14,7 @@ export default function Trailers() {
       .then((resp) => setDataVideos(resp.results));
   }, [idMovie]);
 
-  dataVideos ? console.log(dataVideos) : null;
+
 
   return (
     <main className="my-20">

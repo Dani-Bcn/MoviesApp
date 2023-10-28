@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 export default function Filmography(props) {
   const navigate = useNavigate();
   const {getIdMovie} = props
-  console.log(getIdMovie)
   const { keyWord } = props;
   const [info, setInfo] = useState();
 

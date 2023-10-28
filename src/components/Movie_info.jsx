@@ -55,16 +55,16 @@ export default function Movie_info(props) {
   }, [idMovie]);
 
   dataImages ? (arrayImages = Object.values(dataImages)) : null;
-  console.log(arrayImages);
+ 
   arrayImages.map((e, i) => {
-    console.log(typeof e);
+   
     typeof e === "number" ? arrayImages.splice(i, 1) : null;
   });
   arrayImages.map((e, i) => {
-    console.log(typeof e);
+ 
     e.length === 0 ? arrayNames.splice(i, 1) : null;
   });
-  console.log(arrayNames);
+ ;
 
   const variantsShowImages={
     open:{
@@ -164,10 +164,7 @@ export default function Movie_info(props) {
               <section className="relative w-screen z-20 flex gap-5">
                 <span className="flex flex-col justify-start items-start">
                   <button className=" bg-red-300 h-0" onClick={()=>setSelectedImages(!selectedImages)}>Images</button>
-                  <m.section className="absolute my-7 flex flex-col items-start overflow-hidden h-20"
-                 
-                  >
-
+                  <m.section className="absolute my-7 flex flex-col items-start overflow-hidden h-20">
                   {arrayNames.map((e, i) => {
                     return (
                       <m.button
@@ -179,7 +176,7 @@ export default function Movie_info(props) {
                         key={i}
                         onClick={() =>  {
                           navigate("/images"),
-                          localStorage.setItem("imagesTypes", i);
+                          localStorage.setItem("imagesTypes", e);
                         }}
                       >
                         {e}
