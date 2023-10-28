@@ -18,7 +18,7 @@ export default function Images() {
   }, [idMovie])
 
   return (
-    <div className="text-orange-100 flex flex-wrap justify-center items-center px-5 gap-5 py-10">
+    <div className="text-orange-100 flex flex-wrap h-screen justify-center items-center px-5 gap-5 py-10">
    {  
    imagesTypes ==="Backdrops" ?
    dataImages?
