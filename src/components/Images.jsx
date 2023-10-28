@@ -18,7 +18,7 @@ export default function Images() {
   }, [idMovie])
 
   return (
-    <div className="text-orange-100 flex flex-wrap h-screen justify-center items-center px-5 gap-5 py-10">
+    <div className=" absolute text-orange-100 flex flex-wrap w-screen  h-screen justify-center items-center px-5 gap-5 py-10">
    {  
    imagesTypes ==="Backdrops" ?
    dataImages?
@@ -26,7 +26,7 @@ export default function Images() {
    console.log(e.width)
 
             return (               
-              <img
+              <img 
                 key={i}
                 className={`z-10 w-[350px] rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100`}
                 src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}

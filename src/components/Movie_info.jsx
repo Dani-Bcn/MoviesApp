@@ -54,17 +54,13 @@ export default function Movie_info(props) {
       : null;
   }, [idMovie]);
 
-  dataImages ? (arrayImages = Object.values(dataImages)) : null;
- 
-  arrayImages.map((e, i) => {
-   
+  dataImages ? (arrayImages = Object.values(dataImages)) : null; 
+  arrayImages.map((e, i) => {   
     typeof e === "number" ? arrayImages.splice(i, 1) : null;
   });
-  arrayImages.map((e, i) => {
- 
+  arrayImages.map((e, i) => { 
     e.length === 0 ? arrayNames.splice(i, 1) : null;
   });
- ;
 
   const variantsShowImages={
     open:{
@@ -74,7 +70,6 @@ export default function Movie_info(props) {
       marginTop:[0,-50]
     }
   }
-
   return (
     <m.main
       className="    
@@ -82,6 +77,7 @@ export default function Movie_info(props) {
         w-screen         
         text-slate-200    
         opacity-100
+        overflow-hidden
     "
       exit={{
         opacity: [1, 0],
@@ -121,7 +117,7 @@ export default function Movie_info(props) {
               src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
             />
 
-            <article className="flex flex-col px-5 z-10">
+            <article className=" w-52 flex flex-col px-5 z-10">
               <section className="flex gap-2.5 my-1">
                 <div className="w-8 h-8 rounded-[20px]  flex items-center justify-center border-2 border-green-500">
                   {infoMovie.spoken_languages.length === 0 ? (
@@ -152,18 +148,18 @@ export default function Movie_info(props) {
                 )}
               </section>
 
-              <section className="flex gap-x-2 flex-wrap">
+              <section className=" relative flex gap-x-2 flex-wrap ">
                 {infoMovie.genres.map((e, i) => {
                   return <p key={i}> {e.name}</p>;
                 })}
               </section>
 
               <a href={infoMovie.homepage}>
-                <button>Home page</button>
+                <button className="w-30">Home page</button>
               </a>
               <section className="relative w-screen z-20 flex gap-5">
                 <span className="flex flex-col justify-start items-start">
-                  <button className=" bg-red-300 h-0" onClick={()=>setSelectedImages(!selectedImages)}>Images</button>
+                  <button className="h-0" onClick={()=>setSelectedImages(!selectedImages)}>Images</button>
                   <m.section className="absolute my-7 flex flex-col items-start overflow-hidden h-20">
                   {arrayNames.map((e, i) => {
                     return (
@@ -194,7 +190,7 @@ export default function Movie_info(props) {
           </section>
 
           {infoCast !== undefined ? (
-            <section className="flex overflow-y-hidden mx-2">
+            <section className="relative  w-screen flex overflow-y-hidden mx-2">
               {infoCast.cast.map((e, i) => {
                 return (
                   <section key={i}>
