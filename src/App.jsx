@@ -57,10 +57,7 @@ function App() {
   };
   return (
     <m.main className="w-screen flex flex-col">
-      <h1 className=" z-50 flex bg-slate-800/[0.8] justify-center w-screen text-[1.2rem] text-orange-200 p-2 m-auto" 
-      onClick={() => navigate("/")}>
-        App Movies
-      </h1>
+     
      
       <Navbar activeSearch={activeSearch} />
       <Search activeSearch={activeSearch} activePageSearch={activePageSearch}/>   

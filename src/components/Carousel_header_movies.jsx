@@ -14,19 +14,18 @@ export default function Carousel_movies() {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/discover/${movieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+      `https://api.themoviedb.org/3/discover/${movieOrTv}?include_adult=false&include_null_first_air_dates=true&language=en-US&page=1&1&sort_by=popularity.desc&api_key=55b2cf9d90cb74c55683e395bb1ad12b`
     )
       .then((resp) => resp.json())
       .then((resp) => setDataMovies(resp.results));
-
  
   }, [movieOrTv]);
-
+dataMovies? console.log(dataMovies):null
   
   const countImages =(()=>{
     setActiveEffect(!activeEffect)
     setCount(count+1)
-    count === 19?setCount(count +1):null
+    count === 19?setCount(0):null
   clearInterval(interval)
 }) 
 
@@ -60,6 +59,7 @@ const interval = setInterval(() => {
     }}     
     >
       {dataMovies ? (
+   
         <m.section className="z-1"
           onClick={()=>{navigate("/infoMovie"),localStorage.setItem("idMovie",dataMovies[count].id)}
         }
@@ -73,7 +73,8 @@ const interval = setInterval(() => {
             src={`https://image.tmdb.org/t/p/w500/${dataMovies[count].poster_path}`}
           /> 
         </m.section>
-      ) :null     
+       
+      ) :null    
       }
     </m.main>
   );

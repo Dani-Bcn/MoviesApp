@@ -19,7 +19,7 @@ export default function Movie_info(props) {
   useEffect(() => {
     idMovie !== undefined
       ? fetch(
-          `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+          `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=50&sort_by=popularity.asc&include_null_first_air_dates=true`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoMovie(resp))

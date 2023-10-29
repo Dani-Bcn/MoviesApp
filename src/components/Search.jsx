@@ -15,10 +15,11 @@ export default function Search(props) {
   const variantsActiveSearch ={
     open:{
       x:[0,850],
-      transition:{
-        duration:0.3
+    },
+      closed:{
+        x:[850,0]
       }
-    }   
+     
   }
 
   useEffect(() => {
@@ -32,19 +33,19 @@ export default function Search(props) {
   }, [newCall]);
   
   return (
-    <m.main
-      className=" absolute -ml-[850px] z-50 w-screen  bg-slate-800/[0.9] rounded-r-[25px] z-100"
+    <m.main className="fixed  w-screen  h-screen flex flex-col -ml-[850px]  bg-slate-800/[0.7] backdrop-blur-[20px] z-50"
+    
       variants={variantsActiveSearch}
       animate={
         activePageSearch? "open":"closed"
       }
-      whileInView={{
-        opacity: [0, 1],
+      transition={{
+        duration:0.5
       }}
-    >
-      <section className=" bg-slate-800">
+      >
+      <section>
         <svg
-          className="m-5"
+         className="h-10 m-2 mx-5"
           onClick={() => activeSearch(false)}
           width="30px"
           height="30px"
@@ -58,9 +59,8 @@ export default function Search(props) {
             />
           </g>
         </svg>
-        <section className="w-screen p-4  bg-slate-500 flex justify-around items-center">
-          <svg
-            className="scale-[1.3] mx-5"
+        <section className="w-screen p-4 flex items-center justify-start gap-10 text-slate-100 bg-slate-500 ">
+          <svg           
             width="25px"
             height="30px"
             viewBox="0 0 25 25"
@@ -74,7 +74,7 @@ export default function Search(props) {
           </svg>
           <form>
             <input
-              className=" bg-slate-500  text-slate-300"
+            className="bg-slate-500"
               ref={inputRef}
               placeholder="Search Movies/Tv..."
               onChange={() => {
@@ -87,36 +87,36 @@ export default function Search(props) {
         {findMovie ? (
           findMovie.length === undefined ||
           (findMovie.length < 1 && inputRef.current.value.length > 3) ? (
-            <h1 className="flex w-s items-center justify-center my-3 text-[1.3rem]  text-orange-200 rounded-[50px] ">
+            <h1 className="flex w-s items-center justify-center my-3 text-[1.3rem]">
               No results
             </h1>
           ) : null
         ) : null}
       </section>
 
-      <section className=" m-auto text-[0.7rem]  text-orange-200 ">
+      <section className="overflow-auto">
         {findMovie
           ? findMovie.map((e, i) => {
               if (e.poster_path && e.backdrop_path && !e.name && e.title) {
                 return (
-                  <section key={i} className="w-42 h-20 flex m-5 shadow rounded-[50px]  ">
+                  <section key={i}  className="w-[95%] m-auto flex h-32 p-5 my-5">
                     
                     <img
-                      className="rounded-l-lg h-20"
+                      className="h-full"
                       src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
                     />
-                    <section className="flex w-96 py-5  items-start justify-between bg-slate-700 rounded-r-lg">
+                    <section className="w-full flex items-center justify-between px-5 text-orange-50" >
                       {
-                        e.title.length >25 ? 
-                        <h2 className="mx-5 ">{e.title.slice(0,25)}...</h2>
+                        e.title.length > 20 ? 
+                        <h2 className="w-28">{e.title.slice(0,25)}...</h2>
                         :
-                        <h2 className="mx-5 ">{e.title.slice(0,25)}</h2>
+                        <h2 className="w-28">{e.title.slice(0,25)}</h2>
                       }
                  
                       {e.media_type === "person" ? null : e.media_type ===
                         "movie" ? (
                         <button
-                          className=" bg-slate-600 py-1 px-5 mx-5 rounded-[5px]"
+                          className="text-[1.2rem] cursor-pointer"
                           onClick={() => {
                             navigate("/infoMovie"),
                               activeSearch(false),
@@ -134,7 +134,7 @@ export default function Search(props) {
                                 localStorage.setItem("idMovie", e.id);
                               localStorage.setItem("movieOrTv", "tv");
                             }}
-                            className="bg-slate-600 py-1 px-5 mx-5 rounded-[5px]"
+                          
                           >
                             Info
                           </button>

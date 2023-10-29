@@ -9,8 +9,14 @@ export default function Navbar(props) {
   const location = useLocation();
 
   return (
-    <main className=" fixed  w-screen h-20 z-20 justify-center flex flex-col bg-slate-800/[0.8]" >  
-      <section className="flex mt-10 justify-around">        
+    <main className="fixed  w-screen z-50 p-1 flex flex-col  backdrop-blur-sm bg-slate-800/[0.7]" >  
+    <section className="m-auto p-1" >
+    <h1 className="text-[1.1rem] text-orange-200"
+      onClick={() => navigate("/")}>
+        App Movies
+      </h1>
+    </section>
+      <section className="flex justify-around">        
         <button
           onClick={() => {
             navigate("/")
