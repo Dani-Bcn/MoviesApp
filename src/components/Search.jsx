@@ -106,19 +106,22 @@ export default function Search(props) {
                           localStorage.setItem("movieOrTv", "movie");
                         }}
                        
-                        className="w-[95%] m-auto flex h-42  my-5 bg-red-950/[0.5] clip-arrow-r"
+                        className=" relative w-[95%] m-auto flex h-42  my-5 bg-slate-800 clip-arrow-r"
                       >
+                       
                         <img
-                          className="h-24 w-52"
+                          className="h-32 w-52"
                           src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
-                        />
-                        <section className="w-full flex  justify-between px-5 text-orange-50">
+                        /> 
+                        <section className=" absolute l-0 w-[56.5%] h-full bg-gradient-to-l to-slate-800/[0.01] from-slate-800 "></section>
+                        <section className="w-full flex  justify-between px-5 text-slate-400">
                           {e.title.length > 20 ? (
-                            <h2 className="w-28">{e.title.slice(0, 25)}...</h2>
+                            <h2 className="w-28 py-2">{e.title.slice(0, 25)}...</h2>
                           ) : (
-                            <h2 className="w-28">{e.title.slice(0, 25)}</h2>
+                            <h2 className="w-28 py-2">{e.title.slice(0, 25)}</h2>
                           )}
                         </section>
+                       
                       </section>
                     ) : (
                       <section
@@ -141,6 +144,7 @@ export default function Search(props) {
                             <h2 className="w-28">{e.title.slice(0, 25)}</h2>
                           )}
                         </section>
+                        <section className=" absolute w-[95%] h-42 bg-red-500 z-40"></section>
                       </section>
                     )}
                   </section>
