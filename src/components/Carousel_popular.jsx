@@ -7,7 +7,7 @@ export default function Carousel_popular() {
   useEffect(() => {
     movieOrTv
       ? fetch(
-          `https://api.themoviedb.org/3/discover/${movieOrTv}/?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc`
+        `https://api.themoviedb.org/3/discover/${movieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
         )
           .then((res) => res.json())
           .then((resp) => setDataResulsts(resp.results))
@@ -21,13 +21,11 @@ export default function Carousel_popular() {
         <section className="flex justify-between overflow-y-hidden scroll-auto">
           {dataResulst.map((e, i) => {          
            
-            return (
-             
+            return (             
                 <img className=" z-10 rounded-2xl mx-5 border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                   key={i}                
                   src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
-                />
-             
+                />             
             )
           })}
         </section>
