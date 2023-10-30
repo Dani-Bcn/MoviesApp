@@ -29,7 +29,7 @@ export default function Carousel_movies() {
 
 const interval = setInterval(() => {
    countImages()
-  }, 1000);
+  }, 4000);
   const variantsEffect ={
     open:{
       x:[-50,0],

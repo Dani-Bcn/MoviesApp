@@ -19,8 +19,7 @@ export default function Carousel_popular() {
     <main className="-mt-96 z-40">
       {dataResulst ?
         <section className="flex justify-between overflow-y-hidden scroll-auto">
-          {dataResulst.map((e, i) => {
-           
+          {dataResulst.map((e, i) => {          
            
             return (
              
