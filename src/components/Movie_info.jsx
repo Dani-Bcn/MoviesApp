@@ -100,7 +100,7 @@ export default function Movie_info(props) {
           <section>
             <div className=" fixed z-10 mt-76 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
             <div
-              className=" fixed w-screen h-screen opacity-[0.6] "
+              className="fixed w-screen h-screen opacity-[0.6] "
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
               }}

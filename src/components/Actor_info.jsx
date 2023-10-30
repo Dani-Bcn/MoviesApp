@@ -93,7 +93,7 @@ export default function Actor_info() {
         </section>
       ) : null}
       {dataPictures ? (
-        <section className="flex justify-center overflow-y-hidden gap-10  h-72">
+        <section className="flex justify-center overflow-y-hidden gap-10 h-72">
           {dataPictures.profiles.map((e, i) => {
             return (
               <img
