@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 
+@layer utilities {
+  .clip-arrow-r { 
+    clip-path: polygon(0% 0%, 90% 1%, 100% 49%, 90% 100%, 0% 100%);
+  }
+ 
+}
+
 html{
   background-color: rgb(30 41 59);
   font-family: 'Nanum Gothic', sans-serif;
@@ -43,4 +50,8 @@ img{
 
 input{
   outline:0 none;
+}
+
+.clip-path-arrow{
+  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
 }

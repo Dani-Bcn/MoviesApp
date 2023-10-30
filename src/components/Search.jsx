@@ -3,24 +3,22 @@ import { motion as m } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Search(props) {
-
   const { activeSearch } = props;
-  const {activePageSearch}=props
+  const { activePageSearch } = props;
   const navigate = useNavigate();
   const inputRef = useRef();
   const [newCall, setNewCall] = useState(false);
   const [seacrhInput, setSearchInput] = useState();
   const [findMovie, setFindMovie] = useState();
 
-  const variantsActiveSearch ={
-    open:{
-      x:[0,850],
+  const variantsActiveSearch = {
+    open: {
+      x: [0, 850],
     },
-      closed:{
-        x:[850,0]
-      }
-     
-  }
+    closed: {
+      x: [850, 0],
+    },
+  };
 
   useEffect(() => {
     if (inputRef.current.value.length > 2) {
@@ -31,21 +29,19 @@ export default function Search(props) {
         .then((resp) => setFindMovie(resp.results));
     }
   }, [newCall]);
-  
+
   return (
-    <m.main className="fixed  w-screen  h-screen flex flex-col -ml-[850px]  bg-slate-800/[0.7] backdrop-blur-[20px] z-50"
-    
+    <m.main
+      className="fixed  w-screen  h-screen flex flex-col -ml-[850px]  bg-slate-800/[0.5] backdrop-blur-[20px] z-50"
       variants={variantsActiveSearch}
-      animate={
-        activePageSearch? "open":"closed"
-      }
+      animate={activePageSearch ? "open" : "closed"}
       transition={{
-        duration:0.5
+        duration: 0.5,
       }}
-      >
+    >
       <section>
         <svg
-         className="h-10 m-2 mx-5"
+          className="h-10 m-2 mx-5"
           onClick={() => activeSearch(false)}
           width="30px"
           height="30px"
@@ -60,7 +56,7 @@ export default function Search(props) {
           </g>
         </svg>
         <section className="w-screen p-4 flex items-center justify-start gap-10 text-slate-100 bg-slate-500 ">
-          <svg           
+          <svg
             width="25px"
             height="30px"
             viewBox="0 0 25 25"
@@ -74,7 +70,7 @@ export default function Search(props) {
           </svg>
           <form>
             <input
-            className="bg-slate-500"
+              className="bg-slate-500"
               ref={inputRef}
               placeholder="Search Movies/Tv..."
               onChange={() => {
@@ -94,53 +90,59 @@ export default function Search(props) {
         ) : null}
       </section>
 
-      <section className="overflow-auto">
+      <section className="overflow-auto text-[1.1rem]" >
         {findMovie
           ? findMovie.map((e, i) => {
               if (e.poster_path && e.backdrop_path && !e.name && e.title) {
                 return (
-                  <section key={i}  className="w-[95%] m-auto flex h-32 p-5 my-5">
-                    
-                    <img
-                      className="h-full"
-                      src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
-                    />
-                    <section className="w-full flex items-center justify-between px-5 text-orange-50" >
-                      {
-                        e.title.length > 20 ? 
-                        <h2 className="w-28">{e.title.slice(0,25)}...</h2>
-                        :
-                        <h2 className="w-28">{e.title.slice(0,25)}</h2>
-                      }
-                 
-                      {e.media_type === "person" ? null : e.media_type ===
-                        "movie" ? (
-                        <button
-                          className="text-[1.2rem] cursor-pointer"
-                          onClick={() => {
-                            navigate("/infoMovie"),
-                              activeSearch(false),
-                              localStorage.setItem("idMovie", e.id);
-                            localStorage.setItem("movieOrTv", "movie");
-                          }}
-                        >
-                          Info
-                        </button>
-                      ) : (
-                        <a href="/infoMovie">
-                          <button
-                            onClick={() => {
-                              activeSearch(false),
-                                localStorage.setItem("idMovie", e.id);
-                              localStorage.setItem("movieOrTv", "tv");
-                            }}
-                          
-                          >
-                            Info
-                          </button>
-                        </a>
-                      )}
-                    </section>
+                  <section key={i}>
+                    {e.media_type === "person" ? null : e.media_type ===
+                      "movie" ? (
+                      <section
+                        onClick={() => {
+                          navigate("/infoMovie"),
+                            activeSearch(false),
+                            localStorage.setItem("idMovie", e.id);
+                          localStorage.setItem("movieOrTv", "movie");
+                        }}
+                       
+                        className="w-[95%] m-auto flex h-42  my-5 bg-red-950/[0.5] clip-arrow-r"
+                      >
+                        <img
+                          className="h-24 w-52"
+                          src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
+                        />
+                        <section className="w-full flex  justify-between px-5 text-orange-50">
+                          {e.title.length > 20 ? (
+                            <h2 className="w-28">{e.title.slice(0, 25)}...</h2>
+                          ) : (
+                            <h2 className="w-28">{e.title.slice(0, 25)}</h2>
+                          )}
+                        </section>
+                      </section>
+                    ) : (
+                      <section
+                        onClick={() => {
+                          activeSearch(false),
+                            localStorage.setItem("idMovie", e.id);
+                          localStorage.setItem("movieOrTv", "tv");
+                        }}
+                        key={i}
+                        className="w-[95%] m-auto flex h-32 p-5 my-5 bg-red-950"
+                      >
+                        <img
+                          className="h-full rounded-xl"
+                          src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
+                        />
+                        <section className="w-full flex  justify-between px-5 text-orange-50">
+                          {e.title.length > 20 ? (
+                            <h2 className="w-28">{e.title.slice(0, 25)}...</h2>
+                          ) : (
+                            <h2 className="w-28">{e.title.slice(0, 25)}</h2>
+                          )}
+                        </section>
+                      </section>
+                    )}
                   </section>
                 );
               }

@@ -190,7 +190,7 @@ export default function Movie_info(props) {
           </section>
 
           {infoCast !== undefined ? (
-            <section className="relative  w-screen flex overflow-y-hidden mx-2">
+            <section className="relative z-20 w-screen flex overflow-y-hidden mx-2">
               {infoCast.cast.map((e, i) => {
                 return (
                   <section key={i}>
