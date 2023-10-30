@@ -16,7 +16,7 @@ export default function Carousel_popular() {
   dataResulst ? console.log(dataResulst) : null;
 
   return (
-    <main className="-mt-52 z-40">
+    <main className="-mt-64 z-40">
       {dataResulst ?
         <section className="flex justify-between overflow-y-hidden scroll-auto">
           {dataResulst.map((e, i) => {          
