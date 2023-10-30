@@ -22,7 +22,7 @@ export default function Carousel_popular() {
   dataResulst ? console.log(dataResulst) : null;
 
   return (
-    <main className="-mt-64 z-40">
+    <main className="-mt-72 z-40">
       {movieOrTv === "movie" ? (
         <h2 className="text-orange-100 text-2xl px-6 py-2 font-bold">
           Upcoming
