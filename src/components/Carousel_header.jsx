@@ -48,7 +48,7 @@ const interval = setInterval(() => {
   } 
 
   return (
-    <m.main className="z-1 mt-20 text-orange-200  bg-slate-800"     
+    <m.main className=" z-1 mt-20 text-orange-200  bg-slate-800"     
     exit={{
       opacity:[1,0],
       transition:{
@@ -59,8 +59,7 @@ const interval = setInterval(() => {
       {dataMovies ? 
       <>{
          !dataMovies[count].poster_path? setCount[count +1]:null
-      }
-         
+      }       
 
         <m.section className="z-1"
           onClick={()=>{navigate("/infoMovie"),localStorage.setItem("idMovie",dataMovies[count].id)}
