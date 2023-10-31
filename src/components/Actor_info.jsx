@@ -69,7 +69,7 @@ export default function Actor_info() {
       ) : null}
 
       {dataMovies ? (
-      <section className="relative z-20 w-screen flex overflow-y-hidden">{
+      <section className="relative z-10 gap-5 w-screen h-64 flex overflow-y-auto">{
           dataMovies.map((e, i) => {
             return e.poster_path ? (
               <img       
@@ -78,7 +78,7 @@ export default function Actor_info() {
                 localStorage.setItem("idMovie",e.id)
               }}        
                 key={i}
-                className="flex  ml-5 rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                className="flex  z-40 rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
             ) : null;
