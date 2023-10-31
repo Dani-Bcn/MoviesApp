@@ -76,7 +76,7 @@ const interval = setInterval(() => {
             className="w-full h-[550px] z-10"
             src={`https://image.tmdb.org/t/p/w500/${dataMovies[count].poster_path}`}
           />  
- <section className="absolute top-0 w-screen h-[800px] bg-gradient-to-t to-cyan-500/[0] from-slate-800 z-10"></section>
+ <section className="absolute top-0 w-screen h-[635px] bg-gradient-to-t to-cyan-500/[0] from-slate-800 z-10"></section>
 
         </m.section>
         </>
