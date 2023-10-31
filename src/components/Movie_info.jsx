@@ -73,6 +73,7 @@ export default function Movie_info(props) {
   return (
     <m.main
       className="    
+      absolute
         mt-20
         w-screen         
         text-slate-200    

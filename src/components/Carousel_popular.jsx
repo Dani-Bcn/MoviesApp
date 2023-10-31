@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import  {motion as m} from "framer-motion"
 
 export default function Carousel_popular() {
   const [dataResulst, setDataResulsts] = useState();
@@ -30,7 +31,21 @@ export default function Carousel_popular() {
   dataPopular ? console.log(dataPopular) : null;
 
   return (
-    <main className="mt-96 z-40">     
+    <m.main className="absolute h-screen py-96 t-0 z-40 overflow-x-auto"
+    animate={{
+      x:0,
+      scale:1,
+      opacity:[0,1]
+    }}
+    exit={{
+      x:-50,
+      scale:0.8,
+      opacity:[1,0],
+      transition:{
+        duration:0.3,
+      }
+    }}     
+    >     
     <h2 className="px-6 py-3 text-orange-100 text-3xl font-bold ">Popular</h2>
       {dataPopular ? (
         <section className="flex h-[275px] justify-between overflow-y-hidden scroll-auto">
@@ -67,6 +82,6 @@ export default function Carousel_popular() {
           })}
         </section>
       ) : null}    
-    </main>
+    </m.main>
   );
 }

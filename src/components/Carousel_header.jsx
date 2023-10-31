@@ -32,14 +32,12 @@ const interval = setInterval(() => {
   }, 4000);
   const variantsEffect ={
     open:{
-      x:[-50,0],
       opacity:[0.1,0.1,1],
       transition:{
         duration:0.1
       }
     },
     closed:{
-      x:[-50,0],
       opacity:[0.1,0.1,1],
       transition:{
         duration:0.1
@@ -48,7 +46,7 @@ const interval = setInterval(() => {
   } 
 
   return (
-    <m.main className="fixed  z-1 mt-20 text-orange-200  bg-slate-800"     
+    <m.main className=" z-1 mt-20 text-orange-200  bg-slate-800"     
     animate={{
       scale:1,
       opacity:[0,1]
@@ -81,7 +79,7 @@ const interval = setInterval(() => {
             className="w-full h-[550px] z-10"
             src={`https://image.tmdb.org/t/p/w500/${dataMovies[count].poster_path}`}
           />  
- <section className="absolute top-0 w-screen h-[635px] bg-gradient-to-t to-cyan-500/[0] from-slate-800 z-10"></section>
+ <section className="absolute top-0 w-full h-[635px] bg-gradient-to-t to-cyan-500/[0] from-slate-800 z-10"></section>
 
         </m.section>
         </>
