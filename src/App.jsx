@@ -18,7 +18,7 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const [dataImagesMovie, setDataImagesMovie] = useState()
-  const [activePageSearch, setActivePageSearch] = useState();
+  const [activePageSearch, setActivePageSearch] = useState(false);
   const [selectMovieTv, setSelectMovieTv] = useState(true);
   const [activeNavbar, setActiveNavbar] = useState(true);
 

@@ -16,7 +16,7 @@ export default function Search(props) {
       x: [0, 850],
     },
     closed: {
-      x: [850, 0],
+      x:  0,
     },
   };
 

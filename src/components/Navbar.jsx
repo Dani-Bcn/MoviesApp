@@ -6,7 +6,6 @@ export default function Navbar(props) {
   const { activeSearch } = props;
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   return (
     <main className="fixed  w-screen z-50 p-1 flex flex-col  backdrop-blur-sm bg-slate-800/[0.7]" >  
