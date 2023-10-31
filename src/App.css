@@ -49,3 +49,18 @@ input{
 .clip-path-arrow{
   clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
 }
+
+body { 
+  --show-double-buttons: none; 
+  --scrollbar-border-radius: 30px; 
+  --scrollbar-border-thickness: 0px; 
+  --scrollbar-thumb-color: #f63b3b; 
+} 
+
+
+
+#carousel-popular::-webkit-scrollbar-thumb {
+  overflow: scroll;
+  height:  50px;
+  color: red;
+}

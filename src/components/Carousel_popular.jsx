@@ -31,7 +31,7 @@ export default function Carousel_popular() {
   dataPopular ? console.log(dataPopular) : null;
 
   return (
-    <m.main className="absolute pt-96  h-screen  z-40 overflow-x-auto"
+    <m.main className="fixed pt-96  h-screen  z-40 overflow-x-auto"
     animate={{
       x:0,
       scale:1,
@@ -48,7 +48,8 @@ export default function Carousel_popular() {
     >     
     <h2 className="px-6 py-3 text-orange-100 text-3xl font-bold ">Popular</h2>
       {dataPopular ? (
-        <section className="flex h-[275px] justify-between overflow-y-hidden scroll-auto">
+        <section id="carousel-popular"
+        className="flex h-[275px] justify-between overflow-y-hidden scroll-auto">
           {dataPopular.map((e, i) => {
             return (
               <img
@@ -56,7 +57,7 @@ export default function Carousel_popular() {
                   navigate("/infoMovie");
                   localStorage.setItem("idMovie", e.id);
                 }}
-                className=" z-10 rounded-2xl mx-5 border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                className=" z-10 rounded-2xl mx-5 border-[3px] shadow-xl shadow-black/100 "
                 key={i}
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
