@@ -79,10 +79,16 @@ export default function Movie_info(props) {
         opacity-100
         overflow-hidden
     "
+    animate={{
+      opacity:[0,0,1],
+      transition: {
+        duration: 0.5,
+      },
+    }}
       exit={{
         opacity: [1, 0],
         transition: {
-          duration: 0.1,
+          duration: 0.2,
         },
       }}
     >

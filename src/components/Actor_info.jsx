@@ -8,8 +8,6 @@ export default function Actor_info() {
   const [dataActor, setDataActor] = useState();
   const [dataMovies, setDataMovies] = useState();
   const [dataPictures, setDataPictures] = useState();
-  const [dataTv, setDataTv] = useState();
-  const [activeBio, setActiveBio] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,31 +32,24 @@ export default function Actor_info() {
         .then((res) => res.json())
         .then((resp) => setDataPictures(resp));
     }    
-  }, []);
-
-  const activeImage = (e) => {
-    setActiveBio(!activeBio);
-    activeBio
-      ? gsap.to(`#${e}`, {
-          scale: 2.4,
-          position: "absolute",
-        })
-      : gsap.to(`#${e}`, {
-          scale: 1,
-          position:"static"
-        });
-  };
+  }, []); 
 
   return (
     <m.main
     id="#main"
       className="opacity-100 mt-28 w-full  z-10 px-5  bg-slate-800"
-      exit={{
-        opacity: [1, 0],
-        transition: {
-          duration: 0.1,
-        },
+      animate={{
+        opacity:[0,0,1],
+        transition:{
+          duration:0.3,
+        }
       }}
+      exit={{
+        opacity:[1,0],
+        transition:{
+          duration:0.3,
+        }
+      }}     
     >
       {dataActor ? (
         <section className=" text-orange-50 flex py-5">
@@ -80,10 +71,7 @@ export default function Actor_info() {
         <section className="flex  overflow-y-hidden gap-10  h-72">
           {dataMovies.map((e, i) => {
             return e.poster_path ? (
-              <img
-                onClick={() => {
-                  navigate("/infoMovie"), localStorage.setItem("idMovie", e.id);
-                }}
+              <img               
                 key={i}
                 className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
@@ -93,7 +81,7 @@ export default function Actor_info() {
         </section>
       ) : null}
       {dataPictures ? (
-        <section className="flex justify-center overflow-y-hidden gap-10 h-72">
+        <section className="flex justify-start overflow-y-hidden gap-10 h-72">
           {dataPictures.profiles.map((e, i) => {
             return (
               <img

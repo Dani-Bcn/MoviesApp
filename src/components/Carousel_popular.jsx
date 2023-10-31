@@ -30,7 +30,7 @@ export default function Carousel_popular() {
   dataPopular ? console.log(dataPopular) : null;
 
   return (
-    <main className="-mt-72 z-40">     
+    <main className="mt-96 z-40">     
     <h2 className="px-6 py-3 text-orange-100 text-3xl font-bold ">Popular</h2>
       {dataPopular ? (
         <section className="flex h-[275px] justify-between overflow-y-hidden scroll-auto">
