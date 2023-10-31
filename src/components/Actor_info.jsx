@@ -68,7 +68,7 @@ export default function Actor_info() {
       ) : null}
 
       {dataMovies ? (
-        <section className="flex  overflow-y-hidden gap-10  h-72">
+        <section className="flex  overflow-y-auto gap-10  h-72">
           {dataMovies.map((e, i) => {
             return e.poster_path ? (
               <img       
@@ -82,13 +82,13 @@ export default function Actor_info() {
               />
             ) : null;
           })}
+          <h2>cooc</h2>
         </section>
-      ) : null}
-   
+      ) : null}   
 
       {dataActor && dataActor.biography ? (
         <>
-          <h2 className="z-20 text-orange-300 m-2  w-full h-5 text-[1.1rem]">
+          <h2 className="z-50 text-orange-300 m-2 h-5 text-[1.1rem]">
             Biography
           </h2>
           <p className="p-2 text-orange-100">{dataActor.biography}</p>

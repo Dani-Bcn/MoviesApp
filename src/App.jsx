@@ -10,7 +10,7 @@ import Actor_info from "./components/Actor_info";
 import Filmography from "./components/Filmography";
 import Trailers from "./components/Trailers";
 import Images from "./components/Images";
-import Carousel_popular from "./components/Carousel_popular";
+import Actor_movies from "./components/Actor _movies";
 import Home from "./components/Home";
 
 
@@ -69,7 +69,7 @@ function App() {
           <Route path="filmography" element={<Filmography />} />
           <Route path="trailers" element={<Trailers />} />
           <Route path="images" element={<Images dataImagesMovie={dataImagesMovie} />} />
-        
+          <Route path="actorMovies" element={<Actor_movies/>}/>
         </Routes>
       </AnimatePresence>
     </m.main>
