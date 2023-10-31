@@ -73,13 +73,13 @@ export default function Movie_info(props) {
   return (
     <m.main
       className="    
-      absolute
+     fixed
         py-20
         h-screen
         w-screen         
         text-slate-200    
         opacity-100
-        overflow-y-auto
+        overflow-x-hidden
     "
     animate={{
       opacity:[0,0,1],
@@ -106,7 +106,7 @@ export default function Movie_info(props) {
             ) : null}
           </section>
           <section>
-            <div className=" fixed z-10 mt-76 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
+            <div className="fixed z-10 mt-76  w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
             <div
               className="fixed w-screen h-screen opacity-[0.6] "
               style={{

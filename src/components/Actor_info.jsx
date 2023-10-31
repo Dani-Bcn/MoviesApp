@@ -37,7 +37,7 @@ export default function Actor_info() {
   return (
     <m.main
     id="#main"
-      className=" absolute opacity-100 py-28 w-screen h-screen z-10 px-5  bg-slate-800 overflow-y-auto"
+      className="relative opacity-100 py-28 h-screen z-10  bg-slate-800 overflow-x-hidden"
       animate={{
         opacity:[0,0,1],
         transition:{
@@ -51,6 +51,7 @@ export default function Actor_info() {
         }
       }}     
     >
+      <section className="px-5">
       {dataActor ? (
         <section className=" text-orange-50 flex py-5">
           <h2 className=" absolute -mt-12  text-[1.5rem] ">{dataActor.name}</h2>
@@ -68,8 +69,8 @@ export default function Actor_info() {
       ) : null}
 
       {dataMovies ? (
-        <section className="flex  overflow-y-auto gap-10  h-72">
-          {dataMovies.map((e, i) => {
+      <section className="relative z-20 w-screen flex overflow-y-hidden">{
+          dataMovies.map((e, i) => {
             return e.poster_path ? (
               <img       
               onClick={()=> {
@@ -77,14 +78,14 @@ export default function Actor_info() {
                 localStorage.setItem("idMovie",e.id)
               }}        
                 key={i}
-                className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                className="flex  ml-5 rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
             ) : null;
-          })}
-          <h2>cooc</h2>
+          })
+}
         </section>
-      ) : null}   
+      ) : null  }
 
       {dataActor && dataActor.biography ? (
         <>
@@ -94,6 +95,7 @@ export default function Actor_info() {
           <p className="p-2 text-orange-100">{dataActor.biography}</p>
         </>
       ) : null}
+      </section>
     </m.main>
   );
 }
