@@ -48,8 +48,7 @@ export default function Carousel_popular() {
     >     
     <h2 className="px-6 py-3 text-orange-100 text-3xl font-bold ">Popular</h2>
       {dataPopular ? (
-        <section
-        className="flex h-[275px]  mx-5 gap-5 overflow-y-hidden scroll-auto">
+        <section        className="flex h-[275px] w-screen overflow-y-hidden scroll-auto">
           {dataPopular.map((e, i) => {
             return (
               <img
@@ -57,7 +56,7 @@ export default function Carousel_popular() {
                   navigate("/infoMovie");
                   localStorage.setItem("idMovie", e.id);
                 }}
-                className=" z-10 rounded-2xl  border-[3px] shadow-xl shadow-black/100 "
+                className=" z-10 rounded-2xl mx-5 border-[3px] shadow-xl shadow-black/100 "
                 key={i}
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
@@ -67,7 +66,7 @@ export default function Carousel_popular() {
       ) : null}     
        <h2 className="px-6 py-3 text-orange-100 text-3xl font-bold ">Top rated</h2>
          {dataTopRated ? (
-        <section className="flex h-96 justify-between overflow-y-hidden scroll-auto">
+          <section        className="flex h-[275px] w-screen   overflow-y-hidden ">
           {dataTopRated.map((e, i) => {
             return (
               <img
@@ -75,7 +74,7 @@ export default function Carousel_popular() {
                   navigate("/infoMovie");
                   localStorage.setItem("idMovie", e.id);
                 }}
-                className=" z-10 rounded-2xl mx-5 border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                className=" z-10 rounded-2xl  mx-5 border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                 key={i}
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
