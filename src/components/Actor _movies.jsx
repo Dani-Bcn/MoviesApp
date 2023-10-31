@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Actor_movies() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const idPerson = localStorage.getItem("idPerson");
-  const idMovie = localStorage.getItem("idMovie")
-  const movieOrTv = localStorage.getItem("moviOrTv")
+  const idMovie = localStorage.getItem("idMovie");
+  const movieOrTv = localStorage.getItem("moviOrTv");
   const [dataMovies, setDataMovies] = useState();
+  const [dataPages, setDataPages] = useState();
   const [countPage, setCountPage] = useState(1);
-  const [newCall,setNewCall] = useState()
-  const [dtaAray, setDataArray] =useState([])
+  const [newCall, setNewCall] = useState();
 
   useEffect(() => {
     idPerson
@@ -17,16 +17,16 @@ export default function Actor_movies() {
           `https://api.themoviedb.org/3/discover/movie?with_cast=${idPerson}&sort_by=release_date.desc&api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=${countPage}`
         )
           .then((resp) => resp.json())
-          .then((resp) => setDataMovies(resp.results))
+          .then((resp) => setDataMovies(resp))
       : null;
-  }, [newCall]);
- 
-  dataMovies ? console.log(dataMovies) : null;
+    dataMovies ? setDataPages(dataMovies.total_pages) : null;
+  }, [dataMovies])
 
   return (
-    <main className="flex flex-wrap mt-20  justify-start ">
+    <main className=" fixed flex mt-32">
+      <section className=" flex flex-wrap items-start px-7 gap-8 pb-40  h-screen overflow-x-hidden ">
       {dataMovies
-        ? dataMovies.map((e, i) => {
+        ? dataMovies.results.map((e, i) => {
             return e.poster_path ? (
               <img
                 onClick={() => {
@@ -34,15 +34,24 @@ export default function Actor_movies() {
                   localStorage.setItem("idMovie", e.id);
                 }}
                 key={i}
-                className="w-50 m-5  z-40 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                className="w-50 z-40 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
             ) : null;
           })
         : null}
-        <h2 className="text-red-100 p-10"
-          onClick={()=> {setCountPage(countPage +1 ), setNewCall(!newCall)}}
-        >Next page</h2>
+      
+      {countPage < dataPages ? (
+        <h2
+          className="text-red-100"
+          onClick={() => {
+           setCountPage(countPage + 1), setNewCall(!newCall);
+          }}
+        >
+          Next page
+        </h2>  
+      ) : null}
+      </section>
     </main>
   );
 }
