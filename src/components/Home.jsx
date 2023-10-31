@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Carousel_movies from "./Carousel_header";
-import Carousel_popular from "./Carousel_popular";
+import Carousel_popular from "./Carousel_sections";
 
 
 export default function Home() {

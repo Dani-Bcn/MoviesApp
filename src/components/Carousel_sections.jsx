@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import  {motion as m} from "framer-motion"
 
 export default function Carousel_popular() {
-  const [dataResulst, setDataResulsts] = useState();
   const [dataPopular, setDataPopular] = useState();
   const [dataTopRated,setDataTopRated] = useState()
   const movieOrTv = localStorage.getItem("movieOrTv");
