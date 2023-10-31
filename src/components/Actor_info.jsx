@@ -37,7 +37,7 @@ export default function Actor_info() {
   return (
     <m.main
     id="#main"
-      className="opacity-100 mt-28 w-full  z-10 px-5  bg-slate-800"
+      className=" absolute opacity-100 py-28 w-screen h-screen z-10 px-5  bg-slate-800 overflow-y-auto"
       animate={{
         opacity:[0,0,1],
         transition:{
@@ -71,7 +71,11 @@ export default function Actor_info() {
         <section className="flex  overflow-y-hidden gap-10  h-72">
           {dataMovies.map((e, i) => {
             return e.poster_path ? (
-              <img               
+              <img       
+              onClick={()=> {
+                navigate("/infoMovie")
+                localStorage.setItem("idMovie",e.id)
+              }}        
                 key={i}
                 className="flex  rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
@@ -80,27 +84,11 @@ export default function Actor_info() {
           })}
         </section>
       ) : null}
-      {dataPictures ? (
-        <section className="flex justify-start overflow-y-hidden gap-10 h-72">
-          {dataPictures.profiles.map((e, i) => {
-            return (
-              <img
-                onClick={() =>
-                  activeImage(e.file_path.slice(3, e.file_path.length - 22))
-                }
-                id={e.file_path.slice(3, e.file_path.length - 22)}
-                key={i}
-                className="flex m-auto rounded-2xl w-40 border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
-                src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
-              />
-            );
-          })}
-        </section>
-      ) : null}
+   
 
       {dataActor && dataActor.biography ? (
         <>
-          <h2 className="z-20 text-orange-300 m-2  w-32 h-5 text-[1.1rem]">
+          <h2 className="z-20 text-orange-300 m-2  w-full h-5 text-[1.1rem]">
             Biography
           </h2>
           <p className="p-2 text-orange-100">{dataActor.biography}</p>

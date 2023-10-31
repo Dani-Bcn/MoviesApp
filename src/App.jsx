@@ -57,7 +57,7 @@ function App() {
     },
   };
   return (
-    <m.main className=" flex flex-col">     
+    <m.main className="sticky flex flex-col">     
      
       <Navbar activeSearch={activeSearch} />
       <Search activeSearch={activeSearch} activePageSearch={activePageSearch}/>   

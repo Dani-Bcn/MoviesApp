@@ -24,12 +24,6 @@ img{
   height: 225px;
 }
 
-@keyframes animShadow {
-  0%{text-shadow: 1px 1px 50px rgb(111, 0, 255);}
-  50%{text-shadow: 1px 1px 50px rgb(255, 0, 0);}
-  100%{text-shadow: 1px 1px 50px rgb(111, 0, 255);}
-} 
-
 .small {
   font: italic 13px sans-serif;
 }

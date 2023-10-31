@@ -74,11 +74,12 @@ export default function Movie_info(props) {
     <m.main
       className="    
       absolute
-        mt-20
+        py-20
+        h-screen
         w-screen         
         text-slate-200    
         opacity-100
-        overflow-hidden
+        overflow-y-auto
     "
     animate={{
       opacity:[0,0,1],

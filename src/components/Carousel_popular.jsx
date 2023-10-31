@@ -31,7 +31,7 @@ export default function Carousel_popular() {
   dataPopular ? console.log(dataPopular) : null;
 
   return (
-    <m.main className="absolute h-screen py-96 t-0 z-40 overflow-x-auto"
+    <m.main className="absolute pt-96  h-screen  z-40 overflow-x-auto"
     animate={{
       x:0,
       scale:1,
