@@ -65,8 +65,9 @@ export default function Search(props) {
           className="h-10 m-2 mx-5"
           onClick={() => {
             activeSearch(false),
-              (inputRef.current.value = ""),
-              setNewCall(!newCall);
+              inputRef.current.value = "",
+              setNewCall(!newCall),
+              setSearchInput("")
           }}
           width="30px"
           height="30px"
@@ -161,7 +162,7 @@ export default function Search(props) {
                           className="h-32 w-52"
                           src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
                         />
-                        <section className=" absolute l-0 w-[56.5%] h-full bg-gradient-to-l to-slate-800/[0.01] from-slate-800 "></section>
+                        <section className=" absolute l-0 w-52 h-full bg-gradient-to-l to-slate-800/[0.01] from-slate-800 "></section>
                         <section className="w-full flex  justify-between px-5 text-slate-400">
                           {e.title.length > 20 ? (
                             <h2 className="w-28 py-2">
