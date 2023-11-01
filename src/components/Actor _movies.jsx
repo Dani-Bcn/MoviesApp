@@ -23,8 +23,8 @@ export default function Actor_movies() {
   }, [dataMovies])
 
   return (
-    <main className=" fixed flex mt-32">
-      <section className=" flex flex-wrap items-start px-7 gap-8 pb-40  h-screen overflow-x-hidden ">
+    <main className=" fixed flex ">
+      <section className=" flex flex-wrap items-start px-7 gap-8 pt-32 pb-10 h-screen overflow-x-hidden ">
       {dataMovies
         ? dataMovies.results.map((e, i) => {
             return e.poster_path ? (
@@ -43,7 +43,7 @@ export default function Actor_movies() {
       
       {countPage < dataPages ? (
         <h2
-          className="text-red-100"
+          className="text-red-100 w-screen"
           onClick={() => {
            setCountPage(countPage + 1), setNewCall(!newCall);
           }}

@@ -3,33 +3,43 @@ import { motion as m } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Search(props) {
+  const movieOrTv = localStorage.getItem("movieOrTv");
   const { activeSearch } = props;
   const { activePageSearch } = props;
   const navigate = useNavigate();
   const inputRef = useRef();
   const [newCall, setNewCall] = useState(false);
-  const [seacrhInput, setSearchInput] = useState();
+  const [searchInput, setSearchInput] = useState();
   const [findMovie, setFindMovie] = useState();
+  const [dataGenres, setdataGenres] = useState();
 
   const variantsActiveSearch = {
     open: {
-      x: [0, 850],
-    },
+      x: 850,
+    }, 
     closed: {
-      x:  0,
-    },
+      x: 0,
+    }, 
   };
 
   useEffect(() => {
     if (inputRef.current.value.length > 2) {
       fetch(
-        `https://api.themoviedb.org/3/search/multi?query=${seacrhInput}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
+        `https://api.themoviedb.org/3/search/multi?query=${searchInput}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
       )
         .then((resp) => resp.json())
         .then((resp) => setFindMovie(resp.results));
     }
   }, [newCall]);
 
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/genre/${movieOrTv}/list?api_key=55b2cf9d90cb74c55683e395bb1ad12b&language=en`
+    )
+      .then((resp) => resp.json())
+      .then((resp) => setdataGenres(resp));
+  }, [movieOrTv]);
+  dataGenres ? console.log(dataGenres) : null;
   return (
     <m.main
       className="fixed  w-screen  h-screen flex flex-col -ml-[850px]  bg-slate-800/[0.5] backdrop-blur-[20px] z-50"
@@ -83,14 +93,33 @@ export default function Search(props) {
         {findMovie ? (
           findMovie.length === undefined ||
           (findMovie.length < 1 && inputRef.current.value.length > 3) ? (
-            <h1 className="flex w-s items-center justify-center my-3 text-[1.3rem]">
+            <h1 className="flex w-s text-red-500 items-center justify-center my-3 text-[1.3rem]">
               No results
             </h1>
           ) : null
         ) : null}
       </section>
+      {dataGenres
+        ? dataGenres.genres.map((e, i) => {
+            return i % 2 === 0 ? (
+              <section
+                key={i}
+                className={`text-orange-200 bg-slate-400  py-2 px-5`}
+              >
+                <p>{e.name}</p>
+              </section>
+            ) : (
+              <section
+                key={i}
+                className={`text-orange-200 bg-slate-700  py-2 px-5`}
+              >
+                <p>{e.name}</p>
+              </section>
+            );
+          })
+        : null}
 
-      <section className="overflow-auto text-[1.1rem]" >
+      <section className="overflow-auto text-[1.1rem]">
         {findMovie
           ? findMovie.map((e, i) => {
               if (e.poster_path && e.backdrop_path && !e.name && e.title) {
@@ -105,23 +134,24 @@ export default function Search(props) {
                             localStorage.setItem("idMovie", e.id);
                           localStorage.setItem("movieOrTv", "movie");
                         }}
-                       
                         className=" relative w-[95%] m-auto flex h-42  my-5 bg-slate-800 clip-arrow-r"
                       >
-                       
                         <img
                           className="h-32 w-52"
                           src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
-                        /> 
+                        />
                         <section className=" absolute l-0 w-[56.5%] h-full bg-gradient-to-l to-slate-800/[0.01] from-slate-800 "></section>
                         <section className="w-full flex  justify-between px-5 text-slate-400">
                           {e.title.length > 20 ? (
-                            <h2 className="w-28 py-2">{e.title.slice(0, 25)}...</h2>
+                            <h2 className="w-28 py-2">
+                              {e.title.slice(0, 25)}...
+                            </h2>
                           ) : (
-                            <h2 className="w-28 py-2">{e.title.slice(0, 25)}</h2>
+                            <h2 className="w-28 py-2">
+                              {e.title.slice(0, 25)}
+                            </h2>
                           )}
                         </section>
-                       
                       </section>
                     ) : (
                       <section
