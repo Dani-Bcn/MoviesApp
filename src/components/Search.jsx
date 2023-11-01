@@ -16,7 +16,7 @@ export default function Search(props) {
 
   const variantsActiveSearch = {
     open: {
-      x: 850,
+      x: "100%",
     },
     closed: {
       x: 0,
@@ -53,7 +53,7 @@ export default function Search(props) {
   dataGenres ? console.log("genres", dataGenres) : null;
   return (
     <m.main
-      className="fixed  w-screen  h-screen flex flex-col -ml-[850px]  bg-slate-800/[0.5] backdrop-blur-[20px] z-50"
+      className="fixed  w-screen  h-screen flex flex-col -ml-[100%] bg-slate-800/[0.5] backdrop-blur-[20px] z-50"
       variants={variantsActiveSearch}
       animate={activePageSearch ? "open" : "closed"}
       transition={{
@@ -141,7 +141,7 @@ export default function Search(props) {
       ) : null : null}
 
 
-      <section className="overflow-auto text-[1.1rem]">
+      <section className="overflow-auto flex  text-[1.1rem]">
         {findMovie
           ? findMovie.map((e, i) => {
               if (e.poster_path && e.backdrop_path && !e.name && e.title) {

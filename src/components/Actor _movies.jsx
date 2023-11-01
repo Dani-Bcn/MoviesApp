@@ -23,8 +23,8 @@ export default function Actor_movies() {
   }, [dataMovies])
 
   return (
-    <main className=" fixed flex ">
-      <section className=" flex flex-wrap items-start px-7 gap-8 pt-32 pb-10 h-screen overflow-x-hidden ">
+    <main className=" fixed ">
+      <section className=" flex flex-wrap start px-7 gap-8 pt-32 pb-10 h-screen overflow-x-hidden ">
       {dataMovies
         ? dataMovies.results.map((e, i) => {
             return e.poster_path ? (
