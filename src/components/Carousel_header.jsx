@@ -76,10 +76,10 @@ const interval = setInterval(() => {
             animate={
               activeEffect?"open":"closed"             
             }
-            className="w-full h-[550px] z-10"
+            className="w-[600px] h-full md:w-[900px] m-auto z-10"
             src={`https://image.tmdb.org/t/p/w500/${dataMovies[count].poster_path}`}
           />  
- <section className="absolute top-0 w-full h-[635px] bg-gradient-to-t to-cyan-500/[0] from-slate-800 z-10"></section>
+ <section className="absolute top-0 w-full h-full bg-gradient-to-t to-cyan-500/[0] from-slate-800 z-10"></section>
 
         </m.section>
         </>

@@ -27,8 +27,6 @@ export default function Carousel_popular() {
                
   }, [movieOrTv])
 
-  dataPopular ? console.log(dataPopular) : null;
-
   return (
     <m.main className="fixed pt-96  h-screen  z-40 overflow-x-auto"
     animate={{

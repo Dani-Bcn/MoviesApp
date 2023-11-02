@@ -6,6 +6,16 @@ export default function Navbar(props) {
   const { activeSearch } = props;
 
   const navigate = useNavigate();
+  const [activeGenres,setActiveGenres] = useState(false)
+
+  const variantsActiveGenres ={
+    open:{
+      height:52
+    },
+    closed:{
+      height:0
+    }
+  }
 
   return (
     <main className="fixed  w-screen z-50 p-1 flex flex-col  backdrop-blur-sm bg-slate-800/[0.7]" >  
@@ -31,6 +41,36 @@ export default function Navbar(props) {
         >
           Tv
         </button>
+        <section onClick={()=>{
+          setActiveGenres(!activeGenres)}}
+          
+          className="relative px-2">
+        <button >
+          Genres
+        </button>
+        <m.ul className="absolute h-0 overflow-hidden px-2 -ml-2 bg-slate-800 rounded-b-lg"
+        variants={variantsActiveGenres}
+          animate={
+           activeGenres ? "open":"closed"
+          }
+        >
+          <li>
+            <button onClick={()=>{
+              localStorage.setItem("movieOrTv","movie")
+              navigate("/findGenres")
+            }}
+            className=" rounded-lg">Movies</button>
+          </li>
+          <li>
+            <button
+            onClick={()=>{
+              localStorage.setItem("movieOrTv","tv")
+              navigate("/findGenres")
+            }}
+            >Tv</button>
+          </li>
+        </m.ul>
+        </section>
         <svg
           onClick={() => activeSearch(true)}
           width="25px"

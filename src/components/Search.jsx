@@ -11,49 +11,30 @@ export default function Search(props) {
   const [newCall, setNewCall] = useState(false);
   const [searchInput, setSearchInput] = useState();
   const [findMovie, setFindMovie] = useState();
-  const [dataNamesGenres, setdataNamesGenres] = useState();
-  const [dataGenres, setdataGenres] = useState();
 
   const variantsActiveSearch = {
     open: {
-      x: "100%",
-    },
+      x: 850,
+    }, 
     closed: {
       x: 0,
-    },
+    }, 
   };
 
   useEffect(() => {
-    inputRef.current.value.length > 2
-      ? fetch(
-          `https://api.themoviedb.org/3/search/multi?query=${searchInput}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
-        )
-          .then((resp) => resp.json())
-          .then((resp) => setFindMovie(resp.results))
-      : null;
+   inputRef.current.value.length > 2 ?
+      fetch(
+        `https://api.themoviedb.org/3/search/multi?query=${searchInput}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
+      )
+        .then((resp) => resp.json())
+        .then((resp) => setFindMovie(resp.results))
+         :null  
   }, [newCall]);
 
-  useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/genre/${movieOrTv}/list?api_key=55b2cf9d90cb74c55683e395bb1ad12b&language=en`
-    )
-      .then((resp) => resp.json())
-      .then((resp) => setdataNamesGenres(resp));
-  }, [movieOrTv]);
-  dataNamesGenres ? console.log(dataNamesGenres) : null;
 
-  useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&with_genres=28`
-    )
-      .then((resp) => resp.json())
-      .then((resp) => setdataGenres(resp));
-  }, [movieOrTv]);
-
-  dataGenres ? console.log("genres", dataGenres) : null;
   return (
     <m.main
-      className="fixed  w-screen  h-screen flex flex-col -ml-[100%] bg-slate-800/[0.5] backdrop-blur-[20px] z-50"
+      className="fixed  w-screen  h-screen flex flex-col -ml-[850px]  bg-slate-800/[0.5] backdrop-blur-[20px] z-50"
       variants={variantsActiveSearch}
       animate={activePageSearch ? "open" : "closed"}
       transition={{
@@ -63,12 +44,7 @@ export default function Search(props) {
       <section>
         <svg
           className="h-10 m-2 mx-5"
-          onClick={() => {
-            activeSearch(false),
-              inputRef.current.value = "",
-              setNewCall(!newCall),
-              setSearchInput("")
-          }}
+          onClick={() => {activeSearch(false), inputRef.current.value="", setNewCall(!newCall)}}
           width="30px"
           height="30px"
           viewBox="0 0 60 50"
@@ -106,42 +82,9 @@ export default function Search(props) {
             />
           </form>
         </section>
-        {findMovie ? (
-          findMovie.length === undefined ||
-          (findMovie.length < 1 && inputRef.current.value.length > 3) ? (
-            <h1 className="flex w-s text-red-500 items-center justify-center my-3 text-[1.3rem]">
-              No results
-            </h1>
-          ) : null
-        ) : null}
-      </section> 
-        {dataNamesGenres ?
-      inputRef.current.value.length < 3 ? (
-        <section className="overflow-auto text-[1.1rem] h-screen z-40">
-       {
-            dataNamesGenres.genres.map((e, i) => {
-                return i % 2 === 0 ? (
-                  <section
-                    key={i}
-                    className={`text-orange-200 bg-slate-400  py-2 px-5`}
-                  >
-                    <p>{e.name}</p>
-                  </section>
-                ) : (
-                  <section
-                    key={i}
-                    className={`text-orange-200 bg-slate-700 py-2 px-5`}
-                  >
-                    <p>{e.name}</p>
-                  </section>
-                );
-              })
-            }
-        </section>
-      ) : null : null}
-
-
-      <section className="overflow-auto flex  text-[1.1rem]">
+       
+</section>
+      <section className="overflow-auto text-[1.1rem]">
         {findMovie
           ? findMovie.map((e, i) => {
               if (e.poster_path && e.backdrop_path && !e.name && e.title) {
@@ -162,7 +105,7 @@ export default function Search(props) {
                           className="h-32 w-52"
                           src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
                         />
-                        <section className=" absolute l-0 w-52 h-full bg-gradient-to-l to-slate-800/[0.01] from-slate-800 "></section>
+                        <section className=" absolute l-0 w-[56.5%] h-full bg-gradient-to-l to-slate-800/[0.01] from-slate-800 "></section>
                         <section className="w-full flex  justify-between px-5 text-slate-400">
                           {e.title.length > 20 ? (
                             <h2 className="w-28 py-2">
