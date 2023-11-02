@@ -10,7 +10,7 @@ export default function Navbar(props) {
 
   const variantsActiveGenres ={
     open:{
-      height:52
+      height:65
     },
     closed:{
       height:0
@@ -22,7 +22,7 @@ export default function Navbar(props) {
     <section className="m-auto p-1" >
     <h1 className="text-[1.1rem] text-orange-200"
       onClick={() => navigate("/")}>
-        App Movies
+        Home
       </h1>
     </section>
       <section className="flex justify-around">        
@@ -48,7 +48,7 @@ export default function Navbar(props) {
         <button >
           Genres
         </button>
-        <m.ul className="absolute h-0 overflow-hidden px-2 -ml-2 bg-slate-800 rounded-b-lg"
+        <m.ul className="absolute flex flex-col h-0 my-2 gap-2 overflow-hidden px-2 -ml-2 bg-slate-800 rounded-b-lg"
         variants={variantsActiveGenres}
           animate={
            activeGenres ? "open":"closed"

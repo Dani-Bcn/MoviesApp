@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion as m } from "framer-motion";
-import gsap from "gsap";
 
 export default function Actor_info() {
   const [idPerson, setIdPerson] = useState(localStorage.getItem("idPerson"));

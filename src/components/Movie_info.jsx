@@ -10,7 +10,7 @@ export default function Movie_info(props) {
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
   const [dataVideos, setDataVideos] = useState();
-  const [dataImages, setDataImages] = useState(); 
+  const [dataImages, setDataImages] = useState();
   const [selectedImages, setSelectedImages] = useState();
   let arrayNames = ["Backdrops", "Logos", "Posters"];
   let arrayImages = [];
@@ -54,22 +54,22 @@ export default function Movie_info(props) {
       : null;
   }, [idMovie]);
 
-  dataImages ? (arrayImages = Object.values(dataImages)) : null; 
-  arrayImages.map((e, i) => {   
+  dataImages ? (arrayImages = Object.values(dataImages)) : null;
+  arrayImages.map((e, i) => {
     typeof e === "number" ? arrayImages.splice(i, 1) : null;
   });
-  arrayImages.map((e, i) => { 
+  arrayImages.map((e, i) => {
     e.length === 0 ? arrayNames.splice(i, 1) : null;
   });
 
-  const variantsShowImages={
-    open:{
-     marginTop:[-50,0]
+  const variantsShowImages = {
+    open: {
+      marginTop: [-50, 0],
     },
-    closed:{
-      marginTop:[0,-50]
-    }
-  }
+    closed: {
+      marginTop: [0, -50],
+    },
+  };
   return (
     <m.main
       className="    
@@ -81,12 +81,12 @@ export default function Movie_info(props) {
         opacity-100
         overflow-x-hidden
     "
-    animate={{
-      opacity:[0,0,1],
-      transition: {
-        duration: 0.5,
-      },
-    }}
+      animate={{
+        opacity: [0, 0, 1],
+        transition: {
+          duration: 0.5,
+        },
+      }}
       exit={{
         opacity: [1, 0],
         transition: {
@@ -167,36 +167,37 @@ export default function Movie_info(props) {
               </a>
               <section className="relative w-screen z-20 flex gap-5">
                 <span className="flex flex-col justify-start items-start">
-                  <button className="h-0" onClick={()=>setSelectedImages(!selectedImages)}>Images</button>
+                  <button
+                    className="h-0"
+                    onClick={() => setSelectedImages(!selectedImages)}
+                  >
+                    Images
+                  </button>
                   <m.section className="absolute my-7 flex flex-col items-start overflow-hidden h-20">
-                  {arrayNames.map((e, i) => {
-                    return (
-                      <m.button
-                      variants={variantsShowImages}
-                      animate={
-                        selectedImages ? "open":"closed"
-                      }
-                        className="opacity-100"
-                        key={i}
-                        onClick={() =>  {
-                          navigate("/images"),
-                          localStorage.setItem("imagesTypes", e);
-                        }}
-                      >
-                        {e}
-                      </m.button>
-                    );
-                  })}
+                    {arrayNames.map((e, i) => {
+                      return (
+                        <m.button
+                          variants={variantsShowImages}
+                          animate={selectedImages ? "open" : "closed"}
+                          className="opacity-100"
+                          key={i}
+                          onClick={() => {
+                            navigate("/images"),
+                              localStorage.setItem("imagesTypes", e);
+                          }}
+                        >
+                          {e}
+                        </m.button>
+                      );
+                    })}
                   </m.section>
                 </span>
               </section>
             </article>
           </section>
-
           <section className="relative  z-10">
             <p className="text-slate-50 p-x10 p-5">{infoMovie.overview}</p>
           </section>
-
           {infoCast !== undefined ? (
             <section className="relative z-20 w-screen flex overflow-y-hidden mx-2">
               {infoCast.cast.map((e, i) => {

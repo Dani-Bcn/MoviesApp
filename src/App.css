@@ -35,7 +35,6 @@ img{
   font: bold 30px sans-serif;
 }
 
-
 #posterHeader{
     background-image: linear-gradient(to bottom,  rgba(30, 41, 59, 0),  rgb(30 41 59));       
 }
@@ -44,21 +43,5 @@ input{
   outline:0 none;
 }
 
-.clip-path-arrow{
-  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
-}
-
-body { 
-  --show-double-buttons: none; 
-  --scrollbar-border-radius: 30px; 
-  --scrollbar-border-thickness: 0px; 
-  --scrollbar-thumb-color: #f63b3b; 
-} 
 
 
-
-#carousel-popular::-webkit-scrollbar-thumb {
-  overflow: scroll;
-  height:  50px;
-  color: red;
-}
