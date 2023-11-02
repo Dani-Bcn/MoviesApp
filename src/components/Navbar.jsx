@@ -18,24 +18,31 @@ export default function Navbar(props) {
   }
 
   return (
-    <main className="fixed  w-screen z-50 p-1 flex flex-col  backdrop-blur-sm bg-slate-800/[0.7]" >  
+    <m.main className="fixed  w-screen z-50 p-1 flex flex-col  backdrop-blur-sm bg-slate-800/[0.7]"
+    initial={{
+      y:-200
+    }}
+      animate={{
+        y:0
+      }}
+    >  
     <section className="m-auto p-1" >
     <h1 className="text-[1.1rem] font-Josefin text-orange-200"
-      onClick={() => navigate("/")}>
+      onClick={() => navigate("/home")}>
         Home
       </h1>
     </section>
       <section className="flex justify-around">        
         <button
           onClick={() => {
-            navigate("/")
+            navigate("/home")
            localStorage.setItem("movieOrTv","movie");
           }}>
           Movies
         </button>
         <button
           onClick={() => {
-            navigate("/")
+            navigate("/home")
             localStorage.setItem("movieOrTv","tv");
           }}
         >
@@ -84,6 +91,6 @@ export default function Navbar(props) {
           />
         </svg>
       </section>
-    </main>
+    </m.main>
   );
 }

@@ -10,7 +10,13 @@
   .clip-arrow-l { 
     clip-path: polygon(0 0, 100% 50%, 0 100%, 0% 100%, 0 50%, 0% 0%);
   }
- 
+  .clip-arrow-logo { 
+    clip-path: polygon(0% 0%, 0 0, 100% 50%, 0 100%, 0% 100%);
+  }
+  .text-shadow-logo{
+    z-index: 40;
+    text-shadow: 0px 0px 10px #000000;
+  }
  
 }
 

@@ -12,6 +12,7 @@ import Trailers from "./components/Trailers";
 import Images from "./components/Images";
 import Actor_movies from "./components/Actor _movies";
 import Find_genres from "./components/Find_genres";
+import Start_logo from "./components/Start_logo";
 import Home from "./components/Home";
 
 
@@ -64,7 +65,7 @@ function App() {
       <Search activeSearch={activeSearch} activePageSearch={activePageSearch}/>   
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="infoMovie" element={<Movie_info getImages={getImages}/>} />
           <Route path="infoActor" element={<Actor_info />} />
           <Route path="filmography" element={<Filmography />} />
@@ -72,6 +73,8 @@ function App() {
           <Route path="images" element={<Images dataImagesMovie={dataImagesMovie} />} />
           <Route path="actorMovies" element={<Actor_movies/>}/>
           <Route path="findGenres" element={<Find_genres/>}/>
+          <Route path="/" element={<Start_logo/>}/>
+          
         </Routes>
       </AnimatePresence>
     </m.main>
