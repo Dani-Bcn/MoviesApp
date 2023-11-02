@@ -27,8 +27,7 @@ console.log(active)
 
   dataGenres ? console.log("genres", dataGenres.genres) : null; 
   useEffect(() => {
-    if (dataGenres) {
-      
+    if (dataGenres) {      
       dataGenres.genres.map((e, i) => {  
         fetch(
           `https://api.themoviedb.org/3/discover/${movieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${e.id}`
@@ -46,6 +45,10 @@ console.log(active)
     <main>
       <section className="mt-24">
       {dataMovies?
+       movieOrTv === "movie" && dataMovies.length === 19 
+       ||
+       movieOrTv === "tv" && dataMovies.length === 16  
+        ?
         dataMovies.map((e, i) => {
 
               return (
@@ -57,12 +60,12 @@ console.log(active)
      
                   {e.map((e, i) => (
                     <>
-                      <img
+                      <img   key={i}
                       onClick={()=>{
                         localStorage.setItem("idMovie",e.id)
                         navigate("/infoMovie")
                       }}
-                        key={i}
+                     
                         className="rounded-[10px]"
                         src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                       />
@@ -72,7 +75,7 @@ console.log(active)
                 </section>
               );
             })
-        : null}
+        : null:null}
         </section>
     </main>
   );
