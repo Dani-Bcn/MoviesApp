@@ -20,7 +20,7 @@ export default function Navbar(props) {
   return (
     <main className="fixed  w-screen z-50 p-1 flex flex-col  backdrop-blur-sm bg-slate-800/[0.7]" >  
     <section className="m-auto p-1" >
-    <h1 className="text-[1.1rem] text-orange-200"
+    <h1 className="text-[1.1rem] font-Josefin text-orange-200"
       onClick={() => navigate("/")}>
         Home
       </h1>
