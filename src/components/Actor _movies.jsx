@@ -25,10 +25,10 @@ export default function Actor_movies() {
 
   return (
     <main className=" fixed ">
-      <section className="flex  justify-between text-center mx-7 items-start w-screen pt-16 my-5">
+      <section className="flex mx-8 mt-20 my-7 gap-10 w-screen">
        {countPage < dataPages ? (
         <h2
-          className="text-orange-200 w-full text-start"
+          className="text-orange-200 w-36 text-start"
           onClick={() => {
            setCountPage(countPage + 1), setNewCall(!newCall);
           }}
@@ -38,7 +38,7 @@ export default function Actor_movies() {
       ) : null}
        {countPage > 1  ? (
         <h2
-          className="text-orange-200  text-start w-full -ml-5"
+          className="text-orange-200  text-start w-32"
           onClick={() => {
            setCountPage(countPage - 1), setNewCall(!newCall);
           }}
