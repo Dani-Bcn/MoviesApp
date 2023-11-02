@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Find_genres() {
+  const navigate = useNavigate()
   const [dataGenres, setDataGenres] = useState();
   const [dataMovies, setDataMovies] = useState([]);
   const movieOrTv = localStorage.getItem("movieOrTv");
@@ -12,8 +14,8 @@ useEffect(()=>{
   dataMovies.splice(0,dataMovies.length)
 console.log(active)
 },[movieOrTv])
-
-
+ 
+ 
  
   useEffect(() => {
     fetch(
@@ -48,15 +50,18 @@ console.log(active)
 
               return (
                 <section key={i}>
-                       <p className="text-orange-100 text-2xl " >{dataGenres.genres[i].name}</p>
+                   <p className="text-orange-100 mx-5 text-[1.2rem] " >{dataGenres.genres[i].name}</p> 
                 <section
                   className="flex h-[250px] mx-5 gap-5 w-screen overflow-y-hidden scroll-auto"
-                >
-              
-
+                >             
+     
                   {e.map((e, i) => (
                     <>
                       <img
+                      onClick={()=>{
+                        localStorage.setItem("idMovie",e.id)
+                        navigate("/infoMovie")
+                      }}
                         key={i}
                         className="rounded-[10px]"
                         src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
