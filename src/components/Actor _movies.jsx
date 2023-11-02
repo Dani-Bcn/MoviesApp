@@ -21,10 +21,33 @@ export default function Actor_movies() {
       : null;
     dataMovies ? setDataPages(dataMovies.total_pages) : null;
   }, [dataMovies])
+  console.log(dataPages,countPage)
 
   return (
     <main className=" fixed ">
-      <section className=" flex flex-wrap start px-7 gap-8 pt-32 pb-10 h-screen overflow-x-hidden ">
+      <section className="flex  justify-between text-center mx-7 items-start w-screen pt-16 my-5">
+       {countPage < dataPages ? (
+        <h2
+          className="text-orange-200 w-full text-start"
+          onClick={() => {
+           setCountPage(countPage + 1), setNewCall(!newCall);
+          }}
+        >
+          Next page
+        </h2>  
+      ) : null}
+       {countPage > 1  ? (
+        <h2
+          className="text-orange-200  text-start w-full -ml-5"
+          onClick={() => {
+           setCountPage(countPage - 1), setNewCall(!newCall);
+          }}
+        >
+          Previus page
+        </h2>  
+      ) : null}
+      </section>
+      <section className=" flex flex-wrap start px-7 gap-8  pb-24 h-screen overflow-x-hidden ">
       {dataMovies
         ? dataMovies.results.map((e, i) => {
             return e.poster_path ? (
@@ -43,7 +66,7 @@ export default function Actor_movies() {
       
       {countPage < dataPages ? (
         <h2
-          className="text-red-100 w-screen"
+          className="text-red-100 w-screen px-10"
           onClick={() => {
            setCountPage(countPage + 1), setNewCall(!newCall);
           }}
