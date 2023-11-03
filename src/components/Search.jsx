@@ -15,26 +15,26 @@ export default function Search(props) {
   const variantsActiveSearch = {
     open: {
       x: 850,
-    }, 
+    },
     closed: {
       x: 0,
-    }, 
+    },
   };
 
   useEffect(() => {
-   inputRef.current.value.length > 2 ?
-      fetch(
-        `https://api.themoviedb.org/3/search/multi?query=${searchInput}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
-      )
-        .then((resp) => resp.json())
-        .then((resp) => setFindMovie(resp.results))
-         :null  
+    inputRef.current.value.length > 2
+      ? fetch(
+          `https://api.themoviedb.org/3/search/multi?query=${searchInput}&api_key=55b2cf9d90cb74c55683e395bb1ad12b&`
+        )
+          .then((resp) => resp.json())
+          .then((resp) => setFindMovie(resp.results))
+      : null;
   }, [newCall]);
-
+  findMovie ? console.log(findMovie) : null;
 
   return (
     <m.main
-      className="fixed  w-screen  h-screen flex flex-col -ml-[850px]  bg-slate-800/[0.5] backdrop-blur-[20px] z-50"
+      className="fixed overflow-hidden w-screen  h-screen flex flex-col -ml-[850px]  bg-slate-800/[0.5] backdrop-blur-[20px] z-50"
       variants={variantsActiveSearch}
       animate={activePageSearch ? "open" : "closed"}
       transition={{
@@ -44,7 +44,11 @@ export default function Search(props) {
       <section>
         <svg
           className="h-10 m-2 mx-5"
-          onClick={() => {activeSearch(false), inputRef.current.value="", setNewCall(!newCall)}}
+          onClick={() => {
+            activeSearch(false),
+              (inputRef.current.value = ""),
+              setNewCall(!newCall);
+          }}
           width="30px"
           height="30px"
           viewBox="0 0 60 50"
@@ -82,67 +86,52 @@ export default function Search(props) {
             />
           </form>
         </section>
-       
-</section>
-      <section className="overflow-auto text-[1.1rem]">
+      </section>
+      <section className=" w-screen h-screen flex flex-col m-5 my-10 gap-5 overflow-auto text-orange-100 z-50">
         {findMovie
           ? findMovie.map((e, i) => {
-              if (e.poster_path && e.backdrop_path && !e.name && e.title) {
+              if (e.media_type === "movie" && e.backdrop_path) {
                 return (
-                  <section key={i}>
-                    {e.media_type === "person" ? null : e.media_type ===
-                      "movie" ? (
-                      <section
-                        onClick={() => {
-                          navigate("/infoMovie"),
-                            activeSearch(false),
-                            localStorage.setItem("idMovie", e.id);
-                          localStorage.setItem("movieOrTv", "movie");
-                        }}
-                        className=" relative w-[95%] m-auto flex h-42  my-5 bg-slate-800 clip-arrow-r"
-                      >
-                        <img
-                          className="h-32 w-52"
-                          src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
-                        />
-                        <section className=" absolute l-0 w-[56.5%] h-full bg-gradient-to-l to-slate-800/[0.01] from-slate-800 "></section>
-                        <section className="w-full flex  justify-between px-5 text-slate-400">
-                          {e.title.length > 20 ? (
-                            <h2 className="w-28 py-2">
-                              {e.title.slice(0, 25)}...
-                            </h2>
-                          ) : (
-                            <h2 className="w-28 py-2">
-                              {e.title.slice(0, 25)}
-                            </h2>
-                          )}
-                        </section>
-                      </section>
-                    ) : (
-                      <section
-                        onClick={() => {
-                          activeSearch(false),
-                            localStorage.setItem("idMovie", e.id);
-                          localStorage.setItem("movieOrTv", "tv");
-                        }}
-                        key={i}
-                        className="w-[95%] m-auto flex h-32 p-5 my-5 bg-red-950"
-                      >
-                        <img
-                          className="h-full rounded-xl"
-                          src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
-                        />
-                        <section className="w-full flex  justify-between px-5 text-orange-50">
-                          {e.title.length > 20 ? (
-                            <h2 className="w-28">{e.title.slice(0, 25)}...</h2>
-                          ) : (
-                            <h2 className="w-28">{e.title.slice(0, 25)}</h2>
-                          )}
-                        </section>
-                        <section className=" absolute w-[95%] h-42 bg-red-500 z-40"></section>
-                      </section>
-                    )}
+                  <section className= " flex w-screen h-32 bg-red-800 text-orange-100 tex-3xl">
+                   
+                  <img onClick={()=>{ 
+                    localStorage.setItem("idMovie",e.id)
+                     navigate("/infoMovie")
+                    localStorage.setItem("movieOrTv","movie")
+                    activeSearch(false)
+                  }}
+                    className=" w-52 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                    src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
+                  />
+                   <p className="w-32 mx-5">{e.title}</p>
                   </section>
+                );
+              } else if (e.media_type === "tv" && e.backdrop_path) {
+                return (
+                  <section className= " flex w-screen h-32 bg-red-800 text-orange-100 tex-3xl">
+                  <img onClick={()=>{ 
+                    localStorage.setItem("idMovie",e.id)
+                     navigate("/infoMovie")
+                    localStorage.setItem("movieOrTv","tv")
+                    activeSearch(false)
+                  }}
+                    className=" w-52 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                    src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
+                  />
+                   <p className="w-32 mx-5">{e.name}</p>
+                  </section>
+                );
+              } else if (e.media_type === "person" && e.profile_path) {
+                return (
+                  <img onClick={()=>{ 
+                    localStorage.setItem("idMovie",e.id)
+                     navigate("/infoMovie")
+                    localStorage.setItem("movieOrTv","person")
+                    activeSearch(false)
+                  }}
+                    className=" z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                    src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
+                  />
                 );
               }
             })
