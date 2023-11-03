@@ -17,13 +17,15 @@ export default function Movie_info(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    idMovie !== undefined
+    ?
       fetch(
           `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=50&sort_by=popularity.asc&include_null_first_air_dates=true`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoMovie(resp))
-        
-  }, []);
+          : null;
+  }, [idMovie]);
   infoMovie?console.log(infoMovie):null
 
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function Movie_info(props) {
           .then((resp) => resp.json())
           .then((resp) => setInfoCast(resp))
       : null;
-  }, []);
+  }, [idMovie]);
 
   useEffect(() => {
     fetch(
@@ -42,7 +44,7 @@ export default function Movie_info(props) {
     )
       .then((resp) => resp.json())
       .then((resp) => setDataVideos(resp.results));
-  }, []);
+  }, [idMovie]);
 
   useEffect(() => {
     idMovie !== undefined
@@ -128,7 +130,7 @@ export default function Movie_info(props) {
             <article className=" w-52 flex flex-col px-5 z-10">
               <section className="flex gap-2.5 my-1">
                 <div className="w-8 h-8 rounded-[20px]  flex items-center justify-center border-2 border-green-500">
-                  {infoMovie.spoken_languages.length === 0 ? (
+                  {infoMovie.spoken_languages === 0? (
                     infoMovie.original_language.toUpperCase()
                   ) : (
                     <p className="mt-0.5">

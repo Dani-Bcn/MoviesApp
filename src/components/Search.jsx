@@ -98,11 +98,11 @@ export default function Search(props) {
                   >
                     <img
                       onClick={() => {
-                       navigate("/infoMovie");
+                        navigate("/infoMovie");
 
                         localStorage.setItem("idMovie", e.id);
                         localStorage.setItem("movieOrTv", "movie");
-                      
+
                         activeSearch(false);
                       }}
                       className=" w-24 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
@@ -122,12 +122,9 @@ export default function Search(props) {
                   >
                     <img
                       onClick={() => {
-                            navigate("/infoMovie");
-
+                        navigate("/infoMovie");
                         localStorage.setItem("idMovie", e.id);
                         localStorage.setItem("movieOrTv", "tv");
-                      
-                   
                         activeSearch(false);
                       }}
                       className=" w-24 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
@@ -149,12 +146,10 @@ export default function Search(props) {
                       <img
                         onClick={() => {
                           navigate("/infoActor");
-                        
+
                           localStorage.setItem("idPerson", e.id);
 
-                         
                           activeSearch(false);
-                        
                         }}
                         className=" z-10 w-24 h-32 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                         src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
