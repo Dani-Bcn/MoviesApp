@@ -6,7 +6,7 @@ import { data, info } from "autoprefixer";
 export default function Movie_info(props) {
   const { getImages } = props;
   const idMovie = localStorage.getItem("idMovie");
-  const movieOrTv = localStorage.getItem("movieOrTv")
+  const movieOrTv = localStorage.getItem("movieOrTv");
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
   const [dataVideos, setDataVideos] = useState();
@@ -18,15 +18,14 @@ export default function Movie_info(props) {
 
   useEffect(() => {
     idMovie !== undefined
-    ?
-      fetch(
+      ? fetch(
           `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=50&sort_by=popularity.asc&include_null_first_air_dates=true`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoMovie(resp))
-          : null;
+      : null;
   }, [idMovie]);
-  infoMovie?console.log(infoMovie):null
+  infoMovie ? console.log(infoMovie) : null;
 
   useEffect(() => {
     idMovie !== undefined
@@ -130,7 +129,7 @@ export default function Movie_info(props) {
             <article className=" w-52 flex flex-col px-5 z-10">
               <section className="flex gap-2.5 my-1">
                 <div className="w-8 h-8 rounded-[20px]  flex items-center justify-center border-2 border-green-500">
-                  {infoMovie.spoken_languages === 0? (
+                  {infoMovie.spoken_languages === 0 ? (
                     infoMovie.original_language.toUpperCase()
                   ) : (
                     <p className="mt-0.5">
@@ -151,16 +150,19 @@ export default function Movie_info(props) {
                 )}
               </section>
               <section className="flex gap-3">
-                {movieOrTv === "movie" ? (
+                {movieOrTv !== "tv" ? (
                   <p>{infoMovie.runtime}'</p>
-                ) : !infoMovie.episode_run_time ? null : (
-                  <>
+
+                ) : !infoMovie.episode_run_time?null:
+                 infoMovie.episode_run_time.length === 0 ? null : (
                   <p> {infoMovie.episode_run_time}'</p>
-                  <p>{infoMovie.number_of_seasons}</p>
-                  </>
                 )}
               </section>
-
+              {
+                !infoMovie.number_of_seasons ?null:
+                 <p> Seasons  {infoMovie.number_of_seasons}</p>
+              }
+             
               <section className=" relative flex gap-x-2 flex-wrap ">
                 {infoMovie.genres.map((e, i) => {
                   return <p key={i}> {e.name}</p>;
