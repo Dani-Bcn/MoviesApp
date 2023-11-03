@@ -180,13 +180,13 @@ export default function Movie_info(props) {
                   >
                     Images
                   </button>
-                  <m.section className="absolute my-7 flex flex-col items-start overflow-hidden h-20">
+                  <m.section className="absolute my-7 flex flex-col items-start overflow-hidden h-20 z-40">
                     {arrayNames.map((e, i) => {
                       return (
                         <m.button
                           variants={variantsShowImages}
                           animate={selectedImages ? "open" : "closed"}
-                          className="opacity-100"
+                          className="opacity-100 z-40"
                           key={i}
                           onClick={() => {
                             navigate("/images"),

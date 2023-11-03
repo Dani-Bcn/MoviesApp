@@ -17,10 +17,9 @@ export default function Images() {
   }, [idMovie])
 
   return (
-    <div className="  text-orange-100 flex flex-wrap w-screen  h-screen justify-center items-center   my-24">
+    <div className="  text-orange-100 flex flex-wrap w-screen  justify-center items-center gap-10  mt-24 py-5">
    {  
-   imagesTypes ==="Backdrops" ?
-   dataImages?
+   imagesTypes ==="Backdrops" && dataImages?
    dataImages.backdrops.map((e, i) => {
    console.log(e.width)
 
@@ -31,35 +30,34 @@ export default function Images() {
                 src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
               />           
             );
-          }):null:null
+          }):null
         } 
         {  
-   imagesTypes ==="Logos" ?
-   dataImages?
+   imagesTypes ==="Logos"  && dataImages?
+  
    dataImages.logos.map((e, i) => {
             return (
            
               <img
                 key={i}
-                className={`w-[350px] h-[150px]  z-10 p-5 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 `}
+                className={`w-[350px] h-[150px]  z-10 p-5  rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 `}
                 src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
               />
           
             );
-          }):null:null
+          }):null
         } 
         {  
-   imagesTypes ==="Posters" ?
-   dataImages?
+   imagesTypes ==="Posters" && dataImages?
    dataImages.posters.map((e, i) => {
             return (
               <img
                 key={i}
-                className="w-[150px] z-10  m-4 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                className="w-[150px] z-10   rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                 src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
               />
             );
-          }):null:null
+          }):null
         } 
     </div>
   );
