@@ -6,7 +6,7 @@ import { data, info } from "autoprefixer";
 export default function Movie_info(props) {
   const { getImages } = props;
   let idMovie = localStorage.getItem("idMovie");
-  const [movieOrTv, setMovieOrTv] = useState(localStorage.getItem("movieOrTv"));
+  let movieOrTv = localStorage.getItem("movieOrTv")
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
   const [dataVideos, setDataVideos] = useState();
@@ -17,14 +17,15 @@ export default function Movie_info(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    idMovie !== undefined
-      ? fetch(
+   
+       fetch(
           `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=50&sort_by=popularity.asc&include_null_first_air_dates=true`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoMovie(resp))
-      : null;
-  }, [idMovie]);
+      
+  }, [movieOrTv]);
+  infoMovie?console.log(infoMovie):null
 
   useEffect(() => {
     idMovie !== undefined
