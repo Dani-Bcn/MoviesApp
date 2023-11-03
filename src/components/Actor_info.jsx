@@ -3,20 +3,20 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { motion as m } from "framer-motion";
 
 export default function Actor_info() {
-  const [idPerson, setIdPerson] = useState(localStorage.getItem("idPerson"));
+  let idPerson = localStorage.getItem("idPerson")
   const [dataActor, setDataActor] = useState();
   const [dataMovies, setDataMovies] = useState();
   const [dataPictures, setDataPictures] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.setItem("movieOrTv", "movie");
+  idPerson?
     fetch(
       `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
     )
       .then((resp) => resp.json())
-      .then((resp) => setDataActor(resp));
-  }, []);
+      .then((resp) => setDataActor(resp)):null
+  }, [idPerson]);
   useEffect(() => {
     if (idPerson) {
       fetch(
@@ -75,6 +75,7 @@ export default function Actor_info() {
                   <img
                     onClick={() => {
                       navigate("/infoMovie");
+                      localStorage.setItem("movieOrTv", "movie")
                       localStorage.setItem("idMovie", e.id);
                     }}
                     key={i}

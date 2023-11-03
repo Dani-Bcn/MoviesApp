@@ -21,7 +21,6 @@ export default function Actor_movies() {
       : null;
     dataMovies ? setDataPages(dataMovies.total_pages) : null;
   }, [dataMovies])
-  console.log(dataPages,countPage)
 
   return (
     <main className=" fixed ">

@@ -90,7 +90,7 @@ export default function Search(props) {
       <section className=" w-screen h-screen flex flex-col m-5 my-10 gap-5 overflow-auto text-orange-100 z-50">
         {findMovie
           ? findMovie.map((e, i) => {
-              if (e.media_type === "movie" && e.backdrop_path) {
+              if (e.media_type === "movie" && e.poster_path) {
                 return (
                   <section
                     key={i}
@@ -105,8 +105,8 @@ export default function Search(props) {
                       
                         activeSearch(false);
                       }}
-                      className=" w-52 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
-                      src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
+                      className=" w-24 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                      src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                     />
                     <section className=" mx-5 flex flex-col gap-1">
                       <p className="w-32 text-[1.1rem]">{e.title}</p>
@@ -114,7 +114,7 @@ export default function Search(props) {
                     </section>
                   </section>
                 );
-              } else if (e.media_type === "tv" && e.backdrop_path) {
+              } else if (e.media_type === "tv" && e.poster_path) {
                 return (
                   <section
                     key={i}
@@ -130,8 +130,8 @@ export default function Search(props) {
                    
                         activeSearch(false);
                       }}
-                      className=" w-52 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
-                      src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
+                      className=" w-24 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                      src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                     />
                     <section className="mx-5 flex flex-col">
                       <p className="w-32 text-[1.1rem] ">{e.name}</p>
@@ -141,7 +141,7 @@ export default function Search(props) {
                 );
               } else if (e.media_type === "person") {
                 return e.known_for[0] ? (
-                  e.known_for[0].backdrop_path !== null ? (
+                  e.profile_path !== null ? (
                     <section
                       key={i}
                       className=" flex w-screen h-32 bg-red-800 text-orange-100 tex-3xl"
@@ -156,8 +156,8 @@ export default function Search(props) {
                           activeSearch(false);
                         
                         }}
-                        className=" z-10 w-52 h-32 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
-                        src={`https://image.tmdb.org/t/p/w500/${e.known_for[0].backdrop_path}`}
+                        className=" z-10 w-24 h-32 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                        src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
                       />
                       <section className=" mx-5 flex flex-col">
                         <p className="w-32 text-[1.1rem]">{e.name}</p>

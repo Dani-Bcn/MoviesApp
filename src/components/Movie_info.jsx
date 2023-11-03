@@ -5,8 +5,8 @@ import { data, info } from "autoprefixer";
 
 export default function Movie_info(props) {
   const { getImages } = props;
-  let idMovie = localStorage.getItem("idMovie");
-  let movieOrTv = localStorage.getItem("movieOrTv")
+  const idMovie = localStorage.getItem("idMovie");
+  const movieOrTv = localStorage.getItem("movieOrTv")
   const [infoMovie, setInfoMovie] = useState();
   const [infoCast, setInfoCast] = useState();
   const [dataVideos, setDataVideos] = useState();
@@ -17,14 +17,13 @@ export default function Movie_info(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-   
-       fetch(
+      fetch(
           `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=50&sort_by=popularity.asc&include_null_first_air_dates=true`
         )
           .then((resp) => resp.json())
           .then((resp) => setInfoMovie(resp))
-      
-  }, [movieOrTv]);
+        
+  }, []);
   infoMovie?console.log(infoMovie):null
 
   useEffect(() => {
@@ -35,7 +34,7 @@ export default function Movie_info(props) {
           .then((resp) => resp.json())
           .then((resp) => setInfoCast(resp))
       : null;
-  }, [idMovie]);
+  }, []);
 
   useEffect(() => {
     fetch(
@@ -43,7 +42,7 @@ export default function Movie_info(props) {
     )
       .then((resp) => resp.json())
       .then((resp) => setDataVideos(resp.results));
-  }, [idMovie]);
+  }, []);
 
   useEffect(() => {
     idMovie !== undefined
@@ -53,7 +52,7 @@ export default function Movie_info(props) {
           .then((resp) => resp.json())
           .then((resp) => setDataImages(resp))
       : null;
-  }, [idMovie]);
+  }, []);
 
   dataImages ? (arrayImages = Object.values(dataImages)) : null;
   arrayImages.map((e, i) => {
@@ -152,8 +151,11 @@ export default function Movie_info(props) {
               <section className="flex gap-3">
                 {movieOrTv === "movie" ? (
                   <p>{infoMovie.runtime}'</p>
-                ) : infoMovie.episode_run_time.length === 0 ? null : (
+                ) : !infoMovie.episode_run_time ? null : (
+                  <>
                   <p> {infoMovie.episode_run_time}'</p>
+                  <p>{infoMovie.number_of_seasons}</p>
+                  </>
                 )}
               </section>
 

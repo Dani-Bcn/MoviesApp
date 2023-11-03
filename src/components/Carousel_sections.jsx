@@ -52,6 +52,7 @@ export default function Carousel_popular() {
                 onClick={() => {
                   navigate("/infoMovie");
                   localStorage.setItem("idMovie", e.id);
+                  localStorage.setItem("movieOrTv", movieOrTv);
                 }}
                 className=" z-10 rounded-2xl mx-5 border-[3px] shadow-xl shadow-black/100 "
                 key={i}
