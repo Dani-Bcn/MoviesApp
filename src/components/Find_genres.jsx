@@ -45,7 +45,7 @@ console.log(active)
     <main>
       <section className="mt-24">
       {dataMovies?
-      
+            
         dataMovies.map((e, i) => {
 
               return (

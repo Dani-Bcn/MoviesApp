@@ -78,7 +78,7 @@ export default function Search(props) {
             <input
               className="bg-slate-500"
               ref={inputRef}
-              placeholder="Search Movies/Tv..."
+              placeholder="Movies/Tv/Persons..."
               onChange={() => {
                 setSearchInput(inputRef.current.value);
                 setNewCall(!newCall);
@@ -103,7 +103,10 @@ export default function Search(props) {
                     className=" w-52 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                     src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
                   />
-                   <p className="w-32 mx-5">{e.title}</p>
+                  <section className=" mx-5 flex flex-col gap-1">
+                  <p className="w-32 text-[1.1rem]">{e.title}</p>
+                  <p>{e.media_type}</p>
+                  </section>
                   </section>
                 );
               } else if (e.media_type === "tv" && e.backdrop_path) {
@@ -118,21 +121,37 @@ export default function Search(props) {
                     className=" w-52 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                     src={`https://image.tmdb.org/t/p/w500/${e.backdrop_path}`}
                   />
-                   <p className="w-32 mx-5">{e.name}</p>
+                  <section className="mx-5 flex flex-col">
+                   <p className="w-32 text-[1.1rem] ">{e.name}</p>
+                   <p>{e.media_type}</p> 
+                   </section>
                   </section>
-                );
-              } else if (e.media_type === "person" && e.profile_path) {
+                ); 
+              } else if 
+              (e.media_type === "person") {
+               
                 return (
+                   e.known_for[0]?
+                   e.known_for[0].backdrop_path !== null?
+                  <section className= " flex w-screen h-32 bg-red-800 text-orange-100 tex-3xl">
                   <img onClick={()=>{ 
-                    localStorage.setItem("idMovie",e.id)
-                     navigate("/infoMovie")
+                    localStorage.setItem("idPerson",e.id)
+                     navigate("/infoActor")
                     localStorage.setItem("movieOrTv","person")
                     activeSearch(false)
                   }}
-                    className=" z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
-                    src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
+                    className=" z-10 w-52 h-32 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                    src={`https://image.tmdb.org/t/p/w500/${e.known_for[0].backdrop_path}`}
                   />
+                  <section className=" mx-5 flex flex-col">
+                  <p className="w-32 text-[1.1rem]">{e.name}</p>
+                  <p>{e.first_air_date}</p>
+                  <p>{e.media_type}</p>
+                  </section>
+                  </section>
+                   :null:null
                 );
+               
               }
             })
           : null}
