@@ -25,10 +25,10 @@ console.log(active)
       .then((resp) => setDataGenres(resp)); 
   }, [movieOrTv]);
 
-  dataGenres ? console.log("genres", dataGenres.genres) : null; 
+/*   dataGenres ? console.log("genres", dataGenres.genres) : null;  */
   useEffect(() => {
-    if (dataGenres) {      
-      dataGenres.genres.map((e, i) => {  
+    if (dataGenres) {       
+      dataGenres.genres.map((e, i) => {   
         fetch(
           `https://api.themoviedb.org/3/discover/${movieOrTv}?api_key=55b2cf9d90cb74c55683e395bb1ad12b&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${e.id}`
         )
@@ -45,10 +45,7 @@ console.log(active)
     <main>
       <section className="mt-24">
       {dataMovies?
-       movieOrTv === "movie" && dataMovies.length === 19 
-       ||
-       movieOrTv === "tv" && dataMovies.length === 16  
-        ?
+      
         dataMovies.map((e, i) => {
 
               return (
@@ -59,23 +56,23 @@ console.log(active)
                 >             
      
                   {e.map((e, i) => (
-                    <>
+                  
                       <img   key={i}
                       onClick={()=>{
                         localStorage.setItem("idMovie",e.id)
                         navigate("/infoMovie")
                       }}
                      
-                        className="rounded-[10px]"
+                        className="rounded-[10px] border-[3px] border-orange-300 shadow-xl shadow-black/100"
                         src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                       />
-                    </>
+                  
                   ))}
                 </section>
                 </section>
               );
             })
-        : null:null}
+        : null}
         </section>
     </main>
   );

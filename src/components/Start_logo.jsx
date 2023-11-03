@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Start_logo() {
   const navigate = useNavigate();
   useEffect(() => {
-    setInterval(() => {
+    setTimeout(() => {
       navigate("/home");
     }, 2000);
   },[]);
