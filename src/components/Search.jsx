@@ -17,7 +17,7 @@ export default function Search(props) {
       x: 850,
     },
     closed: {
-      x: 0,
+      x: "-50vw",
     },
   };
 

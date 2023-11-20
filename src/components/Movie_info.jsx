@@ -25,7 +25,6 @@ export default function Movie_info(props) {
           .then((resp) => setInfoMovie(resp))
       : null;
   }, [idMovie]);
-  infoMovie ? console.log(infoMovie) : null;
 
   useEffect(() => {
     idMovie !== undefined
@@ -186,7 +185,7 @@ export default function Movie_info(props) {
                         <m.button
                           variants={variantsShowImages}
                           animate={selectedImages ? "open" : "closed"}
-                          className="opacity-100 z-40"
+                          className="opacity-100 z-30"
                           key={i}
                           onClick={() => {
                             navigate("/images"),
@@ -240,7 +239,7 @@ export default function Movie_info(props) {
             dataVideos.length !== 0 ? (
               <section>
                 <section
-                  className=" mt-2 z-50 absolute w-screen h-[250px]"
+                  className=" mt-2 z-40 absolute w-screen h-[250px]"
                   onClick={() => navigate("/trailers")}
                 ></section>
 

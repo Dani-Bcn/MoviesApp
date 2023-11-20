@@ -56,7 +56,7 @@ export default function Actor_movies() {
                   localStorage.setItem("idMovie", e.id);
                 }}
                 key={i}
-                className="w-50 z-40 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                className="w-50 z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
             ) : null;

@@ -28,7 +28,7 @@ export default function Carousel_popular() {
   }, [movieOrTv])
 
   return (
-    <m.main className="fixed pt-96  h-screen  z-40 overflow-x-auto"
+    <m.main className="fixed pt-96  h-screen  z-30 overflow-x-auto"
     animate={{
       x:0,
       scale:1,

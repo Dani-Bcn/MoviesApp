@@ -3,13 +3,13 @@ import { motion as m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export default function Carousel_movies() {
-  const movieOrTv = localStorage.getItem("movieOrTv")
-  const idMovie = localStorage.getItem("idMovie")
+  const movieOrTv = localStorage.getItem("movieOrTv");
+  const idMovie = localStorage.getItem("idMovie");
   const [dataMovies, setDataMovies] = useState();
   const [dataImages, setDataImages] = useState();
-  const [count, setCount] = useState(Math.floor(Math.random()*19));
-  const [activeEffect,setActiveEffect] = useState(false)
-  const navigate = useNavigate()
+  const [count, setCount] = useState(Math.floor(Math.random() * 19));
+  const [activeEffect, setActiveEffect] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(
@@ -17,74 +17,69 @@ export default function Carousel_movies() {
     )
       .then((resp) => resp.json())
       .then((resp) => setDataMovies(resp.results));
- 
   }, [movieOrTv]);
 
-  const countImages =(()=>{
-    setActiveEffect(!activeEffect)
-    setCount(count+1)
-    count === 19?setCount(1):null
-  clearInterval(interval)
-}) 
+  const countImages = () => {
+    setActiveEffect(!activeEffect);
+    setCount(count + 1);
+    count === 19 ? setCount(1) : null;
+    clearInterval(interval);
+  };
 
-const interval = setInterval(() => {
-   countImages()
+  const interval = setInterval(() => {
+    countImages();
   }, 4000);
-  const variantsEffect ={
-    open:{
-      opacity:[0.1,0.1,1],
-      transition:{
-        duration:0.1
-      }
+  const variantsEffect = {
+    open: {
+      opacity: [0.1, 0.1, 1],
+      transition: {
+        duration: 0.1,
+      },
     },
-    closed:{
-      opacity:[0.1,0.1,1],
-      transition:{
-        duration:0.1
-      }
-    }
-  } 
+    closed: {
+      opacity: [0.1, 0.1, 1],
+      transition: {
+        duration: 0.1,
+      },
+    },
+  };
 
   return (
-    <m.main className=" z-1 mt-20 text-orange-200  bg-slate-800"     
-    animate={{
-      scale:1,
-      opacity:[0,1]
-    }}
-    exit={{
-      scale:2,
-      opacity:[1,0],
-      transition:{
-        duration:0.3,
-      }
-    }}     
+    <m.main
+      className=" z-10 mt-20 text-orange-200  bg-slate-800"
+      animate={{
+        scale: 1,
+        opacity: [0, 1],
+      }}
+      exit={{
+        scale: 2,
+        opacity: [1, 0],
+        transition: {
+          duration: 0.3,
+        },
+      }}
     >
-      {dataMovies ? 
-      <>{
-         !dataMovies[count].poster_path? setCount[count +1]:null
-      }       
+      {dataMovies ? (
+        <>
+          {!dataMovies[count].poster_path ? setCount[count + 1] : null}
 
-        <m.section className="z-1"
-          onClick={()=>{navigate("/infoMovie"),localStorage.setItem("idMovie",dataMovies[count].id)}
-        }
-        >
-          
-        
-         
-         <m.img
-            variants={variantsEffect}
-            animate={
-              activeEffect?"open":"closed"             
-            }
-            className="w-[600px] h-full md:w-[900px] m-auto z-10"
-            src={`https://image.tmdb.org/t/p/w500/${dataMovies[count].poster_path}`}
-          />  
- <section className="absolute top-0 w-full h-full bg-gradient-to-t to-cyan-500/[0] from-slate-800 z-10"></section>
-
-        </m.section>
+          <m.section
+            className="z-1"
+            onClick={() => {
+              navigate("/infoMovie"),
+                localStorage.setItem("idMovie", dataMovies[count].id);
+            }}
+          >
+            <m.img
+              variants={variantsEffect}
+              animate={activeEffect ? "open" : "closed"}
+              className="w-[600px] h-full md:w-[100vw] m-auto z-10 "
+              src={`https://image.tmdb.org/t/p/w500/${dataMovies[count].poster_path}`}
+            />
+            <section className="absolute top-0 w-full h-full bg-gradient-to-t to-cyan-500/[0] from-slate-800 z-10"></section>
+          </m.section>
         </>
-      :null    
-      }
+      ) : null}
     </m.main>
   );
 }

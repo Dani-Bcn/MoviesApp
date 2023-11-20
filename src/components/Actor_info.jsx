@@ -79,7 +79,7 @@ export default function Actor_info() {
                       localStorage.setItem("idMovie", e.id);
                     }}
                     key={i}
-                    className=" w-screen mr-10  z-40 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                    className=" w-screen mr-10  z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                     src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                   />           
               ) : null
@@ -92,7 +92,7 @@ export default function Actor_info() {
         ) : null}
         {dataActor && dataActor.biography ? (
           <section className="mr-10">
-            <h2 className="z-50 text-orange-300 m-2 h-5 text-[1.1rem]">
+            <h2 className="z-40 text-orange-300 m-2 h-5 text-[1.1rem]">
               Biography
             </h2>
             <p className="p-2 text-orange-100">{dataActor.biography}</p>

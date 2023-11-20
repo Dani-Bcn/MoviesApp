@@ -28,7 +28,7 @@ export default function Filmography(props) {
         items-center
         bg-slate-800
         text-orange-200
-        z-50
+        z-40
         "
     >
       <h2

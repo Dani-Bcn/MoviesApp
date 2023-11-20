@@ -12,7 +12,7 @@ export default function Start_logo() {
 
   return (
     <m.main
-      className="fixed bg-black w-screen h-screen flex justify-center items-center z-50"
+      className="fixed bg-black w-screen h-screen flex justify-center items-center 4"
      
       exit={{
         opacity:0,
