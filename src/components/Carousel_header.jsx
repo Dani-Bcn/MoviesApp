@@ -63,7 +63,7 @@ export default function Carousel_movies() {
         <>
           {!dataMovies[count].poster_path ? setCount[count + 1] : null}
           <m.section
-            className="z-10 flex w-screen lg:hidden justify-center items-center "
+            className="z-10 flex w-screen lg:hidden justify-center items-center overflow-auto"
             onClick={() => {
               navigate("/infoMovie"),
                 localStorage.setItem("idMovie", dataMovies[count].id);

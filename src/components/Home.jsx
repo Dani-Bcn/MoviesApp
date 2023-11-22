@@ -6,7 +6,7 @@ import {motion as m} from "framer-motion"
 
 export default function Home() {
  return (
-  <main className="flex flex-col ">
+  <main className="flex flex-col overflow-hidden ">
      <section
         className=" absolute z-20 -mt-[200px] sm:hidden lg:flex lg:-mt-20 lg:scale-150 w-screen h-screen flex flex-col items-center justify-center"      
       >

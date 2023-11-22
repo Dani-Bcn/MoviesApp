@@ -28,7 +28,7 @@ export default function Carousel_popular() {
   }, [movieOrTv])
 
   return (
-    <m.main className="fixed pt-96  h-screen  z-30 overflow-x-auto"
+    <m.main className="fixed pt-96  h-screen  z-30 overflow-x-hidden"
     animate={{
       x:0,
       scale:1,
@@ -45,7 +45,7 @@ export default function Carousel_popular() {
     >     
     <h2 className="px-6 sm:-mt-72  lg:-mt-0 mt-0 py-3 text-orange-100 text-3xl font-bold ">Popular</h2>
       {dataPopular ? (
-        <section className="flex h-[275px] w-screen overflow-hidden scroll-auto">
+        <section className="flex h-[275px] w-screen overflow-y-hidden lg:overflow-hidden scroll-auto">
           {dataPopular.map((e, i) => {
             return (
               <img
@@ -62,9 +62,9 @@ export default function Carousel_popular() {
           })}
         </section>
       ) : null}     
-       <h2 className="px-6 py-3 text-orange-100 text-3xl font-bold ">Top rated</h2>
+       <h2 className="px-6 py-3  text-orange-100 text-3xl font-bold ">Top rated</h2>
          {dataTopRated ? (
-          <section className="flex h-[275px] w-screen   overflow-y-hidden ">
+          <section className="flex h-[275px] w-screen lg:overflow-hidden   overflow-y-hidden ">
           {dataTopRated.map((e, i) => {
             return (
               <img
