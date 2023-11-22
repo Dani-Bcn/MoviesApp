@@ -8,7 +8,7 @@ export default function Home() {
  return (
   <main className="flex flex-col ">
      <section
-        className=" absolute z-20 -mt-[200px] sm:mt-10 w-screen h-screen flex flex-col items-center justify-center"      
+        className=" absolute z-20 -mt-[200px] sm:hidden lg:flex lg:-mt-20 lg:scale-150 w-screen h-screen flex flex-col items-center justify-center"      
       >
         <h1
           className=" text-blue-200 text-8xl font-Josefin  text-shadow-logo"         

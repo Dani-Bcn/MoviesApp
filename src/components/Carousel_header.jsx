@@ -46,7 +46,7 @@ export default function Carousel_movies() {
 
   return (
     <m.main
-      className=" z-10 mt-20 text-orange-200  bg-slate-800"
+      className=" w-screen justify-center flex z-10 mt-20   text-orange-200  bg-slate-800"
       animate={{
         scale: 1,
         opacity: [0, 1],
@@ -62,9 +62,8 @@ export default function Carousel_movies() {
       {dataMovies ? (
         <>
           {!dataMovies[count].poster_path ? setCount[count + 1] : null}
-
           <m.section
-            className="z-1"
+            className="z-10 flex w-screen lg:hidden justify-center items-center "
             onClick={() => {
               navigate("/infoMovie"),
                 localStorage.setItem("idMovie", dataMovies[count].id);
@@ -73,10 +72,10 @@ export default function Carousel_movies() {
             <m.img
               variants={variantsEffect}
               animate={activeEffect ? "open" : "closed"}
-              className="w-[600px] h-full md:w-[100vw] m-auto z-10 "
+              className="w-[600px] h-full md:w-[100vw]  z-10 "
               src={`https://image.tmdb.org/t/p/w500/${dataMovies[count].poster_path}`}
             />
-            <section className="absolute top-0 w-full h-full bg-gradient-to-t to-cyan-500/[0] from-slate-800 z-10"></section>
+          <section className="absolute top-0 w-full h-full bg-gradient-to-t to-cyan-500/[0] from-slate-800 z-10"></section> 
           </m.section>
         </>
       ) : null}

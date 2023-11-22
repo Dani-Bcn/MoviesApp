@@ -74,12 +74,12 @@ export default function Movie_info(props) {
     <m.main
       className="    
      fixed
-        py-20
+       pt-20
         h-screen
         w-screen         
         text-slate-200    
         opacity-100
-        overflow-x-hidden
+        overflow-x-hidden        
     "
       animate={{
         opacity: [0, 0, 1],
@@ -96,7 +96,7 @@ export default function Movie_info(props) {
     >
       {infoMovie ? (
         <>
-          <section className="mx-5">
+          <section className="mx-5 overflow-hidden">
             {infoMovie ? (
               infoMovie.title ? (
                 <h2 className="text-[1.5rem]">{infoMovie.title}</h2>
@@ -105,11 +105,14 @@ export default function Movie_info(props) {
               )
             ) : null}
           </section>
-          <section>
-            <div className="fixed z-10 mt-76  w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
+          <section className="overflow-hidden">
+            <div className="fixed z-20 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
+          
             <div
-              className="fixed w-screen h-screen opacity-[0.6] "
+              className="fixed bg-slate-950 w-screen h-screen"
               style={{
+                backgroundPositionX:"center",
+                backgroundRepeat:"no-repeat",
                 backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
               }}
             ></div>
@@ -121,11 +124,11 @@ export default function Movie_info(props) {
         <section>
           <section className="flex p-5">
             <img
-              className=" z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+              className=" z-20 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
               src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
             />
 
-            <article className=" w-52 flex flex-col px-5 z-10">
+            <article className=" w-screen flex flex-col px-5 z-20">
               <section className="flex gap-2.5 my-1">
                 <div className="w-8 h-8 rounded-[20px]  flex items-center justify-center border-2 border-green-500">
                   {infoMovie.spoken_languages === 0 ? (
@@ -168,7 +171,7 @@ export default function Movie_info(props) {
                 })}
               </section>
 
-              <a href={infoMovie.homepage}>
+              <a  className="w-24" href={infoMovie.homepage}>
                 <button className="w-30">Home page</button>
               </a>
               <section className="relative w-screen z-20 flex gap-5">
@@ -201,7 +204,7 @@ export default function Movie_info(props) {
               </section>
             </article>
           </section>
-          <section className="relative  z-10">
+          <section className="relative  z-20">
             <p className="text-slate-50 p-x10 p-5">{infoMovie.overview}</p>
           </section>
           {infoCast !== undefined ? (
@@ -218,10 +221,10 @@ export default function Movie_info(props) {
                         }}
                       >
                         <img
-                          className=" z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                          className=" z-20 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                           src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
                         />
-                        <section className="z-10">
+                        <section className="z-20">
                           <h3 className="mt-2">{e.name}</h3>
                           <h3 className=" text-[0.8rem] text-slate-300">
                             {e.character}
@@ -239,14 +242,14 @@ export default function Movie_info(props) {
             dataVideos.length !== 0 ? (
               <section>
                 <section
-                  className=" mt-2 z-40 absolute w-screen h-[250px]"
+                  className=" mt-2 z-40 absolute w-screen h-60 lg:h[800px]"
                   onClick={() => navigate("/trailers")}
                 ></section>
 
-                <section className="flex w-screen overflow-y-hidden my-2 md:my-0">
-                  <section className="z-10">
+                <section className="flex w-screen lg:h-[900px] overflow-y-hidden my-2 md:my-0">
+                  <section className="z-20 lg:h-96">
                     <iframe
-                      className="w-screen h-60 mr-5 md:h-96"
+                      className="w-screen h-60 md:h-96 mr-5 lg:h-[800px]"
                       src={`//www.youtube.com/embed/${dataVideos[0].key}/?autoplay=0;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
                     ></iframe>
                   </section>

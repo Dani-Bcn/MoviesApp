@@ -65,14 +65,7 @@ function App() {
   };
   return (
     <m.main className="sticky flex flex-col">
-      {window.screen.width > 900 ? (
-        <section className="fixed  overflow-hidden w-screen h-screen p-40 text-5xl flex flex-col justify-center items-center bg-black z-[100]">
-          <h2 className="text-red-800 flex text-center">
-            Currently this application is only available on a mobile device</h2>
-            <p className="text-green-800 ">...We are working on it...</p>
-          
-        </section>
-      ) : null}
+     
       <Navbar activeSearch={activeSearch} />
       <Search activeSearch={activeSearch} activePageSearch={activePageSearch} />
       <AnimatePresence>
