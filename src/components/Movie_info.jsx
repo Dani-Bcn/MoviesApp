@@ -75,6 +75,7 @@ export default function Movie_info(props) {
       className="    
      fixed
        pt-20
+       lg:pt-32
         h-screen
         w-screen         
         text-slate-200    
@@ -107,12 +108,12 @@ export default function Movie_info(props) {
           </section>
           <section className="overflow-hidden">
             <div className="fixed z-20 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
-          
+
             <div
               className="fixed bg-slate-950 w-screen h-screen"
               style={{
-                backgroundPositionX:"center",
-                backgroundRepeat:"no-repeat",
+                backgroundPositionX: "center",
+                backgroundRepeat: "no-repeat",
                 backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
               }}
             ></div>
@@ -122,9 +123,9 @@ export default function Movie_info(props) {
 
       {infoMovie ? (
         <section>
-          <section className="flex p-5">
+          <section className="flex p-5 ">
             <img
-              className=" z-20 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+              className="z-20 lg:w-96 lg:h-96 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
               src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
             />
 
@@ -154,24 +155,22 @@ export default function Movie_info(props) {
               <section className="flex gap-3">
                 {movieOrTv !== "tv" ? (
                   <p>{infoMovie.runtime}'</p>
-
-                ) : !infoMovie.episode_run_time?null:
-                 infoMovie.episode_run_time.length === 0 ? null : (
+                ) : !infoMovie.episode_run_time ? null : infoMovie
+                    .episode_run_time.length === 0 ? null : (
                   <p> {infoMovie.episode_run_time}'</p>
                 )}
               </section>
-              {
-                !infoMovie.number_of_seasons ?null:
-                 <p> Seasons  {infoMovie.number_of_seasons}</p>
-              }
-             
+              {!infoMovie.number_of_seasons ? null : (
+                <p> Seasons {infoMovie.number_of_seasons}</p>
+              )}
+
               <section className=" relative flex gap-x-2 flex-wrap ">
                 {infoMovie.genres.map((e, i) => {
                   return <p key={i}> {e.name}</p>;
                 })}
               </section>
 
-              <a  className="w-24" href={infoMovie.homepage}>
+              <a className="w-24" href={infoMovie.homepage}>
                 <button className="w-30">Home page</button>
               </a>
               <section className="relative w-screen z-20 flex gap-5">
@@ -203,9 +202,26 @@ export default function Movie_info(props) {
                 </span>
               </section>
             </article>
+            {dataVideos ? (
+              dataVideos.length !== 0 ? (
+                <>
+                <iframe
+                  className="lg:flex hidden  w-[600px] h-96 absolute ml-[40vw] rounded-2xl  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
+                  src={`//www.youtube.com/embed/${dataVideos[0].key}/?autoplay=1`}
+                ></iframe>
+                <div onClick={()=>navigate("/trailers")}
+                className="hidden lg:flex ml-[87vw] cursor-pointer mt-32 items-center absolute w-24 h-40 bg-gradient-to-r to-slate-800  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950">              
+                <p className=" flex flex-col w-10 text-start ml-5">All trailers</p>
+                </div>
+                </>
+              ) : null
+            ) : null}
+          
           </section>
           <section className="relative  z-20">
-            <p className="text-slate-50 p-x10 p-5">{infoMovie.overview}</p>
+            <p className="text-slate-50 p-x10 p-5 w-screen lg:w-96">
+              {infoMovie.overview}
+            </p>
           </section>
           {infoCast !== undefined ? (
             <section className="relative z-20 w-screen flex overflow-y-hidden mx-2">
@@ -240,7 +256,7 @@ export default function Movie_info(props) {
 
           {dataVideos ? (
             dataVideos.length !== 0 ? (
-              <section>
+              <section className=" flex lg:hidden">
                 <section
                   className=" mt-2 z-40 absolute w-screen h-60 lg:h[800px]"
                   onClick={() => navigate("/trailers")}
