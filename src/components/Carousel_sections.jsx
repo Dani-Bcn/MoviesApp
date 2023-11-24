@@ -43,7 +43,7 @@ export default function Carousel_popular() {
       }
     }}     
     >     
-    <h2 className="px-6 sm:-mt-72  lg:-mt-0 mt-0 py-3 text-orange-100 text-3xl font-bold ">Actuality</h2>
+    <h2 className="px-6 sm:-mt-72  lg:-mt-0 mt-0 py-3 text-orange-100 font-dorsa  text-6xl ">Actuality</h2>
       {dataPopular ? (
         <section className="flex h-[275px] w-screen overflow-y-hidden lg:overflow-hidden">
           {dataPopular.map((e, i) => {
@@ -62,7 +62,7 @@ export default function Carousel_popular() {
           })}
         </section>
       ) : null}     
-       <h2 className="px-6 py-3  text-orange-100 text-3xl font-bold ">Top rated</h2>
+       <h2 className="px-6 py-3  text-orange-100 text-6xl font-dorsa  ">Top rated</h2>
          {dataTopRated ? (
           <section className="flex h-[275px] w-screen lg:overflow-hidden   overflow-y-hidden ">
           {dataTopRated.map((e, i) => {

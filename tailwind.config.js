@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'Josefin':['Josefin Sans']
+        'Josefin':['Josefin Sans'],
+    'dorsa':['dorsa']
       }
     
 
