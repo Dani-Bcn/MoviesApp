@@ -24,7 +24,7 @@ export default function Actor_movies() {
 
   return (
     <main className=" fixed ">
-      <section className="flex mx-8 mt-20 my-7 gap-10 w-screen">
+      <section className="flex mt-24 my-5 mx-7 gap-10 w-screen">
        {countPage < dataPages ? (
         <h2
           className="text-orange-200 w-36 text-start"
@@ -46,7 +46,7 @@ export default function Actor_movies() {
         </h2>  
       ) : null}
       </section>
-      <section className=" flex flex-wrap start px-7 gap-8  pb-24 h-screen overflow-x-hidden ">
+      <section className="flex flex-wrap start px-7 gap-8 pb-40 h-screen overflow-x-hidden ">
       {dataMovies
         ? dataMovies.results.map((e, i) => {
             return e.poster_path ? (
@@ -62,17 +62,6 @@ export default function Actor_movies() {
             ) : null;
           })
         : null}
-      
-      {countPage < dataPages ? (
-        <h2
-          className="text-red-100 w-screen px-10"
-          onClick={() => {
-           setCountPage(countPage + 1), setNewCall(!newCall);
-          }}
-        >
-          Next page
-        </h2>  
-      ) : null}
       </section>
     </main>
   );

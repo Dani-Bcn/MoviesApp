@@ -3,19 +3,20 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { motion as m } from "framer-motion";
 
 export default function Actor_info() {
-  let idPerson = localStorage.getItem("idPerson")
+  let idPerson = localStorage.getItem("idPerson");
   const [dataActor, setDataActor] = useState();
   const [dataMovies, setDataMovies] = useState();
   const [dataPictures, setDataPictures] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
-  idPerson?
-    fetch(
-      `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
-    )
-      .then((resp) => resp.json())
-      .then((resp) => setDataActor(resp)):null
+    idPerson
+      ? fetch(
+          `https://api.themoviedb.org/3/person/${idPerson}?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
+        )
+          .then((resp) => resp.json())
+          .then((resp) => setDataActor(resp))
+      : null;
   }, [idPerson]);
   useEffect(() => {
     if (idPerson) {
@@ -35,7 +36,7 @@ export default function Actor_info() {
 
   return (
     <m.main
-      className="fixed px-5 flex justify-center pt-32 h-screen z-40 overflow-x-auto"
+      className="fixed px-10 flex justify-center pt-32 h-screen z-40 overflow-x-auto"
       animate={{
         opacity: [0, 0, 1],
         transition: {
@@ -69,23 +70,25 @@ export default function Actor_info() {
         ) : null}
 
         {dataMovies ? (
-          <section className="relative z-40 w-screen h-72 flex items-center overflow-y-auto scroll-auto">
+          <section className="relative z-40 w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
             {dataMovies.map((e, i) => {
-              return e.poster_path ? (               
-                  <img
-                    onClick={() => {
-                      navigate("/infoMovie");
-                      localStorage.setItem("movieOrTv", "movie")
-                      localStorage.setItem("idMovie", e.id);
-                    }}
-                    key={i}
-                    className=" w-screen mr-10  z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
-                    src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
-                  />           
-              ) : null
+              return e.poster_path && i < 7 ? (
+                <img
+                  onClick={() => {
+                    navigate("/infoMovie");
+                    localStorage.setItem("movieOrTv", "movie");
+                    localStorage.setItem("idMovie", e.id);
+                  }}
+                  key={i}
+                  className="cursor-pointer z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                  src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
+                />
+              ) : null;
             })}
-            <div onClick={()=> navigate("/actorMovies")}
-            className=" flex items-center clip-arrow-l text-2xl text-orange-200 bg-slate-600 pr-5 px-2 mr-10 h-56">
+            <div
+              onClick={() => navigate("/actorMovies")} 
+              className="cursor-pointer flex items-center clip-arrow-l text-2xl text-orange-200 bg-gradient-to-l from-blue-600 to-red-600/[0]  pr-5 px-2 mr-10 h-56"
+            >
               All
             </div>
           </section>

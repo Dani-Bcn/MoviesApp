@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion as m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { data, info } from "autoprefixer";
+import ReactPlayer from "react-player";
 
 export default function Movie_info(props) {
   const { getImages } = props;
@@ -12,6 +13,7 @@ export default function Movie_info(props) {
   const [dataVideos, setDataVideos] = useState();
   const [dataImages, setDataImages] = useState();
   const [selectedImages, setSelectedImages] = useState();
+  const [autoPlay, setAutoPlay] = useState(false)
   let arrayNames = ["Backdrops", "Logos", "Posters"];
   let arrayImages = [];
   const navigate = useNavigate();
@@ -24,7 +26,9 @@ export default function Movie_info(props) {
           .then((resp) => resp.json())
           .then((resp) => setInfoMovie(resp))
       : null;
+      window.screen.width > 900 ? setAutoPlay(true):setAutoPlay(false)
   }, [idMovie]);
+  console.log(infoMovie)
 
   useEffect(() => {
     idMovie !== undefined
@@ -164,9 +168,9 @@ export default function Movie_info(props) {
                 <p> Seasons {infoMovie.number_of_seasons}</p>
               )}
 
-              <section className=" relative flex gap-x-2 flex-wrap ">
+              <section className="relative flex gap-x-2 flex-wrap w-40">
                 {infoMovie.genres.map((e, i) => {
-                  return <p key={i}> {e.name}</p>;
+                  return <p key={i}> {e.name} |</p>;
                 })}
               </section>
 
@@ -203,12 +207,15 @@ export default function Movie_info(props) {
               </section>
             </article>
             {dataVideos ? (
-              dataVideos.length !== 0 ? (
+              dataVideos.length >0 ? (
                 <>
-                <iframe
-                  className="lg:flex hidden  w-[600px] h-96 absolute ml-[40vw] rounded-2xl  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
-                  src={`//www.youtube.com/embed/${dataVideos[0].key}/?autoplay=1`}
-                ></iframe>
+                <ReactPlayer
+                className="lg:flex hidden  w-[600px] h-96 absolute ml-[40vw]   border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
+                url={`//www.youtube.com/watch?v=${dataVideos[0].key}&autoplay=1`}
+             
+             playing={autoPlay}
+               
+              ></ReactPlayer>
                 <div onClick={()=>navigate("/trailers")}
                 className="hidden lg:flex ml-[87vw] cursor-pointer mt-32 items-center absolute w-24 h-40 bg-gradient-to-r to-slate-800  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950">              
                 <p className=" flex flex-col w-10 text-start ml-5">All trailers</p>
