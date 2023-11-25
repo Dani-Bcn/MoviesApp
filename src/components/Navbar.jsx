@@ -19,7 +19,7 @@ export default function Navbar(props) {
 
   return (
     <m.main
-      className="fixed my-2 w-screen z-50  justify-center flex gap-5 backdrop-blur-sm bg-slate-800/[0.7]"
+      className="fixed h-10 w-screen z-50  justify-center items-center flex gap-5 backdrop-blur-sm bg-slate-800/[0.7]"
       initial={{
         y: -200,
       }}

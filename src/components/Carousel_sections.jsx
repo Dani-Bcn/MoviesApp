@@ -45,7 +45,7 @@ export default function Carousel_popular() {
     >     
     <h2 className="px-6 sm:-mt-72  lg:-mt-0 mt-0 py-3 text-orange-100 font-dorsa  text-6xl ">Actuality</h2>
       {dataPopular ? (
-        <section className="flex h-[275px] w-screen overflow-y-hidden ">
+       <section className="flex items-center my-2 h-[275px] w-screen overflow-y-hidden ">
           {dataPopular.map((e, i) => {
             return (
               <img
@@ -62,9 +62,9 @@ export default function Carousel_popular() {
           })}
         </section>
       ) : null}     
-       <h2 className="px-6 py-3  text-orange-100 text-6xl font-dorsa  ">Top rated</h2>
+       <h2 className="px-6 mt-5 text-orange-100 text-6xl font-dorsa  ">Top rated</h2>
          {dataTopRated ? (
-          <section className="flex items-center my-5 py-2 h-[300px] w-screen bg-red-600  overflow-y-hidden ">
+          <section className="flex items-center my-2 h-[275px] w-screen overflow-y-hidden ">
           {dataTopRated.map((e, i) => {
             return (
               <img
@@ -72,7 +72,7 @@ export default function Carousel_popular() {
                   navigate("/infoMovie");
                   localStorage.setItem("idMovie", e.id);
                 }}
-                className="cursor-pointer z-10 rounded-2xl  mx-5 border-[3px] border-orange-300 shadow-xl shadow-black/100 scroll-auto "
+                className="cursor-pointer z-10 rounded-2xl mx-5 border-[3px] border-orange-300 shadow-xl shadow-black/100 scroll-auto "
                 key={i}
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
