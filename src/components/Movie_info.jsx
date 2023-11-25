@@ -266,7 +266,7 @@ export default function Movie_info(props) {
 
           {dataVideos ? (
             dataVideos.length !== 0 ? (
-              <section className="bg-red-700 w-screen h-screen flex lg:hidden md:hidden">
+              <section className="bg-red-700 w-screen h-20 flex lg:hidden md:hidden">
                 <section
                   className=" mt-2 z-40 absolute w-screen h-60 "
                   onClick={() => navigate("/trailers")}
