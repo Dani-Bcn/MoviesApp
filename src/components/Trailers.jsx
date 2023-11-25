@@ -18,10 +18,6 @@ export default function Trailers() {
       .then((resp) => setDataVideos(resp.results));      
   }, [idMovie]);
 
-  
-   
-  
-
   return (
     <main className="my-20">
       {dataVideos
