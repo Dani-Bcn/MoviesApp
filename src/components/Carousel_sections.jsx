@@ -43,7 +43,7 @@ export default function Carousel_popular() {
       }
     }}     
     >     
-    <h2 className="px-6 sm:-mt-72  lg:-mt-0 mt-0 py-3 text-orange-100 font-dorsa  text-6xl ">Actuality</h2>
+    <h2 className="px-6 mt-5 text-orange-100 text-6xl font-dorsa">Actualyty</h2>
       {dataPopular ? (
        <section className="flex items-center my-2 h-[275px] w-screen overflow-y-hidden ">
           {dataPopular.map((e, i) => {

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Router } from "react-router-dom";
 import { motion as m } from "framer-motion";
 
 export default function Navbar(props) {
   const { activeSearch } = props;
 
   const navigate = useNavigate();
+  const location = useLocation()
   const [activeGenres, setActiveGenres] = useState(false);
 
   const variantsActiveGenres = {
@@ -16,6 +17,7 @@ export default function Navbar(props) {
       height: 0,
     },
   };
+  console.log(location.pathname)
 
   return (
     <m.main
@@ -27,27 +29,34 @@ export default function Navbar(props) {
         y: 0,
       }}
     >
-    <svg
-    className="-rotate-90 absolute -ml-[90vw]"
-    fill="#000000"
-    width="40px"
-    height="25px"  
-    viewBox="0 0 36 36"
-    preserveAspectRatio="xMidYMid meet"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    {...props}
-  >
+      {
+        location.pathname !== "/home"?
+        <svg
+        onClick={()=> navigate(-1)}
+        className="-rotate-90 absolute -ml-[90vw]"
+        fill="#000000"
+        width="40px"
+        height="25px"  
+        viewBox="0 0 36 36"
+        preserveAspectRatio="xMidYMid meet"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        {...props}
+      >
+       
+        <path
+          d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z "
+          style={{
+            fill: "wheat",
+          }}
+        
+        />
+        <rect x={0} y={0} width={36} height={36} fillOpacity={0} />
+      </svg>
+        
+        :null
+      }
    
-    <path
-      d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z "
-      style={{
-        fill: "wheat",
-      }}
-    
-    />
-    <rect x={0} y={0} width={36} height={36} fillOpacity={0} />
-  </svg>
         <button
           onClick={() => {
             navigate("/home");
