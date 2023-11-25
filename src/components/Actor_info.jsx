@@ -100,7 +100,7 @@ export default function Actor_info() {
             <h2 className="z-40 text-orange-300 m-2  text-[1.1rem]">
               Biography
             </h2>
-            <p className="py-10 px-2 text-orange-100">{dataActor.biography}</p>
+            <p className="pb-20 px-2 text-orange-100">{dataActor.biography}</p>
           </section>
         ) : null}
       </section>
