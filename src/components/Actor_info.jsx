@@ -36,7 +36,7 @@ export default function Actor_info() {
 
   return (
     <m.main
-      className="fixed px-10 flex justify-center pt-32 h-screen z-40 overflow-x-auto"
+      className="fixed px-5 flex justify-center pt-32 h-screen z-40 overflow-x-auto"
       animate={{
         opacity: [0, 0, 1],
         transition: {
