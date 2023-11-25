@@ -273,7 +273,7 @@ export default function Movie_info(props) {
                 ></section>             
                   <section className="flex z-20 w-screen">
                     <iframe    
-                    className="w-screen h-52 ml-4"                 
+                    className="w-screen h-52 ml-2 mb-10"                 
                       src={`//www.youtube.com/embed/${dataVideos[0].key}`}
                     ></iframe>               
                 </section>
