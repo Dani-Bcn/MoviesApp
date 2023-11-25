@@ -226,8 +226,7 @@ export default function Movie_info(props) {
                 </div>
                 </>
               ) : null
-            ) : null}
-          
+            ) : null}          
           </section>
           <section className="relative  z-20">
             <p className="text-slate-50 p-x10 p-5 w-screen lg:w-96">
@@ -269,17 +268,14 @@ export default function Movie_info(props) {
             dataVideos.length !== 0 ? (
               <section className=" flex lg:hidden md:hidden">
                 <section
-                  className=" mt-2 z-40 absolute w-screen h-60 lg:h[800px]"
+                  className=" mt-2 z-40 absolute w-screen h-60 "
                   onClick={() => navigate("/trailers")}
-                ></section>
-
-                <section className="flex w-screen lg:h-[900px] overflow-y-hidden my-2 md:my-0">
-                  <section className="z-20 lg:h-96">
-                    <iframe
-                      className="w-screen h-60 md:h-96 mr-5 lg:h-[800px]"
-                      src={`//www.youtube.com/embed/${dataVideos[0].key}/?autoplay=0;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
-                    ></iframe>
-                  </section>
+                ></section>             
+                  <section className="flex z-20 w-screen">
+                    <iframe    
+                    className="w-screen h-52 ml-4"                 
+                      src={`//www.youtube.com/embed/${dataVideos[0].key}`}
+                    ></iframe>               
                 </section>
               </section>
             ) : null
