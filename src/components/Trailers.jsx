@@ -15,9 +15,7 @@ export default function Trailers() {
       `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}/videos?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
     )
       .then((resp) => resp.json())
-      .then((resp) => setDataVideos(resp.results));
-
-      
+      .then((resp) => setDataVideos(resp.results));      
   }, [idMovie]);
 
   
