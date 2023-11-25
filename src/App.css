@@ -56,6 +56,19 @@ input{
   outline:0 none;
 }
 
+#movie{
+  margin-left: 42vw;
+  width: 400px!important;
+  height: 225px!important;
+}
+
+@media  (min-width: 900px) {
+  #movie {
+    margin-left: 38vw!important;
+    width: 650px!important;
+    height: 390px!important;
+  }
+}
 
 
 

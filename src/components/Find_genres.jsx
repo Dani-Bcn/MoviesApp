@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {motion as m} from "framer-motion"
 
 export default function Find_genres() {
   const navigate = useNavigate();

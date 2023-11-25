@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import {motion as m} from "framer-motion"
+import ReactPlayer from "react-player";
 
 export default function Trailers() {
   const movieOrTv = localStorage.getItem("movieOrTv");
@@ -20,12 +22,23 @@ export default function Trailers() {
     <main className="my-20">
       {dataVideos
         ? dataVideos.map((e, i) => (
-            <section key={i} className="z-10 my-10 md:mb-80 h-[300px] lg:mb-[800px]">
-               <iframe
-                className="w-screen h-60 lg:h-[900px] mr-5  md:h-96"
-                src={`//www.youtube.com/embed/${e.key}/?autoplay=0;origin=https%3A%2F%2Fwww.themoviedb.org&amp;hl=es&amp;modestbranding=1&amp;fs=1&amp;autohide=1`}
-              ></iframe>
-            </section>
+            <m.section key={i} className="opacity-0 z-10 my-10 md:mb-80"
+              whileInView={{               
+                opacity:1
+              }}
+            >
+                 <ReactPlayer
+               id="md-movie"
+                className="border-2 m-auto border-orange-300 z-40 shadow-xl shadow-slate-950"
+                url={`//www.youtube.com/watch?v=${e.key}`}
+                        
+             playing={false}
+             controls={true}
+             width={380}
+             height={250}
+               
+              ></ReactPlayer>
+            </m.section>
           ))
         : null}
     </main>

@@ -19,7 +19,7 @@ export default function Navbar(props) {
 
   return (
     <m.main
-      className="fixed  w-screen z-50 p-5 justify-center flex gap-5 backdrop-blur-sm bg-slate-800/[0.7]"
+      className="fixed  w-screen z-50 p-2  justify-center flex gap-5 backdrop-blur-sm bg-slate-800/[0.7]"
       initial={{
         y: -200,
       }}
@@ -27,7 +27,47 @@ export default function Navbar(props) {
         y: 0,
       }}
     >
-     
+      <button >
+      <svg
+      className="absolute"
+    fill="#000000"
+    width="80px"
+    height="25px"
+    viewBox="0 0 24 24"
+    id="right-double-arrow"
+    data-name="Line Color"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <polyline
+      id="secondary"
+      points="17 20 20 17 17 14"
+      style={{
+        fill: "none",
+        stroke: "rgb(44, 169, 188)",
+    
+        strokeWidth: 1,
+      }}
+    />
+    <line
+      id="secondary-2"
+      data-name="secondary"
+      x1={2}
+      y1={17}
+      x2={20}
+      y2={17}
+      style={{
+        fill: "none",
+        stroke: "rgb(44, 169, 188)",
+      
+        strokeWidth: 1,
+      }}
+    />
+  
+   
+  
+  </svg>
+     </button>
         <button
           onClick={() => {
             navigate("/home");

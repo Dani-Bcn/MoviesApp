@@ -54,7 +54,7 @@ export default function Carousel_popular() {
                   localStorage.setItem("idMovie", e.id);
                   localStorage.setItem("movieOrTv", movieOrTv);
                 }}
-                className=" z-10  rounded-2xl mx-5 border-[3px] shadow-xl shadow-black/100 "
+                className="cursor-pointer z-10  rounded-2xl mx-5 border-[3px] shadow-xl shadow-black/100 "
                 key={i}
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />
@@ -72,7 +72,7 @@ export default function Carousel_popular() {
                   navigate("/infoMovie");
                   localStorage.setItem("idMovie", e.id);
                 }}
-                className=" z-10 rounded-2xl  mx-5 border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                className="cursor-pointer z-10 rounded-2xl  mx-5 border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                 key={i}
                 src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
               />

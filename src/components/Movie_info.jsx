@@ -114,10 +114,9 @@ export default function Movie_info(props) {
             <div className="fixed z-20 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
 
             <div
-              className="fixed bg-slate-950 w-screen h-screen"
+              className="fixed bg-slate-950 w-screen h-screen bg-top bg-no-repeat"
               style={{
-                backgroundPositionX: "center",
-                backgroundRepeat: "no-repeat",
+             
                 backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
               }}
             ></div>
@@ -128,7 +127,7 @@ export default function Movie_info(props) {
       {infoMovie ? (
         <section>
           <section className="flex p-5 ">
-            <img
+            <img 
               className="z-20 lg:w-96 lg:h-96 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
               src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
             />
@@ -136,7 +135,8 @@ export default function Movie_info(props) {
             <article className=" w-screen flex flex-col px-5 z-20">
               <section className="flex gap-2.5 my-1">
                 <div className="w-8 h-8 rounded-[20px]  flex items-center justify-center border-2 border-green-500">
-                  {infoMovie.spoken_languages === 0 ? (
+                  {
+                  infoMovie.spoken_languages.length === 0 ? (
                     infoMovie.original_language.toUpperCase()
                   ) : (
                     <p className="mt-0.5">
@@ -209,13 +209,17 @@ export default function Movie_info(props) {
             {dataVideos ? (
               dataVideos.length >0 ? (
                 <>
+                 
                 <ReactPlayer
-                className="lg:flex hidden  w-[600px] h-96 absolute ml-[40vw]   border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
-                url={`//www.youtube.com/watch?v=${dataVideos[0].key}&autoplay=1`}
-             
+                id="movie"
+                className="lg:flex md:flex hidden absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
+                url={`//www.youtube.com/watch?v=${dataVideos[0].key}`}
+                        
              playing={autoPlay}
+             controls={true}
                
               ></ReactPlayer>
+
                 <div onClick={()=>navigate("/trailers")}
                 className="hidden lg:flex ml-[87vw] cursor-pointer mt-32 items-center absolute w-24 h-40 bg-gradient-to-r to-slate-800  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950">              
                 <p className=" flex flex-col w-10 text-start ml-5">All trailers</p>
@@ -244,7 +248,7 @@ export default function Movie_info(props) {
                         }}
                       >
                         <img
-                          className=" z-20 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
+                          className=" cursor-pointer  z-20 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                           src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
                         />
                         <section className="z-20">
@@ -263,7 +267,7 @@ export default function Movie_info(props) {
 
           {dataVideos ? (
             dataVideos.length !== 0 ? (
-              <section className=" flex lg:hidden">
+              <section className=" flex lg:hidden md:hidden">
                 <section
                   className=" mt-2 z-40 absolute w-screen h-60 lg:h[800px]"
                   onClick={() => navigate("/trailers")}

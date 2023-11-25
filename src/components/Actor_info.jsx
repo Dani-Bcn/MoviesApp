@@ -72,7 +72,7 @@ export default function Actor_info() {
         {dataMovies ? (
           <section className="relative z-40 w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
             {dataMovies.map((e, i) => {
-              return e.poster_path && i < 7 ? (
+              return e.poster_path  ? (                
                 <img
                   onClick={() => {
                     navigate("/infoMovie");
@@ -85,12 +85,14 @@ export default function Actor_info() {
                 />
               ) : null;
             })}
-            <div
-              onClick={() => navigate("/actorMovies")} 
-              className="cursor-pointer flex items-center clip-arrow-l text-2xl text-orange-200 bg-gradient-to-l from-blue-600 to-red-600/[0]  pr-5 px-2 mr-10 h-56"
-            >
-              All
-            </div>
+            {dataMovies.length > 8 ? (
+              <div
+                onClick={() => navigate("/actorMovies")}
+                className="cursor-pointer flex items-center clip-arrow-l text-2xl text-orange-200 bg-gradient-to-l from-blue-600 to-red-600/[0]  pr-5 px-2 mr-10 h-56"
+              >
+                All
+              </div>
+            ) : null}
           </section>
         ) : null}
         {dataActor && dataActor.biography ? (
