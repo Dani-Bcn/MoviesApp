@@ -9,7 +9,7 @@ export default function Trailers() {
   const navigate = useNavigate()
 
   const [dataVideos, setDataVideos] = useState();
- window.addEventListener("resize", ()=> navigate("/infoMovie"))
+
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/${movieOrTv}/${idMovie}/videos?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
