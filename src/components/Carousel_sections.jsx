@@ -64,7 +64,7 @@ export default function Carousel_popular() {
       ) : null}     
        <h2 className="px-6 py-3  text-orange-100 text-6xl font-dorsa  ">Top rated</h2>
          {dataTopRated ? (
-          <section className="flex h-[400px] w-screen   overflow-y-hidden ">
+          <section className="flex items-center my-5 py-2 h-[300px] w-screen bg-red-600  overflow-y-hidden ">
           {dataTopRated.map((e, i) => {
             return (
               <img
