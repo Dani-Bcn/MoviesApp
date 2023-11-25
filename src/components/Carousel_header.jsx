@@ -46,7 +46,7 @@ export default function Carousel_movies() {
 
   return (
     <m.main
-      className=" w-screen justify-center flex z-10 mt-20 overflow-hidden  text-orange-200  bg-slate-800"
+      className=" w-screen justify-center flex z-10 mt-10 overflow-hidden  text-orange-200  bg-slate-800"
       animate={{
         scale: 1,
         opacity: [0, 1],
