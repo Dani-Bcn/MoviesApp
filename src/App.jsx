@@ -33,7 +33,7 @@ function App() {
     setDataImagesMovie(e);
   };
 
-  const activeSearch = (e) => {
+  const activesearch = (e) => {
     setActivePageSearch(e);
   };
 
@@ -66,8 +66,8 @@ function App() {
   return (
     <m.main className="sticky flex flex-col">
      
-      <Navbar activeSearch={activeSearch} />
-      <Search activeSearch={activeSearch} activePageSearch={activePageSearch} />
+      <Navbar activesearch={activesearch} />
+      <Search activesearch={activesearch} activePageSearch={activePageSearch} />
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
           <Route path="/home" element={<Home />} />

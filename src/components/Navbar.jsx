@@ -3,7 +3,7 @@ import { useNavigate, useLocation, Router } from "react-router-dom";
 import { motion as m } from "framer-motion";
 
 export default function Navbar(props) {
-  const { activeSearch } = props;
+  const { activesearch } = props;
 
   const navigate = useNavigate();
   const location = useLocation()
@@ -109,7 +109,7 @@ export default function Navbar(props) {
           </m.ul>
         </section>
         <svg
-          onClick={() => activeSearch(true)}
+          onClick={() => activesearch(true)}
           width="25px"
           height="25px"
           viewBox="0 0 24 24"

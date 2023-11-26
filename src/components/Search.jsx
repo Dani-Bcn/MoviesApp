@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Search(props) {
   const movieOrTv = localStorage.getItem("movieOrTv");
-  const { activeSearch } = props;
+  const { activesearch } = props;
   const { activePageSearch } = props;
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
   const inputRef = useRef();
   const [newCall, setNewCall] = useState(false);
   const [searchInput, setSearchInput] = useState();
@@ -44,7 +44,7 @@ export default function Search(props) {
         <svg
           className="h-10 m-2 mx-5"
           onClick={() => {
-            activeSearch(false),
+            activesearch(false),
               (inputRef.current.value = ""),
               setNewCall(!newCall);
           }}
@@ -102,7 +102,7 @@ export default function Search(props) {
                         localStorage.setItem("idMovie", e.id);
                         localStorage.setItem("movieOrTv", "movie");
 
-                        activeSearch(false);
+                        activesearch(false);
                       }}
                       className=" w-24 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                       src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
@@ -124,7 +124,7 @@ export default function Search(props) {
                         navigate("/infoMovie");
                         localStorage.setItem("idMovie", e.id);
                         localStorage.setItem("movieOrTv", "tv");
-                        activeSearch(false);
+                        activesearch(false);
                       }}
                       className=" w-24 h-32 z-10 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                       src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
@@ -148,7 +148,7 @@ export default function Search(props) {
 
                           localStorage.setItem("idPerson", e.id);
 
-                          activeSearch(false);
+                          activesearch(false);
                         }}
                         className=" z-10 w-24 h-32 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
                         src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
