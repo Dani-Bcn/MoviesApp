@@ -36,7 +36,7 @@ export default function Carousel_popular() {
     }}
     exit={{
       x:-50,
-      scale:0.8,
+      scale:1.8,
       opacity:[1,0],
       transition:{
         duration:0.3,

@@ -221,7 +221,7 @@ export default function Movie_info(props) {
               ></ReactPlayer>
 
                 <div onClick={()=>navigate("/trailers")}
-                className="hidden lg:flex  ml-[87vw] cursor-pointer mt-32 items-center absolute w-24 h-40 bg-gradient-to-r to-slate-800  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950">              
+                className="hidden lg:flex md:flex md:mt-12 md:scale-[0.6] md:ml-[88vw]  ml-[87vw] cursor-pointer mt-32 items-center absolute w-24 h-40 bg-gradient-to-r to-slate-800  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950">              
                 <p className=" flex flex-col  w-10 text-start ml-5">All trailers</p>
                 </div>
                 </>
