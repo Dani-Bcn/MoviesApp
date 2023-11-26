@@ -68,7 +68,8 @@ export default function Actor_info() {
           />
         </section>
       ) : null}
-      <section className="fixed w-screen h-[600px] bg-gradient-to-t to-slate-800/[0.5] from-slate-800 z-20 -mt-20"></section>
+      <section className="fixed w-screen h-[600px] bg-gradient-to-t to-slate-800/[0] from-slate-800 z-20 -mt-20"></section>
+      <section className="fixed w-screen h-[600px] bg-gradient-to-t to-slate-800 from-slate-800/[0] z-20 -mt-20"></section>
       <section className=" absolute   z-40 ">
         <section className="ml-5">
           {dataActor ? (
