@@ -88,13 +88,13 @@ export default function Actor_info() {
         </section>
         <button>back</button>
         <button>next</button>
-        <section className="relative  w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
+        <section className="relative gap-5 px-5  w-screen h-72 flex items-center overflow-y-auto scroll-auto">
           {dataPictures
             ? dataPictures.map((e, i) => {
                 return (
                   <img
                     key={i}
-                    className="mx-5 cursor-pointer z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                    className="cursor-pointer z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                     src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
                   />
                 );
@@ -103,7 +103,7 @@ export default function Actor_info() {
         </section>
         
           {dataMovies ? (
-            <section className="relative z-40 pr-10 w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
+            <section className="relative gap-5 px-5  z-40 pr-10 w-screen h-72 flex items-center overflow-y-auto scroll-auto">
               {dataMovies.map((e, i) => {
                 return e.poster_path ? (
                   <img
@@ -113,7 +113,7 @@ export default function Actor_info() {
                       localStorage.setItem("idMovie", e.id);
                     }}
                     key={i}
-                    className=" ml-5 cursor-pointer z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                    className="cursor-pointer z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                     src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                   />
                 ) : null;
