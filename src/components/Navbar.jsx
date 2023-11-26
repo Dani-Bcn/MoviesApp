@@ -33,7 +33,7 @@ export default function Navbar(props) {
         location.pathname !== "/home"?
         <svg
         onClick={()=> navigate(-1)}
-        className="-rotate-90 absolute -ml-[90vw]"
+        className=" cursor-pointer -rotate-90 absolute -ml-[90vw]"
         fill="#000000"
         width="40px"
         height="25px"  

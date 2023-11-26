@@ -221,8 +221,8 @@ export default function Movie_info(props) {
               ></ReactPlayer>
 
                 <div onClick={()=>navigate("/trailers")}
-                className="hidden lg:flex ml-[87vw] cursor-pointer mt-32 items-center absolute w-24 h-40 bg-gradient-to-r to-slate-800  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950">              
-                <p className=" flex flex-col w-10 text-start ml-5">All trailers</p>
+                className="hidden lg:flex  ml-[87vw] cursor-pointer mt-32 items-center absolute w-24 h-40 bg-gradient-to-r to-slate-800  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950">              
+                <p className=" flex flex-col  w-10 text-start ml-5">All trailers</p>
                 </div>
                 </>
               ) : null
@@ -234,13 +234,13 @@ export default function Movie_info(props) {
             </p>
           </section>
           {infoCast !== undefined ? (
-            <section className="relative z-20 w-screen flex overflow-y-hidden mx-2">
+            <section className="relative my-12  z-20 w-screen flex overflow-y-hidden pr-5 mr-20">
               {infoCast.cast.map((e, i) => {
                 return (
                   <section key={i}>
                     {e.profile_path !== null ? (
                       <section
-                        className="m-2 flex flex-col items-center w-40"
+                        className="m-2  flex flex-col items-center w-40"
                         onClick={() => {
                           navigate("/infoActor"),
                             localStorage.setItem("idPerson", e.id);
