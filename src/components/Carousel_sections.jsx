@@ -43,6 +43,7 @@ export default function Carousel_popular() {
       }
     }}     
     >     
+    <section className="md:-mt-80">
     <h2 className="px-6 mt-5 text-orange-100 text-6xl font-dorsa">Actualyty</h2>
       {dataPopular ? (
        <section className="flex items-start my-2 h-[260px] w-screen overflow-y-hidden ">
@@ -80,6 +81,7 @@ export default function Carousel_popular() {
           })}
         </section>
       ) : null}    
+      </section>
     </m.main>
   );
 }
