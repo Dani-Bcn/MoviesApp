@@ -21,6 +21,8 @@ export default function Actor_info() {
       : null;
   }, [idPerson]);
   useEffect(() => {
+
+    console.log(dataActor)
     if (idPerson) {
       fetch(
         `https://api.themoviedb.org/3/discover/movie?with_cast=${idPerson}&sort_by=release_date.desc&api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
@@ -36,17 +38,16 @@ export default function Actor_info() {
     }
   }, []);
 
-  console.log(dataPictures);
-  let count =100
+  console.log(dataActor);
+  let count = 100;
 
-  const moveLeft=((e)=>{
-
-    console.log(e)
-  })
+  const moveLeft = (e) => {
+    console.log(e);
+  };
 
   return (
     <m.main
-      className="fixed px-5 flex justify-center pt-32 h-screen z-40 overflow-x-auto"
+      className="fixed w-screen flex justify-center pt-32 "
       animate={{
         opacity: [0, 0, 1],
         transition: {
@@ -59,9 +60,18 @@ export default function Actor_info() {
           duration: 0.3,
         },
       }}
-    >
-      <section>
-        <section className="flex ">
+    > {dataActor ? (
+      <section className="fixed w-screen z-10 -mt-20">
+        <img
+          className=" w-full h-full"
+           src={`https://image.tmdb.org/t/p/w500/${dataActor.profile_path}`}
+        />
+      </section>
+   
+    ) : null}
+         <section className="fixed w-screen h-screen bg-gradient-to-t to-slate-800 from-slate-800/[0] z-20 -mt-20"></section>
+      <section className=" absolute ml-8  z-40 ">
+        <section>
           {dataActor ? (
             <section className=" text-orange-50 flex py-5">
               <h2 className=" absolute -mt-12  text-[1.5rem] ">
@@ -75,35 +85,23 @@ export default function Actor_info() {
               </article>
             </section>
           ) : null}
-          {/*   <section className="bg-red-900 -ml-40 overflow-hidden ">
-          <section   id="imgsActor" className="flex">
-           
-          </section>
-        </section> */}
         </section>
-        <button >
-          back
-        </button>
-        <button>
-          next
-        </button>
-   
-           <section className="relative z-40  w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
-           
-           {dataPictures
-              ? dataPictures.map((e, i) => {
-                  return (
-                    <img key={i}    
-                            
+        <button>back</button>
+        <button>next</button>
+
+        <section className="relative  w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
+          {dataPictures
+            ? dataPictures.map((e, i) => {
+                return (
+                  <img
+                    key={i}
                     className="cursor-pointer z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
-                      src={`https://image.tmdb.org/t/p/w500/${e.file_path}` }
-                    />
-                  );
-                })
-              : null}
-         
-          </section>
-       
+                    src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
+                  />
+                );
+              })
+            : null}
+        </section>
 
         {dataMovies ? (
           <section className="relative z-40 pr-10 w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
@@ -132,7 +130,7 @@ export default function Actor_info() {
           </section>
         ) : null}
         {dataActor && dataActor.biography ? (
-          <section className="mr-10">
+          <section className="mr-10 z-40">
             <h2 className="z-40 text-orange-300 m-2 text-[1.5rem]">
               Biography
             </h2>
@@ -140,6 +138,7 @@ export default function Actor_info() {
           </section>
         ) : null}
       </section>
+     
     </m.main>
   );
 }
