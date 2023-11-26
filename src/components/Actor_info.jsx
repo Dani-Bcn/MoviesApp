@@ -88,7 +88,7 @@ export default function Actor_info() {
         </section>
         <button>back</button>
         <button>next</button>
-        <section className="relative gap-5 px-5  w-screen h-72 flex items-center overflow-y-auto scroll-auto">
+        <section className="relative gap-5 px-5  w-screen h-80 flex items-center overflow-y-auto scroll-auto">
           {dataPictures
             ? dataPictures.map((e, i) => {
                 return (
@@ -103,7 +103,7 @@ export default function Actor_info() {
         </section>
         
           {dataMovies ? (
-            <section className="relative gap-5 px-5  z-40 pr-10 w-screen h-72 flex items-center overflow-y-auto scroll-auto">
+            <section className="relative gap-5 px-5 z-40 w-screen h-80 flex items-center overflow-y-auto scroll-auto">
               {dataMovies.map((e, i) => {
                 return e.poster_path ? (
                   <img
