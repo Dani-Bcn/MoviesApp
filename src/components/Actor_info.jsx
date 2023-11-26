@@ -87,14 +87,13 @@ export default function Actor_info() {
         </section>
         <button>back</button>
         <button>next</button>
-
-        <section className="relative   w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
+        <section className="relative  w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
           {dataPictures
             ? dataPictures.map((e, i) => {
                 return (
                   <img
                     key={i}
-                    className=" ml-5 cursor-pointer z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
+                    className="mx-5 cursor-pointer z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                     src={`https://image.tmdb.org/t/p/w500/${e.file_path}`}
                   />
                 );

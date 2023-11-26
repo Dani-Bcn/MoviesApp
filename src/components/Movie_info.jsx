@@ -27,8 +27,7 @@ export default function Movie_info(props) {
           .then((resp) => setInfoMovie(resp))
       : null;
       window.screen.width > 900 ? setAutoPlay(true):setAutoPlay(false)
-  }, [idMovie]);
- 
+  }, [idMovie]); 
 
   useEffect(() => {
     idMovie !== undefined
@@ -74,13 +73,14 @@ export default function Movie_info(props) {
       marginTop: [0, -50],
     },
   };
+
   return (
     <m.main
       className="    
-     fixed   
-     my-14 
-     pb-10  
-      lg:py-10
+        fixed   
+        my-14 
+        pb-10  
+        lg:py-10
         h-screen
         w-screen         
         text-slate-200    
@@ -113,7 +113,6 @@ export default function Movie_info(props) {
           </section>
           <section className="overflow-hidden">
             <div className="fixed z-20 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
-
             <div
               className="fixed bg-slate-950 w-screen h-screen bg-top bg-no-repeat"
               style={{
@@ -127,7 +126,7 @@ export default function Movie_info(props) {
 
       {infoMovie ? (
         <section>
-          <section className="flex p-5 ">
+          <section className="flex p-5 bg-red-900">
             <img 
               className="z-20 lg:w-96 lg:h-96 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
               src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
