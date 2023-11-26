@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { motion as m } from "framer-motion";
+import { motion as m, transform } from "framer-motion";
+import gsap from "gsap";
 
 export default function Actor_info() {
   let idPerson = localStorage.getItem("idPerson");
   const [dataActor, setDataActor] = useState();
   const [dataMovies, setDataMovies] = useState();
   const [dataPictures, setDataPictures] = useState();
+  const [imgActor, setImgActor] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,9 +32,17 @@ export default function Actor_info() {
         `https://api.themoviedb.org/3/person/${idPerson}/images?api_key=55b2cf9d90cb74c55683e395bb1ad12b`
       )
         .then((res) => res.json())
-        .then((resp) => setDataPictures(resp));
+        .then((resp) => setDataPictures(resp.profiles));
     }
   }, []);
+
+  console.log(dataPictures);
+  let count =100
+
+  const moveLeft=((e)=>{
+
+    console.log(e)
+  })
 
   return (
     <m.main
@@ -51,28 +61,70 @@ export default function Actor_info() {
       }}
     >
       <section>
-        {dataActor ? (
-          <section className=" text-orange-50 flex py-5">
-            <h2 className=" absolute -mt-12  text-[1.5rem] ">
-              {dataActor.name}
-            </h2>
-            <img
-              className="rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100 my-2 "
-              src={`https://image.tmdb.org/t/p/w500/${dataActor.profile_path}`}
-            />
-            <article className="w-52 px-5 flex flex-col flex-wrap">
-              <p>{dataActor.birthday}</p>
-              <p>{dataActor.place_of_birth}</p>
-              <p>{dataActor.known_for_department}</p>
-              <p>{dataActor.popularity}</p>
-            </article>
+        <section className="flex ">
+          {dataActor ? (
+            <section className=" text-orange-50 flex py-5">
+              <h2 className=" absolute -mt-12  text-[1.5rem] ">
+                {dataActor.name}
+              </h2>
+              <article className="w-52 px-5 flex flex-col flex-wrap">
+                <p>{dataActor.birthday}</p>
+                <p>{dataActor.place_of_birth}</p>
+                <p>{dataActor.known_for_department}</p>
+                <p>{dataActor.popularity}</p>
+              </article>
+            </section>
+          ) : null}
+          {/*   <section className="bg-red-900 -ml-40 overflow-hidden ">
+          <section   id="imgsActor" className="flex">
+           
           </section>
-        ) : null}
+        </section> */}
+        </section>
+        <button >
+          back
+        </button>
+        <button>
+          next
+        </button>
+        <section id="slider"
+          className="scroll-auto"
+        >
+          <div id="slider-track"
+            className="scroll-auto"
+            onPointerOver={(e)=> {moveLeft(e)}}
+          >
+           
+           {dataPictures
+              ? dataPictures.map((e, i) => {
+                  return (
+                    <img key={i}   
+                          
+                     width={100}
+                      src={`https://image.tmdb.org/t/p/w500/${e.file_path}` }
+                    />
+                  );
+                })
+              : null}
+               {dataPictures
+              ? dataPictures.map((e, i) => {
+                  return (
+                    <img key={i}    
+                            
+                     width={100}
+                      src={`https://image.tmdb.org/t/p/w500/${e.file_path}` }
+                    />
+                  );
+                })
+              : null}
+         
+          </div>
+        </section>
 
         {dataMovies ? (
           <section className="relative z-40 pr-10 w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
             {dataMovies.map((e, i) => {
-              return e.poster_path  ? (                
+              return e.poster_path ? (
                 <img
                   onClick={() => {
                     navigate("/infoMovie");

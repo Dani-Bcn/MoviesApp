@@ -17,7 +17,7 @@ export default function Navbar(props) {
       height: 0,
     },
   };
-  console.log(location.pathname)
+  
 
   return (
     <m.main

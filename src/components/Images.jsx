@@ -21,7 +21,7 @@ export default function Images() {
    {  
    imagesTypes ==="Backdrops" && dataImages?
    dataImages.backdrops.map((e, i) => {
-   console.log(e.width)
+  
 
             return (               
               <img 

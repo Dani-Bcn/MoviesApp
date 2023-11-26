@@ -12,7 +12,7 @@ export default function Find_genres() {
   useEffect(() => {
     movieOrTv === "movie" ? setActive(true) : setActive(false);
     dataMovies.splice(0, dataMovies.length);
-    console.log(active);
+
   }, [movieOrTv]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Find_genres() {
       .then((resp) => setDataGenres(resp));
   }, [movieOrTv]);
 
-  dataGenres ? console.log("genres", dataGenres.genres) : null;
+  
   useEffect(() => {
     if (dataGenres) {
       dataGenres.genres.map((e, i) => {
@@ -41,8 +41,7 @@ export default function Find_genres() {
       });
     }
   }, [dataGenres]);
-  dataMovies ? console.log(dataMovies) : null;
-
+ 
   return (
     <main className="mt-24 ">
       {dataMovies

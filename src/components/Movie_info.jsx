@@ -28,7 +28,7 @@ export default function Movie_info(props) {
       : null;
       window.screen.width > 900 ? setAutoPlay(true):setAutoPlay(false)
   }, [idMovie]);
-  console.log(infoMovie)
+ 
 
   useEffect(() => {
     idMovie !== undefined

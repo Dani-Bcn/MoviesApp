@@ -28,7 +28,7 @@ function App() {
     window ? setHandleScreen(window) : null;
   }, []);
 
-  handleScreen ? console.log(handleScreen.screen) : null;
+  
   const getImages = (e) => {
     setDataImagesMovie(e);
   };

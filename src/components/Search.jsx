@@ -30,7 +30,6 @@ export default function Search(props) {
           .then((resp) => setFindMovie(resp.results))
       : null;
   }, [newCall]);
-  findMovie ? console.log(findMovie) : null;
 
   return (
     <m.main
