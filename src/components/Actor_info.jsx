@@ -87,39 +87,23 @@ export default function Actor_info() {
         <button>
           next
         </button>
-        <section id="slider"
-          className="scroll-auto"
-        >
-          <div id="slider-track"
-            className="scroll-auto"
-            onPointerOver={(e)=> {moveLeft(e)}}
-          >
+   
+           <section className="relative z-40  w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
            
            {dataPictures
               ? dataPictures.map((e, i) => {
                   return (
-                    <img key={i}   
-                          
-                     width={100}
-                      src={`https://image.tmdb.org/t/p/w500/${e.file_path}` }
-                    />
-                  );
-                })
-              : null}
-               {dataPictures
-              ? dataPictures.map((e, i) => {
-                  return (
                     <img key={i}    
                             
-                     width={100}
+                    className="cursor-pointer z-30 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-slate-950/100"
                       src={`https://image.tmdb.org/t/p/w500/${e.file_path}` }
                     />
                   );
                 })
               : null}
          
-          </div>
-        </section>
+          </section>
+       
 
         {dataMovies ? (
           <section className="relative z-40 pr-10 w-screen gap-6 h-72 flex items-center overflow-y-auto scroll-auto">
@@ -149,7 +133,7 @@ export default function Actor_info() {
         ) : null}
         {dataActor && dataActor.biography ? (
           <section className="mr-10">
-            <h2 className="z-40 text-orange-300 m-2 text-[1.1rem]">
+            <h2 className="z-40 text-orange-300 m-2 text-[1.5rem]">
               Biography
             </h2>
             <p className="pb-20 px-2 text-orange-100">{dataActor.biography}</p>

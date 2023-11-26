@@ -10,9 +10,6 @@ export default {
         'Josefin':['Josefin Sans'],
     'dorsa':['dorsa']
       }
-    
-
-
     },
   },
   plugins: [],

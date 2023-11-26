@@ -77,8 +77,7 @@ export default function Movie_info(props) {
   return (
     <m.main
       className="    
-     fixed
-      
+     fixed      
        lg:pt-32
         h-screen
         w-screen         

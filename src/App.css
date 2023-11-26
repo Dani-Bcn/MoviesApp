@@ -123,14 +123,6 @@ cursor: pointer;
 #slider #slider-track {
   display: flex;
   justify-content: center;
-  width: calc(200px * 38);
-  animation: scroll 120s linear infinite;
-}
-
-#slider #slider {
-  width: 200px;
-}
-
-#slider #slider p{
-  width: 200px;
-}
+  width: calc(200px);
+  /* animation: scroll 120s linear infinite;*/
+} 
