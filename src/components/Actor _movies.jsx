@@ -24,7 +24,7 @@ export default function Actor_movies() {
 
   return (
     <main className=" fixed ">
-      <section className="flex mt-24 my-5 mx-7 gap-10 w-screen">
+      <section className="flex mt-2 my-5 mx-7 gap-10 w-screen">
        {countPage < dataPages ? (
         <h2
           className="text-orange-200 w-36 text-start"
