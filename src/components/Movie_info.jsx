@@ -79,7 +79,7 @@ export default function Movie_info(props) {
       className="    
      fixed   
      mt-14   
-       lg:mt-20
+      lg:py-10
         h-screen
         w-screen         
         text-slate-200    
