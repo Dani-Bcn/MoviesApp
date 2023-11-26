@@ -13,7 +13,7 @@ export default function Movie_info(props) {
   const [dataVideos, setDataVideos] = useState();
   const [dataImages, setDataImages] = useState();
   const [selectedImages, setSelectedImages] = useState();
-  const [autoPlay, setAutoPlay] = useState(false)
+  const [autoPlay, setAutoPlay] = useState(false);
   let arrayNames = ["Backdrops", "Logos", "Posters"];
   let arrayImages = [];
   const navigate = useNavigate();
@@ -26,8 +26,8 @@ export default function Movie_info(props) {
           .then((resp) => resp.json())
           .then((resp) => setInfoMovie(resp))
       : null;
-      window.screen.width > 900 ? setAutoPlay(true):setAutoPlay(false)
-  }, [idMovie]); 
+    window.screen.width > 900 ? setAutoPlay(true) : setAutoPlay(false);
+  }, [idMovie]);
 
   useEffect(() => {
     idMovie !== undefined
@@ -116,7 +116,6 @@ export default function Movie_info(props) {
             <div
               className="fixed bg-slate-950 w-screen h-screen bg-top bg-no-repeat"
               style={{
-             
                 backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
               }}
             ></div>
@@ -126,8 +125,8 @@ export default function Movie_info(props) {
 
       {infoMovie ? (
         <section>
-          <section className="flex p-5 bg-red-900">
-            <img 
+          <section className="flex p-5">
+            <img
               className="z-20 lg:w-96 lg:h-96 rounded-2xl border-[3px] border-orange-300 shadow-xl shadow-black/100 "
               src={`https://image.tmdb.org/t/p/w500/${infoMovie.poster_path}`}
             />
@@ -135,8 +134,7 @@ export default function Movie_info(props) {
             <article className=" w-screen flex flex-col px-5 z-20">
               <section className="flex gap-2.5 my-1">
                 <div className="w-8 h-8 rounded-[20px]  flex items-center justify-center border-2 border-green-500">
-                  {
-                  infoMovie.spoken_languages.length === 0 ? (
+                  {infoMovie.spoken_languages.length === 0 ? (
                     infoMovie.original_language.toUpperCase()
                   ) : (
                     <p className="mt-0.5">
@@ -207,26 +205,26 @@ export default function Movie_info(props) {
               </section>
             </article>
             {dataVideos ? (
-              dataVideos.length >0 ? (
+              dataVideos.length > 0 ? (
                 <>
-                 
-                <ReactPlayer
-                id="movie"
-                className="lg:flex md:flex hidden absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
-                url={`//www.youtube.com/watch?v=${dataVideos[0].key}`}
-                        
-             playing={autoPlay}
-             controls={true}
-               
-              ></ReactPlayer>
-
-                <div onClick={()=>navigate("/trailers")}
-                className="hidden lg:flex md:flex md:mt-12 md:scale-[0.6] md:ml-[88vw]  ml-[87vw] cursor-pointer mt-32 items-center absolute w-24 h-40 bg-gradient-to-r to-slate-800  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950">              
-                <p className=" flex flex-col  w-10 text-start ml-5">All trailers</p>
-                </div>
+                  <ReactPlayer
+                    id="movie"
+                    className="lg:flex md:flex hidden absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
+                    url={`//www.youtube.com/watch?v=${dataVideos[0].key}`}
+                    playing={autoPlay}
+                    controls={true}
+                  ></ReactPlayer>
+                  <div
+                    onClick={() => navigate("/trailers")}
+                    className="absolute mt-32 w-24 h-40 cursor-pointer items-center bg-gradient-to-r to-slate-800  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950"
+                  >
+                    <p className=" flex flex-col  w-10 text-start ml-5">
+                      All trailers
+                    </p>
+                  </div>
                 </>
               ) : null
-            ) : null}          
+            ) : null}
           </section>
           <section className="relative  z-20">
             <p className="text-slate-50 p-x10 p-5 w-screen lg:w-96">
@@ -266,16 +264,16 @@ export default function Movie_info(props) {
 
           {dataVideos ? (
             dataVideos.length !== 0 ? (
-              <section className="bg-red-700 w-screen h-72 flex lg:hidden md:hidden">
+              <section className="w-screen h-72 flex lg:hidden md:hidden">
                 <section
                   className=" mt-2 z-40 absolute w-screen h-60 "
                   onClick={() => navigate("/trailers")}
-                ></section>             
-                  <section className="flex z-20 w-screen">
-                    <iframe    
-                    className="w-screen h-52 ml-1 mb-10"                 
-                      src={`//www.youtube.com/embed/${dataVideos[0].key}`}
-                    ></iframe>               
+                ></section>
+                <section className="flex z-20 w-screen">
+                  <iframe
+                    className="w-screen h-52 ml-1 mb-10"
+                    src={`//www.youtube.com/embed/${dataVideos[0].key}`}
+                  ></iframe>
                 </section>
               </section>
             ) : null
