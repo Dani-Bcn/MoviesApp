@@ -84,7 +84,7 @@ export default function Movie_info(props) {
   }, []);
 
   const coco = () => {
-    window.screen.orientation.angle === "portrait-primary"
+    window.screen.orientation.type === "portrait-primary"
       ? setActiveTrailers(false)
       : setActiveTrailers(true);
     console.log(window.screen.orientation.angle);
