@@ -73,8 +73,24 @@ export default function Movie_info(props) {
       marginTop: [0, -50],
     },
   };
+  const [activeTrailers, setActiveTrailers] = useState(false);
 
-  console.log(window.screen)
+  useEffect(() => {
+    window.screen.orientation.type === "portrait-primary" 
+      ? setActiveTrailers(false)
+      : setActiveTrailers(true);
+    console.log(activeTrailers);
+    console.log(window.screen);
+  }, []);
+
+  const coco = () => {
+    window.screen.orientation.angle === "portrait-primary"
+      ? setActiveTrailers(false)
+      : setActiveTrailers(true);
+    console.log(window.screen.orientation.angle);
+  };
+
+  window.addEventListener("resize", () => coco());
 
   return (
     <m.main
@@ -227,30 +243,31 @@ export default function Movie_info(props) {
               ) : null
             ) : null}
           </section>
-
-          {dataVideos ? (
-            <section className=" overflow-y-auto relative flex flex-row gap-48 z-50 w-screen h-32 py-5">
-              {dataVideos.map((e, i) => {
-                return i< 10? (
-                  <m.div key={i}
-                    className="hidden justify-start items-center"
-
-                    animate={{
-                      display:"flex"
-                    }}
-                  >
-                    <ReactPlayer
+          {activeTrailers ? (
+            dataVideos ? (
+              <section className=" overflow-y-auto relative flex flex-row gap-48 z-50 w-screen h-32 py-5">
+                {dataVideos.map((e, i) => {
+                  return i < 10 ? (
+                    <m.div
                       key={i}
-                      className=" absolute w-20 h-20"
-                      url={`//www.youtube.com/watch?v=${e.key}`}
-                      controls={true}
-                      width={175}
-                      height={110}
-                    ></ReactPlayer>
-                  </m.div>
-                ) :null
-              })}
-            </section>
+                      className="hidden justify-start items-center"
+                      animate={{
+                        display: "flex",
+                      }}
+                    >
+                      <ReactPlayer
+                        key={i}
+                        className=" absolute w-20 h-20"
+                        url={`//www.youtube.com/watch?v=${e.key}`}
+                        controls={true}
+                        width={175}
+                        height={110}
+                      ></ReactPlayer>
+                    </m.div>
+                  ) : null;
+                })}
+              </section>
+            ) : null
           ) : null}
 
           <section className="relative  z-20">
