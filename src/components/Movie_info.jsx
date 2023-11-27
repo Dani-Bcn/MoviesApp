@@ -80,7 +80,6 @@ export default function Movie_info(props) {
       ? setActiveTrailers(false)
       : setActiveTrailers(true);
     console.log(activeTrailers);
-    console.log(window.screen);
   }, []);
 
   const coco = () => {
@@ -91,6 +90,8 @@ export default function Movie_info(props) {
   };
 
   window.addEventListener("resize", () => coco());
+
+ 
 
   return (
     <m.main
@@ -227,7 +228,7 @@ export default function Movie_info(props) {
                   <ReactPlayer
                     id="movie"
                     className=" lg:flex md:flex hidden absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
-                    url={`//www.youtube.com/watch?v=${dataVideos[0].key}`}
+                    url={`https://www.youtube.com/watch?v=${dataVideos[0].key}`}
                     playing={autoPlay}
                     controls={true}
                   ></ReactPlayer>
@@ -243,32 +244,7 @@ export default function Movie_info(props) {
               ) : null
             ) : null}
           </section>
-          {activeTrailers ? (
-            dataVideos ? (
-              <section className=" overflow-y-auto relative flex flex-row gap-48 z-50 w-screen h-32 py-5">
-                {dataVideos.map((e, i) => {
-                  return i < 10 ? (
-                    <m.div
-                      key={i}
-                      className="hidden justify-start items-center"
-                      animate={{
-                        display: "flex",
-                      }}
-                    >
-                      <ReactPlayer
-                        key={i}
-                        className=" absolute w-20 h-20"
-                        url={`//www.youtube.com/watch?v=${e.key}`}
-                        controls={true}
-                        width={175}
-                        height={110}
-                      ></ReactPlayer>
-                    </m.div>
-                  ) : null;
-                })}
-              </section>
-            ) : null
-          ) : null}
+        
 
           <section className="relative  z-20">
             <p className="text-slate-50 p-x10 p-5 w-screen lg:w-96">

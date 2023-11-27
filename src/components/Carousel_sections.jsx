@@ -44,9 +44,9 @@ export default function Carousel_popular() {
     }}     
     >     
     <section className="md:-mt-80">
-    <h2 className="px-6 mt-5 text-orange-100 text-6xl font-dorsa">Actualyty</h2>
+    <h2 className="px-6 mt-5 text-orange-100 text-6xl font-dorsa">Actuality</h2>
       {dataPopular ? (
-       <section className="flex items-start my-2 h-[260px] w-screen overflow-y-hidden ">
+       <section className="flex items-start my-2 h-[260px] w-[97vw] overflow-y-hidden ">
           {dataPopular.map((e, i) => {
             return (
               <img
@@ -65,7 +65,7 @@ export default function Carousel_popular() {
       ) : null}     
        <h2 className="px-6 mt-5 text-orange-100 text-6xl font-dorsa  ">Top rated</h2>
          {dataTopRated ? (
-          <section className="flex items-start my-2 mb-10 h-[260px] w-screen overflow-y-hidden ">
+          <section className="flex items-start my-2 mb-10 h-[260px] w-[97vw] overflow-y-hidden ">
           {dataTopRated.map((e, i) => {
             return (
               <img

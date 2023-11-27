@@ -62,7 +62,7 @@ export default function Find_genres() {
 
                     </div>
                   ) : null}
-                  <section className="flex lg:gap-10 gap-5 ">
+                  <section className="flex lg:gap-10 gap-5 h-64 w-[97vw] overflow-y-hidden ">
                     {e.map((e, i) => (
                       <img
                         key={i}
