@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { motion as m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { data, info } from "autoprefixer";
@@ -74,6 +74,8 @@ export default function Movie_info(props) {
     },
   };
 
+  console.log(window.screen)
+
   return (
     <m.main
       className="    
@@ -111,15 +113,14 @@ export default function Movie_info(props) {
               )
             ) : null}
           </section>
-          <section className="overflow-hidden">
-            <div className="fixed z-20 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
-            <div
-              className="fixed bg-slate-950 w-screen h-screen bg-top bg-no-repeat"
-              style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
-              }}
-            ></div>
-          </section>
+
+          <div className="fixed z-20 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
+          <div
+            className="fixed bg-slate-950 w-screen h-screen bg-top bg-no-repeat"
+            style={{
+              backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
+            }}
+          ></div>
         </>
       ) : null}
 
@@ -209,16 +210,16 @@ export default function Movie_info(props) {
                 <>
                   <ReactPlayer
                     id="movie"
-                    className="lg:flex md:flex hidden absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
+                    className=" lg:flex md:flex hidden absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
                     url={`//www.youtube.com/watch?v=${dataVideos[0].key}`}
                     playing={autoPlay}
                     controls={true}
                   ></ReactPlayer>
                   <div
                     onClick={() => navigate("/trailers")}
-                    className="absolute mt-32 w-24 h-40 cursor-pointer items-center bg-gradient-to-r to-slate-800  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950"
+                    className="lg:mt-32 lg:ml-[200vh] ml-[192vh] flex  absolute mt-10 w-20 h-32 cursor-pointer items-center bg-gradient-to-r to-slate-700  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950"
                   >
-                    <p className=" flex flex-col  w-10 text-start ml-5">
+                    <p className=" flex flex-col  w-10 text-start ml-4">
                       All trailers
                     </p>
                   </div>
@@ -226,6 +227,32 @@ export default function Movie_info(props) {
               ) : null
             ) : null}
           </section>
+
+          {dataVideos ? (
+            <section className=" overflow-y-auto relative flex flex-row gap-48 z-50 w-screen h-32 py-5">
+              {dataVideos.map((e, i) => {
+                return i< 10? (
+                  <m.div key={i}
+                    className="hidden justify-start items-center"
+
+                    animate={{
+                      display:"flex"
+                    }}
+                  >
+                    <ReactPlayer
+                      key={i}
+                      className=" absolute w-20 h-20"
+                      url={`//www.youtube.com/watch?v=${e.key}`}
+                      controls={true}
+                      width={175}
+                      height={110}
+                    ></ReactPlayer>
+                  </m.div>
+                ) :null
+              })}
+            </section>
+          ) : null}
+
           <section className="relative  z-20">
             <p className="text-slate-50 p-x10 p-5 w-screen lg:w-96">
               {infoMovie.overview}
