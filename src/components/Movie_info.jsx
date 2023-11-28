@@ -132,9 +132,9 @@ export default function Movie_info(props) {
               dataVideos.length > 0 ? (
                 <div className="-mt-10 fixed z-20">
                   <ReactPlayer
-                    className="lg:flex md:flex absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
+                    className="lg:flex md:flex hidden absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
                     url={`https://www.youtube.com/watch?v=${dataVideos[0].key}`}
-                    playing={true}
+                    playing={autoPlay}
                     controls={false}
                     width={"100vw"}
                     height={"100vh"} 
