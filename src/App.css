@@ -28,12 +28,17 @@ a{
 }
 
 html{
-  background-color: rgb(30 41 59);
+  background-color: rgb(30 41 59 );
   font-family: 'Nanum Gothic', sans-serif;
 }
 
 button{
   color: wheat;
+}
+#movie_back{
+position: absolute;
+width: 100px!important;
+height: 100px!important;
 }
 
 img{

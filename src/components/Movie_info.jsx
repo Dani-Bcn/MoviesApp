@@ -76,7 +76,7 @@ export default function Movie_info(props) {
   const [activeTrailers, setActiveTrailers] = useState(false);
 
   useEffect(() => {
-    window.screen.orientation.type === "portrait-primary" 
+    window.screen.orientation.type === "portrait-primary"
       ? setActiveTrailers(false)
       : setActiveTrailers(true);
     console.log(activeTrailers);
@@ -90,8 +90,6 @@ export default function Movie_info(props) {
   };
 
   window.addEventListener("resize", () => coco());
-
- 
 
   return (
     <m.main
@@ -130,16 +128,32 @@ export default function Movie_info(props) {
               )
             ) : null}
           </section>
-
-          <div className="fixed z-20 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
-          <div
-            className="fixed bg-slate-950 w-screen h-screen bg-top bg-no-repeat"
-            style={{
-              backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
-            }}
-          ></div>
+          {dataVideos ? (
+              dataVideos.length > 0 ? (
+                <div className="-mt-10 fixed z-20">
+                  <ReactPlayer
+                    className="lg:flex md:flex hidden absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
+                    url={`https://www.youtube.com/watch?v=${dataVideos[0].key}`}
+                    playing={autoPlay}
+                    controls={false}
+                    width={"100vw"}
+                    height={"100vh"} 
+                    muted={true}                  
+                   
+                  >
+                   
+                  </ReactPlayer>
+                  <div className="z-40 fixed w-full h-full bg-gradient-to-t to-slate-800 from-slate-800/[0.7]"></div>
+                </div>
+              ) : null
+            ) : null}
+           
+          
         </>
       ) : null}
+      <div className="hidden md:flexw-32 h-32 z-40 ml-[83vw] -m-5 absolute text-orange-200">
+        All trailres
+      </div>
 
       {infoMovie ? (
         <section>
@@ -232,19 +246,10 @@ export default function Movie_info(props) {
                     playing={autoPlay}
                     controls={true}
                   ></ReactPlayer>
-                  <div
-                    onClick={() => navigate("/trailers")}
-                    className="lg:mt-32 lg:ml-[200vh] ml-[192vh] flex  absolute mt-10 w-20 h-32 cursor-pointer items-center bg-gradient-to-r to-slate-700  from-slate-800/[0] clip-full-arrow-r z-40 shadow-xl shadow-slate-950"
-                  >
-                    <p className=" flex flex-col  w-10 text-start ml-4">
-                      All trailers
-                    </p>
-                  </div>
                 </>
               ) : null
             ) : null}
           </section>
-        
 
           <section className="relative  z-20">
             <p className="text-slate-50 p-x10 p-5 w-screen lg:w-96">
