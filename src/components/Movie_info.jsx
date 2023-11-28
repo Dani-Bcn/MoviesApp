@@ -130,11 +130,12 @@ export default function Movie_info(props) {
           </section>
           {dataVideos ? (
               dataVideos.length > 0 ? (
-                <div className="-mt-10 fixed z-20">
+                <section>
+                <div className=" lg:flex md:flex hidden -mt-10 fixed z-20">
                   <ReactPlayer
-                    className="lg:flex md:flex hidden absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
+                    className="absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
                     url={`https://www.youtube.com/watch?v=${dataVideos[0].key}`}
-                    playing={autoPlay}
+                    playing={true}
                     controls={false}
                     width={"100vw"}
                     height={"100vh"} 
@@ -145,6 +146,15 @@ export default function Movie_info(props) {
                   </ReactPlayer>
                   <div className="z-40 fixed w-full h-full bg-gradient-to-t to-slate-800 from-slate-800/[0.7]"></div>
                 </div>
+                <div
+                className="fixed z-10 bg-slate-950 w-screen h-screen bg-top bg-no-repeat"
+                style={{
+                  backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
+                }}
+              >
+              <div className="fixed z-10 w-screen h-screen bg-gradient-to-t to-slate-800/[0.99]  from-slate-800/[0.01]"></div>
+              </div>
+              </section>
               ) : null
             ) : null}
            
@@ -243,7 +253,7 @@ export default function Movie_info(props) {
                     id="movie"
                     className=" lg:flex md:flex hidden absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
                     url={`https://www.youtube.com/watch?v=${dataVideos[0].key}`}
-                    playing={autoPlay}
+                    playing={false}
                     controls={true}
                   ></ReactPlayer>
                 </>
