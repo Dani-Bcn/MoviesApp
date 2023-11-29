@@ -131,23 +131,23 @@ export default function Movie_info(props) {
           {dataVideos ? (
               dataVideos.length > 0 ? (
                 <section>
-                <div className=" lg:flex md:flex hidden -mt-10 fixed z-20">
+                <div className=" lg:flex md:flex hidden -mt-40 fixed z-20">
                   <ReactPlayer
                     className="absolute  border-2 border-orange-300 z-40 shadow-xl shadow-slate-950"
                     url={`https://www.youtube.com/watch?v=${dataVideos[0].key}`}
                     playing={true}
                     controls={false}
                     width={"100vw"}
-                    height={"100vh"} 
+                    height={"125vh"} 
                     muted={true}                  
                    
                   >
                    
                   </ReactPlayer>
-                  <div className="z-40 fixed w-full h-full bg-gradient-to-t to-slate-800 from-slate-800/[0.7]"></div>
+                  <div className="z-40 fixed w-full h-[120vh] bg-gradient-to-t to-slate-800 from-slate-800/[0.7]"></div>
                 </div>
                 <div
-                className="fixed z-10 bg-slate-950 w-screen h-screen bg-top bg-no-repeat"
+                className="fixed flex lg:hidden md:hidden  z-10 bg-slate-950 w-screen h-screen bg-top bg-no-repeat"
                 style={{
                   backgroundImage: `url(https://image.tmdb.org/t/p/w500/${infoMovie.poster_path})`,
                 }}

@@ -28,7 +28,7 @@ export default function Actor_movies() {
       <section className="bg-slate-800/[0.7] backdrop-blur-sm  fixed flex  mt-10 w-screen h-10 justify-center items-center z-50">
        {countPage < dataPages ? (
         <h2
-          className="text-orange-200  w-32 text-center"
+          className="text-orange-200  w-32 text-center cursor-pointer"
           onClick={() => {
            setCountPage(countPage + 1), setNewCall(!newCall);
           }}
@@ -38,7 +38,7 @@ export default function Actor_movies() {
       ) : null}
        {countPage > 1  ? (
         <h2
-          className="text-orange-200  w-32 text-center"
+          className="text-orange-200  w-32 text-center cursor-pointer"
           onClick={() => {
            setCountPage(countPage - 1), setNewCall(!newCall);
           }}

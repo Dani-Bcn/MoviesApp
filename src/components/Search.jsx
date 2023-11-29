@@ -33,8 +33,11 @@ export default function Search(props) {
 
   return (
     <m.main
-      className="fixed overflow-hidden w-screen  h-screen flex flex-col -ml-[850px]  bg-slate-800/[0.5] backdrop-blur-[20px] z-50"
+      className="fixed overflow-hidden w-screen h-screen flex flex-col -ml-[850px]  bg-slate-800/[0.5] backdrop-blur-[20px] z-50"
       variants={variantsActiveSearch}
+      initial={{
+        x: "-50vw",
+      }}
       animate={activePageSearch ? "open" : "closed"}
       transition={{
         duration: 0.5,
@@ -42,7 +45,7 @@ export default function Search(props) {
     >
       <section>
         <svg
-          className="h-10 m-2 mx-5"
+          className="h-10 m-2 mx-5 cursor-pointer"
           onClick={() => {
             activesearch(false),
               (inputRef.current.value = ""),

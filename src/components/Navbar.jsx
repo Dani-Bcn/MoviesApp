@@ -108,6 +108,7 @@ export default function Navbar(props) {
           </m.ul>
         </section>
         <svg
+        className="cursor-pointer"
           onClick={() => activesearch(true)}
           width="25px"
           height="25px"

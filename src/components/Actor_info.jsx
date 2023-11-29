@@ -63,13 +63,13 @@ export default function Actor_info() {
       {dataActor ? (
         <section className="fixed w-screen flex z-10 -mt-20 justify-center ">
           <img
-            className=" w-full h-full md:w-[50vw] md:h-[120vh]"
+            className=" w-full h-full md:w-[50vw]"
             src={`https://image.tmdb.org/t/p/w500/${dataActor.profile_path}`}
           />
         </section>
       ) : null}
-      <div className="fixed w-screen h-[600px] bg-gradient-to-t to-slate-800/[0] from-slate-800 z-20 -mt-20"></div>
-      <div className="fixed w-screen h-[600px] bg-gradient-to-t to-slate-800 from-slate-800/[0] z-20 -mt-20"></div>
+      <div className="fixed w-screen h-[650px] bg-gradient-to-t to-slate-800/[0] from-slate-800 z-20 -mt-20"></div>
+      <div className="fixed w-screen h-[650px] bg-gradient-to-t to-slate-800 from-slate-800/[0] z-20 -mt-20"></div>
     
       <section className="absolute z-40">
         <section className="flex flex-col md:flex-row w-screen md:items-center lg:items-center">
@@ -102,8 +102,7 @@ export default function Actor_info() {
               })
             : null}
         </section>
-        </section>
-        
+        </section>        
           {dataMovies ? (
             <section className="relative gap-5 px-5 z-40 w-screen h-80 flex items-center overflow-y-auto scroll-auto">
               {dataMovies.map((e, i) => {
