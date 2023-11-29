@@ -5,20 +5,24 @@ import {motion as m} from "framer-motion"
 
 
 export default function Home() {
+
+  const [title,setTitle]= useState("Movies")
+ 
+const movieOrTv = localStorage.getItem("movieOrTv");
+  useEffect(()=>{
+      movieOrTv === "movie" ?  setTitle("Movies"): setTitle("Tv")
+  },[movieOrTv])
+
+
  return (
   <main className="flex flex-col items-center  ">
      <section
-        className=" absolute z-20 mt-32 md:hidden lg:flex lg:scale-150 flex flex-col items-center justify-center"      
-      >
+        className=" absolute z-20 mt-32 lg:flex lg:scale-150 flex flex-col items-center justify-center"      
+      >      
         <h1
           className=" text-blue-200 text-8xl font-Josefin  text-shadow-logo"         
         >
-          Movies
-        </h1>
-        <h1
-          className="text-indigo-200 text-8xl font-Josefin  text-shadow-logo"         
-        >
-          App
+         {title}
         </h1>
       </section>
   <Carousel_movies />

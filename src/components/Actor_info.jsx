@@ -61,9 +61,9 @@ export default function Actor_info() {
       }}
     >
       {dataActor ? (
-        <section className="fixed w-screen z-10 -mt-20 ">
+        <section className="fixed w-screen flex z-10 -mt-20 justify-center ">
           <img
-            className=" w-full h-full"
+            className=" w-full h-full md:w-[50vw] md:h-[120vh]"
             src={`https://image.tmdb.org/t/p/w500/${dataActor.profile_path}`}
           />
         </section>

@@ -9,8 +9,7 @@ export default function Carousel_popular() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    movieOrTv ?
-    
+    movieOrTv ?    
            fetch(
             `https://api.themoviedb.org/3/${movieOrTv}/popular?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
           )
@@ -22,13 +21,11 @@ export default function Carousel_popular() {
                 `https://api.themoviedb.org/3/${movieOrTv}/top_rated?api_key=55b2cf9d90cb74c55683e395bb1ad12b&page=1`
               )
                 .then((res) => res.json())
-                .then((resp) => setDataTopRated(resp.results)):null
-            
-               
+                .then((resp) => setDataTopRated(resp.results)):null              
   }, [movieOrTv])
 
   return (
-    <m.main className="fixed pt-96 ml-6  h-screen  z-30 overflow-x-hidden"
+    <m.main className="fixed pt-52 ml-6  h-screen  z-30 overflow-x-hidden"
     animate={{
       x:0,
       scale:1,
@@ -43,7 +40,7 @@ export default function Carousel_popular() {
       }
     }}     
     >     
-    <section className="md:-mt-80">
+    <section>
     <h2 className="px-6 mt-5 text-orange-100 text-6xl font-dorsa">Actuality</h2>
       {dataPopular ? (
        <section className="flex items-start my-2 h-[260px] w-[97vw] overflow-y-hidden ">
