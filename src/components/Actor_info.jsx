@@ -46,7 +46,7 @@ export default function Actor_info() {
 
   return (
     <m.main
-      className=" w-screen flex justify-center pt-32 "
+      className=" w-screen flex justify-center md:pt-20 pt-32 "
       animate={{
         opacity: [0, 0, 1],
         transition: {
@@ -68,16 +68,18 @@ export default function Actor_info() {
           />
         </section>
       ) : null}
-      <section className="fixed w-screen h-[600px] bg-gradient-to-t to-slate-800/[0] from-slate-800 z-20 -mt-20"></section>
-      <section className="fixed w-screen h-[600px] bg-gradient-to-t to-slate-800 from-slate-800/[0] z-20 -mt-20"></section>
-      <section className=" absolute   z-40 ">
-        <section className="ml-5">
+      <div className="fixed w-screen h-[600px] bg-gradient-to-t to-slate-800/[0] from-slate-800 z-20 -mt-20"></div>
+      <div className="fixed w-screen h-[600px] bg-gradient-to-t to-slate-800 from-slate-800/[0] z-20 -mt-20"></div>
+    
+      <section className="absolute z-40">
+        <section className="flex flex-col md:flex-row w-screen md:items-center lg:items-center">
+        <section className="ml-5 ">
           {dataActor ? (
-            <section className=" text-orange-50 flex py-5">
-              <h2 className=" absolute -mt-12  text-[1.5rem] ">
+            <section className=" text-orange-50 flex ">
+              <h2 className=" absolute -mt-12 px-5  text-[1.5rem] ">
                 {dataActor.name}
               </h2>
-              <article className="w-52 px-5 flex flex-col flex-wrap">
+              <article className="w-52 px-5 flex flex-col ">
                 <p>{dataActor.birthday}</p>
                 <p>{dataActor.place_of_birth}</p>
                 <p>{dataActor.known_for_department}</p>
@@ -86,9 +88,8 @@ export default function Actor_info() {
             </section>
           ) : null}
         </section>
-        <button>back</button>
-        <button>next</button>
-        <section className="relative gap-5 px-5  w-screen h-80 flex items-center overflow-y-auto scroll-auto">
+      
+        <section className="relative gap-5 px-10 md:ml-20 lg:px-20  w-screen h-80 flex items-center overflow-y-auto scroll-auto">
           {dataPictures
             ? dataPictures.map((e, i) => {
                 return (
@@ -100,6 +101,7 @@ export default function Actor_info() {
                 );
               })
             : null}
+        </section>
         </section>
         
           {dataMovies ? (
