@@ -50,10 +50,10 @@ export default function Find_genres() {
                 key={i}
                 className=" flex overflow-y-hidden lg:overflow-hidden"
               >
-                <section className="ml-5 flex flex-col justify-start items-start h-[350px] ">
+                <section className=" flex flex-col justify-start items-start h-[350px] ">
                   {dataGenres ? (
-                    <div className="w-[94vw] flex justify-between">
-                      <p className="text-orange-100 font-dorsa text-6xl  ">
+                    <div className=" flex justify-between">
+                      <p className="text-orange-100 ml-5 font-dorsa text-6xl  ">
                         {dataGenres.genres[i].name}
                       </p>
                      
@@ -61,7 +61,7 @@ export default function Find_genres() {
 
                     </div>
                   ) : null}
-                  <section className="flex lg:gap-10 gap-5 h-72 w-[97vw] overflow-y-hidden ">
+                  <section className="flex lg:gap-10 gap-5 h-72 overflow-y-hidden ">
                     {e.map((e, i) => (
                       <img
                         key={i}
@@ -69,7 +69,7 @@ export default function Find_genres() {
                           localStorage.setItem("idMovie", e.id);
                           navigate("/infoMovie");
                         }}
-                        className=" cursor-pointer rounded-[10px] border-[3px] border-orange-300 shadow-xl shadow-black/100"
+                        className="ml-5 cursor-pointer rounded-[10px] border-[3px] border-orange-300 shadow-xl shadow-black/100"
                         src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
                       />
                     ))}
