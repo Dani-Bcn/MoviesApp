@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion as m } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 export default function Search(props) {
   const movieOrTv = localStorage.getItem("movieOrTv");

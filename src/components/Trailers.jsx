@@ -17,7 +17,7 @@ export default function Trailers() {
       .then((resp) => resp.json())
       .then((resp) => setDataVideos(resp.results));      
   }, [idMovie]);
-
+  
   return (
     <main className="my-20">
       {dataVideos

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, Suspense } from "react";
 import { motion as m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { data, info } from "autoprefixer";
 import ReactPlayer from "react-player";
 
 export default function Movie_info(props) {

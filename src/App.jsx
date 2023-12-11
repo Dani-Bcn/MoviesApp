@@ -17,13 +17,14 @@ import Home from "./components/Home";
 
 function App() {
   const location = useLocation();
-  const navigate = useNavigate();
-  const [dataImagesMovie, setDataImagesMovie] = useState();
-  const [activePageSearch, setActivePageSearch] = useState(false);
-  const [selectMovieTv, setSelectMovieTv] = useState(true);
+  const navigate = useNavigate(); 
+   const [selectMovieTv, setSelectMovieTv] = useState(true);
   const [activeNavbar, setActiveNavbar] = useState(true);
   const [handleScreen, setHandleScreen] = useState();
 
+
+  const [dataImagesMovie, setDataImagesMovie] = useState();
+  const [activePageSearch, setActivePageSearch] = useState(false);
   useEffect(() => {
     window ? setHandleScreen(window) : null;
   }, []);
@@ -64,7 +65,7 @@ function App() {
     },
   };
   return (
-    <m.main className="sticky flex flex-col">
+    <m.main className=" flex flex-col">
      
       <Navbar activesearch={activesearch} />
       <Search activesearch={activesearch} activePageSearch={activePageSearch} />

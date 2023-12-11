@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {motion as m} from "framer-motion"
 
 export default function Find_genres() {
   const navigate = useNavigate();
@@ -62,7 +61,7 @@ export default function Find_genres() {
 
                     </div>
                   ) : null}
-                  <section className="flex lg:gap-10 gap-5 h-64 w-[97vw] overflow-y-hidden ">
+                  <section className="flex lg:gap-10 gap-5 h-72 w-[97vw] overflow-y-hidden ">
                     {e.map((e, i) => (
                       <img
                         key={i}

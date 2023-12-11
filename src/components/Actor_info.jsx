@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion as m, transform } from "framer-motion";
-import gsap from "gsap";
 
 export default function Actor_info() {
   let idPerson = localStorage.getItem("idPerson");
@@ -89,7 +88,7 @@ export default function Actor_info() {
           ) : null}
         </section>
       
-        <section className="relative gap-5 px-10 md:ml-20 lg:px-20  w-screen h-80 flex items-center overflow-y-auto scroll-auto">
+        <section className="relative gap-5 px-10 md:ml-20 lg:px-20  w-screen h-80 flex items-center overflow-y-auto ">
           {dataPictures
             ? dataPictures.map((e, i) => {
                 return (
@@ -104,7 +103,7 @@ export default function Actor_info() {
         </section>
         </section>        
           {dataMovies ? (
-            <section className="relative gap-5 px-5 z-40 w-screen h-80 flex items-center overflow-y-auto scroll-auto">
+            <section className="relative gap-5 px-5 z-40 w-screen h-80 flex items-center overflow-y-auto">
               {dataMovies.map((e, i) => {
                 return e.poster_path ? (
                   <img
